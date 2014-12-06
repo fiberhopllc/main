@@ -1,0 +1,2 @@
+<object type="application/x-shockwave-flash" data="<%=root%>public/flash/image_scroller.swf" width="1000" height="272" flashVars="navOffset=">
+					<param name="wmode" value="opaque"/>

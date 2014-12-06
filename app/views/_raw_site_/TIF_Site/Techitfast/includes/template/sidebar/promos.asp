@@ -1,0 +1,1 @@
+<div class="special_offer" style="margin-top:2px"><a href="<%=root%>Promotions.asp"><img src="<%=root%>public/images/promo_01.jpg" width="210" height="474" alt="50% Off" /></a></div>

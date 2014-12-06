@@ -1,0 +1,74 @@
+{
+	"name": "laravel/laravel",
+	"description": "The Laravel Framework.",
+	"keywords": ["framework", "laravel"],
+	"license": "MIT",
+	"type": "project",
+	"require": {
+		"laravel/framework": "4.2.*",
+        "tappleby/laravel-auth-token": "0.3.*",
+        "cartalyst/sentry": "2.1.*",
+        "venturecraft/revisionable": "1.*",
+		"barryvdh/laravel-debugbar": "~1.8",
+		"jenssegers/mongodb": "~2.0",
+        "artdarek/oauth-4-laravel": "dev-master",
+        "robclancy/presenter": "1.3.*",
+        "fitztrev/laravel-html-minify": "1.*",
+        "barryvdh/laravel-httpcache": "0.1.x",
+		"roumen/sitemap": "~2.4",
+        "pafelin/laravel-nonce": "dev-master",
+		"chrisbjr/api-guard": "~0.6",
+		"spatie/activitylog": "~0.2",
+		"yhbyun/snowman": "~0.1",
+		"welderlourenco/laravel-seeder": "~1.0",
+        "mic/log-like-rails": "dev-master",
+        "digithis/activehelper": "dev-master",
+        "vtalbot/coffee": "1.*",
+        "teepluss/hmvc": "dev-master",
+        "nicolaslopezj/searchable": "1.*",
+		"valorin/deploy": "~1.2",
+        "webpatser/laravel-uuid": "1.*",
+		"pragmarx/ci": "~0.1",
+        "laracasts/validation": "~1.0"
+    },
+    "require-dev": {
+        "darsain/laravel-console": "dev-master",
+        "way/generators": "~2.0",
+        "xethron/migrations-generator": "dev-master",
+        "phpspec/phpspec": "~2.0"
+    },
+	"autoload": {
+ 		"classmap": [
+			"app/commands",
+			"app/controllers",
+			"app/models",
+			"app/database/migrations",
+			"app/database/seeds",
+			"app/tests/TestCase.php"
+		],
+        "files": ["app/basicAuth/helpers.php"],
+        "psr-4": {
+            "basicAuth\\": "app/basicAuth"
+        }
+	},
+	"scripts": {
+		"post-install-cmd": [
+			"php artisan clear-compiled",
+			"php artisan optimize"
+		],
+		"post-update-cmd": [
+			"php artisan clear-compiled",
+			"php artisan optimize"
+		],
+		"post-create-project-cmd": [
+			"php artisan key:generate"
+		]
+	},
+	"config": {
+		"preferred-install": "dist",
+        "bin-dir": "bin"
+	},
+	"minimum-stability": "dev"
+}
+
+

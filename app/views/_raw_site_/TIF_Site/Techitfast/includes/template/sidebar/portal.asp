@@ -1,0 +1,1 @@
+<div class="portals" style="margin-top:2px"><a href="<%=root%>Client_Resources.asp"><img src="<%=root%>public/images/portal.jpg" alt="Client Resources" /></a></div>

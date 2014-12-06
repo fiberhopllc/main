@@ -1,0 +1,1 @@
+<object type='application/x-shockwave-flash' data='<%=root%>public/flash/partnerships.swf' width='210' height='400' flashVars='navOffset='>
