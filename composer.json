@@ -51,12 +51,13 @@
  		"classmap": [
 			"app/commands",
 			"app/controllers",
+            "app/interfaces",
 			"app/models",
 			"app/database/migrations",
 			"app/database/seeds",
 			"app/tests/TestCase.php"
 		],
-        "files": ["app/basicAuth/helpers.php"],
+        "files": ["app/basicAuth/helpers.php", "app/helpers.php"],
         "psr-4": {
             "basicAuth\\": "app/basicAuth"
         }

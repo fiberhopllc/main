@@ -15,3 +15,4 @@
     Artisan::add(new DropTables);
     Artisan::add(new DumpData);
     Artisan::add(new ImportData);
+    Artisan::add(new MailLogsToAdministrator);
