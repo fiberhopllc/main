@@ -1,9 +1,9 @@
 ﻿define(['plugins/dialog', 'knockout'], function (dialog, ko) {
-    var CustomModal = function() {
+    var CustomModal = function () {
         this.input = ko.observable('');
     };
 
-    CustomModal.prototype.ok = function() {
+    CustomModal.prototype.ok = function () {
         dialog.close(this, this.input());
     };
 
@@ -11,7 +11,7 @@
         return dialog.showMessage('Are you sure that\'s your favorite color?', 'Just Checking...', ['Yes', 'No']);
     };
 
-    CustomModal.show = function(){
+    CustomModal.show = function () {
         return dialog.show(new CustomModal());
     };
 

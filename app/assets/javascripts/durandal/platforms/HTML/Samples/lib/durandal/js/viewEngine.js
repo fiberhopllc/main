@@ -27,7 +27,7 @@ define(['durandal/system', 'jquery'], function (system, $) {
      * @static
      */
     return {
-        cache:{},
+        cache: {},
         /**
          * The file extension that view source files are expected to have.
          * @property {string} viewExtension
@@ -97,7 +97,7 @@ define(['durandal/system', 'jquery'], function (system, $) {
          * @param {DOMElement[]} allElements The elements.
          * @return {DOMElement} A single element.
          */
-        ensureSingleElement:function(allElements){
+        ensureSingleElement: function (allElements) {
             if (allElements.length == 1) {
                 return allElements[0];
             }
@@ -130,7 +130,7 @@ define(['durandal/system', 'jquery'], function (system, $) {
          * @param {string} id The view id to lookup in the cache.
          * @return {DOMElement|null} The cached view or null if it's not in the cache.
          */
-        tryGetViewFromCache:function(id) {
+        tryGetViewFromCache: function (id) {
             return this.cache[id];
         },
         /**
@@ -148,25 +148,25 @@ define(['durandal/system', 'jquery'], function (system, $) {
          * @param {string} viewId The view id whose view should be created.
          * @return {Promise} A promise of the view.
          */
-        createView: function(viewId) {
+        createView: function (viewId) {
             var that = this;
             var requirePath = this.convertViewIdToRequirePath(viewId);
             var existing = this.tryGetViewFromCache(requirePath);
 
             if (existing) {
-                return system.defer(function(dfd) {
+                return system.defer(function (dfd) {
                     dfd.resolve(existing.cloneNode(true));
                 }).promise();
             }
 
-            return system.defer(function(dfd) {
-                system.acquire(requirePath).then(function(markup) {
+            return system.defer(function (dfd) {
+                system.acquire(requirePath).then(function (markup) {
                     var element = that.processMarkup(markup);
                     element.setAttribute('data-view', viewId);
                     that.putViewInCache(requirePath, element);
                     dfd.resolve(element.cloneNode(true));
-                }).fail(function(err) {
-                    that.createFallbackView(viewId, requirePath, err).then(function(element) {
+                }).fail(function (err) {
+                    that.createFallbackView(viewId, requirePath, err).then(function (element) {
                         element.setAttribute('data-view', viewId);
                         that.cache[requirePath] = element;
                         dfd.resolve(element.cloneNode(true));
@@ -186,7 +186,7 @@ define(['durandal/system', 'jquery'], function (system, $) {
             var that = this,
                 message = 'View Not Found. Searched for "' + viewId + '" via path "' + requirePath + '".';
 
-            return system.defer(function(dfd) {
+            return system.defer(function (dfd) {
                 dfd.resolve(that.processMarkup('<div class="durandal-view-404">' + message + '</div>'));
             }).promise();
         }

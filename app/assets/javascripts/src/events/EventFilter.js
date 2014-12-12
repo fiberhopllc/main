@@ -7,7 +7,7 @@
  * @copyright Famous Industries, Inc. 2014
  */
 
-define(function(require, exports, module) {
+define(function (require, exports, module) {
     var EventHandler = require('../core/EventHandler');
 
     /**
@@ -24,6 +24,7 @@ define(function(require, exports, module) {
         EventHandler.call(this);
         this._condition = condition;
     }
+
     EventFilter.prototype = Object.create(EventHandler.prototype);
     EventFilter.prototype.constructor = EventFilter;
 

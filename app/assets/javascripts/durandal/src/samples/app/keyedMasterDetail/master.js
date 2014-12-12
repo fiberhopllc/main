@@ -1,20 +1,20 @@
-﻿define(['plugins/router', 'knockout', 'durandal/system'], function(router, ko, system) {
+﻿define(['plugins/router', 'knockout', 'durandal/system'], function (router, ko, system) {
     var masterVm = ko.observable();
 
     var childRouter = router
         .createChildRouter()
-        .makeRelative({ moduleId:'keyedMasterDetail', fromParent:true, dynamicHash:':id' })
+        .makeRelative({ moduleId: 'keyedMasterDetail', fromParent: true, dynamicHash: ':id' })
         .map([
-            { route: ['first', ''], moduleId: 'first',  title: 'First', nav: true, hash: '#first' },
-            { route:'second',       moduleId:'second',  title:'Second', nav:true },
-            { route:'third',        moduleId:'third',   title:'Third',  nav:true }
+            { route: ['first', ''], moduleId: 'first', title: 'First', nav: true, hash: '#first' },
+            { route: 'second', moduleId: 'second', title: 'Second', nav: true },
+            { route: 'third', moduleId: 'third', title: 'Third', nav: true }
         ]).buildNavigationModel();
 
     var vm = {
-        router:childRouter,
-        activate:activate,
-        deactivate:deactivate,
-        masterVm:masterVm
+        router: childRouter,
+        activate: activate,
+        deactivate: deactivate,
+        masterVm: masterVm
     };
 
     return vm;
@@ -29,6 +29,6 @@
     }
 
     function loadObservables(id) {
-        masterVm({ id:id, name:'Master' });
+        masterVm({ id: id, name: 'Master' });
     }
 });

@@ -6,16 +6,16 @@
 // practices to access and manipulate data from various online and offline sources.
 //
 // Credits:
-//     Hajnalka Battancs, Dániel József, János Roden, László Horváth, Péter Nochta
-//     Péter Zentai, Róbert Bónay, Szabolcs Czinege, Viktor Borza, Viktor Lázár,
-//     Zoltán Gyebrovszki, Gábor Dolla
+//     Hajnalka Battancs, Dï¿½niel Jï¿½zsef, Jï¿½nos Roden, Lï¿½szlï¿½ Horvï¿½th, Pï¿½ter Nochta
+//     Pï¿½ter Zentai, Rï¿½bert Bï¿½nay, Szabolcs Czinege, Viktor Borza, Viktor Lï¿½zï¿½r,
+//     Zoltï¿½n Gyebrovszki, Gï¿½bor Dolla
 //
 // More info: http://jaydata.org
 /* Base: http://bitovi.com/blog/2010/06/convert-form-elements-to-javascript-object-literals-with-jquery-formBinder-plugin.html */
 (function ($) {
     var radioCheck = /radio|checkbox/i,
-		keyBreaker = /[^\[\]]+/g,
-		numberMatcher = /^[\-+]?[0-9]*\.?[0-9]+([eE][\-+]?[0-9]+)?$/;
+        keyBreaker = /[^\[\]]+/g,
+        numberMatcher = /^[\-+]?[0-9]*\.?[0-9]+([eE][\-+]?[0-9]+)?$/;
 
     var isNumber = function (value) {
         if (typeof value == 'number') {
@@ -31,29 +31,29 @@
 
     $.fn.extend({
         /**
-		 * @parent dom
-		 * @download http://jmvcsite.heroku.com/pluginify?plugins[]=jquery/dom/form_params/form_params.js
-		 * @plugin jquery/dom/form_params
-		 * @test jquery/dom/form_params/qunit.html
-		 * <p>Returns an object of name-value pairs that represents values in a form.
-		 * It is able to nest values whose element's name has square brackets. </p>
-		 * Example html:
-		 * @codestart html
-		 * &lt;form>
-		 *   &lt;input name="foo[bar]" value='2'/>
-		 *   &lt;input name="foo[ced]" value='4'/>
-		 * &lt;form/>
-		 * @codeend
-		 * Example code:
-		 * @codestart
-		 * $('form').formBinder() //-> { foo:{bar:2, ced: 4} }
-		 * @codeend
-		 *
-		 * @demo jquery/dom/form_params/form_params.html
-		 *
-		 * @param {Boolean} [convert] True if strings that look like numbers and booleans should be converted.  Defaults to true.
-		 * @return {Object} An object of name-value pairs.
-		 */
+         * @parent dom
+         * @download http://jmvcsite.heroku.com/pluginify?plugins[]=jquery/dom/form_params/form_params.js
+         * @plugin jquery/dom/form_params
+         * @test jquery/dom/form_params/qunit.html
+         * <p>Returns an object of name-value pairs that represents values in a form.
+         * It is able to nest values whose element's name has square brackets. </p>
+         * Example html:
+         * @codestart html
+         * &lt;form>
+         *   &lt;input name="foo[bar]" value='2'/>
+         *   &lt;input name="foo[ced]" value='4'/>
+         * &lt;form/>
+         * @codeend
+         * Example code:
+         * @codestart
+         * $('form').formBinder() //-> { foo:{bar:2, ced: 4} }
+         * @codeend
+         *
+         * @demo jquery/dom/form_params/form_params.html
+         *
+         * @param {Boolean} [convert] True if strings that look like numbers and booleans should be converted.  Defaults to true.
+         * @return {Object} An object of name-value pairs.
+         */
         formBinder: function (obj, convert) {
             if (this[0].nodeName.toLowerCase() == 'form' && this[0].elements) {
 
@@ -63,25 +63,25 @@
         },
         getParams: function (obj, convert) {
             var data = obj || {},
-				current;
+                current;
 
             convert = convert === undefined ? true : convert;
 
             this.each(function () {
                 var el = this,
-					type = el.type && el.type.toLowerCase();
+                    type = el.type && el.type.toLowerCase();
                 //if we are submit, ignore
                 if ((type == 'submit') || !el.name) {
                     return;
                 }
 
                 var key = el.name,
-					value = $.data(el, "value") || $.fn.val.call([el]),
-					isRadioCheck = radioCheck.test(el.type),
-					parts = key.match(keyBreaker),
-					write = !isRadioCheck || !!el.checked,
-					//make an array of values
-					lastPart;
+                    value = $.data(el, "value") || $.fn.val.call([el]),
+                    isRadioCheck = radioCheck.test(el.type),
+                    parts = key.match(keyBreaker),
+                    write = !isRadioCheck || !!el.checked,
+                //make an array of values
+                    lastPart;
 
                 if (convert) {
                     if (isNumber(value)) {

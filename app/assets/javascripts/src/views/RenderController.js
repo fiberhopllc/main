@@ -7,7 +7,7 @@
  * @copyright Famous Industries, Inc. 2014
  */
 
-define(function(require, exports, module) {
+define(function (require, exports, module) {
     var Modifier = require('../core/Modifier');
     var RenderNode = require('../core/RenderNode');
     var Transform = require('../core/Transform');
@@ -23,8 +23,8 @@ define(function(require, exports, module) {
      * @param {Transition} [outTransition=true]  The transition in charge of removing your previous renderable when
      * you show a new one, or hiding your current renderable.
      * @param {Boolean} [overlap=true] When showing a new renderable, overlap determines if the
-      out transition of the old one executes concurrently with the in transition of the new one,
-       or synchronously beforehand.
+     out transition of the old one executes concurrently with the in transition of the new one,
+     or synchronously beforehand.
      */
     function RenderController(options) {
         View.apply(this, arguments);
@@ -49,6 +49,7 @@ define(function(require, exports, module) {
 
         this._output = [];
     }
+
     RenderController.prototype = Object.create(View.prototype);
     RenderController.prototype.constructor = RenderController;
 
@@ -59,10 +60,10 @@ define(function(require, exports, module) {
     };
 
     RenderController.DefaultMap = {
-        transform: function() {
+        transform: function () {
             return Transform.identity;
         },
-        opacity: function(progress) {
+        opacity: function (progress) {
             return progress;
         },
         origin: null,
@@ -226,7 +227,7 @@ define(function(require, exports, module) {
                 }
                 else {
                     this._nextRenderable = renderable;
-                    this.hide(function() {
+                    this.hide(function () {
                         if (this._nextRenderable === renderable) this.show(this._nextRenderable, callback);
                         this._nextRenderable = null;
                     });
@@ -303,7 +304,7 @@ define(function(require, exports, module) {
 
         if (!transition) transition = this.options.outTransition;
         state.halt();
-        state.set(0, transition, function(node, modifier, state, renderable) {
+        state.set(0, transition, function (node, modifier, state, renderable) {
             if (this._outgoingRenderables.indexOf(renderable) >= 0) {
                 var index = this._nodes.indexOf(node);
                 this._nodes.splice(index, 1);

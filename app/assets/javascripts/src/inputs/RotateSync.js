@@ -6,7 +6,7 @@
  * @license MPL 2.0
  * @copyright Famous Industries, Inc. 2014
  */
-define(function(require, exports, module) {
+define(function (require, exports, module) {
     var TwoFingerSync = require('./TwoFingerSync');
     var OptionsManager = require('../core/OptionsManager');
 
@@ -36,7 +36,7 @@ define(function(require, exports, module) {
     RotateSync.prototype.constructor = RotateSync;
 
     RotateSync.DEFAULT_OPTIONS = {
-        scale : 1
+        scale: 1
     };
 
     RotateSync.prototype._startUpdate = function _startUpdate(event) {
@@ -63,7 +63,7 @@ define(function(require, exports, module) {
         this._angle += diffTheta;
 
         this._eventOutput.emit('update', {
-            delta : diffTheta,
+            delta: diffTheta,
             velocity: velTheta,
             angle: this._angle,
             center: center,

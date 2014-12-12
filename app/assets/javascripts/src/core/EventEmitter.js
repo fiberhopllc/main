@@ -7,7 +7,7 @@
  * @copyright Famous Industries, Inc. 2014
  */
 
-define(function(require, exports, module) {
+define(function (require, exports, module) {
     /**
      * EventEmitter represents a channel for events.
      *
@@ -48,7 +48,7 @@ define(function(require, exports, module) {
      * @param {function(string, Object)} handler callback
      * @return {EventHandler} this
      */
-   EventEmitter.prototype.on = function on(type, handler) {
+    EventEmitter.prototype.on = function on(type, handler) {
         if (!(type in this.listeners)) this.listeners[type] = [];
         var index = this.listeners[type].indexOf(handler);
         if (index < 0) this.listeners[type].push(handler);
@@ -61,7 +61,7 @@ define(function(require, exports, module) {
      */
     EventEmitter.prototype.addListener = EventEmitter.prototype.on;
 
-   /**
+    /**
      * Unbind an event by type and handler.
      *   This undoes the work of "on".
      *

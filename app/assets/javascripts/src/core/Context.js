@@ -7,7 +7,7 @@
  * @copyright Famous Industries, Inc. 2014
  */
 
-define(function(require, exports, module) {
+define(function (require, exports, module) {
     var RenderNode = require('./RenderNode');
     var EventHandler = require('./EventHandler');
     var ElementAllocator = require('./ElementAllocator');
@@ -21,9 +21,9 @@ define(function(require, exports, module) {
         return [element.clientWidth, element.clientHeight];
     }
 
-    var _setPerspective = usePrefix ? function(element, perspective) {
+    var _setPerspective = usePrefix ? function (element, perspective) {
         element.style.webkitPerspective = perspective ? perspective.toFixed() + 'px' : '';
-    } : function(element, perspective) {
+    } : function (element, perspective) {
         element.style.perspective = perspective ? perspective.toFixed() + 'px' : '';
     };
 
@@ -57,7 +57,7 @@ define(function(require, exports, module) {
             size: this._size
         };
 
-        this._eventOutput.on('resize', function() {
+        this._eventOutput.on('resize', function () {
             this.setSize(_getElementSize(this.container));
         }.bind(this));
 

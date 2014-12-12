@@ -7,16 +7,16 @@
     return {
         displayName: 'What is your name?',
         name: name,
-        sayHello: function() {
+        sayHello: function () {
             app.showMessage('Hello ' + name() + '!', 'Greetings');
         },
         canSayHello: canSayHello,
-        activate: function() {
+        activate: function () {
             system.log('Lifecycle : activate : hello');
         },
         binding: function () {
             system.log('Lifecycle : binding : hello');
-            return { cacheViews:false }; //cancels view caching for this module, allowing the triggering of the detached callback
+            return { cacheViews: false }; //cancels view caching for this module, allowing the triggering of the detached callback
         },
         bindingComplete: function () {
             system.log('Lifecycle : bindingComplete : hello');

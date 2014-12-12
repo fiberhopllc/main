@@ -7,7 +7,7 @@
  * @copyright Famous Industries, Inc. 2014
  */
 
-define(function(require, exports, module) {
+define(function (require, exports, module) {
     var Drag = require('./Drag');
 
     /**
@@ -44,7 +44,7 @@ define(function(require, exports, module) {
          * @param {Vector} angularVelocity
          * @return {Vector} drag force
          */
-        LINEAR : function(angularVelocity) {
+        LINEAR: function (angularVelocity) {
             return angularVelocity;
         },
 
@@ -55,7 +55,7 @@ define(function(require, exports, module) {
          * @param {Vector} angularVelocity
          * @return {Vector} drag force
          */
-        QUADRATIC : function(angularVelocity) {
+        QUADRATIC: function (angularVelocity) {
             return angularVelocity.mult(angularVelocity.norm());
         }
     };
@@ -67,9 +67,9 @@ define(function(require, exports, module) {
      * @param targets {Array.Body} Array of bodies to apply drag force to.
      */
     RotationalDrag.prototype.applyForce = function applyForce(targets) {
-        var strength       = this.options.strength;
-        var forceFunction  = this.options.forceFunction;
-        var force          = this.force;
+        var strength = this.options.strength;
+        var forceFunction = this.options.forceFunction;
+        var force = this.force;
 
         //TODO: rotational drag as function of inertia
 
@@ -78,7 +78,7 @@ define(function(require, exports, module) {
 
         for (index = 0; index < targets.length; index++) {
             particle = targets[index];
-            forceFunction(particle.angularVelocity).mult(-100*strength).put(force);
+            forceFunction(particle.angularVelocity).mult(-100 * strength).put(force);
             particle.applyTorque(force);
         }
     };

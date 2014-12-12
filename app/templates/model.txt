@@ -1,15 +1,5 @@
-<?php namespace $APPNAME$;
+<?php
 
-use Illuminate\Database\Eloquent\Model;
-
-class $NAME$ extends Model {
-
-	//protected $table = '';
-
-	//protected $primaryKey = '';
-
-	//public $presenter = '$APPNAME$\Presenters\$NAME$Presenter';
-
+class $NAME$ extends \Eloquent {
 	protected $fillable = [];
-
 }

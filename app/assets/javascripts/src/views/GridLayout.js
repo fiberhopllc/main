@@ -7,7 +7,7 @@
  * @copyright Famous Industries, Inc. 2014
  */
 
-define(function(require, exports, module) {
+define(function (require, exports, module) {
     var Entity = require('../core/Entity');
     var RenderNode = require('../core/RenderNode');
     var Transform = require('../core/Transform');
@@ -82,7 +82,7 @@ define(function(require, exports, module) {
 
         this._activeCount = rows * cols;
 
-        for (i = this._activeCount ; i < this._modifiers.length; i++) _animateModifier.call(this, i, [Math.round(colSize), Math.round(rowSize)], [0, 0], 0);
+        for (i = this._activeCount; i < this._modifiers.length; i++) _animateModifier.call(this, i, [Math.round(colSize), Math.round(rowSize)], [0, 0], 0);
 
         this._eventOutput.emit('reflow');
     }
@@ -168,7 +168,7 @@ define(function(require, exports, module) {
      * @return {Array} Total size of the grid layout.
      */
     GridLayout.prototype.getSize = function getSize() {
-      return this._contextSizeCache;
+        return this._contextSizeCache;
     };
 
     /**
@@ -215,7 +215,7 @@ define(function(require, exports, module) {
             currIndex++;
         }
 
-        if (size) transform = Transform.moveThen([-size[0]*origin[0], -size[1]*origin[1], 0], transform);
+        if (size) transform = Transform.moveThen([-size[0] * origin[0], -size[1] * origin[1], 0], transform);
         return {
             transform: transform,
             opacity: opacity,

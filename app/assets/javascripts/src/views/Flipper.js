@@ -7,7 +7,7 @@
  * @copyright Famous Industries, Inc. 2014
  */
 
-define(function(require, exports, module) {
+define(function (require, exports, module) {
     var Transform = require('../core/Transform');
     var Transitionable = require('../transitions/Transitionable');
     var RenderNode = require('../core/RenderNode');
@@ -129,14 +129,14 @@ define(function(require, exports, module) {
         }
 
         var result = [];
-        if (this.frontNode){
+        if (this.frontNode) {
             result.push({
                 transform: frontTransform,
                 target: this.frontNode.render()
             });
         }
 
-        if (this.backNode){
+        if (this.backNode) {
             result.push({
                 transform: Transform.moveThen([0, 0, SEPERATION_LENGTH], backTransform),
                 target: this.backNode.render()

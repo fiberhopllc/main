@@ -1,6 +1,6 @@
 ﻿define(['./publisher', './subscriber'], function (publisher, subscriber) {
     return {
-        publisher:publisher,
+        publisher: publisher,
         subscriber: subscriber
     };
 });

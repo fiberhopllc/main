@@ -7,7 +7,7 @@
  * @copyright Famous Industries, Inc. 2014
  */
 
-define(function(require, exports, module) {
+define(function (require, exports, module) {
 
     /**
      * The singleton object initiated upon process
@@ -109,6 +109,7 @@ define(function(require, exports, module) {
         }
         else loopEnabled = false;
     }
+
     window.requestAnimationFrame(loop);
 
     //
@@ -123,6 +124,7 @@ define(function(require, exports, module) {
         }
         eventHandler.emit('resize');
     }
+
     window.addEventListener('resize', handleResize, false);
     handleResize();
 
@@ -135,12 +137,13 @@ define(function(require, exports, module) {
      */
     function initialize() {
         // prevent scrolling via browser
-        window.addEventListener('touchmove', function(event) {
+        window.addEventListener('touchmove', function (event) {
             event.preventDefault();
         }, true);
         document.body.classList.add('famous-root');
         document.documentElement.classList.add('famous-root');
     }
+
     var initialized = false;
 
     /**
@@ -187,7 +190,7 @@ define(function(require, exports, module) {
                 document.body.addEventListener(type, eventForwarders[type]);
             }
             else {
-                Engine.nextTick(function(type, forwarder) {
+                Engine.nextTick(function (type, forwarder) {
                     document.body.addEventListener(type, forwarder);
                 }.bind(this, type, eventForwarders[type]));
             }
@@ -301,7 +304,7 @@ define(function(require, exports, module) {
         var context = new Context(el);
         Engine.registerContext(context);
         if (needMountContainer) {
-            Engine.nextTick(function(context, el) {
+            Engine.nextTick(function (context, el) {
                 document.body.appendChild(el);
                 context.emit('resize');
             }.bind(this, context, el));
@@ -384,7 +387,7 @@ define(function(require, exports, module) {
         deferQueue.push(fn);
     };
 
-    optionsManager.on('change', function(data) {
+    optionsManager.on('change', function (data) {
         if (data.id === 'fpsCap') Engine.setFPSCap(data.value);
         else if (data.id === 'runLoop') {
             // kick off the loop only if it was stopped

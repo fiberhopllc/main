@@ -19,7 +19,7 @@ define(['durandal/system', 'durandal/viewEngine'], function (system, viewEngine)
             }
         }
     }
-    
+
     function escape(str) {
         return (str + '').replace(/([\\\.\+\*\?\[\^\]\$\(\)\{\}\=\!\<\>\|\:])/g, "\\$1");
     }
@@ -36,7 +36,7 @@ define(['durandal/system', 'durandal/viewEngine'], function (system, viewEngine)
          * @param {string} [viewsPath] The replacement for the modulesPath. If not specified, the replacement is 'views'.
          * @param {string} [areasPath] Partial views are mapped to the "views" folder if not specified. Use this parameter to change their location.
          */
-        useConvention: function(modulesPath, viewsPath, areasPath) {
+        useConvention: function (modulesPath, viewsPath, areasPath) {
             modulesPath = modulesPath || 'viewmodels';
             viewsPath = viewsPath || 'views';
             areasPath = areasPath || viewsPath;
@@ -51,7 +51,7 @@ define(['durandal/system', 'durandal/viewEngine'], function (system, viewEngine)
                 if (!area || area == 'partial') {
                     return areasPath + '/' + viewId;
                 }
-                
+
                 return areasPath + '/' + area + '/' + viewId;
             };
         },
@@ -63,7 +63,7 @@ define(['durandal/system', 'durandal/viewEngine'], function (system, viewEngine)
          * @param {DOMElement[]} [elementsToSearch] An existing set of elements to search first.
          * @return {Promise} A promise of the view.
          */
-        locateViewForObject: function(obj, area, elementsToSearch) {
+        locateViewForObject: function (obj, area, elementsToSearch) {
             var view;
 
             if (obj.getView) {
@@ -90,7 +90,7 @@ define(['durandal/system', 'durandal/viewEngine'], function (system, viewEngine)
          * @param {string} moduleId The module id.
          * @return {string} The view id.
          */
-        convertModuleIdToViewId: function(moduleId) {
+        convertModuleIdToViewId: function (moduleId) {
             return moduleId;
         },
         /**
@@ -124,7 +124,7 @@ define(['durandal/system', 'durandal/viewEngine'], function (system, viewEngine)
          * @param {DOMElement[]} [elementsToSearch] An existing set of elements to search first.
          * @return {Promise} A promise of the view.
          */
-        locateView: function(viewOrUrlOrId, area, elementsToSearch) {
+        locateView: function (viewOrUrlOrId, area, elementsToSearch) {
             if (typeof viewOrUrlOrId === 'string') {
                 var viewId;
 
@@ -141,7 +141,7 @@ define(['durandal/system', 'durandal/viewEngine'], function (system, viewEngine)
                 if (elementsToSearch) {
                     var existing = findInElements(elementsToSearch, viewId);
                     if (existing) {
-                        return system.defer(function(dfd) {
+                        return system.defer(function (dfd) {
                             dfd.resolve(existing);
                         }).promise();
                     }
@@ -150,7 +150,7 @@ define(['durandal/system', 'durandal/viewEngine'], function (system, viewEngine)
                 return viewEngine.createView(viewId);
             }
 
-            return system.defer(function(dfd) {
+            return system.defer(function (dfd) {
                 dfd.resolve(viewOrUrlOrId);
             }).promise();
         }

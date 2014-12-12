@@ -7,7 +7,7 @@
  * @copyright Famous Industries, Inc. 2014
  */
 
-define(function(require, exports, module) {
+define(function (require, exports, module) {
     var Entity = require('./Entity');
     var EventHandler = require('./EventHandler');
     var Transform = require('./Transform');
@@ -183,18 +183,18 @@ define(function(require, exports, module) {
 
     var _setMatrix;
     if (navigator.userAgent.toLowerCase().indexOf('firefox') > -1) {
-        _setMatrix = function(element, matrix) {
+        _setMatrix = function (element, matrix) {
             element.style.zIndex = (matrix[14] * 1000000) | 0;    // fix for Firefox z-buffer issues
             element.style.transform = _formatCSSTransform(matrix);
         };
     }
     else if (usePrefix) {
-        _setMatrix = function(element, matrix) {
+        _setMatrix = function (element, matrix) {
             element.style.webkitTransform = _formatCSSTransform(matrix);
         };
     }
     else {
-        _setMatrix = function(element, matrix) {
+        _setMatrix = function (element, matrix) {
             element.style.transform = _formatCSSTransform(matrix);
         };
     }
@@ -206,17 +206,17 @@ define(function(require, exports, module) {
 
     // Directly apply given origin coordinates to the document element as the
     // appropriate webkit CSS style.
-    var _setOrigin = usePrefix ? function(element, origin) {
+    var _setOrigin = usePrefix ? function (element, origin) {
         element.style.webkitTransformOrigin = _formatCSSOrigin(origin);
-    } : function(element, origin) {
+    } : function (element, origin) {
         element.style.transformOrigin = _formatCSSOrigin(origin);
     };
 
     // Shrink given document element until it is effectively invisible.
-    var _setInvisible = usePrefix ? function(element) {
+    var _setInvisible = usePrefix ? function (element) {
         element.style.webkitTransform = 'scale3d(0.0001,0.0001,0.0001)';
         element.style.opacity = 0;
-    } : function(element) {
+    } : function (element) {
         element.style.transform = 'scale3d(0.0001,0.0001,0.0001)';
         element.style.opacity = 0;
     };
@@ -279,7 +279,7 @@ define(function(require, exports, module) {
 
             if (!matrix) matrix = Transform.identity;
             this._matrix = matrix;
-            var aaMatrix = this._size ? Transform.thenMove(matrix, [-this._size[0]*origin[0], -this._size[1]*origin[1], 0]) : matrix;
+            var aaMatrix = this._size ? Transform.thenMove(matrix, [-this._size[0] * origin[0], -this._size[1] * origin[1], 0]) : matrix;
             _setMatrix(target, aaMatrix);
             this._transformDirty = false;
         }

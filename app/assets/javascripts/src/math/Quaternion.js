@@ -7,7 +7,7 @@
  * @copyright Famous Industries, Inc. 2014
  */
 
-define(function(require, exports, module) {
+define(function (require, exports, module) {
     var Matrix = require('./Matrix');
 
     /**
@@ -19,7 +19,7 @@ define(function(require, exports, module) {
      * @param {Number} y
      * @param {Number} z
      */
-    function Quaternion(w,x,y,z) {
+    function Quaternion(w, x, y, z) {
         if (arguments.length === 1) this.set(w);
         else {
             this.w = (w !== undefined) ? w : 1;  //Angle
@@ -30,7 +30,7 @@ define(function(require, exports, module) {
         return this;
     }
 
-    var register = new Quaternion(1,0,0,0);
+    var register = new Quaternion(1, 0, 0, 0);
 
     /**
      * Doc: TODO
@@ -71,7 +71,7 @@ define(function(require, exports, module) {
      * @return {Quaternion}
      */
     Quaternion.prototype.scalarDivide = function scalarDivide(s) {
-        return this.scalarMultiply(1/s);
+        return this.scalarMultiply(1 / s);
     };
 
     /*
@@ -109,14 +109,14 @@ define(function(require, exports, module) {
         var w2 = q.w || 0;
 
         return register.setWXYZ(
-            w1*w2 - x1*x2 - y1*y2 - z1*z2,
-            x1*w2 + x2*w1 + y2*z1 - y1*z2,
-            y1*w2 + y2*w1 + x1*z2 - x2*z1,
-            z1*w2 + z2*w1 + x2*y1 - x1*y2
+            w1 * w2 - x1 * x2 - y1 * y2 - z1 * z2,
+            x1 * w2 + x2 * w1 + y2 * z1 - y1 * z2,
+            y1 * w2 + y2 * w1 + x1 * z2 - x2 * z1,
+            z1 * w2 + z2 * w1 + x2 * y1 - x1 * y2
         );
     };
 
-    var conj = new Quaternion(1,0,0,0);
+    var conj = new Quaternion(1, 0, 0, 0);
 
     /*
      * Docs: TODO
@@ -158,7 +158,7 @@ define(function(require, exports, module) {
      */
     Quaternion.prototype.conj = function conj() {
         return register.setWXYZ(
-             this.w,
+            this.w,
             -this.x,
             -this.y,
             -this.z
@@ -187,12 +187,12 @@ define(function(require, exports, module) {
      */
     Quaternion.prototype.makeFromAngleAndAxis = function makeFromAngleAndAxis(angle, v) {
         //left handed quaternion creation: theta -> -theta
-        var n  = v.normalize();
-        var ha = angle*0.5;
-        var s  = -Math.sin(ha);
-        this.x = s*n.x;
-        this.y = s*n.y;
-        this.z = s*n.z;
+        var n = v.normalize();
+        var ha = angle * 0.5;
+        var s = -Math.sin(ha);
+        this.x = s * n.x;
+        this.y = s * n.y;
+        this.z = s * n.z;
         this.w = Math.cos(ha);
         return this;
     };
@@ -207,7 +207,7 @@ define(function(require, exports, module) {
      * @param {Number} z
      * @return {Quaternion}
      */
-    Quaternion.prototype.setWXYZ = function setWXYZ(w,x,y,z) {
+    Quaternion.prototype.setWXYZ = function setWXYZ(w, x, y, z) {
         register.clear();
         this.w = w;
         this.x = x;
@@ -342,17 +342,17 @@ define(function(require, exports, module) {
 
         //LHC system flattened to column major = RHC flattened to row major
         return [
-            1 - 2*y*y - 2*z*z,
-                2*x*y - 2*z*w,
-                2*x*z + 2*y*w,
+            1 - 2 * y * y - 2 * z * z,
+            2 * x * y - 2 * z * w,
+            2 * x * z + 2 * y * w,
             0,
-                2*x*y + 2*z*w,
-            1 - 2*x*x - 2*z*z,
-                2*y*z - 2*x*w,
+            2 * x * y + 2 * z * w,
+            1 - 2 * x * x - 2 * z * z,
+            2 * y * z - 2 * x * w,
             0,
-                2*x*z - 2*y*w,
-                2*y*z + 2*x*w,
-            1 - 2*x*x - 2*y*y,
+            2 * x * z - 2 * y * w,
+            2 * y * z + 2 * x * w,
+            1 - 2 * x * x - 2 * y * y,
             0,
             0,
             0,
@@ -379,19 +379,19 @@ define(function(require, exports, module) {
         //LHC system flattened to row major
         return matrixRegister.set([
             [
-                1 - 2*y*y - 2*z*z,
-                    2*x*y + 2*z*w,
-                    2*x*z - 2*y*w
+                1 - 2 * y * y - 2 * z * z,
+                2 * x * y + 2 * z * w,
+                2 * x * z - 2 * y * w
             ],
             [
-                    2*x*y - 2*z*w,
-                1 - 2*x*x - 2*z*z,
-                    2*y*z + 2*x*w
+                2 * x * y - 2 * z * w,
+                1 - 2 * x * x - 2 * z * z,
+                2 * y * z + 2 * x * w
             ],
             [
-                    2*x*z + 2*y*w,
-                    2*y*z - 2*x*w,
-                1 - 2*x*x - 2*y*y
+                2 * x * z + 2 * y * w,
+                2 * y * z - 2 * x * w,
+                1 - 2 * x * x - 2 * y * y
             ]
         ]);
     };
@@ -415,16 +415,16 @@ define(function(require, exports, module) {
 
         cosomega = this.dot(q);
         if ((1.0 - cosomega) > epsilon) {
-            omega       = Math.acos(cosomega);
-            sinomega    = Math.sin(omega);
-            scaleFrom   = Math.sin((1.0 - t) * omega) / sinomega;
-            scaleTo     = Math.sin(t * omega) / sinomega;
+            omega = Math.acos(cosomega);
+            sinomega = Math.sin(omega);
+            scaleFrom = Math.sin((1.0 - t) * omega) / sinomega;
+            scaleTo = Math.sin(t * omega) / sinomega;
         }
         else {
-            scaleFrom   = 1.0 - t;
-            scaleTo     = t;
+            scaleFrom = 1.0 - t;
+            scaleTo = t;
         }
-        return register.set(this.scalarMultiply(scaleFrom/scaleTo).add(q).multiply(scaleTo));
+        return register.set(this.scalarMultiply(scaleFrom / scaleTo).add(q).multiply(scaleTo));
     };
 
     module.exports = Quaternion;

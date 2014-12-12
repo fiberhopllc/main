@@ -7,7 +7,7 @@
  * @copyright Famous Industries, Inc. 2014
  */
 
-define(function(require, exports, module) {
+define(function (require, exports, module) {
     var Particle = require('./Particle');
     var Transform = require('../../core/Transform');
     var Vector = require('../../math/Vector');
@@ -29,10 +29,10 @@ define(function(require, exports, module) {
         Particle.call(this, options);
         options = options || {};
 
-        this.orientation     = new Quaternion();
+        this.orientation = new Quaternion();
         this.angularVelocity = new Vector();
         this.angularMomentum = new Vector();
-        this.torque          = new Vector();
+        this.torque = new Vector();
 
         if (options.orientation)     this.orientation.set(options.orientation);
         if (options.angularVelocity) this.angularVelocity.set(options.angularVelocity);
@@ -116,8 +116,8 @@ define(function(require, exports, module) {
     Body.prototype.reset = function reset(p, v, q, L) {
         Particle.prototype.reset.call(this, p, v);
         this.angularVelocity.clear();
-        this.setOrientation(q || [1,0,0,0]);
-        this.setAngularMomentum(L || [0,0,0]);
+        this.setOrientation(q || [1, 0, 0, 0]);
+        this.setAngularMomentum(L || [0, 0, 0]);
     };
 
     /**

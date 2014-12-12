@@ -7,7 +7,7 @@
  * @copyright Famous Industries, Inc. 2014
  */
 
-define(function(require, exports, module) {
+define(function (require, exports, module) {
     var Scene = require('../core/Scene');
     var Surface = require('../core/Surface');
     var Transform = require('../core/Transform');
@@ -44,7 +44,7 @@ define(function(require, exports, module) {
             classes: this.options.classes,
             content: this.options.backContent
         });
-        this.back.on('click', function() {
+        this.back.on('click', function () {
             this._eventOutput.emit('back', {});
         }.bind(this));
 
@@ -53,7 +53,7 @@ define(function(require, exports, module) {
             classes: this.options.classes,
             content: this.options.moreContent
         });
-        this.more.on('click', function() {
+        this.more.on('click', function () {
             this._eventOutput.emit('more', {});
         }.bind(this));
 
@@ -83,7 +83,7 @@ define(function(require, exports, module) {
 
         this._add(this.layout);
 
-        this._optionsManager.on('change', function(event) {
+        this._optionsManager.on('change', function (event) {
             var key = event.id;
             var data = event.value;
             if (key === 'size') {

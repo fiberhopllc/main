@@ -6,7 +6,7 @@
  * @license MPL 2.0
  * @copyright Famous Industries, Inc. 2014
  */
-define(function(require, exports, module) {
+define(function (require, exports, module) {
     var EventHandler = require('../core/EventHandler');
     var OptionsManager = require('../core/OptionsManager');
 
@@ -40,7 +40,7 @@ define(function(require, exports, module) {
      * @param [options.propogate] {Boolean}     Add a listener to document on mouseleave. This allows drag events to continue across the entire page.
      */
     function MouseSync(options) {
-        this.options =  Object.create(MouseSync.DEFAULT_OPTIONS);
+        this.options = Object.create(MouseSync.DEFAULT_OPTIONS);
         this._optionsManager = new OptionsManager(this.options);
 
         if (options) this.setOptions(options);
@@ -59,7 +59,7 @@ define(function(require, exports, module) {
         else this._eventInput.on('mouseleave', _handleEnd.bind(this));
 
         if (this.options.clickThreshold) {
-            window.addEventListener('click', function(event) {
+            window.addEventListener('click', function (event) {
                 if (Math.sqrt(Math.pow(this._displacement[0], 2) + Math.pow(this._displacement[1], 2)) > this.options.clickThreshold) {
                     event.stopPropagation();
                 }
@@ -67,13 +67,13 @@ define(function(require, exports, module) {
         }
 
         this._payload = {
-            delta    : null,
-            position : null,
-            velocity : null,
-            clientX  : 0,
-            clientY  : 0,
-            offsetX  : 0,
-            offsetY  : 0
+            delta: null,
+            position: null,
+            velocity: null,
+            clientX: 0,
+            clientY: 0,
+            offsetX: 0,
+            offsetY: 0
         };
 
         this._positionHistory = [];
@@ -82,7 +82,7 @@ define(function(require, exports, module) {
         this._prevTime = undefined;
         this._down = false;
         this._moved = false;
-        this._displacement = [0,0];
+        this._displacement = [0, 0];
         this._documentActive = false;
     }
 
@@ -132,7 +132,7 @@ define(function(require, exports, module) {
         }
 
         if (this.options.clickThreshold) {
-            this._displacement = [0,0];
+            this._displacement = [0, 0];
         }
 
         var payload = this._payload;
@@ -210,21 +210,21 @@ define(function(require, exports, module) {
         }
 
         var payload = this._payload;
-        payload.delta    = nextDelta;
+        payload.delta = nextDelta;
         payload.position = this._position;
         payload.velocity = nextVel;
-        payload.clientX  = x;
-        payload.clientY  = y;
-        payload.offsetX  = event.offsetX;
-        payload.offsetY  = event.offsetY;
+        payload.clientX = x;
+        payload.clientY = y;
+        payload.offsetX = event.offsetX;
+        payload.offsetY = event.offsetY;
 
         if (this._positionHistory.length === this.options.velocitySampleLength) {
-          this._positionHistory.shift();
+            this._positionHistory.shift();
         }
 
         this._positionHistory.push({
-          position: payload.position.slice ? payload.position.slice(0) : payload.position,
-          time: currTime
+            position: payload.position.slice ? payload.position.slice(0) : payload.position,
+            time: currTime
         });
 
         this._eventOutput.emit('update', payload);
@@ -261,15 +261,15 @@ define(function(require, exports, module) {
         if (!this._down || !this._move) return;
 
         if (!this._documentActive) {
-          var boundMove = _handleMove.bind(this);
-          var boundEnd = function(event) {
-              _handleEnd.call(this, event);
-              document.removeEventListener('mousemove', boundMove);
-              document.removeEventListener('mouseup', boundEnd);
-          }.bind(this, event);
-          document.addEventListener('mousemove', boundMove);
-          document.addEventListener('mouseup', boundEnd);
-          this._documentActive = true;
+            var boundMove = _handleMove.bind(this);
+            var boundEnd = function (event) {
+                _handleEnd.call(this, event);
+                document.removeEventListener('mousemove', boundMove);
+                document.removeEventListener('mouseup', boundEnd);
+            }.bind(this, event);
+            document.addEventListener('mousemove', boundMove);
+            document.addEventListener('mouseup', boundEnd);
+            this._documentActive = true;
         }
     }
 

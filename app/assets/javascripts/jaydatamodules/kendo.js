@@ -6,9 +6,9 @@
 // practices to access and manipulate data from various online and offline sources.
 //
 // Credits:
-//     Hajnalka Battancs, Dániel József, János Roden, László Horváth, Péter Nochta
-//     Péter Zentai, Róbert Bónay, Szabolcs Czinege, Viktor Borza, Viktor Lázár,
-//     Zoltán Gyebrovszki, Gábor Dolla
+//     Hajnalka Battancs, Dï¿½niel Jï¿½zsef, Jï¿½nos Roden, Lï¿½szlï¿½ Horvï¿½th, Pï¿½ter Nochta
+//     Pï¿½ter Zentai, Rï¿½bert Bï¿½nay, Szabolcs Czinege, Viktor Borza, Viktor Lï¿½zï¿½r,
+//     Zoltï¿½n Gyebrovszki, Gï¿½bor Dolla
 //
 // More info: http://jaydata.org
 (function ($data) {
@@ -49,7 +49,7 @@
         function createKendoModel(options) {
             ///<param name="options">Contains options.owningContextType if initialized in a scope of a context</param>
             var memberDefinitions = type.memberDefinitions,
-			fields = {};
+                fields = {};
             //debugger;
             function getNullable(canonicType, pd) {
                 if (canonicType === "$data.Boolean") {
@@ -67,27 +67,27 @@
             }
 
             memberDefinitions
-			.getPublicMappedProperties()
-			.forEach(function (pd) {
-			    var canonicType = $data.Container.resolveName(pd.type);
-			    //if (pd.dataType !== "Array" && !(pd.inverseProperty)) {
-			    fields[pd.name] = {
-			        //TODO
-			        type: getKendoTypeName(canonicType, pd),
-			        nullable: getNullable(canonicType, pd),
-			        defaultValue: pd.defaultValue,
-			        //nullable: false,
-			        //nullable:  "nullable" in pd ? pd.nullable : true,
-			        editable: !pd.computed,
-			        //defaultValue: true,
-			        //defaultValue: 'abc',
-			        //defaultValue: pd.type === "Edm.Boolean" ? false : undefined,
-			        validation: {
-			            required: getRequired(canonicType, pd)
-			        }
-			    }
-			    //};
-			});
+                .getPublicMappedProperties()
+                .forEach(function (pd) {
+                    var canonicType = $data.Container.resolveName(pd.type);
+                    //if (pd.dataType !== "Array" && !(pd.inverseProperty)) {
+                    fields[pd.name] = {
+                        //TODO
+                        type: getKendoTypeName(canonicType, pd),
+                        nullable: getNullable(canonicType, pd),
+                        defaultValue: pd.defaultValue,
+                        //nullable: false,
+                        //nullable:  "nullable" in pd ? pd.nullable : true,
+                        editable: !pd.computed,
+                        //defaultValue: true,
+                        //defaultValue: 'abc',
+                        //defaultValue: pd.type === "Edm.Boolean" ? false : undefined,
+                        validation: {
+                            required: getRequired(canonicType, pd)
+                        }
+                    }
+                    //};
+                });
 
             function setInitialValue(obj, memDef) {
                 return;
@@ -114,14 +114,14 @@
                     var contextSetTypes = [];
                     if (options && options.owningContextType) {
                         contextSetTypes = options.owningContextType
-						.memberDefinitions
-						.getPublicMappedProperties()
-						.filter(function (pd) {
-						    return $data.Container.resolveType(pd.type) === $data.EntitySet
-						})
-						.map(function (pd) {
-						    return $data.Container.resolveType(pd.elementType)
-						});
+                            .memberDefinitions
+                            .getPublicMappedProperties()
+                            .filter(function (pd) {
+                                return $data.Container.resolveType(pd.type) === $data.EntitySet
+                            })
+                            .map(function (pd) {
+                                return $data.Container.resolveType(pd.elementType)
+                            });
                     }
 
                     var newInstanceOptions = {
@@ -174,14 +174,14 @@
                                 delete jayInstance.changeFromKendo;
                             });
                         }
-                        else if (md && $data.Container.resolveType(md.type) === $data.Blob){
+                        else if (md && $data.Container.resolveType(md.type) === $data.Blob) {
                             feed[j] = $data.Blob.toBase64(seedValue);
                             //feed[j] = new kendo.data.Observable($data.Blob.toBase64(seedValue));
                             /*feed[j].bind('change', function(e){
-                                //jayInstance.changeFromKendo = true;
-                                jayInstance[md.name] = $data.Container.convertTo(atob(this), $data.Blob);
-                                //delete jayInstance.changeFromKendo;
-                            });*/
+                             //jayInstance.changeFromKendo = true;
+                             jayInstance[md.name] = $data.Container.convertTo(atob(this), $data.Blob);
+                             //delete jayInstance.changeFromKendo;
+                             });*/
                         }
                         else {
                             feed[j] = seedValue;
@@ -219,16 +219,16 @@
                         if (!jay.changeFromKendo) {
                             newValue = newValue ? (newValue.asKendoObservable ? newValue.asKendoObservable() : newValue) : newValue;
                             jayInstance.changeFromJay = true;
-                            if ($data.Container.resolveType(md.type) === $data.Blob && newValue){
+                            if ($data.Container.resolveType(md.type) === $data.Blob && newValue) {
                                 newValue = $data.Blob.toBase64(newValue);
                             }
                             self.set(propinfo.propertyName, newValue);
-                            if (md.computed && self[propinfo.propertyName] !== newValue){
+                            if (md.computed && self[propinfo.propertyName] !== newValue) {
                                 self[propinfo.propertyName] = newValue;
                             }
                             delete jayInstance.changeFromJay;
-                        }else{
-                            if ($data.Container.resolveType(md.type) === $data.Blob){
+                        } else {
+                            if ($data.Container.resolveType(md.type) === $data.Blob) {
                                 var blob = $data.Blob.toString(newValue);
                                 newValue = $data.Container.convertTo(atob(blob), $data.Blob);
                                 jayInstance.changeFromJay = true;
@@ -317,6 +317,7 @@
         function r(value) {
             return value || '';
         }
+
         function registerStoreAlias(type, options) {
             if (!options.provider)
                 return;
@@ -358,18 +359,18 @@
         delete columns['$showComplexFields'];
 
         this.defaultType
-		.memberDefinitions
-		.getPublicMappedProperties()
-		.forEach(function (pd) {
-		    //if (pd.dataType !== "Array" && !(pd.inverseProperty)) {
-		    if (showComplex || kendoTypeMap[$data.Container.resolveName(pd.type)]) {
-		        var col = columns[pd.name] || {};
-		        var colD = { field: pd.name };
-		        $.extend(colD, col)
-		        result.push(colD);
-		    }
-		    //}
-		});
+            .memberDefinitions
+            .getPublicMappedProperties()
+            .forEach(function (pd) {
+                //if (pd.dataType !== "Array" && !(pd.inverseProperty)) {
+                if (showComplex || kendoTypeMap[$data.Container.resolveName(pd.type)]) {
+                    var col = columns[pd.name] || {};
+                    var colD = { field: pd.name };
+                    $.extend(colD, col)
+                    result.push(colD);
+                }
+                //}
+            });
 
         function append(field) {
             field = Array.isArray(field) ? field : [field];
@@ -397,19 +398,20 @@
             r.setColumn = setColumn;
             return r;
         }
+
         return prepareResult(result);
         //return ['id', 'Year', 'Manufacturer', { command: ["edit", "create", "destroy", "update"] }];
     }),
 
-    //, { command: ["edit", "create", "destroy", "update"]}
-	$data.EntityContext.addProperty("EntitySetNames", function () {
-	    var self = this;
-	    //var sets = Object.keys(self._entitySetReferences);
-	    //return sets;
-	    return Object.keys(self._entitySetReferences).map(function (set) {
-	        return self._entitySetReferences[set].tableName;
-	    });
-	});
+        //, { command: ["edit", "create", "destroy", "update"]}
+        $data.EntityContext.addProperty("EntitySetNames", function () {
+            var self = this;
+            //var sets = Object.keys(self._entitySetReferences);
+            //return sets;
+            return Object.keys(self._entitySetReferences).map(function (set) {
+                return self._entitySetReferences[set].tableName;
+            });
+        });
 
     $data.Queryable.addMember("asKendoModel", function (options) {
         options.owningContextType = options.owningContextType || this.entityContext.getType();
@@ -419,6 +421,7 @@
     $data.Queryable.addMember("asKendoRemoteTransportClass", function (modelItemClass) {
         var self = this;
         var ctx = self.entityContext;
+
         function reset() {
             ctx.stateManager.reset();
         };
@@ -570,15 +573,15 @@
                     else {
                         console.dir(ctx.storeToken);
                         model[0]
-						.innerInstance()
-						.save(ctx.storeToken)
-						.then(function () {
-						    options.success(/*{ data: model[0].innerInstance().initData }*/);
-						})
-						.fail(function () {
-						    console.log("error in create");
-						    options.error({}, arguments);
-						});
+                            .innerInstance()
+                            .save(ctx.storeToken)
+                            .then(function () {
+                                options.success(/*{ data: model[0].innerInstance().initData }*/);
+                            })
+                            .fail(function () {
+                                console.log("error in create");
+                                options.error({}, arguments);
+                            });
                     }
                 });
             },
@@ -655,8 +658,8 @@
         },
         _promise: function (data, models, type) {
             var that = this,
-			extend = $.extend,
-			transport = that.transport;
+                extend = $.extend,
+                transport = that.transport;
 
             return $.Deferred(function (deferred) {
                 transport[type].call(transport, extend({
@@ -672,7 +675,7 @@
                         that.error(response, status, error);
                     }
                 }, data), models
-				);
+                );
             }).promise();
         }
     });

@@ -7,7 +7,7 @@
  * @copyright Famous Industries, Inc. 2014
  */
 
-define(function(require, exports, module) {
+define(function (require, exports, module) {
     var Entity = require('../core/Entity');
     var RenderNode = require('../core/RenderNode');
     var Transform = require('../core/Transform');
@@ -15,7 +15,7 @@ define(function(require, exports, module) {
 
     /**
      * A layout which will arrange three renderables into a header and footer area of defined size,
-      and a content area of flexible size.
+     and a content area of flexible size.
      * @class HeaderFooterLayout
      * @constructor
      * @param {Options} [options] An object of configurable options.
@@ -124,7 +124,7 @@ define(function(require, exports, module) {
         var footerSize = (this.options.footerSize !== undefined) ? this.options.footerSize : _resolveNodeSize.call(this, this.footer, this.options.defaultFooterSize);
         var contentSize = size[this.options.direction] - headerSize - footerSize;
 
-        if (size) transform = Transform.moveThen([-size[0]*origin[0], -size[1]*origin[1], 0], transform);
+        if (size) transform = Transform.moveThen([-size[0] * origin[0], -size[1] * origin[1], 0], transform);
 
         var result = [
             {

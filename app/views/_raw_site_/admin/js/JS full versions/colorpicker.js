@@ -1,4 +1,4 @@
-! function (e) {
+!function (e) {
     var t = function (e) {
         this.value = {
             h: 1,
@@ -233,33 +233,39 @@
                 h = Math.round(255 * n.HueToRGB(r, o, c));
             return [u, d, h, a || 1]
         },
-        stringParsers: [{
-            re: /rgba?\(\s*(\d{1,3})\s*,\s*(\d{1,3})\s*,\s*(\d{1,3})\s*(?:,\s*(\d+(?:\.\d+)?)\s*)?\)/,
-            parse: function (e) {
-                return [e[1], e[2], e[3], e[4]]
+        stringParsers: [
+            {
+                re: /rgba?\(\s*(\d{1,3})\s*,\s*(\d{1,3})\s*,\s*(\d{1,3})\s*(?:,\s*(\d+(?:\.\d+)?)\s*)?\)/,
+                parse: function (e) {
+                    return [e[1], e[2], e[3], e[4]]
+                }
+            },
+            {
+                re: /rgba?\(\s*(\d+(?:\.\d+)?)\%\s*,\s*(\d+(?:\.\d+)?)\%\s*,\s*(\d+(?:\.\d+)?)\%\s*(?:,\s*(\d+(?:\.\d+)?)\s*)?\)/,
+                parse: function (e) {
+                    return [2.55 * e[1], 2.55 * e[2], 2.55 * e[3], e[4]]
+                }
+            },
+            {
+                re: /#([a-fA-F0-9]{2})([a-fA-F0-9]{2})([a-fA-F0-9]{2})/,
+                parse: function (e) {
+                    return [parseInt(e[1], 16), parseInt(e[2], 16), parseInt(e[3], 16)]
+                }
+            },
+            {
+                re: /#([a-fA-F0-9])([a-fA-F0-9])([a-fA-F0-9])/,
+                parse: function (e) {
+                    return [parseInt(e[1] + e[1], 16), parseInt(e[2] + e[2], 16), parseInt(e[3] + e[3], 16)]
+                }
+            },
+            {
+                re: /hsla?\(\s*(\d+(?:\.\d+)?)\s*,\s*(\d+(?:\.\d+)?)\%\s*,\s*(\d+(?:\.\d+)?)\%\s*(?:,\s*(\d+(?:\.\d+)?)\s*)?\)/,
+                space: "hsla",
+                parse: function (e) {
+                    return [e[1] / 360, e[2] / 100, e[3] / 100, e[4]]
+                }
             }
-        }, {
-            re: /rgba?\(\s*(\d+(?:\.\d+)?)\%\s*,\s*(\d+(?:\.\d+)?)\%\s*,\s*(\d+(?:\.\d+)?)\%\s*(?:,\s*(\d+(?:\.\d+)?)\s*)?\)/,
-            parse: function (e) {
-                return [2.55 * e[1], 2.55 * e[2], 2.55 * e[3], e[4]]
-            }
-        }, {
-            re: /#([a-fA-F0-9]{2})([a-fA-F0-9]{2})([a-fA-F0-9]{2})/,
-            parse: function (e) {
-                return [parseInt(e[1], 16), parseInt(e[2], 16), parseInt(e[3], 16)]
-            }
-        }, {
-            re: /#([a-fA-F0-9])([a-fA-F0-9])([a-fA-F0-9])/,
-            parse: function (e) {
-                return [parseInt(e[1] + e[1], 16), parseInt(e[2] + e[2], 16), parseInt(e[3] + e[3], 16)]
-            }
-        }, {
-            re: /hsla?\(\s*(\d+(?:\.\d+)?)\s*,\s*(\d+(?:\.\d+)?)\%\s*,\s*(\d+(?:\.\d+)?)\%\s*(?:,\s*(\d+(?:\.\d+)?)\s*)?\)/,
-            space: "hsla",
-            parse: function (e) {
-                return [e[1] / 360, e[2] / 100, e[3] / 100, e[4]]
-            }
-        }],
+        ],
         template: '<div class="colorpicker dropdown-menu"><div class="colorpicker-saturation"><i><b></b></i></div><div class="colorpicker-hue"><i></i></div><div class="colorpicker-alpha"><i></i></div><div class="colorpicker-color"><div /></div></div>'
     }
 }(window.jQuery);

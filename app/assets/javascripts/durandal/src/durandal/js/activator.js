@@ -10,7 +10,7 @@
 define(['durandal/system', 'knockout'], function (system, ko) {
     var activator;
     var defaultOptions = {
-        canDeactivate:true
+        canDeactivate: true
     };
 
     function ensureSettings(settings) {
@@ -30,7 +30,7 @@ define(['durandal/system', 'knockout'], function (system, ko) {
             settings.afterDeactivate = activator.defaults.afterDeactivate;
         }
 
-        if(!settings.affirmations){
+        if (!settings.affirmations) {
             settings.affirmations = activator.defaults.affirmations;
         }
 
@@ -64,17 +64,17 @@ define(['durandal/system', 'knockout'], function (system, ko) {
             var result;
             try {
                 result = item.deactivate(close);
-            } catch(error) {
+            } catch (error) {
                 system.log('ERROR: ' + error.message, error);
                 dfd.resolve(false);
                 return;
             }
 
             if (result && result.then) {
-                result.then(function() {
+                result.then(function () {
                     settings.afterDeactivate(item, close, setter);
                     dfd.resolve(true);
-                }, function(reason) {
+                }, function (reason) {
                     system.log(reason);
                     dfd.resolve(false);
                 });
@@ -94,23 +94,23 @@ define(['durandal/system', 'knockout'], function (system, ko) {
     function activate(newItem, activeItem, callback, activationData) {
         var result;
 
-        if(newItem && newItem.activate) {
+        if (newItem && newItem.activate) {
             system.log('Activating', newItem);
 
             try {
                 result = invoke(newItem, 'activate', activationData);
-            } catch(error) {
+            } catch (error) {
                 system.log('ERROR: ' + error.message, error);
                 callback(false);
                 return;
             }
         }
 
-        if(result && result.then) {
-            result.then(function() {
+        if (result && result.then) {
+            result.then(function () {
                 activeItem(newItem);
                 callback(true);
-            }, function(reason) {
+            }, function (reason) {
                 system.log('ERROR: ' + reason.message, reason);
                 callback(false);
             });
@@ -155,7 +155,7 @@ define(['durandal/system', 'knockout'], function (system, ko) {
 
             var childActivator = settings.findChildActivator(item);
             if (childActivator) {
-                childActivator.canDeactivate().then(function(result) {
+                childActivator.canDeactivate().then(function (result) {
                     if (result) {
                         continueCanDeactivate();
                     } else {
@@ -188,10 +188,10 @@ define(['durandal/system', 'knockout'], function (system, ko) {
                 }
 
                 if (resultOrPromise.then) {
-                    resultOrPromise.then(function(result) {
+                    resultOrPromise.then(function (result) {
                         settings.lifecycleData = result;
                         dfd.resolve(settings.interpretResponse(result));
-                    }, function(reason) {
+                    }, function (reason) {
                         system.log('ERROR: ' + reason.message, reason);
                         dfd.resolve(false);
                     });
@@ -265,8 +265,8 @@ define(['durandal/system', 'knockout'], function (system, ko) {
          * @return {promise}
          */
         computed.deactivateItem = function (item, close) {
-            return system.defer(function(dfd) {
-                computed.canDeactivateItem(item, close).then(function(canDeactivate) {
+            return system.defer(function (dfd) {
+                computed.canDeactivateItem(item, close).then(function (canDeactivate) {
                     if (canDeactivate) {
                         deactivate(item, close, settings, dfd, activeItem);
                     } else {
@@ -322,13 +322,13 @@ define(['durandal/system', 'knockout'], function (system, ko) {
                                 system.defer(function (dfd2) {
                                     deactivate(currentItem, settings.closeOnDeactivate, settings, dfd2);
                                 }).promise().then(function () {
-                                        newItem = settings.beforeActivate(newItem, newActivationData);
-                                        activate(newItem, activeItem, function (result) {
-                                            activeData = newActivationData;
-                                            computed.isActivating(false);
-                                            dfd.resolve(result);
-                                        }, newActivationData);
-                                    });
+                                    newItem = settings.beforeActivate(newItem, newActivationData);
+                                    activate(newItem, activeItem, function (result) {
+                                        activeData = newActivationData;
+                                        computed.isActivating(false);
+                                        dfd.resolve(result);
+                                    }, newActivationData);
+                                });
                             } else {
                                 if (viaSetter) {
                                     computed.notifySubscribers();
@@ -559,12 +559,12 @@ define(['durandal/system', 'knockout'], function (system, ko) {
          * @param {object} value
          * @return {boolean}
          */
-        interpretResponse: function(value) {
-            if(system.isObject(value)) {
+        interpretResponse: function (value) {
+            if (system.isObject(value)) {
                 value = value.can || false;
             }
 
-            if(system.isString(value)) {
+            if (system.isString(value)) {
                 return ko.utils.arrayIndexOf(this.affirmations, value.toLowerCase()) !== -1;
             }
 
@@ -579,7 +579,7 @@ define(['durandal/system', 'knockout'], function (system, ko) {
          * @param {object} newActivationData
          * @return {boolean}
          */
-        areSameItem: function(currentItem, newItem, currentActivationData, newActivationData) {
+        areSameItem: function (currentItem, newItem, currentActivationData, newActivationData) {
             return currentItem == newItem;
         },
         /**
@@ -587,7 +587,7 @@ define(['durandal/system', 'knockout'], function (system, ko) {
          * @method beforeActivate
          * @param {object} newItem
          */
-        beforeActivate: function(newItem) {
+        beforeActivate: function (newItem) {
             return newItem;
         },
         /**
@@ -597,12 +597,12 @@ define(['durandal/system', 'knockout'], function (system, ko) {
          * @param {boolean} close Whether or not the previous item was closed.
          * @param {function} setter The activate item setter function.
          */
-        afterDeactivate: function(oldItem, close, setter) {
-            if(close && setter) {
+        afterDeactivate: function (oldItem, close, setter) {
+            if (close && setter) {
                 setter(null);
             }
         },
-        findChildActivator: function(item){
+        findChildActivator: function (item) {
             return null;
         }
     };
@@ -631,7 +631,7 @@ define(['durandal/system', 'knockout'], function (system, ko) {
          * @param {object} object Any object you wish to verify as an activator or not.
          * @return {boolean} True if the object is an activator; false otherwise.
          */
-        isActivator:function(object){
+        isActivator: function (object) {
             return object && object.__activator__;
         }
     };

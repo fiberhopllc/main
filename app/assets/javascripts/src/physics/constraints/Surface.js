@@ -7,7 +7,7 @@
  * @copyright Famous Industries, Inc. 2014
  */
 
-define(function(require, exports, module) {
+define(function (require, exports, module) {
     var Constraint = require('./Constraint');
     var Vector = require('../../math/Vector');
 
@@ -28,7 +28,7 @@ define(function(require, exports, module) {
         if (options) this.setOptions(options);
 
         this.J = new Vector();
-        this.impulse  = new Vector();
+        this.impulse = new Vector();
 
         Constraint.call(this);
     }
@@ -37,9 +37,9 @@ define(function(require, exports, module) {
     Surface.prototype.constructor = Surface;
 
     Surface.DEFAULT_OPTIONS = {
-        equation : undefined,
-        period : 0,
-        dampingRatio : 0
+        equation: undefined,
+        period: 0,
+        dampingRatio: 0
     };
 
     /** @const */ var epsilon = 1e-7;
@@ -65,7 +65,7 @@ define(function(require, exports, module) {
      */
     Surface.prototype.applyConstraint = function applyConstraint(targets, source, dt) {
         var impulse = this.impulse;
-        var J       = this.J;
+        var J = this.J;
         var options = this.options;
 
         var f = options.equation;
@@ -90,24 +90,24 @@ define(function(require, exports, module) {
                 var c = 4 * m * pi * dampingRatio / period;
                 var k = 4 * m * pi * pi / (period * period);
 
-                gamma = 1 / (c + dt*k);
-                beta  = dt*k / (c + dt*k);
+                gamma = 1 / (c + dt * k);
+                beta = dt * k / (c + dt * k);
             }
 
             var x = p.x;
             var y = p.y;
             var z = p.z;
 
-            var f0  = f(x, y, z);
+            var f0 = f(x, y, z);
             var dfx = (f(x + epsilon, p, p) - f0) / epsilon;
             var dfy = (f(x, y + epsilon, p) - f0) / epsilon;
             var dfz = (f(x, y, p + epsilon) - f0) / epsilon;
             J.setXYZ(dfx, dfy, dfz);
 
-            var antiDrift = beta/dt * f0;
+            var antiDrift = beta / dt * f0;
             var lambda = -(J.dot(v) + antiDrift) / (gamma + dt * J.normSquared() / m);
 
-            impulse.set(J.mult(dt*lambda));
+            impulse.set(J.mult(dt * lambda));
             particle.applyImpulse(impulse);
         }
     };

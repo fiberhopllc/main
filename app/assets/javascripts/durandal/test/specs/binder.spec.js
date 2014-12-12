@@ -1,5 +1,5 @@
 ﻿define(['durandal/binder', 'durandal/system', 'knockout'], function (sut, system, ko) {
-    describe('durandal/binder', function(){
+    describe('durandal/binder', function () {
         var settings, view;
 
         function sharedBindingBehaviour(createSettings, sutAction) {
@@ -7,11 +7,13 @@
                 unexpectedViewMessage = 'Unexpected View Type',
                 viewName = 'view name';
 
-            beforeEach(function() {
+            beforeEach(function () {
                 settings = createSettings();
 
                 view = {
-                    getAttribute: function () { return viewName; }
+                    getAttribute: function () {
+                        return viewName;
+                    }
                 };
 
                 sut.throwOnErrors = false;
@@ -85,28 +87,34 @@
             });
 
             describe('with throw errors set', function () {
-                beforeEach(function() {
+                beforeEach(function () {
                     sut.throwOnErrors = true;
                 });
 
                 it('throws and returns with null view', function () {
                     view = null;
 
-                    expect(function () { sutAction(); }).toThrow(insufficientInfoMessage);
+                    expect(function () {
+                        sutAction();
+                    }).toThrow(insufficientInfoMessage);
                     expect(ko.applyBindings).not.toHaveBeenCalledWith(settings.bindingTarget, view);
                 });
 
                 it('throws and returns with null obj', function () {
                     settings.bindingTarget = null;
 
-                    expect(function () { sutAction(); }).toThrow(insufficientInfoMessage);
+                    expect(function () {
+                        sutAction();
+                    }).toThrow(insufficientInfoMessage);
                     expect(ko.applyBindings).not.toHaveBeenCalledWith(settings.bindingTarget, view);
                 });
 
                 it('throws and returns with no getAttribute function on view', function () {
                     view.getAttribute = null;
 
-                    expect(function () { sutAction(); }).toThrow(unexpectedViewMessage);
+                    expect(function () {
+                        sutAction();
+                    }).toThrow(unexpectedViewMessage);
                     expect(ko.applyBindings).not.toHaveBeenCalledWith(settings.bindingTarget, view);
                 });
 
@@ -115,18 +123,20 @@
                         throw new Error('FakeError');
                     });
 
-                    expect(function () { sutAction(); }).toThrow(jasmine.any(String));
+                    expect(function () {
+                        sutAction();
+                    }).toThrow(jasmine.any(String));
                 });
             });
         }
 
         describe('bind', function () {
-            function createSettings(){
+            function createSettings() {
                 var target = {};
                 return{
-                    obj:target,
-                    bindingTarget:target,
-                    data:target
+                    obj: target,
+                    bindingTarget: target,
+                    data: target
                 };
             };
 
@@ -137,7 +147,7 @@
 
         describe('bindContext', function () {
             describe('child context used', function () {
-                function createSettings(){
+                function createSettings() {
                     var bindingObject = {};
                     var bindingContext = {
                         $data: bindingObject,
@@ -147,9 +157,9 @@
                     };
 
                     return{
-                        obj:bindingObject,
-                        bindingTarget:bindingContext,
-                        data:bindingObject
+                        obj: bindingObject,
+                        bindingTarget: bindingContext,
+                        data: bindingObject
                     };
                 };
 
@@ -159,7 +169,7 @@
             });
 
             describe('child context not used', function () {
-                function createSettings(){
+                function createSettings() {
                     var bindingObject = {};
                     var bindingContext = {
                         $data: bindingObject,
@@ -168,9 +178,9 @@
                         }
                     };
                     return{
-                        obj:bindingObject,
-                        bindingTarget:bindingContext,
-                        data:bindingObject
+                        obj: bindingObject,
+                        bindingTarget: bindingContext,
+                        data: bindingObject
                     };
                 };
 

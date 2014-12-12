@@ -1,25 +1,25 @@
 ﻿<imageList>
-	<images>
-		<image path="../../../../../../public/images/scroller/managed-it-support.jpg" dropX="633"></image>
-		<image path="../../../../../../public/images/scroller/VoIP.jpg" dropX="633"></image>
-		<image path="../../../../../../public/images/scroller/vm-ware.jpg" dropX="43"></image>
-		<image path="../../../../../../public/images/scroller/total-care-it.jpg" dropX="43"></image>
-	</images>
-	<titles>
-		<title text=""></title>
-		<title text=""></title>
-		<title text=""></title>
-		<title text=""></title>
-		<title text=""></title>
-		<title text=""></title>
-	</titles>
-	
-	<descriptions>
-		<description><![CDATA[]]></description>
-		<description><![CDATA[]]></description>
-		<description><![CDATA[]]></description>
-		<description><![CDATA[]]></description>
-		<description><![CDATA[]]></description>
-		<description><![CDATA[]]></description>
-	</descriptions>
+    <images>
+        <image path="../../../../../../public/images/scroller/managed-it-support.jpg" dropX="633"></image>
+        <image path="../../../../../../public/images/scroller/VoIP.jpg" dropX="633"></image>
+        <image path="../../../../../../public/images/scroller/vm-ware.jpg" dropX="43"></image>
+        <image path="../../../../../../public/images/scroller/total-care-it.jpg" dropX="43"></image>
+    </images>
+    <titles>
+        <title text=""></title>
+        <title text=""></title>
+        <title text=""></title>
+        <title text=""></title>
+        <title text=""></title>
+        <title text=""></title>
+    </titles>
+
+    <descriptions>
+        <description><![CDATA[]]></description>
+        <description><![CDATA[]]></description>
+        <description><![CDATA[]]></description>
+        <description><![CDATA[]]></description>
+        <description><![CDATA[]]></description>
+        <description><![CDATA[]]></description>
+    </descriptions>
 </imageList>

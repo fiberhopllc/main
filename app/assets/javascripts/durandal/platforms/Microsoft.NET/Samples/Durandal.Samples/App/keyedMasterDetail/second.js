@@ -1,11 +1,11 @@
-﻿define(['durandal/system', 'knockout'], function(system, ko) {
+﻿define(['durandal/system', 'knockout'], function (system, ko) {
     var secondVm = ko.observable();
 
     var vm = {
-        activate:activate,
-        title:'Second Tab',
-        deactivate:deactivate,
-        secondVm:secondVm,
+        activate: activate,
+        title: 'Second Tab',
+        deactivate: deactivate,
+        secondVm: secondVm,
     };
 
     return vm;
@@ -20,6 +20,6 @@
     }
 
     function loadObservables(id) {
-        secondVm({ id:id, name:'Second Tab Content' });
+        secondVm({ id: id, name: 'Second Tab Content' });
     }
 });

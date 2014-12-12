@@ -10,34 +10,37 @@
  *
  */
 console.log('wtf');
-;(function($) {
+;
+(function ($) {
 
-  $.fn.stacktable = function(options) {
-    var $table = this,
-        $stacktable = $('<table></table>'),
-        reset       = false,
-        equalize,
-        type;
+    $.fn.stacktable = function (options) {
+        var $table = this,
+            $stacktable = $('<table></table>'),
+            reset = false,
+            equalize,
+            type;
 
-    if (!$.isFunction($.fn[stacktable])) { return false; }
+        if (!$.isFunction($.fn[stacktable])) {
+            return false;
+        }
 
-    return $table.each(function() {
-      $(this).find('tr').first().find('td,th')(function() {
-        $stacktable.append($('<tr>'+$(this).html()+'</tr>'));
-      });
-      $(this).before($stacktable);
-      // var $children = $(this).children(),
-      //     max = 0; // reset for each container
+        return $table.each(function () {
+            $(this).find('tr').first().find('td,th')(function () {
+                $stacktable.append($('<tr>' + $(this).html() + '</tr>'));
+            });
+            $(this).before($stacktable);
+            // var $children = $(this).children(),
+            //     max = 0; // reset for each container
 
-      // $children.each(function() {
-      //   var $element = $(this),
-      //       value;
-      //   if (reset) { $element.css(type, ''); } // remove existing height/width dimension
-      //   value = $element[equalize]();          // call height(), outerHeight(), etc.
-      //   if (value > max) { max = value; }      // update max
-      // });
+            // $children.each(function() {
+            //   var $element = $(this),
+            //       value;
+            //   if (reset) { $element.css(type, ''); } // remove existing height/width dimension
+            //   value = $element[equalize]();          // call height(), outerHeight(), etc.
+            //   if (value > max) { max = value; }      // update max
+            // });
 
-      // $children.css(type, max +'px'); // add CSS to children
-    });
-  };
+            // $children.css(type, max +'px'); // add CSS to children
+        });
+    };
 }(jQuery));

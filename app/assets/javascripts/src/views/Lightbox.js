@@ -1,4 +1,4 @@
-define(function(require, exports, module) {
+define(function (require, exports, module) {
     var Transform = require('../core/Transform');
     var Modifier = require('../core/Modifier');
     var RenderNode = require('../core/RenderNode');
@@ -40,7 +40,7 @@ define(function(require, exports, module) {
      * you show a new one, or hiding your current renderable.
      * @param {Boolean} [options.overlap=false] When showing a new renderable, overlap determines if the
      *   out transition of the old one executes concurrently with the in transition of the new one,
-      *  or synchronously beforehand.
+     *  or synchronously beforehand.
      */
     function Lightbox(options) {
         this.options = Object.create(Lightbox.DEFAULT_OPTIONS);
@@ -82,7 +82,7 @@ define(function(require, exports, module) {
         return this._optionsManager.setOptions(options);
     };
 
-   /**
+    /**
      * Show displays the targeted renderable with a transition and an optional callback to
      *  execute afterwards.
      * @method show
@@ -156,7 +156,7 @@ define(function(require, exports, module) {
         var node = this.nodes[this.nodes.length - 1];
         var transform = this.transforms[this.transforms.length - 1];
         var stateItem = this.states[this.states.length - 1];
-        var _cb = Utility.after(3, function() {
+        var _cb = Utility.after(3, function () {
             this.nodes.splice(this.nodes.indexOf(node), 1);
             this.states.splice(this.states.indexOf(stateItem), 1);
             this.transforms.splice(this.transforms.indexOf(transform), 1);

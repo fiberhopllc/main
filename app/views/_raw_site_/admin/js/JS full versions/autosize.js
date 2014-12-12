@@ -1,4 +1,4 @@
-! function (e) {
+!function (e) {
     "function" == typeof define && define.amd ? define(["jquery"], e) : e(window.jQuery || window.$)
 }(function (e) {
     var t, i = {
@@ -40,6 +40,7 @@
                     e !== v && (v = e, r())
                 }, parseInt(n.resizeDelay, 10))
             }
+
             var c, u, d, h = this,
                 p = e(h),
                 f = 0,

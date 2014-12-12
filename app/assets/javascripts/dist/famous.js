@@ -7,7 +7,7 @@
  * @copyright Famous Industries, Inc. 2014
  */
 
-define('famous/core/Entity',['require','exports','module'],function(require, exports, module) {
+define('famous/core/Entity', ['require', 'exports', 'module'], function (require, exports, module) {
     /**
      * A singleton that maintains a global registry of Surfaces.
      *   Private.
@@ -85,7 +85,7 @@ define('famous/core/Entity',['require','exports','module'],function(require, exp
  * @copyright Famous Industries, Inc. 2014
  */
 
-define('famous/core/Transform',['require','exports','module'],function(require, exports, module) {
+define('famous/core/Transform', ['require', 'exports', 'module'], function (require, exports, module) {
 
     /**
      *  A high-performance static matrix math library used to calculate
@@ -512,9 +512,11 @@ define('famous/core/Transform',['require','exports','module'],function(require, 
     function _normSquared(v) {
         return (v.length === 2) ? v[0] * v[0] + v[1] * v[1] : v[0] * v[0] + v[1] * v[1] + v[2] * v[2];
     }
+
     function _norm(v) {
         return Math.sqrt(_normSquared(v));
     }
+
     function _sign(n) {
         return (n < 0) ? -1 : 1;
     }
@@ -550,8 +552,8 @@ define('famous/core/Transform',['require','exports','module'],function(require, 
         var Q1 = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1];
 
         //diagonals
-        Q1[0]  = 1 - mult * v[0] * v[0];    // 0,0 entry
-        Q1[5]  = 1 - mult * v[1] * v[1];    // 1,1 entry
+        Q1[0] = 1 - mult * v[0] * v[0];    // 0,0 entry
+        Q1[5] = 1 - mult * v[1] * v[1];    // 1,1 entry
         Q1[10] = 1 - mult * v[2] * v[2];    // 2,2 entry
 
         //upper diagonal
@@ -578,7 +580,7 @@ define('famous/core/Transform',['require','exports','module'],function(require, 
         var Q2 = [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1];
 
         //diagonal
-        Q2[5]  = 1 - mult2 * v2[0] * v2[0]; // 1,1 entry
+        Q2[5] = 1 - mult2 * v2[0] * v2[0]; // 1,1 entry
         Q2[10] = 1 - mult2 * v2[1] * v2[1]; // 2,2 entry
 
         //off diagonals
@@ -768,7 +770,7 @@ define('famous/core/Transform',['require','exports','module'],function(require, 
  * @copyright Famous Industries, Inc. 2014
  */
 
-define('famous/core/SpecParser',['require','exports','module','./Transform'],function(require, exports, module) {
+define('famous/core/SpecParser', ['require', 'exports', 'module', './Transform'], function (require, exports, module) {
     var Transform = require('./Transform');
 
     /**
@@ -784,6 +786,7 @@ define('famous/core/SpecParser',['require','exports','module','./Transform'],fun
     function SpecParser() {
         this.result = {};
     }
+
     SpecParser._instance = new SpecParser();
 
     /**
@@ -945,7 +948,7 @@ define('famous/core/SpecParser',['require','exports','module','./Transform'],fun
  * @copyright Famous Industries, Inc. 2014
  */
 
-define('famous/core/RenderNode',['require','exports','module','./Entity','./SpecParser'],function(require, exports, module) {
+define('famous/core/RenderNode', ['require', 'exports', 'module', './Entity', './SpecParser'], function (require, exports, module) {
     var Entity = require('./Entity');
     var SpecParser = require('./SpecParser');
 
@@ -1113,7 +1116,7 @@ define('famous/core/RenderNode',['require','exports','module','./Entity','./Spec
  * @copyright Famous Industries, Inc. 2014
  */
 
-define('famous/core/EventEmitter',['require','exports','module'],function(require, exports, module) {
+define('famous/core/EventEmitter', ['require', 'exports', 'module'], function (require, exports, module) {
     /**
      * EventEmitter represents a channel for events.
      *
@@ -1154,7 +1157,7 @@ define('famous/core/EventEmitter',['require','exports','module'],function(requir
      * @param {function(string, Object)} handler callback
      * @return {EventHandler} this
      */
-   EventEmitter.prototype.on = function on(type, handler) {
+    EventEmitter.prototype.on = function on(type, handler) {
         if (!(type in this.listeners)) this.listeners[type] = [];
         var index = this.listeners[type].indexOf(handler);
         if (index < 0) this.listeners[type].push(handler);
@@ -1167,7 +1170,7 @@ define('famous/core/EventEmitter',['require','exports','module'],function(requir
      */
     EventEmitter.prototype.addListener = EventEmitter.prototype.on;
 
-   /**
+    /**
      * Unbind an event by type and handler.
      *   This undoes the work of "on".
      *
@@ -1209,7 +1212,7 @@ define('famous/core/EventEmitter',['require','exports','module'],function(requir
  * @copyright Famous Industries, Inc. 2014
  */
 
-define('famous/core/EventHandler',['require','exports','module','./EventEmitter'],function(require, exports, module) {
+define('famous/core/EventHandler', ['require', 'exports', 'module', './EventEmitter'], function (require, exports, module) {
     var EventEmitter = require('./EventEmitter');
 
     /**
@@ -1229,6 +1232,7 @@ define('famous/core/EventHandler',['require','exports','module','./EventEmitter'
         this.upstream = []; // upstream event handlers
         this.upstreamListeners = {}; // upstream listeners
     }
+
     EventHandler.prototype = Object.create(EventEmitter.prototype);
     EventHandler.prototype.constructor = EventHandler;
 
@@ -1416,7 +1420,7 @@ define('famous/core/EventHandler',['require','exports','module','./EventEmitter'
  * @copyright Famous Industries, Inc. 2014
  */
 
-define('famous/core/ElementAllocator',['require','exports','module'],function(require, exports, module) {
+define('famous/core/ElementAllocator', ['require', 'exports', 'module'], function (require, exports, module) {
 
     /**
      * Internal helper object to Context that handles the process of
@@ -1523,7 +1527,7 @@ define('famous/core/ElementAllocator',['require','exports','module'],function(re
  * @copyright Famous Industries, Inc. 2014
  */
 
-define('famous/utilities/Utility',['require','exports','module'],function(require, exports, module) {
+define('famous/utilities/Utility', ['require', 'exports', 'module'], function (require, exports, module) {
     /**
      * This namespace holds standalone functionality.
      *  Currently includes name mapping for transition curves,
@@ -1559,7 +1563,7 @@ define('famous/utilities/Utility',['require','exports','module'],function(requir
      */
     Utility.after = function after(count, callback) {
         var counter = count;
-        return function() {
+        return function () {
             counter--;
             if (counter === 0) callback.apply(this, arguments);
         };
@@ -1619,7 +1623,7 @@ define('famous/utilities/Utility',['require','exports','module'],function(requir
                         }
                     }
                     else {
-                      a[key] = Utility.clone(b[key]);
+                        a[key] = Utility.clone(b[key]);
                     }
                 }
                 else {
@@ -1645,7 +1649,7 @@ define('famous/utilities/Utility',['require','exports','module'],function(requir
  * @copyright Famous Industries, Inc. 2014
  */
 
-define('famous/transitions/MultipleTransition',['require','exports','module','../utilities/Utility'],function(require, exports, module) {
+define('famous/transitions/MultipleTransition', ['require', 'exports', 'module', '../utilities/Utility'], function (require, exports, module) {
     var Utility = require('../utilities/Utility');
 
     /**
@@ -1723,7 +1727,7 @@ define('famous/transitions/MultipleTransition',['require','exports','module','..
  * @copyright Famous Industries, Inc. 2014
  */
 
-define('famous/transitions/TweenTransition',['require','exports','module'],function(require, exports, module) {
+define('famous/transitions/TweenTransition', ['require', 'exports', 'module'], function (require, exports, module) {
 
     /**
      *
@@ -1773,23 +1777,23 @@ define('famous/transitions/TweenTransition',['require','exports','module'],funct
      * @final
      */
     TweenTransition.Curves = {
-        linear: function(t) {
+        linear: function (t) {
             return t;
         },
-        easeIn: function(t) {
-            return t*t;
+        easeIn: function (t) {
+            return t * t;
         },
-        easeOut: function(t) {
-            return t*(2-t);
+        easeOut: function (t) {
+            return t * (2 - t);
         },
-        easeInOut: function(t) {
-            if (t <= 0.5) return 2*t*t;
-            else return -2*t*t + 4*t - 1;
+        easeInOut: function (t) {
+            if (t <= 0.5) return 2 * t * t;
+            else return -2 * t * t + 4 * t - 1;
         },
-        easeOutBounce: function(t) {
-            return t*(3 - 2*t);
+        easeOutBounce: function (t) {
+            return t * (3 - 2 * t);
         },
-        spring: function(t) {
+        spring: function (t) {
             return (1 - t) * Math.sin(6 * Math.PI * t) + t;
         }
     };
@@ -1880,7 +1884,7 @@ define('famous/transitions/TweenTransition',['require','exports','module'],funct
         return registeredCurves;
     };
 
-     // Interpolate: If a linear function f(0) = a, f(1) = b, then return f(t)
+    // Interpolate: If a linear function f(0) = a, f(1) = b, then return f(t)
     function _interpolate(a, b, t) {
         return ((1 - t) * a) + (t * b);
     }
@@ -2033,7 +2037,7 @@ define('famous/transitions/TweenTransition',['require','exports','module'],funct
         var speed = (curve(t) - curve(t - eps)) / eps;
         if (current instanceof Array) {
             velocity = [];
-            for (var i = 0; i < current.length; i++){
+            for (var i = 0; i < current.length; i++) {
                 if (typeof current[i] === 'number')
                     velocity[i] = speed * (current[i] - start[i]) / duration;
                 else
@@ -2132,9 +2136,10 @@ define('famous/transitions/TweenTransition',['require','exports','module'],funct
     TweenTransition.registerCurve('spring', TweenTransition.Curves.spring);
 
     TweenTransition.customCurve = function customCurve(v1, v2) {
-        v1 = v1 || 0; v2 = v2 || 0;
-        return function(t) {
-            return v1*t + (-2*v1 - v2 + 3)*t*t + (v1 + v2 - 2)*t*t*t;
+        v1 = v1 || 0;
+        v2 = v2 || 0;
+        return function (t) {
+            return v1 * t + (-2 * v1 - v2 + 3) * t * t + (v1 + v2 - 2) * t * t * t;
         };
     };
 
@@ -2150,7 +2155,7 @@ define('famous/transitions/TweenTransition',['require','exports','module'],funct
  * @copyright Famous Industries, Inc. 2014
  */
 
-define('famous/transitions/Transitionable',['require','exports','module','./MultipleTransition','./TweenTransition'],function(require, exports, module) {
+define('famous/transitions/Transitionable', ['require', 'exports', 'module', './MultipleTransition', './TweenTransition'], function (require, exports, module) {
     var MultipleTransition = require('./MultipleTransition');
     var TweenTransition = require('./TweenTransition');
 
@@ -2314,9 +2319,9 @@ define('famous/transitions/Transitionable',['require','exports','module','./Mult
      */
     Transitionable.prototype.delay = function delay(duration, callback) {
         this.set(this.get(), {duration: duration,
-            curve: function() {
-                return 0;
-            }},
+                curve: function () {
+                    return 0;
+                }},
             callback
         );
     };
@@ -2373,7 +2378,7 @@ define('famous/transitions/Transitionable',['require','exports','module','./Mult
  * @copyright Famous Industries, Inc. 2014
  */
 
-define('famous/core/Context',['require','exports','module','./RenderNode','./EventHandler','./ElementAllocator','./Transform','../transitions/Transitionable'],function(require, exports, module) {
+define('famous/core/Context', ['require', 'exports', 'module', './RenderNode', './EventHandler', './ElementAllocator', './Transform', '../transitions/Transitionable'], function (require, exports, module) {
     var RenderNode = require('./RenderNode');
     var EventHandler = require('./EventHandler');
     var ElementAllocator = require('./ElementAllocator');
@@ -2387,9 +2392,9 @@ define('famous/core/Context',['require','exports','module','./RenderNode','./Eve
         return [element.clientWidth, element.clientHeight];
     }
 
-    var _setPerspective = usePrefix ? function(element, perspective) {
+    var _setPerspective = usePrefix ? function (element, perspective) {
         element.style.webkitPerspective = perspective ? perspective.toFixed() + 'px' : '';
-    } : function(element, perspective) {
+    } : function (element, perspective) {
         element.style.perspective = perspective ? perspective.toFixed() + 'px' : '';
     };
 
@@ -2423,7 +2428,7 @@ define('famous/core/Context',['require','exports','module','./RenderNode','./Eve
             size: this._size
         };
 
-        this._eventOutput.on('resize', function() {
+        this._eventOutput.on('resize', function () {
             this.setSize(_getElementSize(this.container));
         }.bind(this));
 
@@ -2607,7 +2612,7 @@ define('famous/core/Context',['require','exports','module','./RenderNode','./Eve
  * @copyright Famous Industries, Inc. 2014
  */
 
-define('famous/core/ElementOutput',['require','exports','module','./Entity','./EventHandler','./Transform'],function(require, exports, module) {
+define('famous/core/ElementOutput', ['require', 'exports', 'module', './Entity', './EventHandler', './Transform'], function (require, exports, module) {
     var Entity = require('./Entity');
     var EventHandler = require('./EventHandler');
     var Transform = require('./Transform');
@@ -2783,18 +2788,18 @@ define('famous/core/ElementOutput',['require','exports','module','./Entity','./E
 
     var _setMatrix;
     if (navigator.userAgent.toLowerCase().indexOf('firefox') > -1) {
-        _setMatrix = function(element, matrix) {
+        _setMatrix = function (element, matrix) {
             element.style.zIndex = (matrix[14] * 1000000) | 0;    // fix for Firefox z-buffer issues
             element.style.transform = _formatCSSTransform(matrix);
         };
     }
     else if (usePrefix) {
-        _setMatrix = function(element, matrix) {
+        _setMatrix = function (element, matrix) {
             element.style.webkitTransform = _formatCSSTransform(matrix);
         };
     }
     else {
-        _setMatrix = function(element, matrix) {
+        _setMatrix = function (element, matrix) {
             element.style.transform = _formatCSSTransform(matrix);
         };
     }
@@ -2806,17 +2811,17 @@ define('famous/core/ElementOutput',['require','exports','module','./Entity','./E
 
     // Directly apply given origin coordinates to the document element as the
     // appropriate webkit CSS style.
-    var _setOrigin = usePrefix ? function(element, origin) {
+    var _setOrigin = usePrefix ? function (element, origin) {
         element.style.webkitTransformOrigin = _formatCSSOrigin(origin);
-    } : function(element, origin) {
+    } : function (element, origin) {
         element.style.transformOrigin = _formatCSSOrigin(origin);
     };
 
     // Shrink given document element until it is effectively invisible.
-    var _setInvisible = usePrefix ? function(element) {
+    var _setInvisible = usePrefix ? function (element) {
         element.style.webkitTransform = 'scale3d(0.0001,0.0001,0.0001)';
         element.style.opacity = 0;
-    } : function(element) {
+    } : function (element) {
         element.style.transform = 'scale3d(0.0001,0.0001,0.0001)';
         element.style.opacity = 0;
     };
@@ -2879,7 +2884,7 @@ define('famous/core/ElementOutput',['require','exports','module','./Entity','./E
 
             if (!matrix) matrix = Transform.identity;
             this._matrix = matrix;
-            var aaMatrix = this._size ? Transform.thenMove(matrix, [-this._size[0]*origin[0], -this._size[1]*origin[1], 0]) : matrix;
+            var aaMatrix = this._size ? Transform.thenMove(matrix, [-this._size[0] * origin[0], -this._size[1] * origin[1], 0]) : matrix;
             _setMatrix(target, aaMatrix);
             this._transformDirty = false;
         }
@@ -2936,7 +2941,7 @@ define('famous/core/ElementOutput',['require','exports','module','./Entity','./E
  * @copyright Famous Industries, Inc. 2014
  */
 
-define('famous/core/OptionsManager',['require','exports','module','./EventHandler'],function(require, exports, module) {
+define('famous/core/OptionsManager', ['require', 'exports', 'module', './EventHandler'], function (require, exports, module) {
     var EventHandler = require('./EventHandler');
 
     /**
@@ -3138,7 +3143,7 @@ define('famous/core/OptionsManager',['require','exports','module','./EventHandle
  * @copyright Famous Industries, Inc. 2014
  */
 
-define('famous/core/Engine',['require','exports','module','./Context','./EventHandler','./OptionsManager'],function(require, exports, module) {
+define('famous/core/Engine', ['require', 'exports', 'module', './Context', './EventHandler', './OptionsManager'], function (require, exports, module) {
 
     /**
      * The singleton object initiated upon process
@@ -3240,6 +3245,7 @@ define('famous/core/Engine',['require','exports','module','./Context','./EventHa
         }
         else loopEnabled = false;
     }
+
     window.requestAnimationFrame(loop);
 
     //
@@ -3254,6 +3260,7 @@ define('famous/core/Engine',['require','exports','module','./Context','./EventHa
         }
         eventHandler.emit('resize');
     }
+
     window.addEventListener('resize', handleResize, false);
     handleResize();
 
@@ -3266,12 +3273,13 @@ define('famous/core/Engine',['require','exports','module','./Context','./EventHa
      */
     function initialize() {
         // prevent scrolling via browser
-        window.addEventListener('touchmove', function(event) {
+        window.addEventListener('touchmove', function (event) {
             event.preventDefault();
         }, true);
         document.body.classList.add('famous-root');
         document.documentElement.classList.add('famous-root');
     }
+
     var initialized = false;
 
     /**
@@ -3318,7 +3326,7 @@ define('famous/core/Engine',['require','exports','module','./Context','./EventHa
                 document.body.addEventListener(type, eventForwarders[type]);
             }
             else {
-                Engine.nextTick(function(type, forwarder) {
+                Engine.nextTick(function (type, forwarder) {
                     document.body.addEventListener(type, forwarder);
                 }.bind(this, type, eventForwarders[type]));
             }
@@ -3432,7 +3440,7 @@ define('famous/core/Engine',['require','exports','module','./Context','./EventHa
         var context = new Context(el);
         Engine.registerContext(context);
         if (needMountContainer) {
-            Engine.nextTick(function(context, el) {
+            Engine.nextTick(function (context, el) {
                 document.body.appendChild(el);
                 context.emit('resize');
             }.bind(this, context, el));
@@ -3515,7 +3523,7 @@ define('famous/core/Engine',['require','exports','module','./Context','./EventHa
         deferQueue.push(fn);
     };
 
-    optionsManager.on('change', function(data) {
+    optionsManager.on('change', function (data) {
         if (data.id === 'fpsCap') Engine.setFPSCap(data.value);
         else if (data.id === 'runLoop') {
             // kick off the loop only if it was stopped
@@ -3538,7 +3546,7 @@ define('famous/core/Engine',['require','exports','module','./Context','./EventHa
  * @copyright Famous Industries, Inc. 2014
  */
 
-define('famous/core/Surface',['require','exports','module','./ElementOutput'],function(require, exports, module) {
+define('famous/core/Surface', ['require', 'exports', 'module', './ElementOutput'], function (require, exports, module) {
     var ElementOutput = require('./ElementOutput');
 
     /**
@@ -3581,6 +3589,7 @@ define('famous/core/Surface',['require','exports','module','./ElementOutput'],fu
 
         this._currentTarget = null;
     }
+
     Surface.prototype = Object.create(ElementOutput.prototype);
     Surface.prototype.constructor = Surface;
     Surface.prototype.elementType = 'div';
@@ -3591,7 +3600,7 @@ define('famous/core/Surface',['require','exports','module','./ElementOutput'],fu
      *    dirtying and thus re-rendering, even if values do not change.
      *
      * @method setAttributes
-    * @param {Object} attributes property dictionary of "key" => "value"
+     * @param {Object} attributes property dictionary of "key" => "value"
      */
     Surface.prototype.setAttributes = function setAttributes(attributes) {
         for (var n in attributes) {
@@ -3878,7 +3887,7 @@ define('famous/core/Surface',['require','exports','module','./ElementOutput'],fu
             if (size[0] === undefined) size[0] = origSize[0];
             if (size[1] === undefined) size[1] = origSize[1];
             if (size[0] === true || size[1] === true) {
-                if (size[0] === true){
+                if (size[0] === true) {
                     if (this._trueSizeCheck || (this._size[0] === 0)) {
                         var width = target.offsetWidth;
                         if (this._size && this._size[0] !== width) {
@@ -3890,7 +3899,7 @@ define('famous/core/Surface',['require','exports','module','./ElementOutput'],fu
                         if (this._size) size[0] = this._size[0];
                     }
                 }
-                if (size[1] === true){
+                if (size[1] === true) {
                     if (this._trueSizeCheck || (this._size[1] === 0)) {
                         var height = target.offsetHeight;
                         if (this._size && this._size[1] !== height) {
@@ -3917,7 +3926,7 @@ define('famous/core/Surface',['require','exports','module','./ElementOutput'],fu
         if (this._sizeDirty) {
             if (this._size) {
                 target.style.width = (this.size && this.size[0] === true) ? '' : this._size[0] + 'px';
-                target.style.height = (this.size && this.size[1] === true) ?  '' : this._size[1] + 'px';
+                target.style.height = (this.size && this.size[1] === true) ? '' : this._size[1] + 'px';
             }
 
             this._eventOutput.emit('resize');
@@ -4035,7 +4044,7 @@ define('famous/core/Surface',['require','exports','module','./ElementOutput'],fu
  * @copyright Famous Industries, Inc. 2014
  */
 
-define('famous/core/Group',['require','exports','module','./Context','./Transform','./Surface'],function(require, exports, module) {
+define('famous/core/Group', ['require', 'exports', 'module', './Context', './Transform', './Surface'], function (require, exports, module) {
     var Context = require('./Context');
     var Transform = require('./Transform');
     var Surface = require('./Surface');
@@ -4160,7 +4169,7 @@ define('famous/core/Group',['require','exports','module','./Context','./Transfor
  * @copyright Famous Industries, Inc. 2014
  */
 
-define('famous/transitions/TransitionableTransform',['require','exports','module','./Transitionable','../core/Transform','../utilities/Utility'],function(require, exports, module) {
+define('famous/transitions/TransitionableTransform', ['require', 'exports', 'module', './Transitionable', '../core/Transform', '../utilities/Utility'], function (require, exports, module) {
     var Transitionable = require('./Transitionable');
     var Transform = require('../core/Transform');
     var Utility = require('../utilities/Utility');
@@ -4391,7 +4400,7 @@ define('famous/transitions/TransitionableTransform',['require','exports','module
  * @copyright Famous Industries, Inc. 2014
  */
 
-define('famous/core/Modifier',['require','exports','module','./Transform','../transitions/Transitionable','../transitions/TransitionableTransform'],function(require, exports, module) {
+define('famous/core/Modifier', ['require', 'exports', 'module', './Transform', '../transitions/Transitionable', '../transitions/TransitionableTransform'], function (require, exports, module) {
     var Transform = require('./Transform');
 
     /* TODO: remove these dependencies when deprecation complete */
@@ -4557,7 +4566,7 @@ define('famous/core/Modifier',['require','exports','module','./Transform','../tr
         return this;
     };
 
-     /**
+    /**
      * Deprecated: Prefer transformFrom with static Transform, or use a TransitionableTransform.
      * @deprecated
      * @method setTransform
@@ -4826,7 +4835,7 @@ define('famous/core/Modifier',['require','exports','module','./Transform','../tr
  * @copyright Famous Industries, Inc. 2014
  */
 
-define('famous/core/Scene',['require','exports','module','./Transform','./Modifier','./RenderNode'],function(require, exports, module) {
+define('famous/core/Scene', ['require', 'exports', 'module', './Transform', './Modifier', './RenderNode'], function (require, exports, module) {
     var Transform = require('./Transform');
     var Modifier = require('./Modifier');
     var RenderNode = require('./RenderNode');
@@ -4858,7 +4867,7 @@ define('famous/core/Scene',['require','exports','module','./Transform','./Modifi
         'rotateAxis': Transform.rotateAxis,
         'scale': Transform.scale,
         'skew': Transform.skew,
-        'matrix3d': function() {
+        'matrix3d': function () {
             return arguments;
         }
     };
@@ -5006,7 +5015,7 @@ define('famous/core/Scene',['require','exports','module','./Transform','./Modifi
  * @copyright Famous Industries, Inc. 2014
  */
 
-define('famous/core/View',['require','exports','module','./EventHandler','./OptionsManager','./RenderNode','../utilities/Utility'],function(require, exports, module) {
+define('famous/core/View', ['require', 'exports', 'module', './EventHandler', './OptionsManager', './RenderNode', '../utilities/Utility'], function (require, exports, module) {
     var EventHandler = require('./EventHandler');
     var OptionsManager = require('./OptionsManager');
     var RenderNode = require('./RenderNode');
@@ -5117,7 +5126,7 @@ define('famous/core/View',['require','exports','module','./EventHandler','./Opti
  * @copyright Famous Industries, Inc. 2014
  */
 
-define('famous/core/ViewSequence',['require','exports','module'],function(require, exports, module) {
+define('famous/core/ViewSequence', ['require', 'exports', 'module'], function (require, exports, module) {
 
     /**
      * Helper object used to iterate through items sequentially. Used in
@@ -5162,7 +5171,9 @@ define('famous/core/ViewSequence',['require','exports','module'],function(requir
         this.loop = false;
         this.firstNode = null;
         this.lastNode = null;
-        this.cumulativeSizes = [[0, 0]];
+        this.cumulativeSizes = [
+            [0, 0]
+        ];
         this.sizeDirty = true;
         this.trackSize = false;
     };
@@ -5410,7 +5421,7 @@ define('famous/core/ViewSequence',['require','exports','module'],function(requir
         if (this._.trackSize) this._.sizeDirty = true;
     };
 
-   /**
+    /**
      * Return value of this ViewSequence node.
      *
      * @method get
@@ -5420,7 +5431,7 @@ define('famous/core/ViewSequence',['require','exports','module'],function(requir
         return this._.getValue(this.index);
     };
 
-   /**
+    /**
      * Call getSize() on the contained View.
      *
      * @method getSize
@@ -5456,7 +5467,7 @@ define('famous/core/ViewSequence',['require','exports','module'],function(requir
  * @copyright Famous Industries, Inc. 2014
  */
 
-define('famous/events/EventArbiter',['require','exports','module','../core/EventHandler'],function(require, exports, module) {
+define('famous/events/EventArbiter', ['require', 'exports', 'module', '../core/EventHandler'], function (require, exports, module) {
     var EventHandler = require('../core/EventHandler');
 
     /**
@@ -5541,7 +5552,7 @@ define('famous/events/EventArbiter',['require','exports','module','../core/Event
  * @copyright Famous Industries, Inc. 2014
  */
 
-define('famous/events/EventFilter',['require','exports','module','../core/EventHandler'],function(require, exports, module) {
+define('famous/events/EventFilter', ['require', 'exports', 'module', '../core/EventHandler'], function (require, exports, module) {
     var EventHandler = require('../core/EventHandler');
 
     /**
@@ -5558,6 +5569,7 @@ define('famous/events/EventFilter',['require','exports','module','../core/EventH
         EventHandler.call(this);
         this._condition = condition;
     }
+
     EventFilter.prototype = Object.create(EventHandler.prototype);
     EventFilter.prototype.constructor = EventFilter;
 
@@ -5599,7 +5611,7 @@ define('famous/events/EventFilter',['require','exports','module','../core/EventH
  * @copyright Famous Industries, Inc. 2014
  */
 
-define('famous/events/EventMapper',['require','exports','module','../core/EventHandler'],function(require, exports, module) {
+define('famous/events/EventMapper', ['require', 'exports', 'module', '../core/EventHandler'], function (require, exports, module) {
     var EventHandler = require('../core/EventHandler');
 
     /**
@@ -5616,6 +5628,7 @@ define('famous/events/EventMapper',['require','exports','module','../core/EventH
         EventHandler.call(this);
         this._mappingFunction = mappingFunction;
     }
+
     EventMapper.prototype = Object.create(EventHandler.prototype);
     EventMapper.prototype.constructor = EventMapper;
 
@@ -5646,7 +5659,7 @@ define('famous/events/EventMapper',['require','exports','module','../core/EventH
     module.exports = EventMapper;
 });
 
-define('famous/inputs/Accumulator',['require','exports','module','../core/EventHandler','../transitions/Transitionable'],function(require, exports, module) {
+define('famous/inputs/Accumulator', ['require', 'exports', 'module', '../core/EventHandler', '../transitions/Transitionable'], function (require, exports, module) {
     var EventHandler = require('../core/EventHandler');
     var Transitionable = require('../transitions/Transitionable');
 
@@ -5677,7 +5690,7 @@ define('famous/inputs/Accumulator',['require','exports','module','../core/EventH
         var delta = data.delta;
         var state = this.get();
 
-        if (delta.constructor === state.constructor){
+        if (delta.constructor === state.constructor) {
             var newState = (delta instanceof Array)
                 ? [state[0] + delta[0], state[1] + delta[1]]
                 : state + delta;
@@ -5708,11 +5721,11 @@ define('famous/inputs/Accumulator',['require','exports','module','../core/EventH
     module.exports = Accumulator;
 });
 
-define('famous/inputs/DesktopEmulationMode',['require','exports','module'],function(require, exports, module) {
+define('famous/inputs/DesktopEmulationMode', ['require', 'exports', 'module'], function (require, exports, module) {
     var hasTouch = 'ontouchstart' in window;
 
     function kill(type) {
-        window.addEventListener(type, function(event) {
+        window.addEventListener(type, function (event) {
             event.stopPropagation();
             return false;
         }, true);
@@ -5735,63 +5748,63 @@ define('famous/inputs/DesktopEmulationMode',['require','exports','module'],funct
  * @copyright Famous Industries, Inc. 2014
  */
 
-define('famous/inputs/FastClick',['require','exports','module'],function(require, exports, module) {
+define('famous/inputs/FastClick', ['require', 'exports', 'module'], function (require, exports, module) {
     /**
      * FastClick is an override shim which maps event pairs of
      *   'touchstart' and 'touchend' which differ by less than a certain
      *   threshold to the 'click' event.
      *   This is used to speed up clicks on some browsers.
      */
-    (function() {
-      if (!window.CustomEvent) return;
-      var clickThreshold = 300;
-      var clickWindow = 500;
-      var potentialClicks = {};
-      var recentlyDispatched = {};
-      var _now = Date.now;
+    (function () {
+        if (!window.CustomEvent) return;
+        var clickThreshold = 300;
+        var clickWindow = 500;
+        var potentialClicks = {};
+        var recentlyDispatched = {};
+        var _now = Date.now;
 
-      window.addEventListener('touchstart', function(event) {
-          var timestamp = _now();
-          for (var i = 0; i < event.changedTouches.length; i++) {
-              var touch = event.changedTouches[i];
-              potentialClicks[touch.identifier] = timestamp;
-          }
-      });
+        window.addEventListener('touchstart', function (event) {
+            var timestamp = _now();
+            for (var i = 0; i < event.changedTouches.length; i++) {
+                var touch = event.changedTouches[i];
+                potentialClicks[touch.identifier] = timestamp;
+            }
+        });
 
-      window.addEventListener('touchmove', function(event) {
-          for (var i = 0; i < event.changedTouches.length; i++) {
-              var touch = event.changedTouches[i];
-              delete potentialClicks[touch.identifier];
-          }
-      });
+        window.addEventListener('touchmove', function (event) {
+            for (var i = 0; i < event.changedTouches.length; i++) {
+                var touch = event.changedTouches[i];
+                delete potentialClicks[touch.identifier];
+            }
+        });
 
-      window.addEventListener('touchend', function(event) {
-          var currTime = _now();
-          for (var i = 0; i < event.changedTouches.length; i++) {
-              var touch = event.changedTouches[i];
-              var startTime = potentialClicks[touch.identifier];
-              if (startTime && currTime - startTime < clickThreshold) {
-                  var clickEvt = new window.CustomEvent('click', {
-                      'bubbles': true,
-                      'detail': touch
-                  });
-                  recentlyDispatched[currTime] = event;
-                  event.target.dispatchEvent(clickEvt);
-              }
-              delete potentialClicks[touch.identifier];
-          }
-      });
+        window.addEventListener('touchend', function (event) {
+            var currTime = _now();
+            for (var i = 0; i < event.changedTouches.length; i++) {
+                var touch = event.changedTouches[i];
+                var startTime = potentialClicks[touch.identifier];
+                if (startTime && currTime - startTime < clickThreshold) {
+                    var clickEvt = new window.CustomEvent('click', {
+                        'bubbles': true,
+                        'detail': touch
+                    });
+                    recentlyDispatched[currTime] = event;
+                    event.target.dispatchEvent(clickEvt);
+                }
+                delete potentialClicks[touch.identifier];
+            }
+        });
 
-      window.addEventListener('click', function(event) {
-          var currTime = _now();
-          for (var i in recentlyDispatched) {
-              var previousEvent = recentlyDispatched[i];
-              if (currTime - i < clickWindow) {
-                  if (event instanceof window.MouseEvent && event.target === previousEvent.target) event.stopPropagation();
-              }
-              else delete recentlyDispatched[i];
-          }
-      }, true);
+        window.addEventListener('click', function (event) {
+            var currTime = _now();
+            for (var i in recentlyDispatched) {
+                var previousEvent = recentlyDispatched[i];
+                if (currTime - i < clickWindow) {
+                    if (event instanceof window.MouseEvent && event.target === previousEvent.target) event.stopPropagation();
+                }
+                else delete recentlyDispatched[i];
+            }
+        }, true);
     })();
 });
 
@@ -5803,7 +5816,7 @@ define('famous/inputs/FastClick',['require','exports','module'],function(require
  * @license MPL 2.0
  * @copyright Famous Industries, Inc. 2014
  */
-define('famous/inputs/GenericSync',['require','exports','module','../core/EventHandler'],function(require, exports, module) {
+define('famous/inputs/GenericSync', ['require', 'exports', 'module', '../core/EventHandler'], function (require, exports, module) {
 
     var EventHandler = require('../core/EventHandler');
 
@@ -5851,8 +5864,8 @@ define('famous/inputs/GenericSync',['require','exports','module','../core/EventH
      * @param syncObject {Object} an object of {sync key : sync options} fields
      */
     GenericSync.register = function register(syncObject) {
-        for (var key in syncObject){
-            if (registry[key]){
+        for (var key in syncObject) {
+            if (registry[key]) {
                 if (registry[key] === syncObject[key]) return; // redundant registration
                 else throw new Error('this key is registered to a different sync class');
             }
@@ -5866,8 +5879,8 @@ define('famous/inputs/GenericSync',['require','exports','module','../core/EventH
      * @method setOptions
      * @param options {Object} options object
      */
-    GenericSync.prototype.setOptions = function(options) {
-        for (var key in this._syncs){
+    GenericSync.prototype.setOptions = function (options) {
+        for (var key in this._syncs) {
             this._syncs[key].setOptions(options);
         }
     };
@@ -5929,7 +5942,7 @@ define('famous/inputs/GenericSync',['require','exports','module','../core/EventH
  * @license MPL 2.0
  * @copyright Famous Industries, Inc. 2014
  */
-define('famous/inputs/MouseSync',['require','exports','module','../core/EventHandler','../core/OptionsManager'],function(require, exports, module) {
+define('famous/inputs/MouseSync', ['require', 'exports', 'module', '../core/EventHandler', '../core/OptionsManager'], function (require, exports, module) {
     var EventHandler = require('../core/EventHandler');
     var OptionsManager = require('../core/OptionsManager');
 
@@ -5963,7 +5976,7 @@ define('famous/inputs/MouseSync',['require','exports','module','../core/EventHan
      * @param [options.propogate] {Boolean}     Add a listener to document on mouseleave. This allows drag events to continue across the entire page.
      */
     function MouseSync(options) {
-        this.options =  Object.create(MouseSync.DEFAULT_OPTIONS);
+        this.options = Object.create(MouseSync.DEFAULT_OPTIONS);
         this._optionsManager = new OptionsManager(this.options);
 
         if (options) this.setOptions(options);
@@ -5982,7 +5995,7 @@ define('famous/inputs/MouseSync',['require','exports','module','../core/EventHan
         else this._eventInput.on('mouseleave', _handleEnd.bind(this));
 
         if (this.options.clickThreshold) {
-            window.addEventListener('click', function(event) {
+            window.addEventListener('click', function (event) {
                 if (Math.sqrt(Math.pow(this._displacement[0], 2) + Math.pow(this._displacement[1], 2)) > this.options.clickThreshold) {
                     event.stopPropagation();
                 }
@@ -5990,13 +6003,13 @@ define('famous/inputs/MouseSync',['require','exports','module','../core/EventHan
         }
 
         this._payload = {
-            delta    : null,
-            position : null,
-            velocity : null,
-            clientX  : 0,
-            clientY  : 0,
-            offsetX  : 0,
-            offsetY  : 0
+            delta: null,
+            position: null,
+            velocity: null,
+            clientX: 0,
+            clientY: 0,
+            offsetX: 0,
+            offsetY: 0
         };
 
         this._positionHistory = [];
@@ -6005,7 +6018,7 @@ define('famous/inputs/MouseSync',['require','exports','module','../core/EventHan
         this._prevTime = undefined;
         this._down = false;
         this._moved = false;
-        this._displacement = [0,0];
+        this._displacement = [0, 0];
         this._documentActive = false;
     }
 
@@ -6055,7 +6068,7 @@ define('famous/inputs/MouseSync',['require','exports','module','../core/EventHan
         }
 
         if (this.options.clickThreshold) {
-            this._displacement = [0,0];
+            this._displacement = [0, 0];
         }
 
         var payload = this._payload;
@@ -6133,21 +6146,21 @@ define('famous/inputs/MouseSync',['require','exports','module','../core/EventHan
         }
 
         var payload = this._payload;
-        payload.delta    = nextDelta;
+        payload.delta = nextDelta;
         payload.position = this._position;
         payload.velocity = nextVel;
-        payload.clientX  = x;
-        payload.clientY  = y;
-        payload.offsetX  = event.offsetX;
-        payload.offsetY  = event.offsetY;
+        payload.clientX = x;
+        payload.clientY = y;
+        payload.offsetX = event.offsetX;
+        payload.offsetY = event.offsetY;
 
         if (this._positionHistory.length === this.options.velocitySampleLength) {
-          this._positionHistory.shift();
+            this._positionHistory.shift();
         }
 
         this._positionHistory.push({
-          position: payload.position.slice ? payload.position.slice(0) : payload.position,
-          time: currTime
+            position: payload.position.slice ? payload.position.slice(0) : payload.position,
+            time: currTime
         });
 
         this._eventOutput.emit('update', payload);
@@ -6184,15 +6197,15 @@ define('famous/inputs/MouseSync',['require','exports','module','../core/EventHan
         if (!this._down || !this._move) return;
 
         if (!this._documentActive) {
-          var boundMove = _handleMove.bind(this);
-          var boundEnd = function(event) {
-              _handleEnd.call(this, event);
-              document.removeEventListener('mousemove', boundMove);
-              document.removeEventListener('mouseup', boundEnd);
-          }.bind(this, event);
-          document.addEventListener('mousemove', boundMove);
-          document.addEventListener('mouseup', boundEnd);
-          this._documentActive = true;
+            var boundMove = _handleMove.bind(this);
+            var boundEnd = function (event) {
+                _handleEnd.call(this, event);
+                document.removeEventListener('mousemove', boundMove);
+                document.removeEventListener('mouseup', boundEnd);
+            }.bind(this, event);
+            document.addEventListener('mousemove', boundMove);
+            document.addEventListener('mouseup', boundEnd);
+            this._documentActive = true;
         }
     }
 
@@ -6231,7 +6244,7 @@ define('famous/inputs/MouseSync',['require','exports','module','../core/EventHan
  * @license MPL 2.0
  * @copyright Famous Industries, Inc. 2014
  */
-define('famous/inputs/TwoFingerSync',['require','exports','module','../core/EventHandler'],function(require, exports, module) {
+define('famous/inputs/TwoFingerSync', ['require', 'exports', 'module', '../core/EventHandler'], function (require, exports, module) {
     var EventHandler = require('../core/EventHandler');
 
     /**
@@ -6264,19 +6277,19 @@ define('famous/inputs/TwoFingerSync',['require','exports','module','../core/Even
         this._eventInput.on('touchcancel', this.handleEnd.bind(this));
     }
 
-    TwoFingerSync.calculateAngle = function(posA, posB) {
+    TwoFingerSync.calculateAngle = function (posA, posB) {
         var diffX = posB[0] - posA[0];
         var diffY = posB[1] - posA[1];
         return Math.atan2(diffY, diffX);
     };
 
-    TwoFingerSync.calculateDistance = function(posA, posB) {
+    TwoFingerSync.calculateDistance = function (posA, posB) {
         var diffX = posB[0] - posA[0];
         var diffY = posB[1] - posA[1];
         return Math.sqrt(diffX * diffX + diffY * diffY);
     };
 
-    TwoFingerSync.calculateCenter = function(posA, posB) {
+    TwoFingerSync.calculateCenter = function (posA, posB) {
         return [(posA[0] + posB[0]) / 2.0, (posA[1] + posB[1]) / 2.0];
     };
 
@@ -6331,8 +6344,8 @@ define('famous/inputs/TwoFingerSync',['require','exports','module','../core/Even
             if (touch.identifier === this.touchAId || touch.identifier === this.touchBId) {
                 if (this.touchAEnabled && this.touchBEnabled) {
                     this._eventOutput.emit('end', {
-                        touches : [this.touchAId, this.touchBId],
-                        angle   : this._angle
+                        touches: [this.touchAId, this.touchBId],
+                        angle: this._angle
                     });
                 }
                 this.touchAEnabled = false;
@@ -6354,7 +6367,7 @@ define('famous/inputs/TwoFingerSync',['require','exports','module','../core/Even
  * @license MPL 2.0
  * @copyright Famous Industries, Inc. 2014
  */
-define('famous/inputs/PinchSync',['require','exports','module','./TwoFingerSync','../core/OptionsManager'],function(require, exports, module) {
+define('famous/inputs/PinchSync', ['require', 'exports', 'module', './TwoFingerSync', '../core/OptionsManager'], function (require, exports, module) {
     var TwoFingerSync = require('./TwoFingerSync');
     var OptionsManager = require('../core/OptionsManager');
 
@@ -6384,7 +6397,7 @@ define('famous/inputs/PinchSync',['require','exports','module','./TwoFingerSync'
     PinchSync.prototype.constructor = PinchSync;
 
     PinchSync.DEFAULT_OPTIONS = {
-        scale : 1
+        scale: 1
     };
 
     PinchSync.prototype._startUpdate = function _startUpdate(event) {
@@ -6411,7 +6424,7 @@ define('famous/inputs/PinchSync',['require','exports','module','./TwoFingerSync'
         this._displacement += delta;
 
         this._eventOutput.emit('update', {
-            delta : delta,
+            delta: delta,
             velocity: velocity,
             distance: currDist,
             displacement: this._displacement,
@@ -6453,7 +6466,7 @@ define('famous/inputs/PinchSync',['require','exports','module','./TwoFingerSync'
  * @license MPL 2.0
  * @copyright Famous Industries, Inc. 2014
  */
-define('famous/inputs/RotateSync',['require','exports','module','./TwoFingerSync','../core/OptionsManager'],function(require, exports, module) {
+define('famous/inputs/RotateSync', ['require', 'exports', 'module', './TwoFingerSync', '../core/OptionsManager'], function (require, exports, module) {
     var TwoFingerSync = require('./TwoFingerSync');
     var OptionsManager = require('../core/OptionsManager');
 
@@ -6483,7 +6496,7 @@ define('famous/inputs/RotateSync',['require','exports','module','./TwoFingerSync
     RotateSync.prototype.constructor = RotateSync;
 
     RotateSync.DEFAULT_OPTIONS = {
-        scale : 1
+        scale: 1
     };
 
     RotateSync.prototype._startUpdate = function _startUpdate(event) {
@@ -6510,7 +6523,7 @@ define('famous/inputs/RotateSync',['require','exports','module','./TwoFingerSync
         this._angle += diffTheta;
 
         this._eventOutput.emit('update', {
-            delta : diffTheta,
+            delta: diffTheta,
             velocity: velTheta,
             angle: this._angle,
             center: center,
@@ -6553,7 +6566,7 @@ define('famous/inputs/RotateSync',['require','exports','module','./TwoFingerSync
  * @license MPL 2.0
  * @copyright Famous Industries, Inc. 2014
  */
-define('famous/inputs/ScaleSync',['require','exports','module','./TwoFingerSync','../core/OptionsManager'],function(require, exports, module) {
+define('famous/inputs/ScaleSync', ['require', 'exports', 'module', './TwoFingerSync', '../core/OptionsManager'], function (require, exports, module) {
     var TwoFingerSync = require('./TwoFingerSync');
     var OptionsManager = require('../core/OptionsManager');
 
@@ -6584,7 +6597,7 @@ define('famous/inputs/ScaleSync',['require','exports','module','./TwoFingerSync'
     ScaleSync.prototype.constructor = ScaleSync;
 
     ScaleSync.DEFAULT_OPTIONS = {
-        scale : 1
+        scale: 1
     };
 
     function _reset() {
@@ -6616,11 +6629,11 @@ define('famous/inputs/ScaleSync',['require','exports','module','./TwoFingerSync'
         var veloScale = (newScaleFactor - this._scaleFactor) / diffTime;
 
         this._eventOutput.emit('update', {
-            delta : delta,
+            delta: delta,
             scale: newScaleFactor,
             velocity: veloScale,
             distance: currDist,
-            center : center,
+            center: center,
             touches: [this.touchAId, this.touchBId]
         });
 
@@ -6660,7 +6673,7 @@ define('famous/inputs/ScaleSync',['require','exports','module','./TwoFingerSync'
  * @license MPL 2.0
  * @copyright Famous Industries, Inc. 2014
  */
-define('famous/inputs/ScrollSync',['require','exports','module','../core/EventHandler','../core/Engine','../core/OptionsManager'],function(require, exports, module) {
+define('famous/inputs/ScrollSync', ['require', 'exports', 'module', '../core/EventHandler', '../core/Engine', '../core/OptionsManager'], function (require, exports, module) {
     var EventHandler = require('../core/EventHandler');
     var Engine = require('../core/Engine');
     var OptionsManager = require('../core/OptionsManager');
@@ -6691,10 +6704,10 @@ define('famous/inputs/ScrollSync',['require','exports','module','../core/EventHa
         if (options) this.setOptions(options);
 
         this._payload = {
-            delta    : null,
-            position : null,
-            velocity : null,
-            slip     : true
+            delta: null,
+            position: null,
+            velocity: null,
+            slip: true
         };
 
         this._eventInput = new EventHandler();
@@ -6703,7 +6716,7 @@ define('famous/inputs/ScrollSync',['require','exports','module','../core/EventHa
         EventHandler.setInputHandler(this, this._eventInput);
         EventHandler.setOutputHandler(this, this._eventOutput);
 
-        this._position = (this.options.direction === undefined) ? [0,0] : 0;
+        this._position = (this.options.direction === undefined) ? [0, 0] : 0;
         this._prevTime = undefined;
         this._prevVel = undefined;
         this._eventInput.on('mousewheel', _handleMove.bind(this));
@@ -6751,7 +6764,7 @@ define('famous/inputs/ScrollSync',['require','exports','module','../core/EventHa
 
         if (!this._inProgress) {
             this._inProgress = true;
-            this._position = (this.options.direction === undefined) ? [0,0] : 0;
+            this._position = (this.options.direction === undefined) ? [0, 0] : 0;
             payload = this._payload;
             payload.slip = true;
             payload.position = this._position;
@@ -6809,10 +6822,10 @@ define('famous/inputs/ScrollSync',['require','exports','module','../core/EventHa
         }
 
         var payload = this._payload;
-        payload.delta    = nextDelta;
+        payload.delta = nextDelta;
         payload.velocity = nextVel;
         payload.position = this._position;
-        payload.slip     = true;
+        payload.slip = true;
 
         this._eventOutput.emit('update', payload);
 
@@ -6858,7 +6871,7 @@ define('famous/inputs/ScrollSync',['require','exports','module','../core/EventHa
  * @license MPL 2.0
  * @copyright Famous Industries, Inc. 2014
  */
-define('famous/inputs/TouchTracker',['require','exports','module','../core/EventHandler'],function(require, exports, module) {
+define('famous/inputs/TouchTracker', ['require', 'exports', 'module', '../core/EventHandler'], function (require, exports, module) {
     var EventHandler = require('../core/EventHandler');
 
     var _now = Date.now;
@@ -6867,7 +6880,7 @@ define('famous/inputs/TouchTracker',['require','exports','module','../core/Event
         return {
             x: touch.clientX,
             y: touch.clientY,
-            identifier : touch.identifier,
+            identifier: touch.identifier,
             origin: event.origin,
             timestamp: _now(),
             count: event.touches.length,
@@ -6983,7 +6996,7 @@ define('famous/inputs/TouchTracker',['require','exports','module','../core/Event
  * @license MPL 2.0
  * @copyright Famous Industries, Inc. 2014
  */
-define('famous/inputs/TouchSync',['require','exports','module','./TouchTracker','../core/EventHandler','../core/OptionsManager'],function(require, exports, module) {
+define('famous/inputs/TouchSync', ['require', 'exports', 'module', './TouchTracker', '../core/EventHandler', '../core/OptionsManager'], function (require, exports, module) {
     var TouchTracker = require('./TouchTracker');
     var EventHandler = require('../core/EventHandler');
     var OptionsManager = require('../core/OptionsManager');
@@ -7017,7 +7030,7 @@ define('famous/inputs/TouchSync',['require','exports','module','./TouchTracker',
      * @param [options.touchLimit] {Number}  touchLimit upper bound for emitting events based on number of touches
      */
     function TouchSync(options) {
-        this.options =  Object.create(TouchSync.DEFAULT_OPTIONS);
+        this.options = Object.create(TouchSync.DEFAULT_OPTIONS);
         this._optionsManager = new OptionsManager(this.options);
         if (options) this.setOptions(options);
 
@@ -7034,13 +7047,13 @@ define('famous/inputs/TouchSync',['require','exports','module','./TouchTracker',
         this._touchTracker.on('trackend', _handleEnd.bind(this));
 
         this._payload = {
-            delta    : null,
-            position : null,
-            velocity : null,
-            clientX  : undefined,
-            clientY  : undefined,
-            count    : 0,
-            touch    : undefined
+            delta: null,
+            position: null,
+            velocity: null,
+            clientX: undefined,
+            clientY: undefined,
+            count: 0,
+            touch: undefined
         };
 
         this._position = null; // to be deprecated
@@ -7067,7 +7080,7 @@ define('famous/inputs/TouchSync',['require','exports','module','./TouchTracker',
     function _handleStart(data) {
         var velocity;
         var delta;
-        if (this.options.direction !== undefined){
+        if (this.options.direction !== undefined) {
             this._position = 0;
             velocity = 0;
             delta = 0;
@@ -7102,8 +7115,8 @@ define('famous/inputs/TouchSync',['require','exports','module','./TouchTracker',
         var prevHistory = history[history.length - 2];
 
         var distantHistory = history[history.length - this.options.velocitySampleLength] ?
-          history[history.length - this.options.velocitySampleLength] :
-          history[history.length - 2];
+            history[history.length - this.options.velocitySampleLength] :
+            history[history.length - 2];
 
         var distantTime = distantHistory.timestamp;
         var currTime = currHistory.timestamp;
@@ -7149,13 +7162,13 @@ define('famous/inputs/TouchSync',['require','exports','module','./TouchTracker',
         }
 
         var payload = this._payload;
-        payload.delta    = nextDelta;
+        payload.delta = nextDelta;
         payload.velocity = nextVel;
         payload.position = this._position;
-        payload.clientX  = data.x;
-        payload.clientY  = data.y;
-        payload.count    = data.count;
-        payload.touch    = data.identifier;
+        payload.clientX = data.x;
+        payload.clientY = data.y;
+        payload.count = data.count;
+        payload.touch = data.identifier;
 
         this._eventOutput.emit('update', payload);
     }
@@ -7206,7 +7219,7 @@ define('famous/inputs/TouchSync',['require','exports','module','./TouchTracker',
  * @copyright Famous Industries, Inc. 2014
  */
 
-define('famous/math/Vector',['require','exports','module'],function(require, exports, module) {
+define('famous/math/Vector', ['require', 'exports', 'module'], function (require, exports, module) {
 
     /**
      * Three-element floating point vector.
@@ -7218,7 +7231,7 @@ define('famous/math/Vector',['require','exports','module'],function(require, exp
      * @param {number} y y element value
      * @param {number} z z element value
      */
-    function Vector(x,y,z) {
+    function Vector(x, y, z) {
         if (arguments.length === 1 && x !== undefined) this.set(x);
         else {
             this.x = x || 0;
@@ -7228,7 +7241,7 @@ define('famous/math/Vector',['require','exports','module'],function(require, exp
         return this;
     }
 
-    var _register = new Vector(0,0,0);
+    var _register = new Vector(0, 0, 0);
 
     /**
      * Add this element-wise to another Vector, element-wise.
@@ -7458,7 +7471,7 @@ define('famous/math/Vector',['require','exports','module'],function(require, exp
         return !(this.x || this.y || this.z);
     };
 
-    function _setXYZ(x,y,z) {
+    function _setXYZ(x, y, z) {
         this.x = x;
         this.y = y;
         this.z = z;
@@ -7466,7 +7479,7 @@ define('famous/math/Vector',['require','exports','module'],function(require, exp
     }
 
     function _setFromArray(v) {
-        return _setXYZ.call(this,v[0],v[1],v[2] || 0);
+        return _setXYZ.call(this, v[0], v[1], v[2] || 0);
     }
 
     function _setFromVector(v) {
@@ -7474,7 +7487,7 @@ define('famous/math/Vector',['require','exports','module'],function(require, exp
     }
 
     function _setFromNumber(x) {
-        return _setXYZ.call(this,x,0,0);
+        return _setXYZ.call(this, x, 0, 0);
     }
 
     /**
@@ -7490,11 +7503,11 @@ define('famous/math/Vector',['require','exports','module'],function(require, exp
         return _setFromVector.call(this, v);
     };
 
-    Vector.prototype.setXYZ = function(x,y,z) {
+    Vector.prototype.setXYZ = function (x, y, z) {
         return _setXYZ.apply(this, arguments);
     };
 
-    Vector.prototype.set1D = function(x) {
+    Vector.prototype.set1D = function (x) {
         return _setFromNumber.call(this, x);
     };
 
@@ -7517,7 +7530,7 @@ define('famous/math/Vector',['require','exports','module'],function(require, exp
      * @method clear
      */
     Vector.prototype.clear = function clear() {
-        return _setXYZ.call(this,0,0,0);
+        return _setXYZ.call(this, 0, 0, 0);
     };
 
     /**
@@ -7570,7 +7583,7 @@ define('famous/math/Vector',['require','exports','module'],function(require, exp
         return [this.x, this.y, this.z];
     };
 
-    Vector.prototype.get1D = function() {
+    Vector.prototype.get1D = function () {
         return this.x;
     };
 
@@ -7587,7 +7600,7 @@ define('famous/math/Vector',['require','exports','module'],function(require, exp
  * @copyright Famous Industries, Inc. 2014
  */
 
-define('famous/math/Matrix',['require','exports','module','./Vector'],function(require, exports, module) {
+define('famous/math/Matrix', ['require', 'exports', 'module', './Vector'], function (require, exports, module) {
     var Vector = require('./Vector');
 
     /**
@@ -7601,9 +7614,9 @@ define('famous/math/Matrix',['require','exports','module','./Vector'],function(r
     function Matrix(values) {
         this.values = values ||
             [
-                [1,0,0],
-                [0,1,0],
-                [0,0,1]
+                [1, 0, 0],
+                [0, 1, 0],
+                [0, 0, 1]
             ];
 
         return this;
@@ -7665,9 +7678,9 @@ define('famous/math/Matrix',['require','exports','module','./Vector'],function(r
         var M22 = M2[2];
 
         return _vectorRegister.setXYZ(
-            M00*v0 + M01*v1 + M02*v2,
-            M10*v0 + M11*v1 + M12*v2,
-            M20*v0 + M21*v1 + M22*v2
+            M00 * v0 + M01 * v1 + M02 * v2,
+            M10 * v0 + M11 * v1 + M12 * v2,
+            M20 * v0 + M21 * v1 + M22 * v2
         );
     };
 
@@ -7683,7 +7696,9 @@ define('famous/math/Matrix',['require','exports','module','./Vector'],function(r
      */
     Matrix.prototype.multiply = function multiply(M2) {
         var M1 = this.get();
-        var result = [[]];
+        var result = [
+            []
+        ];
         for (var i = 0; i < 3; i++) {
             result[i] = [];
             for (var j = 0; j < 3; j++) {
@@ -7743,7 +7758,7 @@ define('famous/math/Matrix',['require','exports','module','./Vector'],function(r
  * @copyright Famous Industries, Inc. 2014
  */
 
-define('famous/math/Quaternion',['require','exports','module','./Matrix'],function(require, exports, module) {
+define('famous/math/Quaternion', ['require', 'exports', 'module', './Matrix'], function (require, exports, module) {
     var Matrix = require('./Matrix');
 
     /**
@@ -7755,7 +7770,7 @@ define('famous/math/Quaternion',['require','exports','module','./Matrix'],functi
      * @param {Number} y
      * @param {Number} z
      */
-    function Quaternion(w,x,y,z) {
+    function Quaternion(w, x, y, z) {
         if (arguments.length === 1) this.set(w);
         else {
             this.w = (w !== undefined) ? w : 1;  //Angle
@@ -7766,7 +7781,7 @@ define('famous/math/Quaternion',['require','exports','module','./Matrix'],functi
         return this;
     }
 
-    var register = new Quaternion(1,0,0,0);
+    var register = new Quaternion(1, 0, 0, 0);
 
     /**
      * Doc: TODO
@@ -7807,7 +7822,7 @@ define('famous/math/Quaternion',['require','exports','module','./Matrix'],functi
      * @return {Quaternion}
      */
     Quaternion.prototype.scalarDivide = function scalarDivide(s) {
-        return this.scalarMultiply(1/s);
+        return this.scalarMultiply(1 / s);
     };
 
     /*
@@ -7845,14 +7860,14 @@ define('famous/math/Quaternion',['require','exports','module','./Matrix'],functi
         var w2 = q.w || 0;
 
         return register.setWXYZ(
-            w1*w2 - x1*x2 - y1*y2 - z1*z2,
-            x1*w2 + x2*w1 + y2*z1 - y1*z2,
-            y1*w2 + y2*w1 + x1*z2 - x2*z1,
-            z1*w2 + z2*w1 + x2*y1 - x1*y2
+            w1 * w2 - x1 * x2 - y1 * y2 - z1 * z2,
+            x1 * w2 + x2 * w1 + y2 * z1 - y1 * z2,
+            y1 * w2 + y2 * w1 + x1 * z2 - x2 * z1,
+            z1 * w2 + z2 * w1 + x2 * y1 - x1 * y2
         );
     };
 
-    var conj = new Quaternion(1,0,0,0);
+    var conj = new Quaternion(1, 0, 0, 0);
 
     /*
      * Docs: TODO
@@ -7894,7 +7909,7 @@ define('famous/math/Quaternion',['require','exports','module','./Matrix'],functi
      */
     Quaternion.prototype.conj = function conj() {
         return register.setWXYZ(
-             this.w,
+            this.w,
             -this.x,
             -this.y,
             -this.z
@@ -7923,12 +7938,12 @@ define('famous/math/Quaternion',['require','exports','module','./Matrix'],functi
      */
     Quaternion.prototype.makeFromAngleAndAxis = function makeFromAngleAndAxis(angle, v) {
         //left handed quaternion creation: theta -> -theta
-        var n  = v.normalize();
-        var ha = angle*0.5;
-        var s  = -Math.sin(ha);
-        this.x = s*n.x;
-        this.y = s*n.y;
-        this.z = s*n.z;
+        var n = v.normalize();
+        var ha = angle * 0.5;
+        var s = -Math.sin(ha);
+        this.x = s * n.x;
+        this.y = s * n.y;
+        this.z = s * n.z;
         this.w = Math.cos(ha);
         return this;
     };
@@ -7943,7 +7958,7 @@ define('famous/math/Quaternion',['require','exports','module','./Matrix'],functi
      * @param {Number} z
      * @return {Quaternion}
      */
-    Quaternion.prototype.setWXYZ = function setWXYZ(w,x,y,z) {
+    Quaternion.prototype.setWXYZ = function setWXYZ(w, x, y, z) {
         register.clear();
         this.w = w;
         this.x = x;
@@ -8078,17 +8093,17 @@ define('famous/math/Quaternion',['require','exports','module','./Matrix'],functi
 
         //LHC system flattened to column major = RHC flattened to row major
         return [
-            1 - 2*y*y - 2*z*z,
-                2*x*y - 2*z*w,
-                2*x*z + 2*y*w,
+            1 - 2 * y * y - 2 * z * z,
+            2 * x * y - 2 * z * w,
+            2 * x * z + 2 * y * w,
             0,
-                2*x*y + 2*z*w,
-            1 - 2*x*x - 2*z*z,
-                2*y*z - 2*x*w,
+            2 * x * y + 2 * z * w,
+            1 - 2 * x * x - 2 * z * z,
+            2 * y * z - 2 * x * w,
             0,
-                2*x*z - 2*y*w,
-                2*y*z + 2*x*w,
-            1 - 2*x*x - 2*y*y,
+            2 * x * z - 2 * y * w,
+            2 * y * z + 2 * x * w,
+            1 - 2 * x * x - 2 * y * y,
             0,
             0,
             0,
@@ -8115,19 +8130,19 @@ define('famous/math/Quaternion',['require','exports','module','./Matrix'],functi
         //LHC system flattened to row major
         return matrixRegister.set([
             [
-                1 - 2*y*y - 2*z*z,
-                    2*x*y + 2*z*w,
-                    2*x*z - 2*y*w
+                1 - 2 * y * y - 2 * z * z,
+                2 * x * y + 2 * z * w,
+                2 * x * z - 2 * y * w
             ],
             [
-                    2*x*y - 2*z*w,
-                1 - 2*x*x - 2*z*z,
-                    2*y*z + 2*x*w
+                2 * x * y - 2 * z * w,
+                1 - 2 * x * x - 2 * z * z,
+                2 * y * z + 2 * x * w
             ],
             [
-                    2*x*z + 2*y*w,
-                    2*y*z - 2*x*w,
-                1 - 2*x*x - 2*y*y
+                2 * x * z + 2 * y * w,
+                2 * y * z - 2 * x * w,
+                1 - 2 * x * x - 2 * y * y
             ]
         ]);
     };
@@ -8151,16 +8166,16 @@ define('famous/math/Quaternion',['require','exports','module','./Matrix'],functi
 
         cosomega = this.dot(q);
         if ((1.0 - cosomega) > epsilon) {
-            omega       = Math.acos(cosomega);
-            sinomega    = Math.sin(omega);
-            scaleFrom   = Math.sin((1.0 - t) * omega) / sinomega;
-            scaleTo     = Math.sin(t * omega) / sinomega;
+            omega = Math.acos(cosomega);
+            sinomega = Math.sin(omega);
+            scaleFrom = Math.sin((1.0 - t) * omega) / sinomega;
+            scaleTo = Math.sin(t * omega) / sinomega;
         }
         else {
-            scaleFrom   = 1.0 - t;
-            scaleTo     = t;
+            scaleFrom = 1.0 - t;
+            scaleTo = t;
         }
-        return register.set(this.scalarMultiply(scaleFrom/scaleTo).add(q).multiply(scaleTo));
+        return register.set(this.scalarMultiply(scaleFrom / scaleTo).add(q).multiply(scaleTo));
     };
 
     module.exports = Quaternion;
@@ -8176,15 +8191,15 @@ define('famous/math/Quaternion',['require','exports','module','./Matrix'],functi
  * @copyright Famous Industries, Inc. 2014
  */
 
-define('famous/math/Random',['require','exports','module'],function(require, exports, module) {
+define('famous/math/Random', ['require', 'exports', 'module'], function (require, exports, module) {
 
     var RAND = Math.random;
 
-    function _randomFloat(min,max) {
+    function _randomFloat(min, max) {
         return min + RAND() * (max - min);
     }
 
-    function _randomInteger(min,max) {
+    function _randomInteger(min, max) {
         return (min + RAND() * (max - min + 1)) >> 0;
     }
 
@@ -8207,15 +8222,15 @@ define('famous/math/Random',['require','exports','module'],function(require, exp
      * @param {Number} dim (optional) dimension of output array, if specified
      * @return {number | array<number>} random integer, or optionally, an array of random integers
      */
-    Random.integer = function integer(min,max,dim) {
+    Random.integer = function integer(min, max, dim) {
         min = (min !== undefined) ? min : 0;
         max = (max !== undefined) ? max : 1;
         if (dim !== undefined) {
             var result = [];
-            for (var i = 0; i < dim; i++) result.push(_randomInteger(min,max));
+            for (var i = 0; i < dim; i++) result.push(_randomInteger(min, max));
             return result;
         }
-        else return _randomInteger(min,max);
+        else return _randomInteger(min, max);
     };
 
     /**
@@ -8229,15 +8244,15 @@ define('famous/math/Random',['require','exports','module'],function(require, exp
      * @param {Number} [dim] dimension of output array, if specified
      * @return {Number} random float, or optionally an array
      */
-    Random.range = function range(min,max,dim) {
+    Random.range = function range(min, max, dim) {
         min = (min !== undefined) ? min : 0;
         max = (max !== undefined) ? max : 1;
         if (dim !== undefined) {
             var result = [];
-            for (var i = 0; i < dim; i++) result.push(_randomFloat(min,max));
+            for (var i = 0; i < dim; i++) result.push(_randomFloat(min, max));
             return result;
         }
-        else return _randomFloat(min,max);
+        else return _randomFloat(min, max);
     };
 
     /**
@@ -8278,7 +8293,7 @@ define('famous/math/Random',['require','exports','module'],function(require, exp
  * @copyright Famous Industries, Inc. 2014
  */
 
-define('famous/math/Utilities',['require','exports','module'],function(require, exports, module) {
+define('famous/math/Utilities', ['require', 'exports', 'module'], function (require, exports, module) {
     /**
      * A few static methods.
      *
@@ -8326,7 +8341,7 @@ define('famous/math/Utilities',['require','exports','module'],function(require, 
  * @copyright Famous Industries, Inc. 2014
  */
 
-define('famous/modifiers/Draggable',['require','exports','module','../core/Transform','../transitions/Transitionable','../core/EventHandler','../math/Utilities','../inputs/GenericSync','../inputs/MouseSync','../inputs/TouchSync'],function(require, exports, module) {
+define('famous/modifiers/Draggable', ['require', 'exports', 'module', '../core/Transform', '../transitions/Transitionable', '../core/EventHandler', '../math/Utilities', '../inputs/GenericSync', '../inputs/MouseSync', '../inputs/TouchSync'], function (require, exports, module) {
     var Transform = require('../core/Transform');
     var Transitionable = require('../transitions/Transitionable');
     var EventHandler = require('../core/EventHandler');
@@ -8356,13 +8371,13 @@ define('famous/modifiers/Draggable',['require','exports','module','../core/Trans
         this.options = Object.create(Draggable.DEFAULT_OPTIONS);
         if (options) this.setOptions(options);
 
-        this._positionState = new Transitionable([0,0]);
-        this._differential  = [0,0];
+        this._positionState = new Transitionable([0, 0]);
+        this._differential = [0, 0];
         this._active = true;
 
-        this.sync = new GenericSync(['mouse', 'touch'], {scale : this.options.scale});
+        this.sync = new GenericSync(['mouse', 'touch'], {scale: this.options.scale});
         this.eventOutput = new EventHandler();
-        EventHandler.setInputHandler(this,  this.sync);
+        EventHandler.setInputHandler(this, this.sync);
         EventHandler.setOutputHandler(this, this.eventOutput);
 
         _bindEvents.call(this);
@@ -8370,8 +8385,8 @@ define('famous/modifiers/Draggable',['require','exports','module','../core/Trans
 
     //binary representation of directions for bitwise operations
     var _direction = {
-        x : 0x01,         //001
-        y : 0x02          //010
+        x: 0x01,         //001
+        y: 0x02          //010
     };
 
     Draggable.DIRECTION_X = _direction.x;
@@ -8380,20 +8395,20 @@ define('famous/modifiers/Draggable',['require','exports','module','../core/Trans
     var _clamp = Utilities.clamp;
 
     Draggable.DEFAULT_OPTIONS = {
-        projection  : _direction.x | _direction.y,
-        scale       : 1,
-        xRange      : null,
-        yRange      : null,
-        snapX       : 0,
-        snapY       : 0,
-        transition  : {duration : 0}
+        projection: _direction.x | _direction.y,
+        scale: 1,
+        xRange: null,
+        yRange: null,
+        snapX: 0,
+        snapY: 0,
+        transition: {duration: 0}
     };
 
     function _mapDifferential(differential) {
-        var opts        = this.options;
-        var projection  = opts.projection;
-        var snapX       = opts.snapX;
-        var snapY       = opts.snapY;
+        var opts = this.options;
+        var projection = opts.projection;
+        var snapX = opts.snapX;
+        var snapY = opts.snapY;
 
         //axes
         var tx = (projection & _direction.x) ? differential[0] : 0;
@@ -8409,7 +8424,7 @@ define('famous/modifiers/Draggable',['require','exports','module','../core/Trans
     function _handleStart() {
         if (!this._active) return;
         if (this._positionState.isActive()) this._positionState.halt();
-        this.eventOutput.emit('start', {position : this.getPosition()});
+        this.eventOutput.emit('start', {position: this.getPosition()});
     }
 
     function _handleMove(event) {
@@ -8430,22 +8445,22 @@ define('famous/modifiers/Draggable',['require','exports','module','../core/Trans
         pos[1] += newDifferential[1];
 
         //handle bounding box
-        if (options.xRange){
+        if (options.xRange) {
             var xRange = [options.xRange[0] + 0.5 * options.snapX, options.xRange[1] - 0.5 * options.snapX];
             pos[0] = _clamp(pos[0], xRange);
         }
 
-        if (options.yRange){
+        if (options.yRange) {
             var yRange = [options.yRange[0] + 0.5 * options.snapY, options.yRange[1] - 0.5 * options.snapY];
             pos[1] = _clamp(pos[1], yRange);
         }
 
-        this.eventOutput.emit('update', {position : pos});
+        this.eventOutput.emit('update', {position: pos});
     }
 
     function _handleEnd() {
         if (!this._active) return;
-        this.eventOutput.emit('end', {position : this.getPosition()});
+        this.eventOutput.emit('end', {position: this.getPosition()});
     }
 
     function _bindEvents() {
@@ -8466,20 +8481,20 @@ define('famous/modifiers/Draggable',['require','exports','module','../core/Trans
         if (options.projection !== undefined) {
             var proj = options.projection;
             this.options.projection = 0;
-            ['x', 'y'].forEach(function(val) {
+            ['x', 'y'].forEach(function (val) {
                 if (proj.indexOf(val) !== -1) currentOptions.projection |= _direction[val];
             });
         }
-        if (options.scale  !== undefined) {
-            currentOptions.scale  = options.scale;
+        if (options.scale !== undefined) {
+            currentOptions.scale = options.scale;
             this.sync.setOptions({
                 scale: options.scale
             });
         }
         if (options.xRange !== undefined) currentOptions.xRange = options.xRange;
         if (options.yRange !== undefined) currentOptions.yRange = options.yRange;
-        if (options.snapX  !== undefined) currentOptions.snapX  = options.snapX;
-        if (options.snapY  !== undefined) currentOptions.snapY  = options.snapY;
+        if (options.snapX !== undefined) currentOptions.snapX = options.snapX;
+        if (options.snapY !== undefined) currentOptions.snapY = options.snapY;
     };
 
     /**
@@ -8578,7 +8593,7 @@ define('famous/modifiers/Draggable',['require','exports','module','../core/Trans
     module.exports = Draggable;
 });
 
-define('famous/modifiers/Fader',['require','exports','module','../transitions/Transitionable','../core/OptionsManager'],function(require, exports, module) {
+define('famous/modifiers/Fader', ['require', 'exports', 'module', '../transitions/Transitionable', '../core/OptionsManager'], function (require, exports, module) {
     var Transitionable = require('../transitions/Transitionable');
     var OptionsManager = require('../core/OptionsManager');
 
@@ -8710,7 +8725,7 @@ define('famous/modifiers/Fader',['require','exports','module','../transitions/Tr
  * @copyright Famous Industries, Inc. 2014
  */
 
-define('famous/modifiers/ModifierChain',['require','exports','module'],function(require, exports, module) {
+define('famous/modifiers/ModifierChain', ['require', 'exports', 'module'], function (require, exports, module) {
 
     /**
      * A class to add and remove a chain of modifiers
@@ -8761,7 +8776,7 @@ define('famous/modifiers/ModifierChain',['require','exports','module'],function(
      *    provided target
      */
     ModifierChain.prototype.modify = function modify(input) {
-        var chain  = this._chain;
+        var chain = this._chain;
         var result = input;
         for (var i = 0; i < chain.length; i++) {
             result = chain[i].modify(result);
@@ -8781,7 +8796,7 @@ define('famous/modifiers/ModifierChain',['require','exports','module'],function(
  * @copyright Famous Industries, Inc. 2014
  */
 
-define('famous/modifiers/StateModifier',['require','exports','module','../core/Modifier','../core/Transform','../transitions/Transitionable','../transitions/TransitionableTransform'],function(require, exports, module) {
+define('famous/modifiers/StateModifier', ['require', 'exports', 'module', '../core/Modifier', '../core/Transform', '../transitions/Transitionable', '../transitions/TransitionableTransform'], function (require, exports, module) {
     var Modifier = require('../core/Modifier');
     var Transform = require('../core/Transform');
     var Transitionable = require('../transitions/Transitionable');
@@ -9098,7 +9113,7 @@ define('famous/modifiers/StateModifier',['require','exports','module','../core/M
  * @license MPL 2.0
  * @copyright Famous Industries, Inc. 2014
  */
-define('famous/physics/PhysicsEngine',['require','exports','module','../core/EventHandler'],function(require, exports, module) {
+define('famous/physics/PhysicsEngine', ['require', 'exports', 'module', '../core/EventHandler'], function (require, exports, module) {
     var EventHandler = require('../core/EventHandler');
 
     /**
@@ -9119,19 +9134,19 @@ define('famous/physics/PhysicsEngine',['require','exports','module','../core/Eve
         this.options = Object.create(PhysicsEngine.DEFAULT_OPTIONS);
         if (options) this.setOptions(options);
 
-        this._particles      = [];   //list of managed particles
-        this._bodies         = [];   //list of managed bodies
-        this._agentData      = {};   //hash of managed agent data
-        this._forces         = [];   //list of Ids of agents that are forces
-        this._constraints    = [];   //list of Ids of agents that are constraints
+        this._particles = [];   //list of managed particles
+        this._bodies = [];   //list of managed bodies
+        this._agentData = {};   //hash of managed agent data
+        this._forces = [];   //list of Ids of agents that are forces
+        this._constraints = [];   //list of Ids of agents that are constraints
 
-        this._buffer         = 0.0;
-        this._prevTime       = now();
-        this._isSleeping     = false;
-        this._eventHandler   = null;
-        this._currAgentId    = 0;
-        this._hasBodies      = false;
-        this._eventHandler   = null;
+        this._buffer = 0.0;
+        this._prevTime = now();
+        this._isSleeping = false;
+        this._eventHandler = null;
+        this._currAgentId = 0;
+        this._hasBodies = false;
+        this._eventHandler = null;
     }
 
     /** const */
@@ -9143,9 +9158,9 @@ define('famous/physics/PhysicsEngine',['require','exports','module','../core/Eve
 
     // Catalogue of outputted events
     var _events = {
-        start : 'start',
-        update : 'update',
-        end : 'end'
+        start: 'start',
+        update: 'update',
+        end: 'end'
     };
 
     /**
@@ -9161,14 +9176,14 @@ define('famous/physics/PhysicsEngine',['require','exports','module','../core/Eve
          * @attribute constraintSteps
          * @type Number
          */
-        constraintSteps : 1,
+        constraintSteps: 1,
 
         /**
          * The energy threshold required for the Physics Engine to update
          * @attribute sleepTolerance
          * @type Number
          */
-        sleepTolerance : 1e-7,
+        sleepTolerance: 1e-7,
 
         /**
          * The maximum velocity magnitude of a physics body
@@ -9176,7 +9191,7 @@ define('famous/physics/PhysicsEngine',['require','exports','module','../core/Eve
          * @attribute velocityCap
          * @type Number
          */
-        velocityCap : undefined,
+        velocityCap: undefined,
 
         /**
          * The maximum angular velocity magnitude of a physics body
@@ -9184,7 +9199,7 @@ define('famous/physics/PhysicsEngine',['require','exports','module','../core/Eve
          * @attribute angularVelocityCap
          * @type Number
          */
-        angularVelocityCap : undefined
+        angularVelocityCap: undefined
     };
 
     /**
@@ -9234,7 +9249,7 @@ define('famous/physics/PhysicsEngine',['require','exports','module','../core/Eve
                     this.detachFrom(this._agentData[agentKey].id, body);
                 }
             }
-            array.splice(index,1);
+            array.splice(index, 1);
         }
         if (this.getBodies().length === 0) this._hasBodies = false;
     };
@@ -9251,10 +9266,10 @@ define('famous/physics/PhysicsEngine',['require','exports','module','../core/Eve
         agent.on('change', this.wake.bind(this));
 
         this._agentData[this._currAgentId] = {
-            agent   : agent,
-            id      : this._currAgentId,
-            targets : targets,
-            source  : source
+            agent: agent,
+            id: this._currAgentId,
+            targets: targets,
+            source: source
         };
 
         _mapAgentArray.call(this, agent).push(this._currAgentId);
@@ -9306,7 +9321,7 @@ define('famous/physics/PhysicsEngine',['require','exports','module','../core/Eve
         var agent = this.getAgent(id);
         var agentArray = _mapAgentArray.call(this, agent);
         var index = agentArray.indexOf(id);
-        agentArray.splice(index,1);
+        agentArray.splice(index, 1);
 
         // detach agents array
         delete this._agentData[id];
@@ -9325,7 +9340,7 @@ define('famous/physics/PhysicsEngine',['require','exports','module','../core/Eve
         else {
             var targets = boundAgent.targets;
             var index = targets.indexOf(target);
-            if (index > -1) targets.splice(index,1);
+            if (index > -1) targets.splice(index, 1);
         }
     };
 
@@ -9336,10 +9351,10 @@ define('famous/physics/PhysicsEngine',['require','exports','module','../core/Eve
      * @method detachAll
      */
     PhysicsEngine.prototype.detachAll = function detachAll() {
-        this._agentData     = {};
-        this._forces        = [];
-        this._constraints   = [];
-        this._currAgentId   = 0;
+        this._agentData = {};
+        this._forces = [];
+        this._constraints = [];
+        this._currAgentId = 0;
     };
 
     function _getAgentData(id) {
@@ -9486,7 +9501,7 @@ define('famous/physics/PhysicsEngine',['require','exports','module','../core/Eve
     function _getParticlesEnergy() {
         var energy = 0.0;
         var particleEnergy = 0.0;
-        this.forEach(function(particle) {
+        this.forEach(function (particle) {
             particleEnergy = particle.getEnergy();
             energy += particleEnergy;
         });
@@ -9507,7 +9522,7 @@ define('famous/physics/PhysicsEngine',['require','exports','module','../core/Eve
      * @param agentId {Number} The attached agent Id
      * @return energy {Number}
      */
-    PhysicsEngine.prototype.getAgentEnergy = function(agentId) {
+    PhysicsEngine.prototype.getAgentEnergy = function (agentId) {
         var agentData = _getAgentData.call(this, agentId);
         return agentData.agent.getEnergy(agentData.targets, agentData.source);
     };
@@ -9587,7 +9602,7 @@ define('famous/physics/PhysicsEngine',['require','exports','module','../core/Eve
      */
     PhysicsEngine.prototype.sleep = function sleep() {
         if (this._isSleeping) return;
-        this.forEach(function(body) {
+        this.forEach(function (body) {
             body.sleep();
         });
         this.emit(_events.end, this);
@@ -9628,7 +9643,7 @@ define('famous/physics/PhysicsEngine',['require','exports','module','../core/Eve
  * @copyright Famous Industries, Inc. 2014
  */
 
-define('famous/physics/integrators/SymplecticEuler',['require','exports','module'],function(require, exports, module) {
+define('famous/physics/integrators/SymplecticEuler', ['require', 'exports', 'module'], function (require, exports, module) {
 
     /**
      * Ordinary Differential Equation (ODE) Integrator.
@@ -9731,7 +9746,7 @@ define('famous/physics/integrators/SymplecticEuler',['require','exports','module
  * @copyright Famous Industries, Inc. 2014
  */
 
-define('famous/physics/bodies/Particle',['require','exports','module','../../math/Vector','../../core/Transform','../../core/EventHandler','../integrators/SymplecticEuler'],function(require, exports, module) {
+define('famous/physics/bodies/Particle', ['require', 'exports', 'module', '../../math/Vector', '../../core/Transform', '../../core/EventHandler', '../integrators/SymplecticEuler'], function (require, exports, module) {
     var Vector = require('../../math/Vector');
     var Transform = require('../../core/Transform');
     var EventHandler = require('../../core/EventHandler');
@@ -9752,7 +9767,7 @@ define('famous/physics/bodies/Particle',['require','exports','module','../../mat
      * @param [options.velocity] {Array}    The velocity of the particle.
      * @param [options.mass] {Number}       The mass of the particle.
      */
-     function Particle(options) {
+    function Particle(options) {
         options = options || {};
         var defaults = Particle.DEFAULT_OPTIONS;
 
@@ -9776,32 +9791,32 @@ define('famous/physics/bodies/Particle',['require','exports','module','../../mat
         // set vectors
         this.setPosition(options.position || defaults.position);
         this.setVelocity(options.velocity || defaults.velocity);
-        this.force.set(options.force || [0,0,0]);
+        this.force.set(options.force || [0, 0, 0]);
 
         this.transform = Transform.identity.slice();
 
         // cached _spec
         this._spec = {
-            size : [true, true],
-            target : {
-                transform : this.transform,
-                origin : [0.5, 0.5],
-                target : null
+            size: [true, true],
+            target: {
+                transform: this.transform,
+                origin: [0.5, 0.5],
+                target: null
             }
         };
     }
 
     Particle.DEFAULT_OPTIONS = {
-        position : [0, 0, 0],
-        velocity : [0, 0, 0],
-        mass : 1
+        position: [0, 0, 0],
+        velocity: [0, 0, 0],
+        mass: 1
     };
 
     //Catalogue of outputted events
     var _events = {
-        start : 'start',
-        update : 'update',
-        end : 'end'
+        start: 'start',
+        update: 'update',
+        end: 'end'
     };
 
     // Cached timing function
@@ -9973,8 +9988,8 @@ define('famous/physics/bodies/Particle',['require','exports','module','../../mat
      * @param velocity {Array|Vector}
      */
     Particle.prototype.reset = function reset(position, velocity) {
-        this.setPosition(position || [0,0,0]);
-        this.setVelocity(velocity || [0,0,0]);
+        this.setPosition(position || [0, 0, 0]);
+        this.setVelocity(velocity || [0, 0, 0]);
     };
 
     /**
@@ -10119,7 +10134,7 @@ define('famous/physics/bodies/Particle',['require','exports','module','../../mat
  * @copyright Famous Industries, Inc. 2014
  */
 
-define('famous/physics/bodies/Body',['require','exports','module','./Particle','../../core/Transform','../../math/Vector','../../math/Quaternion','../../math/Matrix','../integrators/SymplecticEuler'],function(require, exports, module) {
+define('famous/physics/bodies/Body', ['require', 'exports', 'module', './Particle', '../../core/Transform', '../../math/Vector', '../../math/Quaternion', '../../math/Matrix', '../integrators/SymplecticEuler'], function (require, exports, module) {
     var Particle = require('./Particle');
     var Transform = require('../../core/Transform');
     var Vector = require('../../math/Vector');
@@ -10141,10 +10156,10 @@ define('famous/physics/bodies/Body',['require','exports','module','./Particle','
         Particle.call(this, options);
         options = options || {};
 
-        this.orientation     = new Quaternion();
+        this.orientation = new Quaternion();
         this.angularVelocity = new Vector();
         this.angularMomentum = new Vector();
-        this.torque          = new Vector();
+        this.torque = new Vector();
 
         if (options.orientation)     this.orientation.set(options.orientation);
         if (options.angularVelocity) this.angularVelocity.set(options.angularVelocity);
@@ -10228,8 +10243,8 @@ define('famous/physics/bodies/Body',['require','exports','module','./Particle','
     Body.prototype.reset = function reset(p, v, q, L) {
         Particle.prototype.reset.call(this, p, v);
         this.angularVelocity.clear();
-        this.setOrientation(q || [1,0,0,0]);
-        this.setAngularMomentum(L || [0,0,0]);
+        this.setOrientation(q || [1, 0, 0, 0]);
+        this.setAngularMomentum(L || [0, 0, 0]);
     };
 
     /**
@@ -10349,7 +10364,7 @@ define('famous/physics/bodies/Body',['require','exports','module','./Particle','
  * @copyright Famous Industries, Inc. 2014
  */
 
-define('famous/physics/bodies/Circle',['require','exports','module','./Body','../../math/Matrix'],function(require, exports, module) {
+define('famous/physics/bodies/Circle', ['require', 'exports', 'module', './Body', '../../math/Matrix'], function (require, exports, module) {
     var Body = require('./Body');
     var Matrix = require('../../math/Matrix');
 
@@ -10377,7 +10392,7 @@ define('famous/physics/bodies/Circle',['require','exports','module','./Body','..
      */
     Circle.prototype.setRadius = function setRadius(r) {
         this.radius = r;
-        this.size = [2*this.radius, 2*this.radius];
+        this.size = [2 * this.radius, 2 * this.radius];
         this.setMomentsOfInertia();
     };
 
@@ -10411,7 +10426,7 @@ define('famous/physics/bodies/Circle',['require','exports','module','./Body','..
  * @copyright Famous Industries, Inc. 2014
  */
 
-define('famous/physics/bodies/Rectangle',['require','exports','module','./Body','../../math/Matrix'],function(require, exports, module) {
+define('famous/physics/bodies/Rectangle', ['require', 'exports', 'module', './Body', '../../math/Matrix'], function (require, exports, module) {
     var Body = require('./Body');
     var Matrix = require('../../math/Matrix');
 
@@ -10425,7 +10440,7 @@ define('famous/physics/bodies/Rectangle',['require','exports','module','./Body',
      */
     function Rectangle(options) {
         options = options || {};
-        this.size = options.size || [0,0];
+        this.size = options.size || [0, 0];
         Body.call(this, options);
     }
 
@@ -10473,7 +10488,7 @@ define('famous/physics/bodies/Rectangle',['require','exports','module','./Body',
  * @copyright Famous Industries, Inc. 2014
  */
 
-define('famous/physics/constraints/Constraint',['require','exports','module','../../core/EventHandler'],function(require, exports, module) {
+define('famous/physics/constraints/Constraint', ['require', 'exports', 'module', '../../core/EventHandler'], function (require, exports, module) {
     var EventHandler = require('../../core/EventHandler');
 
     /**
@@ -10505,7 +10520,8 @@ define('famous/physics/constraints/Constraint',['require','exports','module','..
      *
      * @method applyConstraint
      */
-    Constraint.prototype.applyConstraint = function applyConstraint() {};
+    Constraint.prototype.applyConstraint = function applyConstraint() {
+    };
 
     /**
      * Getter for energy
@@ -10529,7 +10545,7 @@ define('famous/physics/constraints/Constraint',['require','exports','module','..
  * @copyright Famous Industries, Inc. 2014
  */
 
-define('famous/physics/constraints/Collision',['require','exports','module','./Constraint','../../math/Vector'],function(require, exports, module) {
+define('famous/physics/constraints/Collision', ['require', 'exports', 'module', './Constraint', '../../math/Vector'], function (require, exports, module) {
     var Constraint = require('./Constraint');
     var Vector = require('../../math/Vector');
 
@@ -10550,9 +10566,9 @@ define('famous/physics/constraints/Collision',['require','exports','module','./C
         if (options) this.setOptions(options);
 
         //registers
-        this.normal   = new Vector();
-        this.pDiff    = new Vector();
-        this.vDiff    = new Vector();
+        this.normal = new Vector();
+        this.pDiff = new Vector();
+        this.vDiff = new Vector();
         this.impulse1 = new Vector();
         this.impulse2 = new Vector();
 
@@ -10563,9 +10579,9 @@ define('famous/physics/constraints/Collision',['require','exports','module','./C
     Collision.prototype.constructor = Collision;
 
     Collision.DEFAULT_OPTIONS = {
-        restitution : 0.5,
-        drift : 0.5,
-        slop : 0
+        restitution: 0.5,
+        drift: 0.5,
+        slop: 0
     };
 
     function _normalVelocity(particle1, particle2) {
@@ -10603,7 +10619,7 @@ define('famous/physics/constraints/Collision',['require','exports','module','./C
         var slop = -options.slop;
         var restitution = options.restitution;
 
-        var n     = this.normal;
+        var n = this.normal;
         var pDiff = this.pDiff;
         var vDiff = this.vDiff;
         var impulse1 = this.impulse1;
@@ -10622,10 +10638,10 @@ define('famous/physics/constraints/Collision',['require','exports','module','./C
             pDiff.set(p2.sub(p1));
             vDiff.set(v2.sub(v1));
 
-            var dist    = pDiff.norm();
+            var dist = pDiff.norm();
             var overlap = dist - (r1 + r2);
-            var effMass = 1/(w1 + w2);
-            var gamma   = 0;
+            var effMass = 1 / (w1 + w2);
+            var gamma = 0;
 
             if (overlap < 0) {
 
@@ -10633,10 +10649,10 @@ define('famous/physics/constraints/Collision',['require','exports','module','./C
 
                 if (this._eventOutput) {
                     var collisionData = {
-                        target  : target,
-                        source  : source,
-                        overlap : overlap,
-                        normal  : n
+                        target: target,
+                        source: source,
+                        overlap: overlap,
+                        normal: n
                     };
 
                     this._eventOutput.emit('preCollision', collisionData);
@@ -10644,10 +10660,10 @@ define('famous/physics/constraints/Collision',['require','exports','module','./C
                 }
 
                 var lambda = (overlap <= slop)
-                    ? ((1 + restitution) * n.dot(vDiff) + drift/dt * (overlap - slop)) / (gamma + dt/effMass)
-                    : ((1 + restitution) * n.dot(vDiff)) / (gamma + dt/effMass);
+                    ? ((1 + restitution) * n.dot(vDiff) + drift / dt * (overlap - slop)) / (gamma + dt / effMass)
+                    : ((1 + restitution) * n.dot(vDiff)) / (gamma + dt / effMass);
 
-                n.mult(dt*lambda).put(impulse1);
+                n.mult(dt * lambda).put(impulse1);
                 impulse1.mult(-1).put(impulse2);
 
                 source.applyImpulse(impulse1);
@@ -10674,7 +10690,7 @@ define('famous/physics/constraints/Collision',['require','exports','module','./C
  * @copyright Famous Industries, Inc. 2014
  */
 
-define('famous/physics/constraints/Curve',['require','exports','module','./Constraint','../../math/Vector'],function(require, exports, module) {
+define('famous/physics/constraints/Curve', ['require', 'exports', 'module', './Constraint', '../../math/Vector'], function (require, exports, module) {
     var Constraint = require('./Constraint');
     var Vector = require('../../math/Vector');
 
@@ -10712,14 +10728,14 @@ define('famous/physics/constraints/Curve',['require','exports','module','./Const
     /** @const */ var pi = Math.PI;
 
     Curve.DEFAULT_OPTIONS = {
-        equation  : function(x,y,z) {
+        equation: function (x, y, z) {
             return 0;
         },
-        plane : function(x,y,z) {
+        plane: function (x, y, z) {
             return z;
         },
-        period : 0,
-        dampingRatio : 0
+        period: 0,
+        dampingRatio: 0
     };
 
     /**
@@ -10768,30 +10784,30 @@ define('famous/physics/constraints/Curve',['require','exports','module','./Const
                 var c = 4 * m * pi * dampingRatio / period;
                 var k = 4 * m * pi * pi / (period * period);
 
-                gamma = 1 / (c + dt*k);
-                beta  = dt*k / (c + dt*k);
+                gamma = 1 / (c + dt * k);
+                beta = dt * k / (c + dt * k);
             }
 
             var x = p.x;
             var y = p.y;
             var z = p.z;
 
-            var f0  = f(x, y, z);
+            var f0 = f(x, y, z);
             var dfx = (f(x + epsilon, p, p) - f0) / epsilon;
             var dfy = (f(x, y + epsilon, p) - f0) / epsilon;
             var dfz = (f(x, y, p + epsilon) - f0) / epsilon;
 
-            var g0  = g(x, y, z);
+            var g0 = g(x, y, z);
             var dgx = (g(x + epsilon, y, z) - g0) / epsilon;
             var dgy = (g(x, y + epsilon, z) - g0) / epsilon;
             var dgz = (g(x, y, z + epsilon) - g0) / epsilon;
 
             J.setXYZ(dfx + dgx, dfy + dgy, dfz + dgz);
 
-            var antiDrift = beta/dt * (f0 + g0);
+            var antiDrift = beta / dt * (f0 + g0);
             var lambda = -(J.dot(v) + antiDrift) / (gamma + dt * J.normSquared() / m);
 
-            impulse.set(J.mult(dt*lambda));
+            impulse.set(J.mult(dt * lambda));
             body.applyImpulse(impulse);
         }
     };
@@ -10808,7 +10824,7 @@ define('famous/physics/constraints/Curve',['require','exports','module','./Const
  * @copyright Famous Industries, Inc. 2014
  */
 
-define('famous/physics/constraints/Distance',['require','exports','module','./Constraint','../../math/Vector'],function(require, exports, module) {
+define('famous/physics/constraints/Distance', ['require', 'exports', 'module', './Constraint', '../../math/Vector'], function (require, exports, module) {
     var Constraint = require('./Constraint');
     var Vector = require('../../math/Vector');
 
@@ -10833,10 +10849,10 @@ define('famous/physics/constraints/Distance',['require','exports','module','./Co
         if (options) this.setOptions(options);
 
         //registers
-        this.impulse  = new Vector();
-        this.normal   = new Vector();
-        this.diffP    = new Vector();
-        this.diffV    = new Vector();
+        this.impulse = new Vector();
+        this.normal = new Vector();
+        this.diffP = new Vector();
+        this.diffV = new Vector();
 
         Constraint.call(this);
     }
@@ -10845,11 +10861,11 @@ define('famous/physics/constraints/Distance',['require','exports','module','./Co
     Distance.prototype.constructor = Distance;
 
     Distance.DEFAULT_OPTIONS = {
-        anchor : null,
-        length : 0,
-        minLength : 0,
-        period : 0,
-        dampingRatio : 0
+        anchor: null,
+        length: 0,
+        minLength: 0,
+        period: 0,
+        dampingRatio: 0
     };
 
     /** @const */ var pi = Math.PI;
@@ -10896,15 +10912,15 @@ define('famous/physics/constraints/Distance',['require','exports','module','./Co
      * @param dt {Number}           Delta time
      */
     Distance.prototype.applyConstraint = function applyConstraint(targets, source, dt) {
-        var n        = this.normal;
-        var diffP    = this.diffP;
-        var diffV    = this.diffV;
-        var impulse  = this.impulse;
-        var options  = this.options;
+        var n = this.normal;
+        var diffP = this.diffP;
+        var diffV = this.diffV;
+        var impulse = this.impulse;
+        var options = this.options;
 
         var dampingRatio = options.dampingRatio;
-        var period       = options.period;
-        var minLength    = options.minLength;
+        var period = options.period;
+        var minLength = options.minLength;
 
         var p2;
         var w2;
@@ -10945,20 +10961,20 @@ define('famous/physics/constraints/Distance',['require','exports','module','./Co
 
             if (period === 0) {
                 gamma = 0;
-                beta  = 1;
+                beta = 1;
             }
             else {
                 var c = 4 * effMass * pi * dampingRatio / period;
                 var k = 4 * effMass * pi * pi / (period * period);
 
-                gamma = 1 / (c + dt*k);
-                beta  = dt*k / (c + dt*k);
+                gamma = 1 / (c + dt * k);
+                beta = dt * k / (c + dt * k);
             }
 
-            var antiDrift = beta/dt * dist;
-            var lambda    = -(n.dot(diffV) + antiDrift) / (gamma + dt/effMass);
+            var antiDrift = beta / dt * dist;
+            var lambda = -(n.dot(diffV) + antiDrift) / (gamma + dt / effMass);
 
-            impulse.set(n.mult(dt*lambda));
+            impulse.set(n.mult(dt * lambda));
             body.applyImpulse(impulse);
 
             if (source) source.applyImpulse(impulse.mult(-1));
@@ -10977,7 +10993,7 @@ define('famous/physics/constraints/Distance',['require','exports','module','./Co
  * @copyright Famous Industries, Inc. 2014
  */
 
-define('famous/physics/constraints/Snap',['require','exports','module','./Constraint','../../math/Vector'],function(require, exports, module) {
+define('famous/physics/constraints/Snap', ['require', 'exports', 'module', './Constraint', '../../math/Vector'], function (require, exports, module) {
     var Constraint = require('./Constraint');
     var Vector = require('../../math/Vector');
 
@@ -11005,8 +11021,8 @@ define('famous/physics/constraints/Snap',['require','exports','module','./Constr
         if (options) this.setOptions(options);
 
         //registers
-        this.pDiff  = new Vector();
-        this.vDiff  = new Vector();
+        this.pDiff = new Vector();
+        this.vDiff = new Vector();
         this.impulse1 = new Vector();
         this.impulse2 = new Vector();
     }
@@ -11015,10 +11031,10 @@ define('famous/physics/constraints/Snap',['require','exports','module','./Constr
     Snap.prototype.constructor = Snap;
 
     Snap.DEFAULT_OPTIONS = {
-        period : 300,
-        dampingRatio : 0.1,
-        length : 0,
-        anchor : undefined
+        period: 300,
+        dampingRatio: 0.1,
+        length: 0,
+        anchor: undefined
     };
 
     /** const */ var pi = Math.PI;
@@ -11050,13 +11066,13 @@ define('famous/physics/constraints/Snap',['require','exports','module','./Constr
      * @return energy {Number}
      */
     Snap.prototype.getEnergy = function getEnergy(targets, source) {
-        var options     = this.options;
-        var restLength  = options.length;
-        var anchor      = options.anchor || source.position;
-        var strength    = Math.pow(2 * pi / options.period, 2);
+        var options = this.options;
+        var restLength = options.length;
+        var anchor = options.anchor || source.position;
+        var strength = Math.pow(2 * pi / options.period, 2);
 
         var energy = 0.0;
-        for (var i = 0; i < targets.length; i++){
+        for (var i = 0; i < targets.length; i++) {
             var target = targets[i];
             var dist = anchor.sub(target.position).norm() - restLength;
             energy += 0.5 * strength * dist * dist;
@@ -11073,17 +11089,17 @@ define('famous/physics/constraints/Snap',['require','exports','module','./Constr
      * @param dt {Number}           Delta time
      */
     Snap.prototype.applyConstraint = function applyConstraint(targets, source, dt) {
-        var options      = this.options;
-        var pDiff        = this.pDiff;
-        var vDiff        = this.vDiff;
-        var impulse1     = this.impulse1;
-        var impulse2     = this.impulse2;
-        var length       = options.length;
-        var anchor       = options.anchor || source.position;
-        var period       = options.period;
+        var options = this.options;
+        var pDiff = this.pDiff;
+        var vDiff = this.vDiff;
+        var impulse1 = this.impulse1;
+        var impulse2 = this.impulse2;
+        var length = options.length;
+        var anchor = options.anchor || source.position;
+        var period = options.period;
         var dampingRatio = options.dampingRatio;
 
-        for (var i = 0; i < targets.length ; i++) {
+        for (var i = 0; i < targets.length; i++) {
             var target = targets[i];
 
             var p1 = target.position;
@@ -11117,14 +11133,14 @@ define('famous/physics/constraints/Snap',['require','exports','module','./Constr
                 var k = 4 * effMass * pi * pi / (period * period);
                 var c = 4 * effMass * pi * dampingRatio / period;
 
-                beta  = dt * k / (c + dt * k);
-                gamma = 1 / (c + dt*k);
+                beta = dt * k / (c + dt * k);
+                gamma = 1 / (c + dt * k);
             }
 
-            var antiDrift = beta/dt * dist;
+            var antiDrift = beta / dt * dist;
             pDiff.normalize(-antiDrift)
                 .sub(vDiff)
-                .mult(dt / (gamma + dt/effMass))
+                .mult(dt / (gamma + dt / effMass))
                 .put(impulse1);
 
             // var n = new Vector();
@@ -11153,7 +11169,7 @@ define('famous/physics/constraints/Snap',['require','exports','module','./Constr
  * @copyright Famous Industries, Inc. 2014
  */
 
-define('famous/physics/constraints/Surface',['require','exports','module','./Constraint','../../math/Vector'],function(require, exports, module) {
+define('famous/physics/constraints/Surface', ['require', 'exports', 'module', './Constraint', '../../math/Vector'], function (require, exports, module) {
     var Constraint = require('./Constraint');
     var Vector = require('../../math/Vector');
 
@@ -11174,7 +11190,7 @@ define('famous/physics/constraints/Surface',['require','exports','module','./Con
         if (options) this.setOptions(options);
 
         this.J = new Vector();
-        this.impulse  = new Vector();
+        this.impulse = new Vector();
 
         Constraint.call(this);
     }
@@ -11183,9 +11199,9 @@ define('famous/physics/constraints/Surface',['require','exports','module','./Con
     Surface.prototype.constructor = Surface;
 
     Surface.DEFAULT_OPTIONS = {
-        equation : undefined,
-        period : 0,
-        dampingRatio : 0
+        equation: undefined,
+        period: 0,
+        dampingRatio: 0
     };
 
     /** @const */ var epsilon = 1e-7;
@@ -11211,7 +11227,7 @@ define('famous/physics/constraints/Surface',['require','exports','module','./Con
      */
     Surface.prototype.applyConstraint = function applyConstraint(targets, source, dt) {
         var impulse = this.impulse;
-        var J       = this.J;
+        var J = this.J;
         var options = this.options;
 
         var f = options.equation;
@@ -11236,24 +11252,24 @@ define('famous/physics/constraints/Surface',['require','exports','module','./Con
                 var c = 4 * m * pi * dampingRatio / period;
                 var k = 4 * m * pi * pi / (period * period);
 
-                gamma = 1 / (c + dt*k);
-                beta  = dt*k / (c + dt*k);
+                gamma = 1 / (c + dt * k);
+                beta = dt * k / (c + dt * k);
             }
 
             var x = p.x;
             var y = p.y;
             var z = p.z;
 
-            var f0  = f(x, y, z);
+            var f0 = f(x, y, z);
             var dfx = (f(x + epsilon, p, p) - f0) / epsilon;
             var dfy = (f(x, y + epsilon, p) - f0) / epsilon;
             var dfz = (f(x, y, p + epsilon) - f0) / epsilon;
             J.setXYZ(dfx, dfy, dfz);
 
-            var antiDrift = beta/dt * f0;
+            var antiDrift = beta / dt * f0;
             var lambda = -(J.dot(v) + antiDrift) / (gamma + dt * J.normSquared() / m);
 
-            impulse.set(J.mult(dt*lambda));
+            impulse.set(J.mult(dt * lambda));
             particle.applyImpulse(impulse);
         }
     };
@@ -11270,7 +11286,7 @@ define('famous/physics/constraints/Surface',['require','exports','module','./Con
  * @copyright Famous Industries, Inc. 2014
  */
 
-define('famous/physics/constraints/Wall',['require','exports','module','./Constraint','../../math/Vector'],function(require, exports, module) {
+define('famous/physics/constraints/Wall', ['require', 'exports', 'module', './Constraint', '../../math/Vector'], function (require, exports, module) {
     var Constraint = require('./Constraint');
     var Vector = require('../../math/Vector');
 
@@ -11330,22 +11346,22 @@ define('famous/physics/constraints/Wall',['require','exports','module','./Constr
          * Physical bodies bounce off the wall
          * @attribute REFLECT
          */
-        REFLECT : 0,
+        REFLECT: 0,
 
         /**
          * Physical bodies are unaffected. Usecase is to fire events on contact.
          * @attribute SILENT
          */
-        SILENT : 1
+        SILENT: 1
     };
 
     Wall.DEFAULT_OPTIONS = {
-        restitution : 0.5,
-        drift : 0.5,
-        slop : 0,
-        normal : [1, 0, 0],
-        distance : 0,
-        onContact : Wall.ON_CONTACT.REFLECT
+        restitution: 0.5,
+        drift: 0.5,
+        slop: 0,
+        normal: [1, 0, 0],
+        distance: 0,
+        onContact: Wall.ON_CONTACT.REFLECT
     };
 
     /*
@@ -11390,7 +11406,7 @@ define('famous/physics/constraints/Wall',['require','exports','module','./Constr
         var gamma = 0;
 
         if (this._eventOutput) {
-            var data = {particle : particle, wall : this, overlap : overlap, normal : n};
+            var data = {particle: particle, wall: this, overlap: overlap, normal: n};
             this._eventOutput.emit('preCollision', data);
             this._eventOutput.emit('collision', data);
         }
@@ -11459,7 +11475,7 @@ define('famous/physics/constraints/Wall',['require','exports','module','./Constr
  * @copyright Famous Industries, Inc. 2014
  */
 
-define('famous/physics/constraints/Walls',['require','exports','module','./Constraint','./Wall','../../math/Vector'],function(require, exports, module) {
+define('famous/physics/constraints/Walls', ['require', 'exports', 'module', './Constraint', './Wall', '../../math/Vector'], function (require, exports, module) {
     var Constraint = require('./Constraint');
     var Wall = require('./Wall');
     var Vector = require('../../math/Vector');
@@ -11511,33 +11527,33 @@ define('famous/physics/constraints/Walls',['require','exports','module','./Const
      * @static
      */
     Walls.SIDES = {
-        LEFT   : 0,
-        RIGHT  : 1,
-        TOP    : 2,
-        BOTTOM : 3,
-        FRONT  : 4,
-        BACK   : 5,
-        TWO_DIMENSIONAL : [0, 1, 2, 3],
-        THREE_DIMENSIONAL : [0, 1, 2, 3, 4, 5]
+        LEFT: 0,
+        RIGHT: 1,
+        TOP: 2,
+        BOTTOM: 3,
+        FRONT: 4,
+        BACK: 5,
+        TWO_DIMENSIONAL: [0, 1, 2, 3],
+        THREE_DIMENSIONAL: [0, 1, 2, 3, 4, 5]
     };
 
     Walls.DEFAULT_OPTIONS = {
-        sides : Walls.SIDES.TWO_DIMENSIONAL,
-        size : [window.innerWidth, window.innerHeight, 0],
-        origin : [.5, .5, .5],
-        drift : 0.5,
-        slop : 0,
-        restitution : 0.5,
-        onContact : Walls.ON_CONTACT.REFLECT
+        sides: Walls.SIDES.TWO_DIMENSIONAL,
+        size: [window.innerWidth, window.innerHeight, 0],
+        origin: [.5, .5, .5],
+        drift: 0.5,
+        slop: 0,
+        restitution: 0.5,
+        onContact: Walls.ON_CONTACT.REFLECT
     };
 
     var _SIDE_NORMALS = {
-        0 : new Vector(1, 0, 0),
-        1 : new Vector(-1, 0, 0),
-        2 : new Vector(0, 1, 0),
-        3 : new Vector(0,-1, 0),
-        4 : new Vector(0, 0, 1),
-        5 : new Vector(0, 0,-1)
+        0: new Vector(1, 0, 0),
+        1: new Vector(-1, 0, 0),
+        2: new Vector(0, 1, 0),
+        3: new Vector(0, -1, 0),
+        4: new Vector(0, 0, 1),
+        5: new Vector(0, 0, -1)
     };
 
     function _getDistance(side, size, origin) {
@@ -11574,10 +11590,10 @@ define('famous/physics/constraints/Walls',['require','exports','module','./Const
      */
     Walls.prototype.setOptions = function setOptions(options) {
         var resizeFlag = false;
-        if (options.restitution !== undefined) _setOptionsForEach.call(this, {restitution : options.restitution});
-        if (options.drift !== undefined) _setOptionsForEach.call(this, {drift : options.drift});
-        if (options.slop !== undefined) _setOptionsForEach.call(this, {slop : options.slop});
-        if (options.onContact !== undefined) _setOptionsForEach.call(this, {onContact : options.onContact});
+        if (options.restitution !== undefined) _setOptionsForEach.call(this, {restitution: options.restitution});
+        if (options.drift !== undefined) _setOptionsForEach.call(this, {drift: options.drift});
+        if (options.slop !== undefined) _setOptionsForEach.call(this, {slop: options.slop});
+        if (options.onContact !== undefined) _setOptionsForEach.call(this, {onContact: options.onContact});
         if (options.size !== undefined) resizeFlag = true;
         if (options.sides !== undefined) this.options.sides = options.sides;
         if (options.origin !== undefined) resizeFlag = true;
@@ -11591,8 +11607,8 @@ define('famous/physics/constraints/Walls',['require','exports','module','./Const
         for (var i = 0; i < sides.length; i++) {
             var side = sides[i];
             components[i] = new Wall({
-                normal   : _SIDE_NORMALS[side].clone(),
-                distance : _getDistance(side, this.options.size, this.options.origin)
+                normal: _SIDE_NORMALS[side].clone(),
+                distance: _getDistance(side, this.options.size, this.options.origin)
             });
         }
     }
@@ -11607,17 +11623,17 @@ define('famous/physics/constraints/Walls',['require','exports','module','./Const
         origin = origin || this.options.origin;
         if (origin.length < 3) origin[2] = 0.5;
 
-        this.forEach(function(wall, side) {
+        this.forEach(function (wall, side) {
             var d = _getDistance(side, size, origin);
-            wall.setOptions({distance : d});
+            wall.setOptions({distance: d});
         });
 
-        this.options.size   = size;
+        this.options.size = size;
         this.options.origin = origin;
     };
 
     function _setOptionsForEach(options) {
-        this.forEach(function(wall) {
+        this.forEach(function (wall) {
             wall.setOptions(options);
         });
         for (var key in options) this.options[key] = options[key];
@@ -11632,7 +11648,7 @@ define('famous/physics/constraints/Walls',['require','exports','module','./Const
      * @param dt {Number}           Delta time
      */
     Walls.prototype.applyConstraint = function applyConstraint(targets, source, dt) {
-        this.forEach(function(wall) {
+        this.forEach(function (wall) {
             wall.applyConstraint(targets, source, dt);
         });
     };
@@ -11655,7 +11671,7 @@ define('famous/physics/constraints/Walls',['require','exports','module','./Const
      * @param angle {Function}
      */
     Walls.prototype.rotateZ = function rotateZ(angle) {
-        this.forEach(function(wall) {
+        this.forEach(function (wall) {
             var n = wall.options.normal;
             n.rotateZ(angle).put(n);
         });
@@ -11668,7 +11684,7 @@ define('famous/physics/constraints/Walls',['require','exports','module','./Const
      * @param angle {Function}
      */
     Walls.prototype.rotateX = function rotateX(angle) {
-        this.forEach(function(wall) {
+        this.forEach(function (wall) {
             var n = wall.options.normal;
             n.rotateX(angle).put(n);
         });
@@ -11681,7 +11697,7 @@ define('famous/physics/constraints/Walls',['require','exports','module','./Const
      * @param angle {Function}
      */
     Walls.prototype.rotateY = function rotateY(angle) {
-        this.forEach(function(wall) {
+        this.forEach(function (wall) {
             var n = wall.options.normal;
             n.rotateY(angle).put(n);
         });
@@ -11710,7 +11726,7 @@ define('famous/physics/constraints/Walls',['require','exports','module','./Const
  * @copyright Famous Industries, Inc. 2014
  */
 
-define('famous/physics/forces/Force',['require','exports','module','../../math/Vector','../../core/EventHandler'],function(require, exports, module) {
+define('famous/physics/forces/Force', ['require', 'exports', 'module', '../../math/Vector', '../../core/EventHandler'], function (require, exports, module) {
     var Vector = require('../../math/Vector');
     var EventHandler = require('../../core/EventHandler');
 
@@ -11772,7 +11788,7 @@ define('famous/physics/forces/Force',['require','exports','module','../../math/V
  * @copyright Famous Industries, Inc. 2014
  */
 
-define('famous/physics/forces/Drag',['require','exports','module','./Force'],function(require, exports, module) {
+define('famous/physics/forces/Drag', ['require', 'exports', 'module', './Force'], function (require, exports, module) {
     var Force = require('./Force');
 
     /**
@@ -11809,7 +11825,7 @@ define('famous/physics/forces/Drag',['require','exports','module','./Force'],fun
          * @param {Vector} velocity
          * @return {Vector} drag force
          */
-        LINEAR : function(velocity) {
+        LINEAR: function (velocity) {
             return velocity;
         },
 
@@ -11820,7 +11836,7 @@ define('famous/physics/forces/Drag',['require','exports','module','./Force'],fun
          * @param {Vector} velocity
          * @return {Vector} drag force
          */
-        QUADRATIC : function(velocity) {
+        QUADRATIC: function (velocity) {
             return velocity.mult(velocity.norm());
         }
     };
@@ -11840,14 +11856,14 @@ define('famous/physics/forces/Drag',['require','exports','module','./Force'],fun
          * @type Number
          * @default 0.01
          */
-        strength : 0.01,
+        strength: 0.01,
 
         /**
          * The type of opposing force
          * @attribute forceFunction
          * @type Function
          */
-        forceFunction : Drag.FORCE_FUNCTIONS.LINEAR
+        forceFunction: Drag.FORCE_FUNCTIONS.LINEAR
     };
 
     /**
@@ -11857,9 +11873,9 @@ define('famous/physics/forces/Drag',['require','exports','module','./Force'],fun
      * @param targets {Array.Body} Array of bodies to apply drag force to.
      */
     Drag.prototype.applyForce = function applyForce(targets) {
-        var strength        = this.options.strength;
-        var forceFunction   = this.options.forceFunction;
-        var force           = this.force;
+        var strength = this.options.strength;
+        var forceFunction = this.options.forceFunction;
+        var force = this.force;
         var index;
         var particle;
 
@@ -11892,7 +11908,7 @@ define('famous/physics/forces/Drag',['require','exports','module','./Force'],fun
  * @copyright Famous Industries, Inc. 2014
  */
 
-define('famous/physics/forces/Repulsion',['require','exports','module','./Force','../../math/Vector'],function(require, exports, module) {
+define('famous/physics/forces/Repulsion', ['require', 'exports', 'module', './Force', '../../math/Vector'], function (require, exports, module) {
     var Force = require('./Force');
     var Vector = require('../../math/Vector');
 
@@ -11910,7 +11926,7 @@ define('famous/physics/forces/Repulsion',['require','exports','module','./Force'
         if (options) this.setOptions(options);
 
         //registers
-        this.disp  = new Vector();
+        this.disp = new Vector();
 
         Force.call(this);
     }
@@ -11932,7 +11948,7 @@ define('famous/physics/forces/Repulsion',['require','exports','module','./Force'
          * @param {Number} r distance from the source body
          * @param {Number} cutoff the effective radius of influence
          */
-        LINEAR : function(r, cutoff) {
+        LINEAR: function (r, cutoff) {
             return Math.max(1 - (1 / cutoff) * r, 0);
         },
 
@@ -11943,10 +11959,10 @@ define('famous/physics/forces/Repulsion',['require','exports','module','./Force'
          * @param {Number} r distance from the source body
          * @param {Number} cutoff the minimum radius of influence
          */
-        MORSE : function(r, cutoff) {
+        MORSE: function (r, cutoff) {
             var r0 = (cutoff === 0) ? 100 : cutoff;
             var rShifted = r + r0 * (1 - Math.log(2)); //shift by x-intercept
-            return Math.max(1 - Math.pow(1 - Math.exp(rShifted/r0 - 1), 2), 0);
+            return Math.max(1 - Math.pow(1 - Math.exp(rShifted / r0 - 1), 2), 0);
         },
 
         /**
@@ -11956,7 +11972,7 @@ define('famous/physics/forces/Repulsion',['require','exports','module','./Force'
          * @param {Number} r distance from the source body
          * @param {Number} cutoff a distance shift to avoid singularities
          */
-        INVERSE : function(r, cutoff) {
+        INVERSE: function (r, cutoff) {
             return 1 / (1 - cutoff + r);
         },
 
@@ -11967,8 +11983,8 @@ define('famous/physics/forces/Repulsion',['require','exports','module','./Force'
          * @param {Number} r distance from the source body
          * @param {Number} cutoff a distance shift to avoid singularities
          */
-        GRAVITY : function(r, cutoff) {
-            return 1 / (1 - cutoff + r*r);
+        GRAVITY: function (r, cutoff) {
+            return 1 / (1 - cutoff + r * r);
         }
     };
 
@@ -11987,7 +12003,7 @@ define('famous/physics/forces/Repulsion',['require','exports','module','./Force'
          * @type Number
          * @default 1
          */
-        strength : 1,
+        strength: 1,
 
         /**
          * The location of the force, if not another physics body
@@ -11997,7 +12013,7 @@ define('famous/physics/forces/Repulsion',['require','exports','module','./Force'
          * @default 0.01
          * @optional
          */
-        anchor : undefined,
+        anchor: undefined,
 
         /**
          * The range of the repulsive force
@@ -12005,7 +12021,7 @@ define('famous/physics/forces/Repulsion',['require','exports','module','./Force'
          * @type Array
          * @default [0, Infinity]
          */
-        range : [0, Infinity],
+        range: [0, Infinity],
 
         /**
          * A normalization for the force to avoid singularities at the origin
@@ -12013,7 +12029,7 @@ define('famous/physics/forces/Repulsion',['require','exports','module','./Force'
          * @type Number
          * @default 0
          */
-        cutoff : 0,
+        cutoff: 0,
 
         /**
          * The maximum magnitude of the force
@@ -12022,14 +12038,14 @@ define('famous/physics/forces/Repulsion',['require','exports','module','./Force'
          * @type Number
          * @default Infinity
          */
-        cap : Infinity,
+        cap: Infinity,
 
         /**
          * The type of decay the repulsive force should have
          * @attribute decayFunction
          * @type Function
          */
-        decayFunction : Repulsion.DECAY_FUNCTIONS.GRAVITY
+        decayFunction: Repulsion.DECAY_FUNCTIONS.GRAVITY
     };
 
     /*
@@ -12055,17 +12071,17 @@ define('famous/physics/forces/Repulsion',['require','exports','module','./Force'
      * @param source {Body}         The source of the force
      */
     Repulsion.prototype.applyForce = function applyForce(targets, source) {
-        var options     = this.options;
-        var force       = this.force;
-        var disp        = this.disp;
+        var options = this.options;
+        var force = this.force;
+        var disp = this.disp;
 
-        var strength    = options.strength;
-        var anchor      = options.anchor || source.position;
-        var cap         = options.cap;
-        var cutoff      = options.cutoff;
-        var rMin        = options.range[0];
-        var rMax        = options.range[1];
-        var decayFn     = options.decayFunction;
+        var strength = options.strength;
+        var anchor = options.anchor || source.position;
+        var cap = options.cap;
+        var cutoff = options.cutoff;
+        var rMin = options.range[0];
+        var rMax = options.range[1];
+        var decayFn = options.decayFunction;
 
         if (strength === 0) return;
 
@@ -12106,7 +12122,7 @@ define('famous/physics/forces/Repulsion',['require','exports','module','./Force'
  * @copyright Famous Industries, Inc. 2014
  */
 
-define('famous/physics/forces/RotationalDrag',['require','exports','module','./Drag'],function(require, exports, module) {
+define('famous/physics/forces/RotationalDrag', ['require', 'exports', 'module', './Drag'], function (require, exports, module) {
     var Drag = require('./Drag');
 
     /**
@@ -12143,7 +12159,7 @@ define('famous/physics/forces/RotationalDrag',['require','exports','module','./D
          * @param {Vector} angularVelocity
          * @return {Vector} drag force
          */
-        LINEAR : function(angularVelocity) {
+        LINEAR: function (angularVelocity) {
             return angularVelocity;
         },
 
@@ -12154,7 +12170,7 @@ define('famous/physics/forces/RotationalDrag',['require','exports','module','./D
          * @param {Vector} angularVelocity
          * @return {Vector} drag force
          */
-        QUADRATIC : function(angularVelocity) {
+        QUADRATIC: function (angularVelocity) {
             return angularVelocity.mult(angularVelocity.norm());
         }
     };
@@ -12166,9 +12182,9 @@ define('famous/physics/forces/RotationalDrag',['require','exports','module','./D
      * @param targets {Array.Body} Array of bodies to apply drag force to.
      */
     RotationalDrag.prototype.applyForce = function applyForce(targets) {
-        var strength       = this.options.strength;
-        var forceFunction  = this.options.forceFunction;
-        var force          = this.force;
+        var strength = this.options.strength;
+        var forceFunction = this.options.forceFunction;
+        var force = this.force;
 
         //TODO: rotational drag as function of inertia
 
@@ -12177,7 +12193,7 @@ define('famous/physics/forces/RotationalDrag',['require','exports','module','./D
 
         for (index = 0; index < targets.length; index++) {
             particle = targets[index];
-            forceFunction(particle.angularVelocity).mult(-100*strength).put(force);
+            forceFunction(particle.angularVelocity).mult(-100 * strength).put(force);
             particle.applyTorque(force);
         }
     };
@@ -12206,7 +12222,7 @@ define('famous/physics/forces/RotationalDrag',['require','exports','module','./D
 
 /*global console */
 
-define('famous/physics/forces/Spring',['require','exports','module','./Force','../../math/Vector'],function(require, exports, module) {
+define('famous/physics/forces/Spring', ['require', 'exports', 'module', './Force', '../../math/Vector'], function (require, exports, module) {
     var Force = require('./Force');
     var Vector = require('../../math/Vector');
 
@@ -12226,7 +12242,7 @@ define('famous/physics/forces/Spring',['require','exports','module','./Force','.
         if (options) this.setOptions(options);
 
         //registers
-        this.disp = new Vector(0,0,0);
+        this.disp = new Vector(0, 0, 0);
 
         _init.call(this);
     }
@@ -12255,10 +12271,10 @@ define('famous/physics/forces/Spring',['require','exports','module','./Force','.
          * @param {Number} rMax maximum range of influence
          * @return {Number} unscaled force
          */
-        FENE : function(dist, rMax) {
+        FENE: function (dist, rMax) {
             var rMaxSmall = rMax * .99;
             var r = Math.max(Math.min(dist, rMaxSmall), -rMaxSmall);
-            return r / (1 - r * r/(rMax * rMax));
+            return r / (1 - r * r / (rMax * rMax));
         },
 
         /**
@@ -12269,7 +12285,7 @@ define('famous/physics/forces/Spring',['require','exports','module','./Force','.
          * @param {Number} dist current distance target is from source body
          * @return {Number} unscaled force
          */
-        HOOK : function(dist) {
+        HOOK: function (dist) {
             return dist;
         }
     };
@@ -12290,7 +12306,7 @@ define('famous/physics/forces/Spring',['require','exports','module','./Force','.
          * @type Number
          * @default 300
          */
-        period : 300,
+        period: 300,
 
         /**
          * The damping of the spring.
@@ -12301,7 +12317,7 @@ define('famous/physics/forces/Spring',['require','exports','module','./Force','.
          * @type Number
          * @default 0.1
          */
-        dampingRatio : 0.1,
+        dampingRatio: 0.1,
 
         /**
          * The rest length of the spring
@@ -12310,7 +12326,7 @@ define('famous/physics/forces/Spring',['require','exports','module','./Force','.
          * @type Number
          * @default 0
          */
-        length : 0,
+        length: 0,
 
         /**
          * The maximum length of the spring (for a FENE spring)
@@ -12319,7 +12335,7 @@ define('famous/physics/forces/Spring',['require','exports','module','./Force','.
          * @type Number
          * @default Infinity
          */
-        maxLength : Infinity,
+        maxLength: Infinity,
 
         /**
          * The location of the spring's anchor, if not another physics body
@@ -12328,14 +12344,14 @@ define('famous/physics/forces/Spring',['require','exports','module','./Force','.
          * @type Array
          * @optional
          */
-        anchor : undefined,
+        anchor: undefined,
 
         /**
          * The type of spring force
          * @attribute forceFunction
          * @type Function
          */
-        forceFunction : Spring.FORCE_FUNCTIONS.HOOK
+        forceFunction: Spring.FORCE_FUNCTIONS.HOOK
     };
 
     function _calcStiffness() {
@@ -12369,7 +12385,7 @@ define('famous/physics/forces/Spring',['require','exports','module','./Force','.
             if (options.anchor instanceof Array)  this.options.anchor = new Vector(options.anchor);
         }
 
-        if (options.period !== undefined){
+        if (options.period !== undefined) {
             if (options.period < MIN_PERIOD) {
                 options.period = MIN_PERIOD;
                 console.warn('The period of a SpringTransition is capped at ' + MIN_PERIOD + ' ms. Use a SnapTransition for faster transitions');
@@ -12422,9 +12438,9 @@ define('famous/physics/forces/Spring',['require','exports','module','./Force','.
             if (dist === 0) return;
 
             //if dampingRatio specified, then override strength and damping
-            m      = target.mass;
+            m = target.mass;
             stiffness *= m;
-            damping   *= m;
+            damping *= m;
 
             disp.normalize(stiffness * forceFunction(dist, maxLength))
                 .put(force);
@@ -12446,13 +12462,13 @@ define('famous/physics/forces/Spring',['require','exports','module','./Force','.
      * @return {source}         The potential energy of the spring
      */
     Spring.prototype.getEnergy = function getEnergy(targets, source) {
-        var options     = this.options;
-        var restLength  = options.length;
-        var anchor      = (source) ? source.position : options.anchor;
-        var strength    = options.stiffness;
+        var options = this.options;
+        var restLength = options.length;
+        var anchor = (source) ? source.position : options.anchor;
+        var strength = options.stiffness;
 
         var energy = 0.0;
-        for (var i = 0; i < targets.length; i++){
+        for (var i = 0; i < targets.length; i++) {
             var target = targets[i];
             var dist = anchor.sub(target.position).norm() - restLength;
             energy += 0.5 * strength * dist * dist;
@@ -12473,7 +12489,7 @@ define('famous/physics/forces/Spring',['require','exports','module','./Force','.
  */
 
 //TODO: test inheritance
-define('famous/physics/forces/RotationalSpring',['require','exports','module','./Force','./Spring','../../math/Quaternion'],function(require, exports, module) {
+define('famous/physics/forces/RotationalSpring', ['require', 'exports', 'module', './Force', './Spring', '../../math/Quaternion'], function (require, exports, module) {
     var Force = require('./Force');
     var Spring = require('./Spring');
     var Quaternion = require('../../math/Quaternion');
@@ -12526,7 +12542,7 @@ define('famous/physics/forces/RotationalSpring',['require','exports','module','.
             if (options.anchor  instanceof Array) this.options.anchor = new Quaternion(options.anchor);
         }
 
-        if (options.period !== undefined){
+        if (options.period !== undefined) {
             this.options.period = options.period;
         }
 
@@ -12571,9 +12587,9 @@ define('famous/physics/forces/RotationalSpring',['require','exports','module','.
             if (dist === 0) return;
 
             //if dampingRatio specified, then override strength and damping
-            m      = target.mass;
+            m = target.mass;
             stiffness *= m;
-            damping   *= m;
+            damping *= m;
 
             force.set(disp.normalize(stiffness * forceFunction(dist, maxLength)));
 
@@ -12590,10 +12606,10 @@ define('famous/physics/forces/RotationalSpring',['require','exports','module','.
      * @param [targets] target The physics body attached to the spring
      */
     RotationalSpring.prototype.getEnergy = function getEnergy(targets) {
-        var options     = this.options;
-        var restLength  = options.length;
-        var anchor      = options.anchor;
-        var strength    = options.stiffness;
+        var options = this.options;
+        var restLength = options.length;
+        var anchor = options.anchor;
+        var strength = options.stiffness;
 
         var energy = 0.0;
         for (var i = 0; i < targets.length; i++) {
@@ -12616,7 +12632,7 @@ define('famous/physics/forces/RotationalSpring',['require','exports','module','.
  * @copyright Famous Industries, Inc. 2014
  */
 
-define('famous/physics/forces/VectorField',['require','exports','module','./Force','../../math/Vector'],function(require, exports, module) {
+define('famous/physics/forces/VectorField', ['require', 'exports', 'module', './Force', '../../math/Vector'], function (require, exports, module) {
     var Force = require('./Force');
     var Vector = require('../../math/Vector');
 
@@ -12658,7 +12674,7 @@ define('famous/physics/forces/VectorField',['require','exports','module','./Forc
          *      Pass a {direction : Vector} into the VectorField options
          * @return {Number} unscaled force
          */
-        CONSTANT : function(v, options) {
+        CONSTANT: function (v, options) {
             options.direction.put(this.evaluation);
         },
 
@@ -12669,7 +12685,7 @@ define('famous/physics/forces/VectorField',['require','exports','module','./Forc
          * @param v {Vector} Current position of physics body
          * @return {Vector} unscaled force
          */
-        LINEAR : function(v) {
+        LINEAR: function (v) {
             v.put(this.evaluation);
         },
 
@@ -12680,7 +12696,7 @@ define('famous/physics/forces/VectorField',['require','exports','module','./Forc
          * @param v {Vector} Current position of physics body
          * @return {Vector} unscaled force
          */
-        RADIAL : function(v) {
+        RADIAL: function (v) {
             v.mult(-1).put(this.evaluation);
         },
 
@@ -12693,7 +12709,7 @@ define('famous/physics/forces/VectorField',['require','exports','module','./Forc
          *      Pass a {position : Vector} into the VectorField options
          * @return {Vector} unscaled force
          */
-        POINT_ATTRACTOR : function(v, options) {
+        POINT_ATTRACTOR: function (v, options) {
             options.position.sub(v).put(this.evaluation);
         }
     };
@@ -12713,7 +12729,7 @@ define('famous/physics/forces/VectorField',['require','exports','module','./Forc
          * @type Number
          * @default .01
          */
-        strength : .01,
+        strength: .01,
 
         /**
          * Type of vectorfield
@@ -12721,7 +12737,7 @@ define('famous/physics/forces/VectorField',['require','exports','module','./Forc
          * @attribute field
          * @type Function
          */
-        field : VectorField.FIELDS.CONSTANT
+        field: VectorField.FIELDS.CONSTANT
     };
 
     /**
@@ -12744,11 +12760,11 @@ define('famous/physics/forces/VectorField',['require','exports','module','./Forc
 
         switch (field) {
             case FIELDS.CONSTANT:
-                if (!this.options.direction) this.options.direction = new Vector(0,1,0);
+                if (!this.options.direction) this.options.direction = new Vector(0, 1, 0);
                 else if (this.options.direction instanceof Array) this.options.direction = new Vector(this.options.direction);
                 break;
             case FIELDS.POINT_ATTRACTOR:
-                if (!this.options.position) this.options.position = new Vector(0,0,0);
+                if (!this.options.position) this.options.position = new Vector(0, 0, 0);
                 else if (this.options.position instanceof Array) this.options.position = new Vector(this.options.position);
                 break;
         }
@@ -12789,13 +12805,13 @@ define('famous/physics/forces/VectorField',['require','exports','module','./Forc
                 energy = targets.length * this.options.direction.norm();
                 break;
             case FIELDS.RADIAL:
-                for (i = 0; i < targets.length; i++){
+                for (i = 0; i < targets.length; i++) {
                     target = targets[i];
                     energy += target.position.norm();
                 }
                 break;
             case FIELDS.POINT_ATTRACTOR:
-                for (i = 0; i < targets.length; i++){
+                for (i = 0; i < targets.length; i++) {
                     target = targets[i];
                     energy += target.position.sub(this.options.position).norm();
                 }
@@ -12817,7 +12833,7 @@ define('famous/physics/forces/VectorField',['require','exports','module','./Forc
  * @copyright Famous Industries, Inc. 2014
  */
 
-define('famous/surfaces/CanvasSurface',['require','exports','module','../core/Surface'],function(require, exports, module) {
+define('famous/surfaces/CanvasSurface', ['require', 'exports', 'module', '../core/Surface'], function (require, exports, module) {
     var Surface = require('../core/Surface');
 
     /**
@@ -12853,7 +12869,8 @@ define('famous/surfaces/CanvasSurface',['require','exports','module','../core/Su
      * @method setContent
      *
      */
-    CanvasSurface.prototype.setContent = function setContent() {};
+    CanvasSurface.prototype.setContent = function setContent() {
+    };
 
     /**
      * Place the document element this component manages into the document.
@@ -12936,7 +12953,7 @@ define('famous/surfaces/CanvasSurface',['require','exports','module','../core/Su
  * @copyright Famous Industries, Inc. 2014
  */
 
-define('famous/surfaces/ContainerSurface',['require','exports','module','../core/Surface','../core/Context'],function(require, exports, module) {
+define('famous/surfaces/ContainerSurface', ['require', 'exports', 'module', '../core/Surface', '../core/Context'], function (require, exports, module) {
     var Surface = require('../core/Surface');
     var Context = require('../core/Context');
 
@@ -13042,7 +13059,7 @@ define('famous/surfaces/ContainerSurface',['require','exports','module','../core
     module.exports = ContainerSurface;
 });
 
-define('famous/surfaces/FormContainerSurface',['require','exports','module','./ContainerSurface'],function(require, exports, module) {
+define('famous/surfaces/FormContainerSurface', ['require', 'exports', 'module', './ContainerSurface'], function (require, exports, module) {
     var ContainerSurface = require('./ContainerSurface');
 
     function FormContainerSurface(options) {
@@ -13073,7 +13090,7 @@ define('famous/surfaces/FormContainerSurface',['require','exports','module','./C
  * @copyright Famous Industries, Inc. 2014
  */
 
-define('famous/surfaces/ImageSurface',['require','exports','module','../core/Surface'],function(require, exports, module) {
+define('famous/surfaces/ImageSurface', ['require', 'exports', 'module', '../core/Surface'], function (require, exports, module) {
     var Surface = require('../core/Surface');
 
     /**
@@ -13195,7 +13212,7 @@ define('famous/surfaces/ImageSurface',['require','exports','module','../core/Sur
  * @copyright Famous Industries, Inc. 2014
  */
 
-define('famous/surfaces/InputSurface',['require','exports','module','../core/Surface'],function(require, exports, module) {
+define('famous/surfaces/InputSurface', ['require', 'exports', 'module', '../core/Surface'], function (require, exports, module) {
     var Surface = require('../core/Surface');
 
     /**
@@ -13212,17 +13229,18 @@ define('famous/surfaces/InputSurface',['require','exports','module','../core/Sur
      */
     function InputSurface(options) {
         this._placeholder = options.placeholder || '';
-        this._value       = options.value || '';
-        this._type        = options.type || 'text';
-        this._name        = options.name || '';
+        this._value = options.value || '';
+        this._type = options.type || 'text';
+        this._name = options.name || '';
 
         Surface.apply(this, arguments);
 
         this.on('click', this.focus.bind(this));
-        window.addEventListener('click', function(event) {
+        window.addEventListener('click', function (event) {
             if (event.target !== this._currentTarget) this.blur();
         }.bind(this));
     }
+
     InputSurface.prototype = Object.create(Surface.prototype);
     InputSurface.prototype.constructor = InputSurface;
 
@@ -13348,7 +13366,7 @@ define('famous/surfaces/InputSurface',['require','exports','module','../core/Sur
     module.exports = InputSurface;
 });
 
-define('famous/surfaces/SubmitInputSurface',['require','exports','module','./InputSurface'],function(require, exports, module) {
+define('famous/surfaces/SubmitInputSurface', ['require', 'exports', 'module', './InputSurface'], function (require, exports, module) {
     var InputSurface = require('./InputSurface');
 
     function SubmitInputSurface(options) {
@@ -13360,7 +13378,7 @@ define('famous/surfaces/SubmitInputSurface',['require','exports','module','./Inp
     SubmitInputSurface.prototype = Object.create(InputSurface.prototype);
     SubmitInputSurface.prototype.constructor = SubmitInputSurface;
 
-    SubmitInputSurface.prototype.setOnClick = function(onClick) {
+    SubmitInputSurface.prototype.setOnClick = function (onClick) {
         this.onClick = onClick;
     };
 
@@ -13381,7 +13399,7 @@ define('famous/surfaces/SubmitInputSurface',['require','exports','module','./Inp
  * @copyright Famous Industries, Inc. 2014
  */
 
-define('famous/surfaces/TextareaSurface',['require','exports','module','../core/Surface'],function(require, exports, module) {
+define('famous/surfaces/TextareaSurface', ['require', 'exports', 'module', '../core/Surface'], function (require, exports, module) {
     var Surface = require('../core/Surface');
 
     /**
@@ -13401,15 +13419,16 @@ define('famous/surfaces/TextareaSurface',['require','exports','module','../core/
      */
     function TextareaSurface(options) {
         this._placeholder = options.placeholder || '';
-        this._value       = options.value || '';
-        this._name        = options.name || '';
-        this._wrap        = options.wrap || '';
-        this._cols        = options.cols || '';
-        this._rows        = options.rows || '';
+        this._value = options.value || '';
+        this._name = options.name || '';
+        this._wrap = options.wrap || '';
+        this._cols = options.cols || '';
+        this._rows = options.rows || '';
 
         Surface.apply(this, arguments);
         this.on('click', this.focus.bind(this));
     }
+
     TextareaSurface.prototype = Object.create(Surface.prototype);
     TextareaSurface.prototype.constructor = TextareaSurface;
 
@@ -13576,7 +13595,7 @@ define('famous/surfaces/TextareaSurface',['require','exports','module','../core/
  * @copyright Famous Industries, Inc. 2014
  */
 
-define('famous/surfaces/VideoSurface',['require','exports','module','../core/Surface'],function(require, exports, module) {
+define('famous/surfaces/VideoSurface', ['require', 'exports', 'module', '../core/Surface'], function (require, exports, module) {
     var Surface = require('../core/Surface');
 
     /**
@@ -13681,7 +13700,7 @@ define('famous/surfaces/VideoSurface',['require','exports','module','../core/Sur
  * @copyright Famous Industries, Inc. 2014
  */
 
-define('famous/transitions/CachedMap',['require','exports','module'],function(require, exports, module) {
+define('famous/transitions/CachedMap', ['require', 'exports', 'module'], function (require, exports, module) {
     /**
      * A simple in-memory object cache.  Used as a helper for Views with
      * provider functions.
@@ -13733,7 +13752,7 @@ define('famous/transitions/CachedMap',['require','exports','module'],function(re
  * @copyright Famous Industries, Inc. 2014
  */
 
-define('famous/transitions/Easing',['require','exports','module'],function(require, exports, module) {
+define('famous/transitions/Easing', ['require', 'exports', 'module'], function (require, exports, module) {
 
     /**
      * A library of curves which map an animation explicitly as a function of time.
@@ -13746,150 +13765,150 @@ define('famous/transitions/Easing',['require','exports','module'],function(requi
          * @property inQuad
          * @static
          */
-        inQuad: function(t) {
-            return t*t;
+        inQuad: function (t) {
+            return t * t;
         },
 
         /**
          * @property outQuad
          * @static
          */
-        outQuad: function(t) {
-            return -(t-=1)*t+1;
+        outQuad: function (t) {
+            return -(t -= 1) * t + 1;
         },
 
         /**
          * @property inOutQuad
          * @static
          */
-        inOutQuad: function(t) {
-            if ((t/=.5) < 1) return .5*t*t;
-            return -.5*((--t)*(t-2) - 1);
+        inOutQuad: function (t) {
+            if ((t /= .5) < 1) return .5 * t * t;
+            return -.5 * ((--t) * (t - 2) - 1);
         },
 
         /**
          * @property inCubic
          * @static
          */
-        inCubic: function(t) {
-            return t*t*t;
+        inCubic: function (t) {
+            return t * t * t;
         },
 
         /**
          * @property outCubic
          * @static
          */
-        outCubic: function(t) {
-            return ((--t)*t*t + 1);
+        outCubic: function (t) {
+            return ((--t) * t * t + 1);
         },
 
         /**
          * @property inOutCubic
          * @static
          */
-        inOutCubic: function(t) {
-            if ((t/=.5) < 1) return .5*t*t*t;
-            return .5*((t-=2)*t*t + 2);
+        inOutCubic: function (t) {
+            if ((t /= .5) < 1) return .5 * t * t * t;
+            return .5 * ((t -= 2) * t * t + 2);
         },
 
         /**
          * @property inQuart
          * @static
          */
-        inQuart: function(t) {
-            return t*t*t*t;
+        inQuart: function (t) {
+            return t * t * t * t;
         },
 
         /**
          * @property outQuart
          * @static
          */
-        outQuart: function(t) {
-            return -((--t)*t*t*t - 1);
+        outQuart: function (t) {
+            return -((--t) * t * t * t - 1);
         },
 
         /**
          * @property inOutQuart
          * @static
          */
-        inOutQuart: function(t) {
-            if ((t/=.5) < 1) return .5*t*t*t*t;
-            return -.5 * ((t-=2)*t*t*t - 2);
+        inOutQuart: function (t) {
+            if ((t /= .5) < 1) return .5 * t * t * t * t;
+            return -.5 * ((t -= 2) * t * t * t - 2);
         },
 
         /**
          * @property inQuint
          * @static
          */
-        inQuint: function(t) {
-            return t*t*t*t*t;
+        inQuint: function (t) {
+            return t * t * t * t * t;
         },
 
         /**
          * @property outQuint
          * @static
          */
-        outQuint: function(t) {
-            return ((--t)*t*t*t*t + 1);
+        outQuint: function (t) {
+            return ((--t) * t * t * t * t + 1);
         },
 
         /**
          * @property inOutQuint
          * @static
          */
-        inOutQuint: function(t) {
-            if ((t/=.5) < 1) return .5*t*t*t*t*t;
-            return .5*((t-=2)*t*t*t*t + 2);
+        inOutQuint: function (t) {
+            if ((t /= .5) < 1) return .5 * t * t * t * t * t;
+            return .5 * ((t -= 2) * t * t * t * t + 2);
         },
 
         /**
          * @property inSine
          * @static
          */
-        inSine: function(t) {
-            return -1.0*Math.cos(t * (Math.PI/2)) + 1.0;
+        inSine: function (t) {
+            return -1.0 * Math.cos(t * (Math.PI / 2)) + 1.0;
         },
 
         /**
          * @property outSine
          * @static
          */
-        outSine: function(t) {
-            return Math.sin(t * (Math.PI/2));
+        outSine: function (t) {
+            return Math.sin(t * (Math.PI / 2));
         },
 
         /**
          * @property inOutSine
          * @static
          */
-        inOutSine: function(t) {
-            return -.5*(Math.cos(Math.PI*t) - 1);
+        inOutSine: function (t) {
+            return -.5 * (Math.cos(Math.PI * t) - 1);
         },
 
         /**
          * @property inExpo
          * @static
          */
-        inExpo: function(t) {
-            return (t===0) ? 0.0 : Math.pow(2, 10 * (t - 1));
+        inExpo: function (t) {
+            return (t === 0) ? 0.0 : Math.pow(2, 10 * (t - 1));
         },
 
         /**
          * @property outExpo
          * @static
          */
-        outExpo: function(t) {
-            return (t===1.0) ? 1.0 : (-Math.pow(2, -10 * t) + 1);
+        outExpo: function (t) {
+            return (t === 1.0) ? 1.0 : (-Math.pow(2, -10 * t) + 1);
         },
 
         /**
          * @property inOutExpo
          * @static
          */
-        inOutExpo: function(t) {
-            if (t===0) return 0.0;
-            if (t===1.0) return 1.0;
-            if ((t/=.5) < 1) return .5 * Math.pow(2, 10 * (t - 1));
+        inOutExpo: function (t) {
+            if (t === 0) return 0.0;
+            if (t === 1.0) return 1.0;
+            if ((t /= .5) < 1) return .5 * Math.pow(2, 10 * (t - 1));
             return .5 * (-Math.pow(2, -10 * --t) + 2);
         },
 
@@ -13897,110 +13916,122 @@ define('famous/transitions/Easing',['require','exports','module'],function(requi
          * @property inCirc
          * @static
          */
-        inCirc: function(t) {
-            return -(Math.sqrt(1 - t*t) - 1);
+        inCirc: function (t) {
+            return -(Math.sqrt(1 - t * t) - 1);
         },
 
         /**
          * @property outCirc
          * @static
          */
-        outCirc: function(t) {
-            return Math.sqrt(1 - (--t)*t);
+        outCirc: function (t) {
+            return Math.sqrt(1 - (--t) * t);
         },
 
         /**
          * @property inOutCirc
          * @static
          */
-        inOutCirc: function(t) {
-            if ((t/=.5) < 1) return -.5 * (Math.sqrt(1 - t*t) - 1);
-            return .5 * (Math.sqrt(1 - (t-=2)*t) + 1);
+        inOutCirc: function (t) {
+            if ((t /= .5) < 1) return -.5 * (Math.sqrt(1 - t * t) - 1);
+            return .5 * (Math.sqrt(1 - (t -= 2) * t) + 1);
         },
 
         /**
          * @property inElastic
          * @static
          */
-        inElastic: function(t) {
-            var s=1.70158;var p=0;var a=1.0;
-            if (t===0) return 0.0;  if (t===1) return 1.0;  if (!p) p=.3;
-            s = p/(2*Math.PI) * Math.asin(1.0/a);
-            return -(a*Math.pow(2,10*(t-=1)) * Math.sin((t-s)*(2*Math.PI)/ p));
+        inElastic: function (t) {
+            var s = 1.70158;
+            var p = 0;
+            var a = 1.0;
+            if (t === 0) return 0.0;
+            if (t === 1) return 1.0;
+            if (!p) p = .3;
+            s = p / (2 * Math.PI) * Math.asin(1.0 / a);
+            return -(a * Math.pow(2, 10 * (t -= 1)) * Math.sin((t - s) * (2 * Math.PI) / p));
         },
 
         /**
          * @property outElastic
          * @static
          */
-        outElastic: function(t) {
-            var s=1.70158;var p=0;var a=1.0;
-            if (t===0) return 0.0;  if (t===1) return 1.0;  if (!p) p=.3;
-            s = p/(2*Math.PI) * Math.asin(1.0/a);
-            return a*Math.pow(2,-10*t) * Math.sin((t-s)*(2*Math.PI)/p) + 1.0;
+        outElastic: function (t) {
+            var s = 1.70158;
+            var p = 0;
+            var a = 1.0;
+            if (t === 0) return 0.0;
+            if (t === 1) return 1.0;
+            if (!p) p = .3;
+            s = p / (2 * Math.PI) * Math.asin(1.0 / a);
+            return a * Math.pow(2, -10 * t) * Math.sin((t - s) * (2 * Math.PI) / p) + 1.0;
         },
 
         /**
          * @property inOutElastic
          * @static
          */
-        inOutElastic: function(t) {
-            var s=1.70158;var p=0;var a=1.0;
-            if (t===0) return 0.0;  if ((t/=.5)===2) return 1.0;  if (!p) p=(.3*1.5);
-            s = p/(2*Math.PI) * Math.asin(1.0/a);
-            if (t < 1) return -.5*(a*Math.pow(2,10*(t-=1)) * Math.sin((t-s)*(2*Math.PI)/p));
-            return a*Math.pow(2,-10*(t-=1)) * Math.sin((t-s)*(2*Math.PI)/p)*.5 + 1.0;
+        inOutElastic: function (t) {
+            var s = 1.70158;
+            var p = 0;
+            var a = 1.0;
+            if (t === 0) return 0.0;
+            if ((t /= .5) === 2) return 1.0;
+            if (!p) p = (.3 * 1.5);
+            s = p / (2 * Math.PI) * Math.asin(1.0 / a);
+            if (t < 1) return -.5 * (a * Math.pow(2, 10 * (t -= 1)) * Math.sin((t - s) * (2 * Math.PI) / p));
+            return a * Math.pow(2, -10 * (t -= 1)) * Math.sin((t - s) * (2 * Math.PI) / p) * .5 + 1.0;
         },
 
         /**
          * @property inBack
          * @static
          */
-        inBack: function(t, s) {
+        inBack: function (t, s) {
             if (s === undefined) s = 1.70158;
-            return t*t*((s+1)*t - s);
+            return t * t * ((s + 1) * t - s);
         },
 
         /**
          * @property outBack
          * @static
          */
-        outBack: function(t, s) {
+        outBack: function (t, s) {
             if (s === undefined) s = 1.70158;
-            return ((--t)*t*((s+1)*t + s) + 1);
+            return ((--t) * t * ((s + 1) * t + s) + 1);
         },
 
         /**
          * @property inOutBack
          * @static
          */
-        inOutBack: function(t, s) {
+        inOutBack: function (t, s) {
             if (s === undefined) s = 1.70158;
-            if ((t/=.5) < 1) return .5*(t*t*(((s*=(1.525))+1)*t - s));
-            return .5*((t-=2)*t*(((s*=(1.525))+1)*t + s) + 2);
+            if ((t /= .5) < 1) return .5 * (t * t * (((s *= (1.525)) + 1) * t - s));
+            return .5 * ((t -= 2) * t * (((s *= (1.525)) + 1) * t + s) + 2);
         },
 
         /**
          * @property inBounce
          * @static
          */
-        inBounce: function(t) {
-            return 1.0 - Easing.outBounce(1.0-t);
+        inBounce: function (t) {
+            return 1.0 - Easing.outBounce(1.0 - t);
         },
 
         /**
          * @property outBounce
          * @static
          */
-        outBounce: function(t) {
-            if (t < (1/2.75)) {
-                return (7.5625*t*t);
-            } else if (t < (2/2.75)) {
-                return (7.5625*(t-=(1.5/2.75))*t + .75);
-            } else if (t < (2.5/2.75)) {
-                return (7.5625*(t-=(2.25/2.75))*t + .9375);
+        outBounce: function (t) {
+            if (t < (1 / 2.75)) {
+                return (7.5625 * t * t);
+            } else if (t < (2 / 2.75)) {
+                return (7.5625 * (t -= (1.5 / 2.75)) * t + .75);
+            } else if (t < (2.5 / 2.75)) {
+                return (7.5625 * (t -= (2.25 / 2.75)) * t + .9375);
             } else {
-                return (7.5625*(t-=(2.625/2.75))*t + .984375);
+                return (7.5625 * (t -= (2.625 / 2.75)) * t + .984375);
             }
         },
 
@@ -14008,9 +14039,9 @@ define('famous/transitions/Easing',['require','exports','module'],function(requi
          * @property inOutBounce
          * @static
          */
-        inOutBounce: function(t) {
-            if (t < .5) return Easing.inBounce(t*2) * .5;
-            return Easing.outBounce(t*2-1.0) * .5 + .5;
+        inOutBounce: function (t) {
+            if (t < .5) return Easing.inBounce(t * 2) * .5;
+            return Easing.outBounce(t * 2 - 1.0) * .5 + .5;
         }
     };
 
@@ -14026,7 +14057,7 @@ define('famous/transitions/Easing',['require','exports','module'],function(requi
  * @copyright Famous Industries, Inc. 2014
  */
 
-define('famous/transitions/SnapTransition',['require','exports','module','../physics/PhysicsEngine','../physics/bodies/Particle','../physics/constraints/Snap','../math/Vector'],function(require, exports, module) {
+define('famous/transitions/SnapTransition', ['require', 'exports', 'module', '../physics/PhysicsEngine', '../physics/bodies/Particle', '../physics/constraints/Snap', '../math/Vector'], function (require, exports, module) {
     var PE = require('../physics/PhysicsEngine');
     var Particle = require('../physics/bodies/Particle');
     var Spring = require('../physics/constraints/Snap');
@@ -14045,17 +14076,17 @@ define('famous/transitions/SnapTransition',['require','exports','module','../phy
     function SnapTransition(state) {
         state = state || 0;
 
-        this.endState  = new Vector(state);
+        this.endState = new Vector(state);
         this.initState = new Vector();
 
-        this._dimensions       = 1;
-        this._restTolerance    = 1e-10;
+        this._dimensions = 1;
+        this._restTolerance = 1e-10;
         this._absRestTolerance = this._restTolerance;
-        this._callback         = undefined;
+        this._callback = undefined;
 
-        this.PE       = new PE();
+        this.PE = new PE();
         this.particle = new Particle();
-        this.spring   = new Spring({anchor : this.endState});
+        this.spring = new Spring({anchor: this.endState});
 
         this.PE.addBody(this.particle);
         this.PE.attach(this.spring, this.particle);
@@ -14080,7 +14111,7 @@ define('famous/transitions/SnapTransition',['require','exports','module','../phy
          * @type Number
          * @default 100
          */
-        period : 100,
+        period: 100,
 
         /**
          * The damping of the snap.
@@ -14090,7 +14121,7 @@ define('famous/transitions/SnapTransition',['require','exports','module','../phy
          * @type Number
          * @default 0.2
          */
-        dampingRatio : 0.2,
+        dampingRatio: 0.2,
 
         /**
          * The initial velocity of the transition.
@@ -14099,7 +14130,7 @@ define('famous/transitions/SnapTransition',['require','exports','module','../phy
          * @type Number|Array
          * @default 0
          */
-        velocity : 0
+        velocity: 0
     };
 
     function _getEnergy() {
@@ -14152,14 +14183,14 @@ define('famous/transitions/SnapTransition',['require','exports','module','../phy
 
     function _setupDefinition(definition) {
         var defaults = SnapTransition.DEFAULT_OPTIONS;
-        if (definition.period === undefined)       definition.period       = defaults.period;
+        if (definition.period === undefined)       definition.period = defaults.period;
         if (definition.dampingRatio === undefined) definition.dampingRatio = defaults.dampingRatio;
-        if (definition.velocity === undefined)     definition.velocity     = defaults.velocity;
+        if (definition.velocity === undefined)     definition.velocity = defaults.velocity;
 
         //setup spring
         this.spring.setOptions({
-            period       : definition.period,
-            dampingRatio : definition.dampingRatio
+            period: definition.period,
+            dampingRatio: definition.dampingRatio
         });
 
         //setup particle
@@ -14178,7 +14209,7 @@ define('famous/transitions/SnapTransition',['require','exports','module','../phy
 
         if (_getEnergy.call(this) < this._absRestTolerance) {
             _setParticlePosition.call(this, this.endState);
-            _setParticleVelocity.call(this, [0,0,0]);
+            _setParticleVelocity.call(this, [0, 0, 0]);
             _sleep.call(this);
         }
     }
@@ -14247,7 +14278,7 @@ define('famous/transitions/SnapTransition',['require','exports','module','../phy
 
     /**
      * Get the current position of the transition
-s     *
+     s     *
      * @method get
      *
      * @return state {Number|Array}
@@ -14297,7 +14328,7 @@ s     *
 
 /*global console*/
 
-define('famous/transitions/SpringTransition',['require','exports','module','../physics/PhysicsEngine','../physics/bodies/Particle','../physics/forces/Spring','../math/Vector'],function(require, exports, module) {
+define('famous/transitions/SpringTransition', ['require', 'exports', 'module', '../physics/PhysicsEngine', '../physics/bodies/Particle', '../physics/forces/Spring', '../math/Vector'], function (require, exports, module) {
     var PE = require('../physics/PhysicsEngine');
     var Particle = require('../physics/bodies/Particle');
     var Spring = require('../physics/forces/Spring');
@@ -14315,16 +14346,16 @@ define('famous/transitions/SpringTransition',['require','exports','module','../p
      */
     function SpringTransition(state) {
         state = state || 0;
-        this.endState  = new Vector(state);
+        this.endState = new Vector(state);
         this.initState = new Vector();
 
-        this._dimensions       = undefined;
-        this._restTolerance    = 1e-10;
+        this._dimensions = undefined;
+        this._restTolerance = 1e-10;
         this._absRestTolerance = this._restTolerance;
-        this._callback         = undefined;
+        this._callback = undefined;
 
-        this.PE       = new PE();
-        this.spring   = new Spring({anchor : this.endState});
+        this.PE = new PE();
+        this.spring = new Spring({anchor: this.endState});
         this.particle = new Particle();
 
         this.PE.addBody(this.particle);
@@ -14350,7 +14381,7 @@ define('famous/transitions/SpringTransition',['require','exports','module','../p
          * @type Number
          * @default 300
          */
-        period : 300,
+        period: 300,
 
         /**
          * The damping of the snap.
@@ -14362,7 +14393,7 @@ define('famous/transitions/SpringTransition',['require','exports','module','../p
          * @type Number
          * @default 0.5
          */
-        dampingRatio : 0.5,
+        dampingRatio: 0.5,
 
         /**
          * The initial velocity of the transition.
@@ -14371,7 +14402,7 @@ define('famous/transitions/SpringTransition',['require','exports','module','../p
          * @type Number|Array
          * @default 0
          */
-        velocity : 0
+        velocity: 0
     };
 
     function _getEnergy() {
@@ -14422,7 +14453,7 @@ define('famous/transitions/SpringTransition',['require','exports','module','../p
 
         if (_getEnergy.call(this) < this._absRestTolerance) {
             _setParticlePosition.call(this, this.endState);
-            _setParticleVelocity.call(this, [0,0,0]);
+            _setParticleVelocity.call(this, [0, 0, 0]);
             _sleep.call(this);
         }
     }
@@ -14431,9 +14462,9 @@ define('famous/transitions/SpringTransition',['require','exports','module','../p
         // TODO fix no-console error
         /* eslint no-console: 0 */
         var defaults = SpringTransition.DEFAULT_OPTIONS;
-        if (definition.period === undefined)       definition.period       = defaults.period;
+        if (definition.period === undefined)       definition.period = defaults.period;
         if (definition.dampingRatio === undefined) definition.dampingRatio = defaults.dampingRatio;
-        if (definition.velocity === undefined)     definition.velocity     = defaults.velocity;
+        if (definition.velocity === undefined)     definition.velocity = defaults.velocity;
 
         if (definition.period < 150) {
             definition.period = 150;
@@ -14442,8 +14473,8 @@ define('famous/transitions/SpringTransition',['require','exports','module','../p
 
         //setup spring
         this.spring.setOptions({
-            period       : definition.period,
-            dampingRatio : definition.dampingRatio
+            period: definition.period,
+            dampingRatio: definition.dampingRatio
         });
 
         //setup particle
@@ -14574,7 +14605,7 @@ define('famous/transitions/SpringTransition',['require','exports','module','../p
  * @copyright Famous Industries, Inc. 2014
  */
 
-define('famous/transitions/WallTransition',['require','exports','module','../physics/PhysicsEngine','../physics/bodies/Particle','../physics/forces/Spring','../physics/constraints/Wall','../math/Vector'],function(require, exports, module) {
+define('famous/transitions/WallTransition', ['require', 'exports', 'module', '../physics/PhysicsEngine', '../physics/bodies/Particle', '../physics/forces/Spring', '../physics/constraints/Wall', '../math/Vector'], function (require, exports, module) {
     var PE = require('../physics/PhysicsEngine');
     var Particle = require('../physics/bodies/Particle');
     var Spring = require('../physics/forces/Spring');
@@ -14595,11 +14626,11 @@ define('famous/transitions/WallTransition',['require','exports','module','../phy
     function WallTransition(state) {
         state = state || 0;
 
-        this.endState  = new Vector(state);
+        this.endState = new Vector(state);
         this.initState = new Vector();
 
-        this.spring = new Spring({anchor : this.endState});
-        this.wall   = new Wall();
+        this.spring = new Spring({anchor: this.endState});
+        this.wall = new Wall();
 
         this._restTolerance = 1e-10;
         this._dimensions = 1;
@@ -14632,7 +14663,7 @@ define('famous/transitions/WallTransition',['require','exports','module','../phy
          * @type Number
          * @default 300
          */
-        period : 300,
+        period: 300,
 
         /**
          * The damping of the snap.
@@ -14644,7 +14675,7 @@ define('famous/transitions/WallTransition',['require','exports','module','../phy
          * @type Number
          * @default 0.5
          */
-        dampingRatio : 0.5,
+        dampingRatio: 0.5,
 
         /**
          * The initial velocity of the transition.
@@ -14653,7 +14684,7 @@ define('famous/transitions/WallTransition',['require','exports','module','../phy
          * @type Number|Array
          * @default 0
          */
-        velocity : 0,
+        velocity: 0,
 
         /**
          * The percentage of momentum transferred to the wall
@@ -14662,7 +14693,7 @@ define('famous/transitions/WallTransition',['require','exports','module','../phy
          * @type Number
          * @default 0.5
          */
-        restitution : 0.5
+        restitution: 0.5
     };
 
     function _getEnergy() {
@@ -14690,8 +14721,8 @@ define('famous/transitions/WallTransition',['require','exports','module','../phy
         var dist = this.endState.sub(this.initState).norm();
 
         this.wall.setOptions({
-            distance : this.endState.norm(),
-            normal : (dist === 0)
+            distance: this.endState.norm(),
+            normal: (dist === 0)
                 ? this.particle.velocity.normalize(-1)
                 : this.endState.sub(this.initState).normalize(-1)
         });
@@ -14736,7 +14767,7 @@ define('famous/transitions/WallTransition',['require','exports','module','../phy
         if (energy < this._absRestTolerance) {
             _sleep.call(this);
             _setParticlePosition.call(this, this.endState);
-            _setParticleVelocity.call(this, [0,0,0]);
+            _setParticleVelocity.call(this, [0, 0, 0]);
         }
     }
 
@@ -14751,13 +14782,13 @@ define('famous/transitions/WallTransition',['require','exports','module','../phy
 
         //setup spring
         this.spring.setOptions({
-            period : def.period,
-            dampingRatio : def.dampingRatio
+            period: def.period,
+            dampingRatio: def.dampingRatio
         });
 
         //setup wall
         this.wall.setOptions({
-            restitution : def.restitution,
+            restitution: def.restitution,
             drift: def.drift,
             slop: def.slop
         });
@@ -14878,7 +14909,7 @@ define('famous/transitions/WallTransition',['require','exports','module','../phy
  * @copyright Famous Industries, Inc. 2014
  */
 
-define('famous/utilities/KeyCodes',['require','exports','module'],function(require, exports, module) {
+define('famous/utilities/KeyCodes', ['require', 'exports', 'module'], function (require, exports, module) {
 
     /**
      * Collection to map keyboard codes in plain english
@@ -14887,69 +14918,69 @@ define('famous/utilities/KeyCodes',['require','exports','module'],function(requi
      * @static
      */
     var KeyCodes = {
-        0 : 48,
-        1 : 49,
-        2 : 50,
-        3 : 51,
-        4 : 52,
-        5 : 53,
-        6 : 54,
-        7 : 55,
-        8 : 56,
-        9 : 57,
-        a : 97,
-        b : 98,
-        c : 99,
-        d : 100,
-        e : 101,
-        f : 102,
-        g : 103,
-        h : 104,
-        i : 105,
-        j : 106,
-        k : 107,
-        l : 108,
-        m : 109,
-        n : 110,
-        o : 111,
-        p : 112,
-        q : 113,
-        r : 114,
-        s : 115,
-        t : 116,
-        u : 117,
-        v : 118,
-        w : 119,
-        x : 120,
-        y : 121,
-        z : 122,
-        A : 65,
-        B : 66,
-        C : 67,
-        D : 68,
-        E : 69,
-        F : 70,
-        G : 71,
-        H : 72,
-        I : 73,
-        J : 74,
-        K : 75,
-        L : 76,
-        M : 77,
-        N : 78,
-        O : 79,
-        P : 80,
-        Q : 81,
-        R : 82,
-        S : 83,
-        T : 84,
-        U : 85,
-        V : 86,
-        W : 87,
-        X : 88,
-        Y : 89,
-        Z : 90,
-        ENTER : 13,
+        0: 48,
+        1: 49,
+        2: 50,
+        3: 51,
+        4: 52,
+        5: 53,
+        6: 54,
+        7: 55,
+        8: 56,
+        9: 57,
+        a: 97,
+        b: 98,
+        c: 99,
+        d: 100,
+        e: 101,
+        f: 102,
+        g: 103,
+        h: 104,
+        i: 105,
+        j: 106,
+        k: 107,
+        l: 108,
+        m: 109,
+        n: 110,
+        o: 111,
+        p: 112,
+        q: 113,
+        r: 114,
+        s: 115,
+        t: 116,
+        u: 117,
+        v: 118,
+        w: 119,
+        x: 120,
+        y: 121,
+        z: 122,
+        A: 65,
+        B: 66,
+        C: 67,
+        D: 68,
+        E: 69,
+        F: 70,
+        G: 71,
+        H: 72,
+        I: 73,
+        J: 74,
+        K: 75,
+        L: 76,
+        M: 77,
+        N: 78,
+        O: 79,
+        P: 80,
+        Q: 81,
+        R: 82,
+        S: 83,
+        T: 84,
+        U: 85,
+        V: 86,
+        W: 87,
+        X: 88,
+        Y: 89,
+        Z: 90,
+        ENTER: 13,
         LEFT_ARROW: 37,
         RIGHT_ARROW: 39,
         UP_ARROW: 38,
@@ -14973,7 +15004,7 @@ define('famous/utilities/KeyCodes',['require','exports','module'],function(requi
 // TODO fix func-style
 /*eslint func-style: [0, "declaration"] */
 
-define('famous/utilities/Timer',['require','exports','module','../core/Engine'],function(require, exports, module) {
+define('famous/utilities/Timer', ['require', 'exports', 'module', '../core/Engine'], function (require, exports, module) {
     /**
      * An internal library to reproduce javascript time-based scheduling.
      *   Using standard javascript setTimeout methods can have a negative performance impact
@@ -14985,15 +15016,15 @@ define('famous/utilities/Timer',['require','exports','module','../core/Engine'],
      */
     var FamousEngine = require('../core/Engine');
 
-    var _event  = 'prerender';
+    var _event = 'prerender';
 
     var getTime = (window.performance && window.performance.now) ?
-        function() {
+        function () {
             return window.performance.now();
         }
-        : function() {
-            return Date.now();
-        };
+        : function () {
+        return Date.now();
+    };
 
     /**
      * Add a function to be run on every prerender
@@ -15023,7 +15054,7 @@ define('famous/utilities/Timer',['require','exports','module','../core/Engine'],
      */
     function setTimeout(fn, duration) {
         var t = getTime();
-        var callback = function() {
+        var callback = function () {
             var t2 = getTime();
             if (t2 - t >= duration) {
                 fn.apply(this, arguments);
@@ -15047,7 +15078,7 @@ define('famous/utilities/Timer',['require','exports','module','../core/Engine'],
      */
     function setInterval(fn, duration) {
         var t = getTime();
-        var callback = function() {
+        var callback = function () {
             var t2 = getTime();
             if (t2 - t >= duration) {
                 fn.apply(this, arguments);
@@ -15070,7 +15101,7 @@ define('famous/utilities/Timer',['require','exports','module','../core/Engine'],
      */
     function after(fn, numTicks) {
         if (numTicks === undefined) return undefined;
-        var callback = function() {
+        var callback = function () {
             numTicks--;
             if (numTicks <= 0) { //in case numTicks is fraction or negative
                 fn.apply(this, arguments);
@@ -15094,7 +15125,7 @@ define('famous/utilities/Timer',['require','exports','module','../core/Engine'],
     function every(fn, numTicks) {
         numTicks = numTicks || 1;
         var initial = numTicks;
-        var callback = function() {
+        var callback = function () {
             numTicks--;
             if (numTicks <= 0) { //in case numTicks is fraction or negative
                 fn.apply(this, arguments);
@@ -15132,12 +15163,12 @@ define('famous/utilities/Timer',['require','exports','module','../core/Engine'],
         var timestamp;
         var result;
         var args;
-        return function() {
+        return function () {
             ctx = this;
             args = arguments;
             timestamp = getTime();
 
-            var fn = function() {
+            var fn = function () {
                 var last = getTime - timestamp;
 
                 if (last < wait) {
@@ -15156,12 +15187,12 @@ define('famous/utilities/Timer',['require','exports','module','../core/Engine'],
     }
 
     module.exports = {
-        setTimeout : setTimeout,
-        setInterval : setInterval,
-        debounce : debounce,
-        after : after,
-        every : every,
-        clear : clear
+        setTimeout: setTimeout,
+        setInterval: setInterval,
+        debounce: debounce,
+        after: after,
+        every: every,
+        clear: clear
     };
 
 });
@@ -15175,7 +15206,7 @@ define('famous/utilities/Timer',['require','exports','module','../core/Engine'],
  * @copyright Famous Industries, Inc. 2014
  */
 
-define('famous/views/ContextualView',['require','exports','module','../core/Entity','../core/Transform','../core/EventHandler','../core/OptionsManager'],function(require, exports, module) {
+define('famous/views/ContextualView', ['require', 'exports', 'module', '../core/Entity', '../core/Transform', '../core/EventHandler', '../core/OptionsManager'], function (require, exports, module) {
     var Entity = require('../core/Entity');
     var Transform = require('../core/Transform');
     var EventHandler = require('../core/EventHandler');
@@ -15246,7 +15277,8 @@ define('famous/views/ContextualView',['require','exports','module','../core/Enti
      * @method commit
      * @param {Context} context commit context
      */
-    ContextualView.prototype.commit = function commit(context) {};
+    ContextualView.prototype.commit = function commit(context) {
+    };
 
     module.exports = ContextualView;
 });
@@ -15260,7 +15292,7 @@ define('famous/views/ContextualView',['require','exports','module','../core/Enti
  * @copyright Famous Industries, Inc. 2014
  */
 
-define('famous/views/SequentialLayout',['require','exports','module','../core/OptionsManager','../core/Transform','../core/ViewSequence','../utilities/Utility'],function(require, exports, module) {
+define('famous/views/SequentialLayout', ['require', 'exports', 'module', '../core/OptionsManager', '../core/Transform', '../core/ViewSequence', '../utilities/Utility'], function (require, exports, module) {
     var OptionsManager = require('../core/OptionsManager');
     var Transform = require('../core/Transform');
     var ViewSequence = require('../core/ViewSequence');
@@ -15358,14 +15390,14 @@ define('famous/views/SequentialLayout',['require','exports','module','../core/Op
      * @return {number} Render spec for this component
      */
     SequentialLayout.prototype.render = function render() {
-        var length             = 0;
+        var length = 0;
         var secondaryDirection = this.options.direction ^ 1;
-        var currentNode        = this._items;
-        var item               = null;
-        var itemSize           = [];
-        var output             = {};
-        var result             = [];
-        var i                  = 0;
+        var currentNode = this._items;
+        var item = null;
+        var itemSize = [];
+        var output = {};
+        var result = [];
+        var i = 0;
 
         this._size = [0, 0];
 
@@ -15409,7 +15441,7 @@ define('famous/views/SequentialLayout',['require','exports','module','../core/Op
  * @copyright Famous Industries, Inc. 2014
  */
 
-define('famous/views/Deck',['require','exports','module','../core/Transform','../core/OptionsManager','../transitions/Transitionable','../utilities/Utility','./SequentialLayout'],function(require, exports, module) {
+define('famous/views/Deck', ['require', 'exports', 'module', '../core/Transform', '../core/OptionsManager', '../transitions/Transitionable', '../utilities/Utility', './SequentialLayout'], function (require, exports, module) {
     var Transform = require('../core/Transform');
     var OptionsManager = require('../core/OptionsManager');
     var Transitionable = require('../transitions/Transitionable');
@@ -15440,7 +15472,7 @@ define('famous/views/Deck',['require','exports','module','../core/Transform','..
         this.state = new Transitionable(0);
         this._isOpen = false;
 
-        this.setOutputFunction(function(input, offset, index) {
+        this.setOutputFunction(function (input, offset, index) {
             var state = _getState.call(this);
             var positionMatrix = (this.options.direction === Utility.Direction.X) ?
                 Transform.translate(state * offset, 0, 0.001 * (state - 1) * offset) :
@@ -15461,6 +15493,7 @@ define('famous/views/Deck',['require','exports','module','../core/Transform','..
             };
         });
     }
+
     Deck.prototype = Object.create(SequentialLayout.prototype);
     Deck.prototype.constructor = Deck;
 
@@ -15516,7 +15549,7 @@ define('famous/views/Deck',['require','exports','module','../core/Transform','..
      */
     Deck.prototype.open = function open(callback) {
         this._isOpen = true;
-       _setState.call(this, 1, this.options.transition, callback);
+        _setState.call(this, 1, this.options.transition, callback);
     };
 
     /**
@@ -15553,7 +15586,7 @@ define('famous/views/Deck',['require','exports','module','../core/Transform','..
  * @copyright Famous Industries, Inc. 2014
  */
 
-define('famous/views/DrawerLayout',['require','exports','module','../core/RenderNode','../core/Transform','../core/OptionsManager','../transitions/Transitionable','../core/EventHandler'],function(require, exports, module) {
+define('famous/views/DrawerLayout', ['require', 'exports', 'module', '../core/RenderNode', '../core/Transform', '../core/OptionsManager', '../transitions/Transitionable', '../core/EventHandler'], function (require, exports, module) {
     var RenderNode = require('../core/RenderNode');
     var Transform = require('../core/Transform');
     var OptionsManager = require('../core/OptionsManager');
@@ -15610,18 +15643,18 @@ define('famous/views/DrawerLayout',['require','exports','module','../core/Render
     var DIRECTION_Y = 1;
 
     DrawerLayout.SIDES = {
-        LEFT   : 0,
-        TOP    : 1,
-        RIGHT  : 2,
-        BOTTOM : 3
+        LEFT: 0,
+        TOP: 1,
+        RIGHT: 2,
+        BOTTOM: 3
     };
 
     DrawerLayout.DEFAULT_OPTIONS = {
         side: DrawerLayout.SIDES.LEFT,
-        drawerLength : 0,
-        velocityThreshold : 0,
-        positionThreshold : 0,
-        transition : true
+        drawerLength: 0,
+        velocityThreshold: 0,
+        positionThreshold: 0,
+        transition: true
     };
 
     function _getDirectionFromSide(side) {
@@ -15652,7 +15685,7 @@ define('famous/views/DrawerLayout',['require','exports','module','../core/Render
         var MAX_LENGTH;
         this._cachedLength = _resolveNodeSize.call(this, this.drawer);
 
-        if (this._orientation === 1){
+        if (this._orientation === 1) {
             MIN_LENGTH = 0;
             MAX_LENGTH = this._cachedLength;
         }
@@ -15739,7 +15772,7 @@ define('famous/views/DrawerLayout',['require','exports','module','../core/Render
         if (transition instanceof Function) callback = transition;
         if (transition === undefined) transition = this.options.transition;
         this.setPosition(0, transition, callback);
-        if (this._isOpen){
+        if (this._isOpen) {
             this._isOpen = false;
             this._eventOutput.emit('close');
         }
@@ -15844,7 +15877,7 @@ define('famous/views/DrawerLayout',['require','exports','module','../core/Render
 
         return [
             {
-                transform : Transform.behind,
+                transform: Transform.behind,
                 target: this.drawer.render()
             },
             {
@@ -15866,7 +15899,7 @@ define('famous/views/DrawerLayout',['require','exports','module','../core/Render
  * @copyright Famous Industries, Inc. 2014
  */
 
-define('famous/views/RenderController',['require','exports','module','../core/Modifier','../core/RenderNode','../core/Transform','../transitions/Transitionable','../core/View'],function(require, exports, module) {
+define('famous/views/RenderController', ['require', 'exports', 'module', '../core/Modifier', '../core/RenderNode', '../core/Transform', '../transitions/Transitionable', '../core/View'], function (require, exports, module) {
     var Modifier = require('../core/Modifier');
     var RenderNode = require('../core/RenderNode');
     var Transform = require('../core/Transform');
@@ -15882,8 +15915,8 @@ define('famous/views/RenderController',['require','exports','module','../core/Mo
      * @param {Transition} [outTransition=true]  The transition in charge of removing your previous renderable when
      * you show a new one, or hiding your current renderable.
      * @param {Boolean} [overlap=true] When showing a new renderable, overlap determines if the
-      out transition of the old one executes concurrently with the in transition of the new one,
-       or synchronously beforehand.
+     out transition of the old one executes concurrently with the in transition of the new one,
+     or synchronously beforehand.
      */
     function RenderController(options) {
         View.apply(this, arguments);
@@ -15908,6 +15941,7 @@ define('famous/views/RenderController',['require','exports','module','../core/Mo
 
         this._output = [];
     }
+
     RenderController.prototype = Object.create(View.prototype);
     RenderController.prototype.constructor = RenderController;
 
@@ -15918,10 +15952,10 @@ define('famous/views/RenderController',['require','exports','module','../core/Mo
     };
 
     RenderController.DefaultMap = {
-        transform: function() {
+        transform: function () {
             return Transform.identity;
         },
-        opacity: function(progress) {
+        opacity: function (progress) {
             return progress;
         },
         origin: null,
@@ -16085,7 +16119,7 @@ define('famous/views/RenderController',['require','exports','module','../core/Mo
                 }
                 else {
                     this._nextRenderable = renderable;
-                    this.hide(function() {
+                    this.hide(function () {
                         if (this._nextRenderable === renderable) this.show(this._nextRenderable, callback);
                         this._nextRenderable = null;
                     });
@@ -16162,7 +16196,7 @@ define('famous/views/RenderController',['require','exports','module','../core/Mo
 
         if (!transition) transition = this.options.outTransition;
         state.halt();
-        state.set(0, transition, function(node, modifier, state, renderable) {
+        state.set(0, transition, function (node, modifier, state, renderable) {
             if (this._outgoingRenderables.indexOf(renderable) >= 0) {
                 var index = this._nodes.indexOf(node);
                 this._nodes.splice(index, 1);
@@ -16205,7 +16239,7 @@ define('famous/views/RenderController',['require','exports','module','../core/Mo
  * @copyright Famous Industries, Inc. 2014
  */
 
-define('famous/views/EdgeSwapper',['require','exports','module','../transitions/CachedMap','../core/Entity','../core/EventHandler','../core/Transform','./RenderController'],function(require, exports, module) {
+define('famous/views/EdgeSwapper', ['require', 'exports', 'module', '../transitions/CachedMap', '../core/Entity', '../core/EventHandler', '../core/Transform', './RenderController'], function (require, exports, module) {
     var CachedMap = require('../transitions/CachedMap');
     var Entity = require('../core/Entity');
     var EventHandler = require('../core/EventHandler');
@@ -16312,7 +16346,7 @@ define('famous/views/EdgeSwapper',['require','exports','module','../transitions/
  * @copyright Famous Industries, Inc. 2014
  */
 
-define('famous/views/FlexibleLayout',['require','exports','module','../core/Entity','../core/Transform','../core/OptionsManager','../core/EventHandler','../transitions/Transitionable'],function(require, exports, module) {
+define('famous/views/FlexibleLayout', ['require', 'exports', 'module', '../core/Entity', '../core/Transform', '../core/OptionsManager', '../core/EventHandler', '../transitions/Transitionable'], function (require, exports, module) {
     var Entity = require('../core/Entity');
     var Transform = require('../core/Transform');
     var OptionsManager = require('../core/OptionsManager');
@@ -16356,7 +16390,7 @@ define('famous/views/FlexibleLayout',['require','exports','module','../core/Enti
     FlexibleLayout.DEFAULT_OPTIONS = {
         direction: FlexibleLayout.DIRECTION_X,
         transition: false,
-        ratios : []
+        ratios: []
     };
 
     function _reflow(ratios, length, direction) {
@@ -16371,7 +16405,7 @@ define('famous/views/FlexibleLayout',['require','exports','module','../core/Enti
         this._cachedLengths = [];
         this._cachedTransforms = [];
 
-        for (i = 0; i < ratios.length; i++){
+        for (i = 0; i < ratios.length; i++) {
             ratio = ratios[i];
             node = this._nodes[i];
 
@@ -16513,14 +16547,14 @@ define('famous/views/FlexibleLayout',['require','exports','module','../core/Enti
             length = this._cachedLengths[i];
             size[direction] = length;
             result.push({
-                transform : this._cachedTransforms[i],
+                transform: this._cachedTransforms[i],
                 size: size,
-                target : this._nodes[i].render()
+                target: this._nodes[i].render()
             });
         }
 
         if (parentSize && (parentOrigin[0] !== 0 && parentOrigin[1] !== 0))
-            parentTransform = Transform.moveThen([-parentSize[0]*parentOrigin[0], -parentSize[1]*parentOrigin[1], 0], parentTransform);
+            parentTransform = Transform.moveThen([-parentSize[0] * parentOrigin[0], -parentSize[1] * parentOrigin[1], 0], parentTransform);
 
         return {
             transform: parentTransform,
@@ -16542,7 +16576,7 @@ define('famous/views/FlexibleLayout',['require','exports','module','../core/Enti
  * @copyright Famous Industries, Inc. 2014
  */
 
-define('famous/views/Flipper',['require','exports','module','../core/Transform','../transitions/Transitionable','../core/RenderNode','../core/OptionsManager'],function(require, exports, module) {
+define('famous/views/Flipper', ['require', 'exports', 'module', '../core/Transform', '../transitions/Transitionable', '../core/RenderNode', '../core/OptionsManager'], function (require, exports, module) {
     var Transform = require('../core/Transform');
     var Transitionable = require('../transitions/Transitionable');
     var RenderNode = require('../core/RenderNode');
@@ -16664,14 +16698,14 @@ define('famous/views/Flipper',['require','exports','module','../core/Transform',
         }
 
         var result = [];
-        if (this.frontNode){
+        if (this.frontNode) {
             result.push({
                 transform: frontTransform,
                 target: this.frontNode.render()
             });
         }
 
-        if (this.backNode){
+        if (this.backNode) {
             result.push({
                 transform: Transform.moveThen([0, 0, SEPERATION_LENGTH], backTransform),
                 target: this.backNode.render()
@@ -16693,7 +16727,7 @@ define('famous/views/Flipper',['require','exports','module','../core/Transform',
  * @copyright Famous Industries, Inc. 2014
  */
 
-define('famous/views/GridLayout',['require','exports','module','../core/Entity','../core/RenderNode','../core/Transform','../core/ViewSequence','../core/EventHandler','../core/Modifier','../core/OptionsManager','../transitions/Transitionable','../transitions/TransitionableTransform'],function(require, exports, module) {
+define('famous/views/GridLayout', ['require', 'exports', 'module', '../core/Entity', '../core/RenderNode', '../core/Transform', '../core/ViewSequence', '../core/EventHandler', '../core/Modifier', '../core/OptionsManager', '../transitions/Transitionable', '../transitions/TransitionableTransform'], function (require, exports, module) {
     var Entity = require('../core/Entity');
     var RenderNode = require('../core/RenderNode');
     var Transform = require('../core/Transform');
@@ -16768,7 +16802,7 @@ define('famous/views/GridLayout',['require','exports','module','../core/Entity',
 
         this._activeCount = rows * cols;
 
-        for (i = this._activeCount ; i < this._modifiers.length; i++) _animateModifier.call(this, i, [Math.round(colSize), Math.round(rowSize)], [0, 0], 0);
+        for (i = this._activeCount; i < this._modifiers.length; i++) _animateModifier.call(this, i, [Math.round(colSize), Math.round(rowSize)], [0, 0], 0);
 
         this._eventOutput.emit('reflow');
     }
@@ -16854,7 +16888,7 @@ define('famous/views/GridLayout',['require','exports','module','../core/Entity',
      * @return {Array} Total size of the grid layout.
      */
     GridLayout.prototype.getSize = function getSize() {
-      return this._contextSizeCache;
+        return this._contextSizeCache;
     };
 
     /**
@@ -16901,7 +16935,7 @@ define('famous/views/GridLayout',['require','exports','module','../core/Entity',
             currIndex++;
         }
 
-        if (size) transform = Transform.moveThen([-size[0]*origin[0], -size[1]*origin[1], 0], transform);
+        if (size) transform = Transform.moveThen([-size[0] * origin[0], -size[1] * origin[1], 0], transform);
         return {
             transform: transform,
             opacity: opacity,
@@ -16922,7 +16956,7 @@ define('famous/views/GridLayout',['require','exports','module','../core/Entity',
  * @copyright Famous Industries, Inc. 2014
  */
 
-define('famous/views/HeaderFooterLayout',['require','exports','module','../core/Entity','../core/RenderNode','../core/Transform','../core/OptionsManager'],function(require, exports, module) {
+define('famous/views/HeaderFooterLayout', ['require', 'exports', 'module', '../core/Entity', '../core/RenderNode', '../core/Transform', '../core/OptionsManager'], function (require, exports, module) {
     var Entity = require('../core/Entity');
     var RenderNode = require('../core/RenderNode');
     var Transform = require('../core/Transform');
@@ -16930,7 +16964,7 @@ define('famous/views/HeaderFooterLayout',['require','exports','module','../core/
 
     /**
      * A layout which will arrange three renderables into a header and footer area of defined size,
-      and a content area of flexible size.
+     and a content area of flexible size.
      * @class HeaderFooterLayout
      * @constructor
      * @param {Options} [options] An object of configurable options.
@@ -17039,7 +17073,7 @@ define('famous/views/HeaderFooterLayout',['require','exports','module','../core/
         var footerSize = (this.options.footerSize !== undefined) ? this.options.footerSize : _resolveNodeSize.call(this, this.footer, this.options.defaultFooterSize);
         var contentSize = size[this.options.direction] - headerSize - footerSize;
 
-        if (size) transform = Transform.moveThen([-size[0]*origin[0], -size[1]*origin[1], 0], transform);
+        if (size) transform = Transform.moveThen([-size[0] * origin[0], -size[1] * origin[1], 0], transform);
 
         var result = [
             {
@@ -17069,7 +17103,7 @@ define('famous/views/HeaderFooterLayout',['require','exports','module','../core/
     module.exports = HeaderFooterLayout;
 });
 
-define('famous/views/Lightbox',['require','exports','module','../core/Transform','../core/Modifier','../core/RenderNode','../utilities/Utility','../core/OptionsManager','../transitions/Transitionable','../transitions/TransitionableTransform'],function(require, exports, module) {
+define('famous/views/Lightbox', ['require', 'exports', 'module', '../core/Transform', '../core/Modifier', '../core/RenderNode', '../utilities/Utility', '../core/OptionsManager', '../transitions/Transitionable', '../transitions/TransitionableTransform'], function (require, exports, module) {
     var Transform = require('../core/Transform');
     var Modifier = require('../core/Modifier');
     var RenderNode = require('../core/RenderNode');
@@ -17111,7 +17145,7 @@ define('famous/views/Lightbox',['require','exports','module','../core/Transform'
      * you show a new one, or hiding your current renderable.
      * @param {Boolean} [options.overlap=false] When showing a new renderable, overlap determines if the
      *   out transition of the old one executes concurrently with the in transition of the new one,
-      *  or synchronously beforehand.
+     *  or synchronously beforehand.
      */
     function Lightbox(options) {
         this.options = Object.create(Lightbox.DEFAULT_OPTIONS);
@@ -17153,7 +17187,7 @@ define('famous/views/Lightbox',['require','exports','module','../core/Transform'
         return this._optionsManager.setOptions(options);
     };
 
-   /**
+    /**
      * Show displays the targeted renderable with a transition and an optional callback to
      *  execute afterwards.
      * @method show
@@ -17227,7 +17261,7 @@ define('famous/views/Lightbox',['require','exports','module','../core/Transform'
         var node = this.nodes[this.nodes.length - 1];
         var transform = this.transforms[this.transforms.length - 1];
         var stateItem = this.states[this.states.length - 1];
-        var _cb = Utility.after(3, function() {
+        var _cb = Utility.after(3, function () {
             this.nodes.splice(this.nodes.indexOf(node), 1);
             this.states.splice(this.states.indexOf(stateItem), 1);
             this.transforms.splice(this.transforms.indexOf(transform), 1);
@@ -17259,7 +17293,7 @@ define('famous/views/Lightbox',['require','exports','module','../core/Transform'
     module.exports = Lightbox;
 });
 
-define('famous/views/Scroller',['require','exports','module','../core/Entity','../core/Group','../core/OptionsManager','../core/Transform','../utilities/Utility','../core/ViewSequence','../core/EventHandler'],function(require, exports, module) {
+define('famous/views/Scroller', ['require', 'exports', 'module', '../core/Entity', '../core/Group', '../core/OptionsManager', '../core/Transform', '../utilities/Utility', '../core/ViewSequence', '../core/EventHandler'], function (require, exports, module) {
     var Entity = require('../core/Entity');
     var Group = require('../core/Group');
     var OptionsManager = require('../core/OptionsManager');
@@ -17274,7 +17308,7 @@ define('famous/views/Scroller',['require','exports','module','../core/Entity','.
      * when you've hit the 'edges' of it's renderable collection.
      * @class Scroller
      * @constructor
-      * @event error
+     * @event error
      * @param {Options} [options] An object of configurable options.
      * @param {Number} [options.direction=Utility.Direction.Y] Using the direction helper found in the famous Utility
      * module, this option will lay out the Scroller instance's renderables either horizontally
@@ -17347,11 +17381,11 @@ define('famous/views/Scroller',['require','exports','module','../core/Entity','.
     }
 
     /**
-    * Returns the cumulative size of the renderables in the view sequence
-    * @method getCumulativeSize
-    * @return {array} a two value array of the view sequence's cumulative size up to the index.
-    */
-    Scroller.prototype.getCumulativeSize = function(index) {
+     * Returns the cumulative size of the renderables in the view sequence
+     * @method getCumulativeSize
+     * @return {array} a two value array of the view sequence's cumulative size up to the index.
+     */
+    Scroller.prototype.getCumulativeSize = function (index) {
         if (index === undefined) index = this._node._.cumulativeSizes.length - 1;
         return this._node._.getSize(index);
     };
@@ -17391,13 +17425,13 @@ define('famous/views/Scroller',['require','exports','module','../core/Entity','.
      */
     Scroller.prototype.outputFrom = function outputFrom(fn, masterFn) {
         if (!fn) {
-            fn = function(offset) {
+            fn = function (offset) {
                 return (this.options.direction === Utility.Direction.X) ? Transform.translate(offset, 0) : Transform.translate(0, offset);
             }.bind(this);
             if (!masterFn) masterFn = fn;
         }
         this._outputFunction = fn;
-        this._masterOutputFunction = masterFn ? masterFn : function(offset) {
+        this._masterOutputFunction = masterFn ? masterFn : function (offset) {
             return Transform.inverse(fn(-offset));
         };
     };
@@ -17525,7 +17559,7 @@ define('famous/views/Scroller',['require','exports','module','../core/Entity','.
         }
 
         if (!currNode && offset - position < clipSize - EDGE_TOLERANCE) {
-            if (this._onEdge !== 1){
+            if (this._onEdge !== 1) {
                 this._onEdge = 1;
                 this._eventOutput.emit('onEdge', {
                     position: offset - clipSize
@@ -17541,7 +17575,7 @@ define('famous/views/Scroller',['require','exports','module','../core/Entity','.
             }
         }
         else {
-            if (this._onEdge !== 0){
+            if (this._onEdge !== 0) {
                 this._onEdge = 0;
                 this._eventOutput.emit('offEdge');
             }
@@ -17579,7 +17613,7 @@ define('famous/views/Scroller',['require','exports','module','../core/Entity','.
  * @copyright Famous Industries, Inc. 2014
  */
 
-define('famous/views/Scrollview',['require','exports','module','../physics/PhysicsEngine','../physics/bodies/Particle','../physics/forces/Drag','../physics/forces/Spring','../core/EventHandler','../core/OptionsManager','../core/ViewSequence','../views/Scroller','../utilities/Utility','../inputs/GenericSync','../inputs/ScrollSync','../inputs/TouchSync'],function(require, exports, module) {
+define('famous/views/Scrollview', ['require', 'exports', 'module', '../physics/PhysicsEngine', '../physics/bodies/Particle', '../physics/forces/Drag', '../physics/forces/Spring', '../core/EventHandler', '../core/OptionsManager', '../core/ViewSequence', '../views/Scroller', '../utilities/Utility', '../inputs/GenericSync', '../inputs/ScrollSync', '../inputs/TouchSync'], function (require, exports, module) {
     var PhysicsEngine = require('../physics/PhysicsEngine');
     var Particle = require('../physics/bodies/Particle');
     var Drag = require('../physics/forces/Drag');
@@ -17594,7 +17628,7 @@ define('famous/views/Scrollview',['require','exports','module','../physics/Physi
     var GenericSync = require('../inputs/GenericSync');
     var ScrollSync = require('../inputs/ScrollSync');
     var TouchSync = require('../inputs/TouchSync');
-    GenericSync.register({scroll : ScrollSync, touch : TouchSync});
+    GenericSync.register({scroll: ScrollSync, touch: TouchSync});
 
     /** @const */
     var TOLERANCE = 0.5;
@@ -17608,8 +17642,8 @@ define('famous/views/Scrollview',['require','exports','module','../physics/Physi
 
     /** @enum */
     var EdgeStates = {
-        TOP:   -1,
-        NONE:   0,
+        TOP: -1,
+        NONE: 0,
         BOTTOM: 1
     };
 
@@ -17657,8 +17691,8 @@ define('famous/views/Scrollview',['require','exports','module','../physics/Physi
         this.sync = new GenericSync(
             ['scroll', 'touch'],
             {
-                direction : this.options.direction,
-                scale : this.options.syncScale,
+                direction: this.options.direction,
+                scale: this.options.syncScale,
                 rails: this.options.rails,
                 preventDefault: this.options.preventDefault !== undefined
                     ? this.options.preventDefault
@@ -17806,28 +17840,28 @@ define('famous/views/Scrollview',['require','exports','module','../physics/Physi
         this._eventInput.on('update', _handleMove);
         this._eventInput.on('end', _handleEnd);
 
-        this._eventInput.on('resize', function() {
+        this._eventInput.on('resize', function () {
             this._node._.calculateSize();
         }.bind(this));
 
-        this._scroller.on('onEdge', function(data) {
+        this._scroller.on('onEdge', function (data) {
             this._edgeSpringPosition = data.position;
             _handleEdge.call(this, this._scroller.onEdge());
             this._eventOutput.emit('onEdge');
         }.bind(this));
 
-        this._scroller.on('offEdge', function() {
+        this._scroller.on('offEdge', function () {
             this.sync.setOptions({scale: this.options.syncScale});
             this._onEdge = this._scroller.onEdge();
             this._eventOutput.emit('offEdge');
         }.bind(this));
 
-        this._particle.on('update', function(particle) {
+        this._particle.on('update', function (particle) {
             if (this._springState === SpringStates.NONE) _normalizeState.call(this);
             this._displacement = particle.position.x - this._totalShift;
         }.bind(this));
 
-        this._particle.on('end', function() {
+        this._particle.on('end', function () {
             if (!this.options.paginated || (this.options.paginated && this._springState !== SpringStates.NONE))
                 this._eventOutput.emit('settle');
         }.bind(this));
@@ -18238,7 +18272,7 @@ define('famous/views/Scrollview',['require','exports','module','../physics/Physi
  * @copyright Famous Industries, Inc. 2014
  */
 
-define('famous/views/ScrollContainer',['require','exports','module','../surfaces/ContainerSurface','../core/EventHandler','./Scrollview','../utilities/Utility','../core/OptionsManager'],function(require, exports, module) {
+define('famous/views/ScrollContainer', ['require', 'exports', 'module', '../surfaces/ContainerSurface', '../core/EventHandler', './Scrollview', '../utilities/Utility', '../core/OptionsManager'], function (require, exports, module) {
     var ContainerSurface = require('../surfaces/ContainerSurface');
     var EventHandler = require('../core/EventHandler');
     var Scrollview = require('./Scrollview');
@@ -18281,7 +18315,7 @@ define('famous/views/ScrollContainer',['require','exports','module','../surfaces
 
     ScrollContainer.DEFAULT_OPTIONS = {
         container: {
-            properties: {overflow : 'hidden'}
+            properties: {overflow: 'hidden'}
         },
         scrollview: {}
     };
@@ -18339,7 +18373,7 @@ define('famous/views/ScrollContainer',['require','exports','module','../surfaces
  * @copyright Famous Industries, Inc. 2014
  */
 
-define('famous/widgets/NavigationBar',['require','exports','module','../core/Scene','../core/Surface','../core/Transform','../core/View'],function(require, exports, module) {
+define('famous/widgets/NavigationBar', ['require', 'exports', 'module', '../core/Scene', '../core/Surface', '../core/Transform', '../core/View'], function (require, exports, module) {
     var Scene = require('../core/Scene');
     var Surface = require('../core/Surface');
     var Transform = require('../core/Transform');
@@ -18376,7 +18410,7 @@ define('famous/widgets/NavigationBar',['require','exports','module','../core/Sce
             classes: this.options.classes,
             content: this.options.backContent
         });
-        this.back.on('click', function() {
+        this.back.on('click', function () {
             this._eventOutput.emit('back', {});
         }.bind(this));
 
@@ -18385,7 +18419,7 @@ define('famous/widgets/NavigationBar',['require','exports','module','../core/Sce
             classes: this.options.classes,
             content: this.options.moreContent
         });
-        this.more.on('click', function() {
+        this.more.on('click', function () {
             this._eventOutput.emit('more', {});
         }.bind(this));
 
@@ -18415,7 +18449,7 @@ define('famous/widgets/NavigationBar',['require','exports','module','../core/Sce
 
         this._add(this.layout);
 
-        this._optionsManager.on('change', function(event) {
+        this._optionsManager.on('change', function (event) {
             var key = event.id;
             var data = event.value;
             if (key === 'size') {
@@ -18485,7 +18519,7 @@ define('famous/widgets/NavigationBar',['require','exports','module','../core/Sce
  * @copyright Famous Industries, Inc. 2014
  */
 
-define('famous/widgets/Slider',['require','exports','module','../core/Surface','../surfaces/CanvasSurface','../core/Transform','../core/EventHandler','../math/Utilities','../core/OptionsManager','../inputs/MouseSync','../inputs/TouchSync','../inputs/GenericSync'],function(require, exports, module) {
+define('famous/widgets/Slider', ['require', 'exports', 'module', '../core/Surface', '../surfaces/CanvasSurface', '../core/Transform', '../core/EventHandler', '../math/Utilities', '../core/OptionsManager', '../inputs/MouseSync', '../inputs/TouchSync', '../inputs/GenericSync'], function (require, exports, module) {
     var Surface = require('../core/Surface');
     var CanvasSurface = require('../surfaces/CanvasSurface');
     var Transform = require('../core/Transform');
@@ -18498,8 +18532,8 @@ define('famous/widgets/Slider',['require','exports','module','../core/Surface','
     var GenericSync = require('../inputs/GenericSync');
 
     GenericSync.register({
-        mouse : MouseSync,
-        touch : TouchSync
+        mouse: MouseSync,
+        touch: TouchSync
     });
 
     /** @constructor */
@@ -18510,13 +18544,13 @@ define('famous/widgets/Slider',['require','exports','module','../core/Surface','
 
         this.indicator = new CanvasSurface({
             size: this.options.indicatorSize,
-            classes : ['slider-back']
+            classes: ['slider-back']
         });
 
         this.label = new Surface({
             size: this.options.labelSize,
             content: this.options.label,
-            properties : {pointerEvents : 'none'},
+            properties: {pointerEvents: 'none'},
             classes: ['slider-label']
         });
 
@@ -18530,15 +18564,15 @@ define('famous/widgets/Slider',['require','exports','module','../core/Surface','
         this.sync = new GenericSync(
             ['mouse', 'touch'],
             {
-                scale : scale,
-                direction : GenericSync.DIRECTION_X
+                scale: scale,
+                direction: GenericSync.DIRECTION_X
             }
         );
 
         this.indicator.pipe(this.sync);
         this.sync.pipe(this);
 
-        this.eventInput.on('update', function(data) {
+        this.eventInput.on('update', function (data) {
             this.set(data.position);
         }.bind(this));
 
@@ -18590,7 +18624,7 @@ define('famous/widgets/Slider',['require','exports','module','../core/Surface','
         else if (fillSize > this._drawPos) {
             var ctx = this.indicator.getContext('2d');
             ctx.fillStyle = this.options.fillColor;
-            ctx.fillRect(this._drawPos-1, 0, fillSize - this._drawPos+1, this.options.indicatorSize[1]);
+            ctx.fillRect(this._drawPos - 1, 0, fillSize - this._drawPos + 1, this.options.indicatorSize[1]);
         }
         this._drawPos = fillSize;
 
@@ -18622,7 +18656,7 @@ define('famous/widgets/Slider',['require','exports','module','../core/Surface','
  * @copyright Famous Industries, Inc. 2014
  */
 
-define('famous/widgets/ToggleButton',['require','exports','module','../core/Surface','../core/EventHandler','../views/RenderController'],function(require, exports, module) {
+define('famous/widgets/ToggleButton', ['require', 'exports', 'module', '../core/Surface', '../core/EventHandler', '../views/RenderController'], function (require, exports, module) {
     var Surface = require('../core/Surface');
     var EventHandler = require('../core/EventHandler');
     var RenderController = require('../views/RenderController');
@@ -18653,19 +18687,19 @@ define('famous/widgets/ToggleButton',['require','exports','module','../core/Surf
         EventHandler.setOutputHandler(this, this._eventOutput);
 
         this.offSurface = new Surface();
-        this.offSurface.on('click', function() {
+        this.offSurface.on('click', function () {
             if (this.options.toggleMode !== ToggleButton.OFF) this.select();
         }.bind(this));
         this.offSurface.pipe(this._eventOutput);
 
         this.onSurface = new Surface();
-        this.onSurface.on('click', function() {
+        this.onSurface.on('click', function () {
             if (this.options.toggleMode !== ToggleButton.ON) this.deselect();
         }.bind(this));
         this.onSurface.pipe(this._eventOutput);
 
         this.arbiter = new RenderController({
-            overlap : this.options.crossfade
+            overlap: this.options.crossfade
         });
 
         this.deselect();
@@ -18796,7 +18830,7 @@ define('famous/widgets/ToggleButton',['require','exports','module','../core/Surf
  * @copyright Famous Industries, Inc. 2014
  */
 
-define('famous/widgets/TabBar',['require','exports','module','../utilities/Utility','../core/View','../views/GridLayout','./ToggleButton'],function(require, exports, module) {
+define('famous/widgets/TabBar', ['require', 'exports', 'module', '../utilities/Utility', '../core/View', '../views/GridLayout', './ToggleButton'], function (require, exports, module) {
     var Utility = require('../utilities/Utility');
     var View = require('../core/View');
     var GridLayout = require('../views/GridLayout');

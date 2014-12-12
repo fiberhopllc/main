@@ -7,7 +7,7 @@
  * @copyright Famous Industries, Inc. 2014
  */
 
-define(function(require, exports, module) {
+define(function (require, exports, module) {
 
     /**
      *
@@ -57,23 +57,23 @@ define(function(require, exports, module) {
      * @final
      */
     TweenTransition.Curves = {
-        linear: function(t) {
+        linear: function (t) {
             return t;
         },
-        easeIn: function(t) {
-            return t*t;
+        easeIn: function (t) {
+            return t * t;
         },
-        easeOut: function(t) {
-            return t*(2-t);
+        easeOut: function (t) {
+            return t * (2 - t);
         },
-        easeInOut: function(t) {
-            if (t <= 0.5) return 2*t*t;
-            else return -2*t*t + 4*t - 1;
+        easeInOut: function (t) {
+            if (t <= 0.5) return 2 * t * t;
+            else return -2 * t * t + 4 * t - 1;
         },
-        easeOutBounce: function(t) {
-            return t*(3 - 2*t);
+        easeOutBounce: function (t) {
+            return t * (3 - 2 * t);
         },
-        spring: function(t) {
+        spring: function (t) {
             return (1 - t) * Math.sin(6 * Math.PI * t) + t;
         }
     };
@@ -164,7 +164,7 @@ define(function(require, exports, module) {
         return registeredCurves;
     };
 
-     // Interpolate: If a linear function f(0) = a, f(1) = b, then return f(t)
+    // Interpolate: If a linear function f(0) = a, f(1) = b, then return f(t)
     function _interpolate(a, b, t) {
         return ((1 - t) * a) + (t * b);
     }
@@ -317,7 +317,7 @@ define(function(require, exports, module) {
         var speed = (curve(t) - curve(t - eps)) / eps;
         if (current instanceof Array) {
             velocity = [];
-            for (var i = 0; i < current.length; i++){
+            for (var i = 0; i < current.length; i++) {
                 if (typeof current[i] === 'number')
                     velocity[i] = speed * (current[i] - start[i]) / duration;
                 else
@@ -416,9 +416,10 @@ define(function(require, exports, module) {
     TweenTransition.registerCurve('spring', TweenTransition.Curves.spring);
 
     TweenTransition.customCurve = function customCurve(v1, v2) {
-        v1 = v1 || 0; v2 = v2 || 0;
-        return function(t) {
-            return v1*t + (-2*v1 - v2 + 3)*t*t + (v1 + v2 - 2)*t*t*t;
+        v1 = v1 || 0;
+        v2 = v2 || 0;
+        return function (t) {
+            return v1 * t + (-2 * v1 - v2 + 3) * t * t + (v1 + v2 - 2) * t * t * t;
         };
     };
 

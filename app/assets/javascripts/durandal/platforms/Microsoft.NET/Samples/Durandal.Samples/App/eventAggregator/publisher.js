@@ -6,7 +6,7 @@
 
     return {
         message: message,
-        canPublish:canPublish,
+        canPublish: canPublish,
         publish: function () {
             app.trigger('sample:event', message());
         }

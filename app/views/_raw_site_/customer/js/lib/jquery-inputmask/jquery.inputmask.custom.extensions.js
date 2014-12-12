@@ -10,15 +10,15 @@ $.extend($.inputmask.defaults.aliases, {
             ampm: new RegExp("^[a|p|A|P][m|M]")
         },
         separator: ':',
-        transform : function(buffer, position, element, opts){
-            return element.replace(/[\.\-\:]/gi,opts.separator[opts.separator.length - 1]);
+        transform: function (buffer, position, element, opts) {
+            return element.replace(/[\.\-\:]/gi, opts.separator[opts.separator.length - 1]);
         },
         definitions: {
             'h': { //val1 ~ hours
-                validator: function(chrs, buffer, pos, strict, opts) {
+                validator: function (chrs, buffer, pos, strict, opts) {
                     var isValid = opts.regex.hrs.test(chrs);
                     if (!strict && !isValid) {
-                        if (chrs.charAt(1) == opts.separator[opts.separator.length - 1] || "-.:".indexOf(chrs.charAt(1)) != -1 ) {
+                        if (chrs.charAt(1) == opts.separator[opts.separator.length - 1] || "-.:".indexOf(chrs.charAt(1)) != -1) {
                             isValid = opts.regex.hrs.test("0" + chrs.charAt(0));
                             if (isValid) {
                                 buffer[pos - 1] = "0";
@@ -29,52 +29,54 @@ $.extend($.inputmask.defaults.aliases, {
                         }
                     }
 
-                    if ( isValid && opts.regex.hrs24.test(chrs) ) {
+                    if (isValid && opts.regex.hrs24.test(chrs)) {
 
-                        var tmp = parseInt(chrs,10);
+                        var tmp = parseInt(chrs, 10);
 
-                        if ( tmp == 24 ) {
-                            buffer[pos+5] = "a";
-                            buffer[pos+6] = "m";
+                        if (tmp == 24) {
+                            buffer[pos + 5] = "a";
+                            buffer[pos + 6] = "m";
                         } else {
-                            buffer[pos+5] = "p";
-                            buffer[pos+6] = "m";
+                            buffer[pos + 5] = "p";
+                            buffer[pos + 6] = "m";
                         }
 
                         tmp = tmp - 12;
 
-                        if ( tmp < 10 ) {
+                        if (tmp < 10) {
                             buffer[pos] = tmp.toString();
-                            buffer[pos-1] = "0";
+                            buffer[pos - 1] = "0";
                         } else {
                             buffer[pos] = tmp.toString().charAt(1);
-                            buffer[pos-1] = tmp.toString().charAt(0);
+                            buffer[pos - 1] = tmp.toString().charAt(0);
                         }
 
-                        return { "pos": pos, "c" : buffer[pos] };
+                        return { "pos": pos, "c": buffer[pos] };
                     }
 
                     return isValid;
                 },
                 cardinality: 2,
-                prevalidator: [{ validator: function(chrs, buffer, pos, strict, opts) {
-                    var isValid = opts.regex.hrspre.test(chrs);
-                    if (!strict && !isValid) {
-                        isValid = opts.regex.hrs.test("0" + chrs);
-                        if (isValid) {
-                            buffer[pos] = "0";
-                            pos++;
-                            return { "pos": pos };
+                prevalidator: [
+                    { validator: function (chrs, buffer, pos, strict, opts) {
+                        var isValid = opts.regex.hrspre.test(chrs);
+                        if (!strict && !isValid) {
+                            isValid = opts.regex.hrs.test("0" + chrs);
+                            if (isValid) {
+                                buffer[pos] = "0";
+                                pos++;
+                                return { "pos": pos };
+                            }
                         }
-                    }
-                    return isValid;
-                }, cardinality: 1}]
+                        return isValid;
+                    }, cardinality: 1}
+                ]
             },
             't': { //val1 ~ hours
-                validator: function(chrs, buffer, pos, strict, opts) {
+                validator: function (chrs, buffer, pos, strict, opts) {
                     var isValid = opts.regex.ampm.test(chrs);
                     if (!strict && !isValid) {
-                        isValid = opts.regex.ampm.test(chrs+'m');
+                        isValid = opts.regex.ampm.test(chrs + 'm');
                         if (isValid) {
                             buffer[pos - 1] = chrs.charAt(0);
                             buffer[pos] = "m";
@@ -86,25 +88,27 @@ $.extend($.inputmask.defaults.aliases, {
                 },
                 casing: "lower",
                 cardinality: 2,
-                prevalidator: [{ validator: function(chrs, buffer, pos, strict, opts) {
-                    var isValid = opts.regex.ampmpre.test(chrs);
-                    if (isValid) {
-                        isValid = opts.regex.ampm.test(chrs+"m");
+                prevalidator: [
+                    { validator: function (chrs, buffer, pos, strict, opts) {
+                        var isValid = opts.regex.ampmpre.test(chrs);
                         if (isValid) {
-                            buffer[pos] = chrs;
-                            buffer[pos+1] = 'm';
-                            return pos;
+                            isValid = opts.regex.ampm.test(chrs + "m");
+                            if (isValid) {
+                                buffer[pos] = chrs;
+                                buffer[pos + 1] = 'm';
+                                return pos;
+                            }
                         }
-                    }
-                    return isValid;
-                }, cardinality: 1}]
+                        return isValid;
+                    }, cardinality: 1}
+                ]
             }
         },
         insertMode: false,
         autoUnmask: false
     },
 
-    'url' : {
+    'url': {
         mask: "ir",
         placeholder: "",
         separator: "",
@@ -121,29 +125,31 @@ $.extend($.inputmask.defaults.aliases, {
         },
         definitions: {
             'i': {
-                validator: function(chrs, buffer, pos, strict, opts) {
+                validator: function (chrs, buffer, pos, strict, opts) {
                     return true;
                 },
                 cardinality: 8,
-                prevalidator: (function(){
+                prevalidator: (function () {
                     var result = [], prefixLimit = 8;
-                    for( var i=0; i < prefixLimit; i++ ) {
-                        result[i] = (function(){
+                    for (var i = 0; i < prefixLimit; i++) {
+                        result[i] = (function () {
                             var j = i;
-                            return { validator: function(chrs, buffer, pos, strict, opts) {
-                                if ( opts.regex["urlpre"+(j+1)] ) {
+                            return { validator: function (chrs, buffer, pos, strict, opts) {
+                                if (opts.regex["urlpre" + (j + 1)]) {
                                     var tmp = chrs, k;
-                                    if ( ( ( j + 1 ) - chrs.length ) > 0 ) {
-                                        tmp = buffer.join('').substring(0,( ( j + 1 ) - chrs.length )) + "" + tmp;
+                                    if (( ( j + 1 ) - chrs.length ) > 0) {
+                                        tmp = buffer.join('').substring(0, ( ( j + 1 ) - chrs.length )) + "" + tmp;
                                     }
-                                    var isValid = opts.regex["urlpre"+(j+1)].test(tmp);
+                                    var isValid = opts.regex["urlpre" + (j + 1)].test(tmp);
                                     if (!strict && !isValid) {
-                                        pos = pos-j;
-                                        for (k=0;k<opts.defaultPrefix.length;k++){
-                                            buffer[pos] = opts.defaultPrefix[k];pos++;
+                                        pos = pos - j;
+                                        for (k = 0; k < opts.defaultPrefix.length; k++) {
+                                            buffer[pos] = opts.defaultPrefix[k];
+                                            pos++;
                                         }
-                                        for (k=0; k<tmp.length-1;k++) {
-                                            buffer[pos] = tmp[k];pos++;
+                                        for (k = 0; k < tmp.length - 1; k++) {
+                                            buffer[pos] = tmp[k];
+                                            pos++;
                                         }
                                         return { "pos": pos };
                                     }
@@ -158,7 +164,7 @@ $.extend($.inputmask.defaults.aliases, {
                 })()
             },
             'r': {
-                validator: function(chrs, buffer, pos, strict, opts) {
+                validator: function (chrs, buffer, pos, strict, opts) {
                     return true;
                 },
                 cardinality: 2000

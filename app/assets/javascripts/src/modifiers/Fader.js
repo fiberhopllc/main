@@ -1,4 +1,4 @@
-define(function(require, exports, module) {
+define(function (require, exports, module) {
     var Transitionable = require('../transitions/Transitionable');
     var OptionsManager = require('../core/OptionsManager');
 

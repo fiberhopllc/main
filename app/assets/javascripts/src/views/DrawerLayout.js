@@ -7,7 +7,7 @@
  * @copyright Famous Industries, Inc. 2014
  */
 
-define(function(require, exports, module) {
+define(function (require, exports, module) {
     var RenderNode = require('../core/RenderNode');
     var Transform = require('../core/Transform');
     var OptionsManager = require('../core/OptionsManager');
@@ -64,18 +64,18 @@ define(function(require, exports, module) {
     var DIRECTION_Y = 1;
 
     DrawerLayout.SIDES = {
-        LEFT   : 0,
-        TOP    : 1,
-        RIGHT  : 2,
-        BOTTOM : 3
+        LEFT: 0,
+        TOP: 1,
+        RIGHT: 2,
+        BOTTOM: 3
     };
 
     DrawerLayout.DEFAULT_OPTIONS = {
         side: DrawerLayout.SIDES.LEFT,
-        drawerLength : 0,
-        velocityThreshold : 0,
-        positionThreshold : 0,
-        transition : true
+        drawerLength: 0,
+        velocityThreshold: 0,
+        positionThreshold: 0,
+        transition: true
     };
 
     function _getDirectionFromSide(side) {
@@ -106,7 +106,7 @@ define(function(require, exports, module) {
         var MAX_LENGTH;
         this._cachedLength = _resolveNodeSize.call(this, this.drawer);
 
-        if (this._orientation === 1){
+        if (this._orientation === 1) {
             MIN_LENGTH = 0;
             MAX_LENGTH = this._cachedLength;
         }
@@ -193,7 +193,7 @@ define(function(require, exports, module) {
         if (transition instanceof Function) callback = transition;
         if (transition === undefined) transition = this.options.transition;
         this.setPosition(0, transition, callback);
-        if (this._isOpen){
+        if (this._isOpen) {
             this._isOpen = false;
             this._eventOutput.emit('close');
         }
@@ -298,7 +298,7 @@ define(function(require, exports, module) {
 
         return [
             {
-                transform : Transform.behind,
+                transform: Transform.behind,
                 target: this.drawer.render()
             },
             {

@@ -1,4 +1,4 @@
-﻿define(['durandal/system', 'jquery', 'knockout'], function(system, $, ko) {
+﻿define(['durandal/system', 'jquery', 'knockout'], function (system, $, ko) {
     var initialData = [
         {
             firstName: "Danny",
@@ -7,15 +7,15 @@
                 { type: "Mobile", number: "(555) 121-2121" },
                 { type: "Home", number: "(555) 123-4567" }
             ]
-      },
-      {
+        },
+        {
             firstName: "Sensei",
             lastName: "Miyagi",
             phones: [
                 { type: "Mobile", number: "(555) 444-2222" },
                 { type: "Home", number: "(555) 999-1212" }
             ]
-      }
+        }
     ];
 
     var ContactsModel = function (contacts) {
@@ -45,7 +45,9 @@
         };
 
         self.removePhone = function (phone) {
-            $.each(self.contacts(), function () { this.phones.remove(phone) })
+            $.each(self.contacts(), function () {
+                this.phones.remove(phone)
+            })
         };
 
         self.save = function () {

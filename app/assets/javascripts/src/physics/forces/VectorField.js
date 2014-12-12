@@ -7,7 +7,7 @@
  * @copyright Famous Industries, Inc. 2014
  */
 
-define(function(require, exports, module) {
+define(function (require, exports, module) {
     var Force = require('./Force');
     var Vector = require('../../math/Vector');
 
@@ -49,7 +49,7 @@ define(function(require, exports, module) {
          *      Pass a {direction : Vector} into the VectorField options
          * @return {Number} unscaled force
          */
-        CONSTANT : function(v, options) {
+        CONSTANT: function (v, options) {
             options.direction.put(this.evaluation);
         },
 
@@ -60,7 +60,7 @@ define(function(require, exports, module) {
          * @param v {Vector} Current position of physics body
          * @return {Vector} unscaled force
          */
-        LINEAR : function(v) {
+        LINEAR: function (v) {
             v.put(this.evaluation);
         },
 
@@ -71,7 +71,7 @@ define(function(require, exports, module) {
          * @param v {Vector} Current position of physics body
          * @return {Vector} unscaled force
          */
-        RADIAL : function(v) {
+        RADIAL: function (v) {
             v.mult(-1).put(this.evaluation);
         },
 
@@ -84,7 +84,7 @@ define(function(require, exports, module) {
          *      Pass a {position : Vector} into the VectorField options
          * @return {Vector} unscaled force
          */
-        POINT_ATTRACTOR : function(v, options) {
+        POINT_ATTRACTOR: function (v, options) {
             options.position.sub(v).put(this.evaluation);
         }
     };
@@ -104,7 +104,7 @@ define(function(require, exports, module) {
          * @type Number
          * @default .01
          */
-        strength : .01,
+        strength: .01,
 
         /**
          * Type of vectorfield
@@ -112,7 +112,7 @@ define(function(require, exports, module) {
          * @attribute field
          * @type Function
          */
-        field : VectorField.FIELDS.CONSTANT
+        field: VectorField.FIELDS.CONSTANT
     };
 
     /**
@@ -135,11 +135,11 @@ define(function(require, exports, module) {
 
         switch (field) {
             case FIELDS.CONSTANT:
-                if (!this.options.direction) this.options.direction = new Vector(0,1,0);
+                if (!this.options.direction) this.options.direction = new Vector(0, 1, 0);
                 else if (this.options.direction instanceof Array) this.options.direction = new Vector(this.options.direction);
                 break;
             case FIELDS.POINT_ATTRACTOR:
-                if (!this.options.position) this.options.position = new Vector(0,0,0);
+                if (!this.options.position) this.options.position = new Vector(0, 0, 0);
                 else if (this.options.position instanceof Array) this.options.position = new Vector(this.options.position);
                 break;
         }
@@ -180,13 +180,13 @@ define(function(require, exports, module) {
                 energy = targets.length * this.options.direction.norm();
                 break;
             case FIELDS.RADIAL:
-                for (i = 0; i < targets.length; i++){
+                for (i = 0; i < targets.length; i++) {
                     target = targets[i];
                     energy += target.position.norm();
                 }
                 break;
             case FIELDS.POINT_ATTRACTOR:
-                for (i = 0; i < targets.length; i++){
+                for (i = 0; i < targets.length; i++) {
                     target = targets[i];
                     energy += target.position.sub(this.options.position).norm();
                 }

@@ -1,62 +1,84 @@
 <navMap>
-	<mainLinks>
-		<mainLink description="Services" target="../../../../../Services/default"></mainLink>
-		<mainLink description="News" target="../../../../../News"></mainLink>
-		<mainLink description="Blog" target="../../../../../Blog"></mainLink>
-		<mainLink description="Industries" target="../../../../../Industries/default"></mainLink>
-		<mainLink description="Company" target="../../../../../Company/default"></mainLink>
-		<mainLink description="Our Method" target="../../../../../Our-Method/default"></mainLink>
-		<mainLink description="FAQs" target="../../../../../FAQs"></mainLink>
-		<mainLink description="Promotions" target="../../../../../Promotions"></mainLink>
-	</mainLinks>
-	<firstLinks>
-		<firstLink description="Wiring Phone & Data" uproot="0" target="../../../../../Services/Wiring-Phone-and-Data"></firstLink>
-		<firstLink description="Website Design & SEO" uproot="0" target="../../../../../Services/Website-Design-and-SEO"></firstLink>
-		<firstLink description="VoIP and Telecom" uproot="0" target="../../../../../Services/VoIP-and-Telecom"></firstLink>
-		<firstLink description="Total Care IT Management" uproot="0" target="../../../../../Services/Total-Care-IT-Management"></firstLink>
-		<firstLink description="Onsite & Remote Support" uproot="0" target="../../../../../Services/Onsite-and-Remote-Support"></firstLink>
-		<firstLink description="Network Support & Servers" uproot="0" target="../../../../../Services/Networking-and-Servers"></firstLink>
-		<firstLink description="Managed Services" uproot="0" target="../../../../../Services/Managed-Services"></firstLink>
-		<firstLink description="IT Consulting" uproot="0" target="../../../../../Services/IT-Consulting"></firstLink>
-		<firstLink description="Cloud Network Solutions" uproot="0" target="../../../../../Services/Cloud-Network-Solutions"></firstLink>
-		
-		<firstLink description="Other" uproot="3" target="../../../../../Industries/Other"></firstLink>
-		<firstLink description="Research Services" uproot="3" target="../../../../../Industries/Research-Services"></firstLink>
-		<firstLink description="Retail Sales" uproot="3" target="../../../../../Industries/Retail-Sales"></firstLink>
-		<firstLink description="Real Estate" uproot="3" target="../../../../../Industries/Real-Estate"></firstLink>
-		<firstLink description="Property Management" uproot="3" target="../../../../../Industries/Property-Management"></firstLink>
-		<firstLink description="Metal Works" uproot="3" target="../../../../../Industries/Metal-Works"></firstLink>
-		<firstLink description="Merchant Services" uproot="3" target="../../../../../Industries/Merchant-Services"></firstLink>
-		<firstLink description="Medical Research" uproot="3" target="../../../../../Industries/Medical-Research"></firstLink>
-		<firstLink description="Marketing/Advertising" uproot="3" target="../../../../../Industries/Marketing-and-Advertising"></firstLink>
-		<firstLink description="Manufacturing" uproot="3" target="../../../../../Industries/Manufacturing"></firstLink>
-		<firstLink description="Legal" uproot="3" target="../../../../../Industries/Legal"></firstLink>
-		<firstLink description="Insurance" uproot="3" target="../../../../../Industries/Insurance"></firstLink>
-		<firstLink description="Hospitality" uproot="3" target="../../../../../Industries/Hospitality"></firstLink>
-		<firstLink description="Health Care" uproot="3" target="../../../../../Industries/Health-Care"></firstLink>
-		<firstLink description="Food Services" uproot="3" target="../../../../../Industries/Food-Services"></firstLink>
-		<firstLink description="Financial Services" uproot="3" target="../../../../../Industries/Financial-Services"></firstLink>
-		<firstLink description="Education" uproot="3" target="../../../../../Industries/Education"></firstLink>
-		<firstLink description="Construction" uproot="3" target="../../../../../Industries/Construction"></firstLink>
-		<firstLink description="Automotive" uproot="3" target="../../../../../Industries/Automotive"></firstLink>
-		<firstLink description="Architectural" uproot="3" target="../../../../../Industries/Architectural"></firstLink>
-	
-		<firstLink description="Why Tech IT Fast" uproot="4" target="../../../../../Company/Why-Tech-IT-Fast"></firstLink>
-		<firstLink description="Testimonials" uproot="4" target="../../../../../Company/Testimonials"></firstLink>
-		<firstLink description="Referral Program" uproot="4" target="../../../../../Company/Referral-Program"></firstLink>
-		<firstLink description="Contact Us" uproot="4" target="../../../../../Company/Contact-Us"></firstLink>
-		<firstLink description="Clients" uproot="4" target="../../../../../Company/Clients"></firstLink>
-		<firstLink description="Careers" uproot="4" target="../../../../../Company/Careers"></firstLink>
-		<firstLink description="About Us" uproot="4" target="../../../../../Company/About-Us"></firstLink>	
-		
-		<firstLink description="First Contact is Made" uproot="5" target="../../../../../Our-Method/First-Contact-is-Made"></firstLink>
-	</firstLinks>
-	
-	<secondLinks>
-		<secondLink description="File Sharing/Storage" uproot="5" tworoot="0" target="../../../../../Services/Managed-Services/File-Sharing-and-Storage"></secondLink>
-		<secondLink description="Onsite Support" uproot="4" tworoot="0" target="../../../../../Services/Onsite-and-Remote-Support/Onsite-Support"></secondLink>
-		<secondLink description="Remote Support" uproot="4" tworoot="0" target="../../../../../Services/Onsite-and-Remote-Support/Remote-Support"></secondLink>
-		<secondLink description="Basic Services" uproot="4" tworoot="0" target="../../../../../Services/Onsite-and-Remote-Support/Basic-Services"></secondLink>
-		<secondLink description="Service Your Callers Better" uproot="2" tworoot="0" target="../../../../../Services/VoIP-and-Telecom/Service-Your-Callers-Better"></secondLink>
-	</secondLinks>
+    <mainLinks>
+        <mainLink description="Services" target="../../../../../Services/default"></mainLink>
+        <mainLink description="News" target="../../../../../News"></mainLink>
+        <mainLink description="Blog" target="../../../../../Blog"></mainLink>
+        <mainLink description="Industries" target="../../../../../Industries/default"></mainLink>
+        <mainLink description="Company" target="../../../../../Company/default"></mainLink>
+        <mainLink description="Our Method" target="../../../../../Our-Method/default"></mainLink>
+        <mainLink description="FAQs" target="../../../../../FAQs"></mainLink>
+        <mainLink description="Promotions" target="../../../../../Promotions"></mainLink>
+    </mainLinks>
+    <firstLinks>
+        <firstLink description="Wiring Phone & Data" uproot="0"
+                   target="../../../../../Services/Wiring-Phone-and-Data"></firstLink>
+        <firstLink description="Website Design & SEO" uproot="0"
+                   target="../../../../../Services/Website-Design-and-SEO"></firstLink>
+        <firstLink description="VoIP and Telecom" uproot="0"
+                   target="../../../../../Services/VoIP-and-Telecom"></firstLink>
+        <firstLink description="Total Care IT Management" uproot="0"
+                   target="../../../../../Services/Total-Care-IT-Management"></firstLink>
+        <firstLink description="Onsite & Remote Support" uproot="0"
+                   target="../../../../../Services/Onsite-and-Remote-Support"></firstLink>
+        <firstLink description="Network Support & Servers" uproot="0"
+                   target="../../../../../Services/Networking-and-Servers"></firstLink>
+        <firstLink description="Managed Services" uproot="0"
+                   target="../../../../../Services/Managed-Services"></firstLink>
+        <firstLink description="IT Consulting" uproot="0" target="../../../../../Services/IT-Consulting"></firstLink>
+        <firstLink description="Cloud Network Solutions" uproot="0"
+                   target="../../../../../Services/Cloud-Network-Solutions"></firstLink>
+
+        <firstLink description="Other" uproot="3" target="../../../../../Industries/Other"></firstLink>
+        <firstLink description="Research Services" uproot="3"
+                   target="../../../../../Industries/Research-Services"></firstLink>
+        <firstLink description="Retail Sales" uproot="3" target="../../../../../Industries/Retail-Sales"></firstLink>
+        <firstLink description="Real Estate" uproot="3" target="../../../../../Industries/Real-Estate"></firstLink>
+        <firstLink description="Property Management" uproot="3"
+                   target="../../../../../Industries/Property-Management"></firstLink>
+        <firstLink description="Metal Works" uproot="3" target="../../../../../Industries/Metal-Works"></firstLink>
+        <firstLink description="Merchant Services" uproot="3"
+                   target="../../../../../Industries/Merchant-Services"></firstLink>
+        <firstLink description="Medical Research" uproot="3"
+                   target="../../../../../Industries/Medical-Research"></firstLink>
+        <firstLink description="Marketing/Advertising" uproot="3"
+                   target="../../../../../Industries/Marketing-and-Advertising"></firstLink>
+        <firstLink description="Manufacturing" uproot="3" target="../../../../../Industries/Manufacturing"></firstLink>
+        <firstLink description="Legal" uproot="3" target="../../../../../Industries/Legal"></firstLink>
+        <firstLink description="Insurance" uproot="3" target="../../../../../Industries/Insurance"></firstLink>
+        <firstLink description="Hospitality" uproot="3" target="../../../../../Industries/Hospitality"></firstLink>
+        <firstLink description="Health Care" uproot="3" target="../../../../../Industries/Health-Care"></firstLink>
+        <firstLink description="Food Services" uproot="3" target="../../../../../Industries/Food-Services"></firstLink>
+        <firstLink description="Financial Services" uproot="3"
+                   target="../../../../../Industries/Financial-Services"></firstLink>
+        <firstLink description="Education" uproot="3" target="../../../../../Industries/Education"></firstLink>
+        <firstLink description="Construction" uproot="3" target="../../../../../Industries/Construction"></firstLink>
+        <firstLink description="Automotive" uproot="3" target="../../../../../Industries/Automotive"></firstLink>
+        <firstLink description="Architectural" uproot="3" target="../../../../../Industries/Architectural"></firstLink>
+
+        <firstLink description="Why Tech IT Fast" uproot="4"
+                   target="../../../../../Company/Why-Tech-IT-Fast"></firstLink>
+        <firstLink description="Testimonials" uproot="4" target="../../../../../Company/Testimonials"></firstLink>
+        <firstLink description="Referral Program" uproot="4"
+                   target="../../../../../Company/Referral-Program"></firstLink>
+        <firstLink description="Contact Us" uproot="4" target="../../../../../Company/Contact-Us"></firstLink>
+        <firstLink description="Clients" uproot="4" target="../../../../../Company/Clients"></firstLink>
+        <firstLink description="Careers" uproot="4" target="../../../../../Company/Careers"></firstLink>
+        <firstLink description="About Us" uproot="4" target="../../../../../Company/About-Us"></firstLink>
+
+        <firstLink description="First Contact is Made" uproot="5"
+                   target="../../../../../Our-Method/First-Contact-is-Made"></firstLink>
+    </firstLinks>
+
+    <secondLinks>
+        <secondLink description="File Sharing/Storage" uproot="5" tworoot="0"
+                    target="../../../../../Services/Managed-Services/File-Sharing-and-Storage"></secondLink>
+        <secondLink description="Onsite Support" uproot="4" tworoot="0"
+                    target="../../../../../Services/Onsite-and-Remote-Support/Onsite-Support"></secondLink>
+        <secondLink description="Remote Support" uproot="4" tworoot="0"
+                    target="../../../../../Services/Onsite-and-Remote-Support/Remote-Support"></secondLink>
+        <secondLink description="Basic Services" uproot="4" tworoot="0"
+                    target="../../../../../Services/Onsite-and-Remote-Support/Basic-Services"></secondLink>
+        <secondLink description="Service Your Callers Better" uproot="2" tworoot="0"
+                    target="../../../../../Services/VoIP-and-Telecom/Service-Your-Callers-Better"></secondLink>
+    </secondLinks>
 </navMap>

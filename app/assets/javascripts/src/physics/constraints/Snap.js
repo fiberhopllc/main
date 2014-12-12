@@ -7,7 +7,7 @@
  * @copyright Famous Industries, Inc. 2014
  */
 
-define(function(require, exports, module) {
+define(function (require, exports, module) {
     var Constraint = require('./Constraint');
     var Vector = require('../../math/Vector');
 
@@ -35,8 +35,8 @@ define(function(require, exports, module) {
         if (options) this.setOptions(options);
 
         //registers
-        this.pDiff  = new Vector();
-        this.vDiff  = new Vector();
+        this.pDiff = new Vector();
+        this.vDiff = new Vector();
         this.impulse1 = new Vector();
         this.impulse2 = new Vector();
     }
@@ -45,10 +45,10 @@ define(function(require, exports, module) {
     Snap.prototype.constructor = Snap;
 
     Snap.DEFAULT_OPTIONS = {
-        period : 300,
-        dampingRatio : 0.1,
-        length : 0,
-        anchor : undefined
+        period: 300,
+        dampingRatio: 0.1,
+        length: 0,
+        anchor: undefined
     };
 
     /** const */ var pi = Math.PI;
@@ -80,13 +80,13 @@ define(function(require, exports, module) {
      * @return energy {Number}
      */
     Snap.prototype.getEnergy = function getEnergy(targets, source) {
-        var options     = this.options;
-        var restLength  = options.length;
-        var anchor      = options.anchor || source.position;
-        var strength    = Math.pow(2 * pi / options.period, 2);
+        var options = this.options;
+        var restLength = options.length;
+        var anchor = options.anchor || source.position;
+        var strength = Math.pow(2 * pi / options.period, 2);
 
         var energy = 0.0;
-        for (var i = 0; i < targets.length; i++){
+        for (var i = 0; i < targets.length; i++) {
             var target = targets[i];
             var dist = anchor.sub(target.position).norm() - restLength;
             energy += 0.5 * strength * dist * dist;
@@ -103,17 +103,17 @@ define(function(require, exports, module) {
      * @param dt {Number}           Delta time
      */
     Snap.prototype.applyConstraint = function applyConstraint(targets, source, dt) {
-        var options      = this.options;
-        var pDiff        = this.pDiff;
-        var vDiff        = this.vDiff;
-        var impulse1     = this.impulse1;
-        var impulse2     = this.impulse2;
-        var length       = options.length;
-        var anchor       = options.anchor || source.position;
-        var period       = options.period;
+        var options = this.options;
+        var pDiff = this.pDiff;
+        var vDiff = this.vDiff;
+        var impulse1 = this.impulse1;
+        var impulse2 = this.impulse2;
+        var length = options.length;
+        var anchor = options.anchor || source.position;
+        var period = options.period;
         var dampingRatio = options.dampingRatio;
 
-        for (var i = 0; i < targets.length ; i++) {
+        for (var i = 0; i < targets.length; i++) {
             var target = targets[i];
 
             var p1 = target.position;
@@ -147,14 +147,14 @@ define(function(require, exports, module) {
                 var k = 4 * effMass * pi * pi / (period * period);
                 var c = 4 * effMass * pi * dampingRatio / period;
 
-                beta  = dt * k / (c + dt * k);
-                gamma = 1 / (c + dt*k);
+                beta = dt * k / (c + dt * k);
+                gamma = 1 / (c + dt * k);
             }
 
-            var antiDrift = beta/dt * dist;
+            var antiDrift = beta / dt * dist;
             pDiff.normalize(-antiDrift)
                 .sub(vDiff)
-                .mult(dt / (gamma + dt/effMass))
+                .mult(dt / (gamma + dt / effMass))
                 .put(impulse1);
 
             // var n = new Vector();

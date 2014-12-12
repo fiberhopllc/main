@@ -7,7 +7,7 @@
  * @copyright Famous Industries, Inc. 2014
  */
 
-define(function(require, exports, module) {
+define(function (require, exports, module) {
     var ContainerSurface = require('../surfaces/ContainerSurface');
     var EventHandler = require('../core/EventHandler');
     var Scrollview = require('./Scrollview');
@@ -50,7 +50,7 @@ define(function(require, exports, module) {
 
     ScrollContainer.DEFAULT_OPTIONS = {
         container: {
-            properties: {overflow : 'hidden'}
+            properties: {overflow: 'hidden'}
         },
         scrollview: {}
     };

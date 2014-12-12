@@ -6,22 +6,19 @@
 // practices to access and manipulate data from various online and offline sources.
 //
 // Credits:
-//     Hajnalka Battancs, Dániel József, János Roden, László Horváth, Péter Nochta
-//     Péter Zentai, Róbert Bónay, Szabolcs Czinege, Viktor Borza, Viktor Lázár,
-//     Zoltán Gyebrovszki, Gábor Dolla
+//     Hajnalka Battancs, Dï¿½niel Jï¿½zsef, Jï¿½nos Roden, Lï¿½szlï¿½ Horvï¿½th, Pï¿½ter Nochta
+//     Pï¿½ter Zentai, Rï¿½bert Bï¿½nay, Szabolcs Czinege, Viktor Borza, Viktor Lï¿½zï¿½r,
+//     Zoltï¿½n Gyebrovszki, Gï¿½bor Dolla
 //
 // More info: http://jaydata.org
 (function ($data, Handlebars) {
     var oldProcessor = $data.Entity.inheritedTypeProcessor;
     var templateCache = {};
 
-    
-
 
     function getTemplate(templateName) {
         return templateCache[templateName] || (templateCache[templateName] = (templateName[0] === '<' ? Handlebars.compile(templateName) : Handlebars.compile($('#' + templateName).html())));
     }
-
 
 
     function handleBarTemplateCompiler(templateCode) {
@@ -56,7 +53,7 @@
         return $('#' + templateName).html();
     }
 
-    
+
     var templateEngine = {
         templateResolvers: [htmlTemplateResolver, typeTemplateResolver, globalTemplateNameResolver],
         templateCompiler: handleBarTemplateCompiler,
@@ -73,11 +70,11 @@
             }
             if (!template) {
                 console.log("Can not find template: " + templateName);
-            } 
+            }
             return template;
         }
     };
-    
+
     $data.templateEngine = templateEngine;
 
     $data.render = function (data, templateName) {
@@ -91,7 +88,8 @@
             if (item.hasOwnProperty(field)) {
                 typeName += (field + "::");
             }
-        };
+        }
+        ;
         var type = { fullName: typeName };
         var template = templateEngine.getTemplate(type, templateName);
         return template(data);
@@ -112,7 +110,8 @@
         return function (data) {
             if (renderMode === 'replaceContent') {
                 $(selector).empty();
-            };
+            }
+            ;
 
             var result;
             result = $data.render(data, templateName);
@@ -131,7 +130,7 @@
                     $(selector).before(result);
                     break;
             }
-            
+
             return data;
         }
     }
@@ -142,7 +141,8 @@
         return function (data) {
             if (renderMode === 'replaceContent') {
                 $(selector).empty();
-            };
+            }
+            ;
 
             var result;
             result = $data.renderItems(data, templateName);
@@ -172,10 +172,10 @@
             oldProcessor(type);
         }
 
-        
+
         function render(item, templateName) {
             var template = templateEngine.getTemplate(type, templateName);
-            if (! (item instanceof $data.Entity)) {
+            if (!(item instanceof $data.Entity)) {
                 item = new type(item);
             }
             return template(item);
@@ -184,7 +184,7 @@
         type.render = render;
 
         function renderItems(items, templateName) {
-            var result ='';
+            var result = '';
             for (var i = 0; i < items.length; i++) {
                 result += render(items[i], templateName);
             }
@@ -269,7 +269,7 @@
                         metadata: md
                     };
                     Object.defineProperty(field, 'value', {
-                        get: function(){
+                        get: function () {
                             return self[name];
                         }
                     });
@@ -310,16 +310,18 @@
         }
         return { cacheKey: key, clientId: clientId };
     }
+
     function getFromCache(cacheKey) {
-       return  $data.displayCache[cacheKey].value;
+        return  $data.displayCache[cacheKey].value;
     }
+
     Handlebars.registerHelper("entityScope", function () {
 
         var sname = $data.Container.resolveName(this.getType()).split(".");
         var name = sname[sname.length - 1];
         var key = this.getType().memberDefinitions.getKeyProperties()[0];
         var id = this[key.name];
-        
+
         var result = "data-" + name.toLowerCase() + "-" + id;
         var cacheInfo = addToCache(this);
         result += " data-cache-client=" + cacheInfo.clientId;

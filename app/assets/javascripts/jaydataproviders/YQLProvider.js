@@ -6,9 +6,9 @@
 // practices to access and manipulate data from various online and offline sources.
 //
 // Credits:
-//     Hajnalka Battancs, Dániel József, János Roden, László Horváth, Péter Nochta
-//     Péter Zentai, Róbert Bónay, Szabolcs Czinege, Viktor Borza, Viktor Lázár,
-//     Zoltán Gyebrovszki, Gábor Dolla
+//     Hajnalka Battancs, Dï¿½niel Jï¿½zsef, Jï¿½nos Roden, Lï¿½szlï¿½ Horvï¿½th, Pï¿½ter Nochta
+//     Pï¿½ter Zentai, Rï¿½bert Bï¿½nay, Szabolcs Czinege, Viktor Borza, Viktor Lï¿½zï¿½r,
+//     Zoltï¿½n Gyebrovszki, Gï¿½bor Dolla
 //
 // More info: http://jaydata.org
 $data.YQLConverter = {
@@ -20,13 +20,26 @@ $data.YQLConverter = {
         '$data.Int16': $data.Container.proxyConverter,
         '$data.Int32': $data.Container.proxyConverter,
         '$data.Int64': $data.Container.proxyConverter,
-        '$data.Number': function (value) { return typeof value === "number" ? value : parseInt(value); },
-        '$data.Integer': function (value) { return typeof value === "number" ? value : parseFloat(value); },
+        '$data.Number': function (value) {
+            return typeof value === "number" ? value : parseInt(value);
+        },
+        '$data.Integer': function (value) {
+            return typeof value === "number" ? value : parseFloat(value);
+        },
         '$data.String': $data.Container.proxyConverter,
-        '$data.Date': function (value) { return new Date(typeof value === "string" ? parseInt(value) : value); },
-        '$data.Boolean': function (value) { return !!value },
+        '$data.Date': function (value) {
+            return new Date(typeof value === "string" ? parseInt(value) : value);
+        },
+        '$data.Boolean': function (value) {
+            return !!value
+        },
         '$data.Blob': $data.Container.proxyConverter,
-        '$data.Array': function (value) { if (value === undefined) { return new $data.Array(); } return value; }
+        '$data.Array': function (value) {
+            if (value === undefined) {
+                return new $data.Array();
+            }
+            return value;
+        }
     },
     toDb: {
         '$data.Byte': $data.Container.proxyConverter,
@@ -38,196 +51,210 @@ $data.YQLConverter = {
         '$data.Int64': $data.Container.proxyConverter,
         '$data.Number': $data.Container.proxyConverter,
         '$data.Integer': $data.Container.proxyConverter,
-        '$data.String': function (value) { return "'" + value + "'"; },
-        '$data.Date': function (value) { return value ? value.valueOf() : null; },
+        '$data.String': function (value) {
+            return "'" + value + "'";
+        },
+        '$data.Date': function (value) {
+            return value ? value.valueOf() : null;
+        },
         '$data.Boolean': $data.Container.proxyConverter,
         '$data.Blob': $data.Container.proxyConverter,
-        '$data.Array': function (value) { return '(' + value.join(', ') + ')'; }
+        '$data.Array': function (value) {
+            return '(' + value.join(', ') + ')';
+        }
     }
 };
 $data.Class.define('$data.storageProviders.YQL.YQLProvider', $data.StorageProviderBase, null,
-{
-    constructor: function (cfg) {
-        var provider = this;
-        this.SqlCommands = [];
-        this.context = {};
-        this.extendedCreateNew = [];
-        this.providerConfiguration = $data.typeSystem.extend({
-            YQLFormat: "format=json",
-            YQLQueryUrl: "http://query.yahooapis.com/v1/public/yql?q=",
-            YQLEnv: '',
-            resultPath: ["query", "results"],
-            resultSkipFirstLevel: true
-        }, cfg);
-        this.initializeStore = function (callBack) {
+    {
+        constructor: function (cfg) {
+            var provider = this;
+            this.SqlCommands = [];
+            this.context = {};
+            this.extendedCreateNew = [];
+            this.providerConfiguration = $data.typeSystem.extend({
+                YQLFormat: "format=json",
+                YQLQueryUrl: "http://query.yahooapis.com/v1/public/yql?q=",
+                YQLEnv: '',
+                resultPath: ["query", "results"],
+                resultSkipFirstLevel: true
+            }, cfg);
+            this.initializeStore = function (callBack) {
+                callBack = $data.typeSystem.createCallbackSetting(callBack);
+                callBack.success(this.context);
+            };
+
+        },
+        AuthenticationProvider: { dataType: '$data.Authentication.AuthenticationBase', enumerable: false },
+        supportedDataTypes: { value: [$data.Integer, $data.Number, $data.Date, $data.String, $data.Boolean, $data.Blob, $data.Array], writable: false },
+        supportedFieldOperations: {
+            value: {
+                'contains': {
+                    dataType: $data.String,
+                    allowedIn: $data.Expressions.FilterExpression,
+                    mapTo: ' LIKE ',
+                    expressionInParameter: false,
+                    parameters: [
+                        { name: 'inStatement', dataType: $data.String, prefix: '%', suffix: '%' }
+                    ]
+                },
+                'startsWith': {
+                    dataType: $data.String,
+                    allowedIn: $data.Expressions.FilterExpression,
+                    mapTo: ' LIKE ',
+                    expressionInParameter: false,
+                    parameters: [
+                        { name: 'inStatement', dataType: $data.String, suffix: '%' }
+                    ]
+                },
+                'endsWith': {
+                    dataType: $data.String,
+                    allowedIn: $data.Expressions.FilterExpression,
+                    mapTo: ' LIKE ',
+                    expressionInParameter: false,
+                    parameters: [
+                        { name: 'inStatement', dataType: $data.String, prefix: '%' }
+                    ]
+                }
+            },
+            enumerable: true,
+            writable: true
+        },
+        supportedBinaryOperators: {
+            value: {
+                equal: { mapTo: ' = ', dataType: $data.Boolean, allowedIn: $data.Expressions.FilterExpression },
+                notEqual: { mapTo: ' != ', dataType: $data.Boolean, allowedIn: $data.Expressions.FilterExpression },
+                equalTyped: { mapTo: ' = ', dataType: $data.Boolean, allowedIn: $data.Expressions.FilterExpression },
+                notEqualTyped: { mapTo: ' != ', dataType: $data.Boolean, allowedIn: $data.Expressions.FilterExpression },
+                greaterThan: { mapTo: ' > ', dataType: $data.Boolean, allowedIn: $data.Expressions.FilterExpression },
+                greaterThanOrEqual: { mapTo: ' >= ', dataType: $data.Boolean, allowedIn: $data.Expressions.FilterExpression },
+
+                lessThan: { mapTo: ' < ', dataType: $data.Boolean, allowedIn: $data.Expressions.FilterExpression },
+                lessThenOrEqual: { mapTo: ' <= ', dataType: $data.Boolean, allowedIn: $data.Expressions.FilterExpression },
+                or: { mapTo: ' OR ', dataType: $data.Boolean, allowedIn: $data.Expressions.FilterExpression },
+                and: { mapTo: ' AND ', dataType: $data.Boolean, allowedIn: $data.Expressions.FilterExpression },
+
+                "in": { mapTo: " IN ", dataType: $data.Boolean, resolvableType: [$data.Array, $data.Queryable], allowedIn: $data.Expressions.FilterExpression }
+            }
+        },
+        supportedUnaryOperators: {
+            value: {}
+        },
+        supportedSetOperations: {
+            value: {
+                filter: {},
+                map: {},
+                forEach: {},
+                toArray: {},
+                single: {},
+                take: {},
+                skip: {},
+                orderBy: {},
+                orderByDescending: {},
+                first: {}
+            },
+            enumerable: true,
+            writable: true
+        },
+        fieldConverter: { value: $data.YQLConverter },
+        executeQuery: function (query, callBack) {
+            var self = this;
             callBack = $data.typeSystem.createCallbackSetting(callBack);
-            callBack.success(this.context);
-        };
+            var schema = query.defaultType;
+            var entitSetDefinition = query.context.getType().memberDefinitions.asArray().filter(function (m) {
+                return m.elementType == schema
+            })[0] || {};
+            var ctx = this.context;
 
-    },
-    AuthenticationProvider: { dataType: '$data.Authentication.AuthenticationBase', enumerable: false },
-    supportedDataTypes: { value: [$data.Integer, $data.Number, $data.Date, $data.String, $data.Boolean, $data.Blob, $data.Array], writable: false },
-    supportedFieldOperations: {
-        value: {
-            'contains': {
-                dataType: $data.String,
-                allowedIn: $data.Expressions.FilterExpression,
-                mapTo: ' LIKE ',
-                expressionInParameter: false,
-                parameters: [{ name: 'inStatement', dataType: $data.String, prefix: '%', suffix: '%' }]
-            },
-            'startsWith': {
-                dataType: $data.String,
-                allowedIn: $data.Expressions.FilterExpression,
-                mapTo: ' LIKE ',
-                expressionInParameter: false,
-                parameters: [{ name: 'inStatement', dataType: $data.String, suffix: '%' }]
-            },
-            'endsWith': {
-                dataType: $data.String,
-                allowedIn: $data.Expressions.FilterExpression,
-                mapTo: ' LIKE ',
-                expressionInParameter: false,
-                parameters: [{ name: 'inStatement', dataType: $data.String, prefix: '%' }]
+            if (!this.AuthenticationProvider)
+                this.AuthenticationProvider = new $data.Authentication.Anonymous({});
+
+            var sql;
+            try {
+                sql = this._compile(query);
+            } catch (e) {
+                callBack.error(e);
+                return;
             }
-        },
-        enumerable: true,
-        writable: true
-    },
-    supportedBinaryOperators: {
-        value: {
-            equal: { mapTo: ' = ', dataType: $data.Boolean, allowedIn: $data.Expressions.FilterExpression },
-            notEqual: { mapTo: ' != ', dataType: $data.Boolean, allowedIn: $data.Expressions.FilterExpression },
-            equalTyped: { mapTo: ' = ', dataType: $data.Boolean, allowedIn: $data.Expressions.FilterExpression },
-            notEqualTyped: { mapTo: ' != ', dataType: $data.Boolean, allowedIn: $data.Expressions.FilterExpression },
-            greaterThan: { mapTo: ' > ', dataType: $data.Boolean, allowedIn: $data.Expressions.FilterExpression },
-            greaterThanOrEqual: { mapTo: ' >= ', dataType: $data.Boolean, allowedIn: $data.Expressions.FilterExpression },
 
-            lessThan: { mapTo: ' < ', dataType: $data.Boolean, allowedIn: $data.Expressions.FilterExpression },
-            lessThenOrEqual: { mapTo: ' <= ', dataType: $data.Boolean, allowedIn: $data.Expressions.FilterExpression },
-            or: { mapTo: ' OR ', dataType: $data.Boolean, allowedIn: $data.Expressions.FilterExpression },
-            and: { mapTo: ' AND ', dataType: $data.Boolean, allowedIn: $data.Expressions.FilterExpression },
+            var includes = [];
+            var requestData = {
+                url: this.providerConfiguration.YQLQueryUrl + encodeURIComponent(sql.queryText) + "&" + this.providerConfiguration.YQLFormat + (this.providerConfiguration.YQLEnv ? ("&env=" + this.providerConfiguration.YQLEnv) : ""),
+                dataType: "JSON",
+                success: function (data, textStatus, jqXHR) {
+                    var resultData = self._preProcessData(data, entitSetDefinition);
+                    if (resultData == false) {
+                        callBack.success(query);
+                        return;
+                    }
 
-            "in": { mapTo: " IN ", dataType: $data.Boolean, resolvableType: [$data.Array, $data.Queryable], allowedIn: $data.Expressions.FilterExpression }
-        }
-    },
-    supportedUnaryOperators: {
-        value: {}
-    },
-    supportedSetOperations: {
-        value: {
-            filter: {},
-            map: {},
-            forEach: {},
-            toArray: {},
-            single: {},
-            take: {},
-            skip: {},
-            orderBy: {},
-            orderByDescending: {},
-            first: {}
-        },
-        enumerable: true,
-        writable: true
-    },
-    fieldConverter: { value: $data.YQLConverter },
-    executeQuery: function (query, callBack) {
-        var self = this;
-        callBack = $data.typeSystem.createCallbackSetting(callBack);
-        var schema = query.defaultType;
-        var entitSetDefinition = query.context.getType().memberDefinitions.asArray().filter(function (m) { return m.elementType == schema })[0] || {};
-        var ctx = this.context;
-
-        if (!this.AuthenticationProvider)
-            this.AuthenticationProvider = new $data.Authentication.Anonymous({});
-
-        var sql;
-        try {
-            sql = this._compile(query);
-        } catch (e) {
-            callBack.error(e);
-            return;
-        }
-
-        var includes = [];
-        var requestData = {
-            url: this.providerConfiguration.YQLQueryUrl + encodeURIComponent(sql.queryText) + "&" + this.providerConfiguration.YQLFormat + (this.providerConfiguration.YQLEnv ? ("&env=" + this.providerConfiguration.YQLEnv) : ""),
-            dataType: "JSON",
-            success: function (data, textStatus, jqXHR) {
-                var resultData = self._preProcessData(data, entitSetDefinition);
-                if (resultData == false) {
-                    callBack.success(query);
-                    return;
-                }
-
-                query.rawDataList = resultData;
-                if (entitSetDefinition.anonymousResult) {
                     query.rawDataList = resultData;
+                    if (entitSetDefinition.anonymousResult) {
+                        query.rawDataList = resultData;
+                        callBack.success(query);
+                        return;
+                    } else {
+                        var compiler = Container.createModelBinderConfigCompiler(query, []);
+                        compiler.Visit(query.expression);
+                    }
+
                     callBack.success(query);
-                    return;
-                } else {
-                    var compiler = Container.createModelBinderConfigCompiler(query, []);
-                    compiler.Visit(query.expression);
+                },
+                error: function (jqXHR, textStatus, errorThrow) {
+                    var errorData = {};
+                    try {
+                        errorData = JSON.parse(jqXHR.responseText).error;
+                    } catch (e) {
+                        errorData = errorThrow + ': ' + jqXHR.responseText;
+                    }
+                    callBack.error(errorData);
                 }
+            };
 
-                callBack.success(query);
-            },
-            error: function (jqXHR, textStatus, errorThrow) {
-                var errorData = {};
-                try {
-                    errorData = JSON.parse(jqXHR.responseText).error;
-                } catch (e) {
-                    errorData = errorThrow + ': ' + jqXHR.responseText;
+            this.context.prepareRequest.call(this, requestData);
+            this.AuthenticationProvider.CreateRequest(requestData);
+        },
+        _preProcessData: function (jsonResult, entityDef) {
+            var resultData = jsonResult;
+            var depths = entityDef.resultPath != undefined ? entityDef.resultPath : this.providerConfiguration.resultPath;
+            for (var i = 0; i < depths.length; i++) {
+                if (resultData[depths[i]])
+                    resultData = resultData[depths[i]];
+                else {
+                    return false;
                 }
-                callBack.error(errorData);
             }
-        };
 
-        this.context.prepareRequest.call(this, requestData);
-        this.AuthenticationProvider.CreateRequest(requestData);
-    },
-    _preProcessData: function (jsonResult, entityDef) {
-        var resultData = jsonResult;
-        var depths = entityDef.resultPath != undefined ? entityDef.resultPath : this.providerConfiguration.resultPath;
-        for (var i = 0; i < depths.length; i++) {
-            if (resultData[depths[i]])
-                resultData = resultData[depths[i]];
-            else {
-                return false;
+            var skipFirstLevel = entityDef.resultSkipFirstLevel != undefined ? entityDef.resultSkipFirstLevel : this.providerConfiguration.resultSkipFirstLevel;
+            if (skipFirstLevel == true) {
+                var keys = Object.keys(resultData);
+                if (keys.length == 1 && (resultData[keys[0]] instanceof Array || !entityDef.anonymousResult))
+                    resultData = resultData[keys[0]];
             }
-        }
 
-        var skipFirstLevel = entityDef.resultSkipFirstLevel != undefined ? entityDef.resultSkipFirstLevel : this.providerConfiguration.resultSkipFirstLevel;
-        if (skipFirstLevel == true) {
-            var keys = Object.keys(resultData);
-            if (keys.length == 1 && (resultData[keys[0]] instanceof Array || !entityDef.anonymousResult))
-                resultData = resultData[keys[0]];
-        }
+            if (resultData.length) {
+                return resultData;
+            }
+            else
+                return [resultData]
+        },
+        _compile: function (query) {
+            var sqlText = Container.createYQLCompiler().compile(query);
+            return sqlText;
+        },
+        getTraceString: function (query) {
+            if (!this.AuthenticationProvider)
+                this.AuthenticationProvider = new $data.Authentication.Anonymous({});
 
-        if (resultData.length) {
-            return resultData;
+            var sqlText = this._compile(query);
+            return sqlText;
+        },
+        setContext: function (ctx) {
+            this.context = ctx;
+        },
+        saveChanges: function (callBack) {
+            Guard.raise(new Exception("Not Implemented", "Not Implemented"));
         }
-        else
-            return [resultData]
-    },
-    _compile: function (query) {
-        var sqlText = Container.createYQLCompiler().compile(query);
-        return sqlText;
-    },
-    getTraceString: function (query) {
-        if (!this.AuthenticationProvider)
-            this.AuthenticationProvider = new $data.Authentication.Anonymous({});
-
-        var sqlText = this._compile(query);
-        return sqlText;
-    },
-    setContext: function (ctx) {
-        this.context = ctx;
-    },
-    saveChanges: function (callBack) {
-        Guard.raise(new Exception("Not Implemented", "Not Implemented"));
-    }
-}, null);
+    }, null);
 
 $data.StorageProviderBase.registerProvider("YQL", $data.storageProviders.YQL.YQLProvider);
 //"use strict" // suspicious code;
@@ -336,10 +363,9 @@ $C('$data.storageProviders.YQL.YQLCompiler', $data.Expressions.EntityExpressionV
         var left = this.Visit(expression.left, context);
         context.sql += expression.resolution.mapTo;
 
-        if (expression.resolution.resolvableType &&
-            !Guard.requireType(expression.resolution.mapTo + ' expression.right.value', expression.right.value, expression.resolution.resolvableType)) {
-                Guard.raise(new Exception(expression.right.type + " not allowed in '" + expression.resolution.mapTo + "' statement", "invalid operation"));
-            }
+        if (expression.resolution.resolvableType && !Guard.requireType(expression.resolution.mapTo + ' expression.right.value', expression.right.value, expression.resolution.resolvableType)) {
+            Guard.raise(new Exception(expression.right.type + " not allowed in '" + expression.resolution.mapTo + "' statement", "invalid operation"));
+        }
 
         if (expression.resolution.name === 'in' && expression.right.value instanceof Array) {
             var self = this;
@@ -382,7 +408,9 @@ $C('$data.storageProviders.YQL.YQLCompiler', $data.Expressions.EntityExpressionV
             context.fieldData = { name: memberName, dataType: expression.memberDefinition.dataType };
 
             if (context.type == 'Projection' && !context.selectFields)
-                context.selectFields = [{ from: memberName, dataType: expression.memberDefinition.dataType }];
+                context.selectFields = [
+                    { from: memberName, dataType: expression.memberDefinition.dataType }
+                ];
         }
     },
 
@@ -495,7 +523,8 @@ $C('$data.storageProviders.YQL.YQLCompiler', $data.Expressions.EntityExpressionV
             } else {
                 result.value = expression.parameters[paramCounter];
                 result.itemType = expression.parameters[paramCounter++].type;
-            };
+            }
+            ;
             return result;
         });
 
@@ -504,7 +533,8 @@ $C('$data.storageProviders.YQL.YQLCompiler', $data.Expressions.EntityExpressionV
             if (!itemType || ((arg.dataType instanceof Array && arg.dataType.indexOf(itemType) != -1) || arg.dataType == itemType)) {
                 if (index > 0) {
                     context.sql += ", ";
-                };
+                }
+                ;
                 var funcContext = { sql: '' };
                 this.Visit(arg.value, funcContext);
 
@@ -609,7 +639,10 @@ $data.Class.define('$data.Yahoo.types.Geo.PlaceMeta', null, null, {
     lang: { type: 'string' }
 }, null);
 
-$data.Class.defineEx('$data.Yahoo.types.Geo.PlaceMetaFull', [{ type: null }, { type: $data.Yahoo.types.Geo.PlaceMeta }], null, {
+$data.Class.defineEx('$data.Yahoo.types.Geo.PlaceMetaFull', [
+    { type: null },
+    { type: $data.Yahoo.types.Geo.PlaceMeta }
+], null, {
     country: { type: 'countryRef' },
     admin1: { type: 'adminRef' },
     admin2: { type: 'adminRef' },
@@ -631,19 +664,31 @@ $data.Class.define('$data.Yahoo.types.Geo.placetype', $data.Entity, null, {
     lang: { type: 'string' }
 }, null);
 
-$data.Class.defineEx('$data.Yahoo.types.Geo.sibling', [{ type: $data.Entity }, { type: $data.Yahoo.types.Geo.PlaceMetaFull }], null, {
+$data.Class.defineEx('$data.Yahoo.types.Geo.sibling', [
+    { type: $data.Entity },
+    { type: $data.Yahoo.types.Geo.PlaceMetaFull }
+], null, {
     sibling_woeid: { type: 'string' }
 }, null);
 
-$data.Class.defineEx('$data.Yahoo.types.Geo.parent', [{ type: $data.Entity }, { type: $data.Yahoo.types.Geo.PlaceMetaFull }], null, {
+$data.Class.defineEx('$data.Yahoo.types.Geo.parent', [
+    { type: $data.Entity },
+    { type: $data.Yahoo.types.Geo.PlaceMetaFull }
+], null, {
     child_woeid: { type: 'string' }
 }, null);
 
-$data.Class.defineEx('$data.Yahoo.types.Geo.neighbor', [{ type: $data.Entity }, { type: $data.Yahoo.types.Geo.PlaceMetaFull }], null, {
+$data.Class.defineEx('$data.Yahoo.types.Geo.neighbor', [
+    { type: $data.Entity },
+    { type: $data.Yahoo.types.Geo.PlaceMetaFull }
+], null, {
     neighbor_woeid: { type: 'string' }
 }, null);
 
-$data.Class.defineEx('$data.Yahoo.types.Geo.common', [{ type: $data.Entity }, { type: $data.Yahoo.types.Geo.PlaceMetaFull }], null, {
+$data.Class.defineEx('$data.Yahoo.types.Geo.common', [
+    { type: $data.Entity },
+    { type: $data.Yahoo.types.Geo.PlaceMetaFull }
+], null, {
     woeid1: { type: 'string' },
     woeid2: { type: 'string' },
     woeid3: { type: 'string' },
@@ -655,50 +700,86 @@ $data.Class.defineEx('$data.Yahoo.types.Geo.common', [{ type: $data.Entity }, { 
     'long': { type: 'string' }
 }, null);
 
-$data.Class.defineEx('$data.Yahoo.types.Geo.children', [{ type: $data.Entity }, { type: $data.Yahoo.types.Geo.PlaceMetaFull }], null, {
+$data.Class.defineEx('$data.Yahoo.types.Geo.children', [
+    { type: $data.Entity },
+    { type: $data.Yahoo.types.Geo.PlaceMetaFull }
+], null, {
     parent_woeid: { type: 'string' },
     placetype: { type: 'string' }
 }, null);
 
-$data.Class.defineEx('$data.Yahoo.types.Geo.belongto', [{ type: $data.Entity }, { type: $data.Yahoo.types.Geo.PlaceMetaFull }], null, {
+$data.Class.defineEx('$data.Yahoo.types.Geo.belongto', [
+    { type: $data.Entity },
+    { type: $data.Yahoo.types.Geo.PlaceMetaFull }
+], null, {
     member_woeid: { type: 'string' },
     placetype: { type: 'string' }
 }, null);
 
-$data.Class.defineEx('$data.Yahoo.types.Geo.ancestor', [{ type: $data.Entity }, { type: $data.Yahoo.types.Geo.PlaceMetaFull }], null, {
+$data.Class.defineEx('$data.Yahoo.types.Geo.ancestor', [
+    { type: $data.Entity },
+    { type: $data.Yahoo.types.Geo.PlaceMetaFull }
+], null, {
     descendant_woeid: { type: 'string' }
 }, null);
 
-$data.Class.defineEx('$data.Yahoo.types.Geo.place', [{ type: $data.Entity }, { type: $data.Yahoo.types.Geo.PlaceMetaFull }], null, {
+$data.Class.defineEx('$data.Yahoo.types.Geo.place', [
+    { type: $data.Entity },
+    { type: $data.Yahoo.types.Geo.PlaceMetaFull }
+], null, {
     text: { type: 'string' },
     focus: { type: 'string' },
     placetype: { type: 'string' }
 }, null);
 
-$data.Class.defineEx('$data.Yahoo.types.Geo.county', [{ type: $data.Entity }, { type: $data.Yahoo.types.Geo.PlaceMeta }], null, {
+$data.Class.defineEx('$data.Yahoo.types.Geo.county', [
+    { type: $data.Entity },
+    { type: $data.Yahoo.types.Geo.PlaceMeta }
+], null, {
     place: { type: 'string' }
 }, null);
-$data.Class.defineEx('$data.Yahoo.types.Geo.country', [{ type: $data.Entity }, { type: $data.Yahoo.types.Geo.PlaceMeta }], null, {
+$data.Class.defineEx('$data.Yahoo.types.Geo.country', [
+    { type: $data.Entity },
+    { type: $data.Yahoo.types.Geo.PlaceMeta }
+], null, {
     place: { type: 'string' }
 }, null);
-$data.Class.defineEx('$data.Yahoo.types.Geo.district', [{ type: $data.Entity }, { type: $data.Yahoo.types.Geo.PlaceMeta }], null, {
+$data.Class.defineEx('$data.Yahoo.types.Geo.district', [
+    { type: $data.Entity },
+    { type: $data.Yahoo.types.Geo.PlaceMeta }
+], null, {
     place: { type: 'string' }
 }, null);
-$data.Class.defineEx('$data.Yahoo.types.Geo.sea', [{ type: $data.Entity }, { type: $data.Yahoo.types.Geo.PlaceMeta }], null, {
+$data.Class.defineEx('$data.Yahoo.types.Geo.sea', [
+    { type: $data.Entity },
+    { type: $data.Yahoo.types.Geo.PlaceMeta }
+], null, {
     place: { type: 'string' }
 }, null);
-$data.Class.defineEx('$data.Yahoo.types.Geo.state', [{ type: $data.Entity }, { type: $data.Yahoo.types.Geo.PlaceMeta }], null, {
+$data.Class.defineEx('$data.Yahoo.types.Geo.state', [
+    { type: $data.Entity },
+    { type: $data.Yahoo.types.Geo.PlaceMeta }
+], null, {
     place: { type: 'string' }
 }, null);
-$data.Class.defineEx('$data.Yahoo.types.Geo.continent', [{ type: $data.Entity }, { type: $data.Yahoo.types.Geo.PlaceMeta }], null, {
+$data.Class.defineEx('$data.Yahoo.types.Geo.continent', [
+    { type: $data.Entity },
+    { type: $data.Yahoo.types.Geo.PlaceMeta }
+], null, {
     place: { type: 'string' },
     view: { type: 'string' }
 }, null);
-$data.Class.defineEx('$data.Yahoo.types.Geo.ocean', [{ type: $data.Entity }, { type: $data.Yahoo.types.Geo.PlaceMeta }], null, {
+$data.Class.defineEx('$data.Yahoo.types.Geo.ocean', [
+    { type: $data.Entity },
+    { type: $data.Yahoo.types.Geo.PlaceMeta }
+], null, {
     place: { type: 'string' },
     view: { type: 'string' }
 }, null);
-$data.Class.defineEx('$data.Yahoo.types.Geo.descendant', [{ type: $data.Entity }, { type: $data.Yahoo.types.Geo.PlaceMeta }], null, {
+$data.Class.defineEx('$data.Yahoo.types.Geo.descendant', [
+    { type: $data.Entity },
+    { type: $data.Yahoo.types.Geo.PlaceMeta }
+], null, {
     ancestor_woeid: { type: 'string' },
     placetype: { type: 'string' },
     degree: { type: 'string' },

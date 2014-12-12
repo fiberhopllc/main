@@ -7,37 +7,37 @@
  * @requires events
  * @requires jquery
  */
-define(['durandal/system', 'durandal/viewEngine', 'durandal/composition', 'durandal/events', 'jquery'], function(system, viewEngine, composition, Events, $) {
+define(['durandal/system', 'durandal/viewEngine', 'durandal/composition', 'durandal/events', 'jquery'], function (system, viewEngine, composition, Events, $) {
     var app,
         allPluginIds = [],
         allPluginConfigs = [];
 
-    function loadPlugins(){
-        return system.defer(function(dfd){
-            if(allPluginIds.length == 0){
+    function loadPlugins() {
+        return system.defer(function (dfd) {
+            if (allPluginIds.length == 0) {
                 dfd.resolve();
                 return;
             }
 
-            system.acquire(allPluginIds).then(function(loaded){
-                for(var i = 0; i < loaded.length; i++){
+            system.acquire(allPluginIds).then(function (loaded) {
+                for (var i = 0; i < loaded.length; i++) {
                     var currentModule = loaded[i];
 
-                    if(currentModule.install){
+                    if (currentModule.install) {
                         var config = allPluginConfigs[i];
-                        if(!system.isObject(config)){
+                        if (!system.isObject(config)) {
                             config = {};
                         }
 
                         currentModule.install(config);
                         system.log('Plugin:Installed ' + allPluginIds[i]);
-                    }else{
+                    } else {
                         system.log('Plugin:Loaded ' + allPluginIds[i]);
                     }
                 }
 
                 dfd.resolve();
-            }).fail(function(err){
+            }).fail(function (err) {
                 system.error('Failed to load plugin(s). Details: ' + err.message);
             });
         }).promise();
@@ -60,15 +60,15 @@ define(['durandal/system', 'durandal/viewEngine', 'durandal/composition', 'duran
          * @param {object} config Keys are plugin names. Values can be truthy, to simply install the plugin, or a configuration object to pass to the plugin.
          * @param {string} [baseUrl] The base url to load the plugins from.
          */
-        configurePlugins:function(config, baseUrl){
+        configurePlugins: function (config, baseUrl) {
             var pluginIds = system.keys(config);
             baseUrl = baseUrl || 'plugins/';
 
-            if(baseUrl.indexOf('/', baseUrl.length - 1) === -1){
+            if (baseUrl.indexOf('/', baseUrl.length - 1) === -1) {
                 baseUrl += '/';
             }
 
-            for(var i = 0; i < pluginIds.length; i++){
+            for (var i = 0; i < pluginIds.length; i++) {
                 var key = pluginIds[i];
                 allPluginIds.push(baseUrl + key);
                 allPluginConfigs.push(config[key]);
@@ -79,7 +79,7 @@ define(['durandal/system', 'durandal/viewEngine', 'durandal/composition', 'duran
          * @method start
          * @return {promise}
          */
-        start: function() {
+        start: function () {
             system.log('Application:Starting');
 
             if (this.title) {
@@ -87,8 +87,8 @@ define(['durandal/system', 'durandal/viewEngine', 'durandal/composition', 'duran
             }
 
             return system.defer(function (dfd) {
-                $(function() {
-                    loadPlugins().then(function(){
+                $(function () {
+                    loadPlugins().then(function () {
                         dfd.resolve();
                         system.log('Application:Started');
                     });
@@ -102,8 +102,8 @@ define(['durandal/system', 'durandal/viewEngine', 'durandal/composition', 'duran
          * @param {string} [transition] The transition to use from the previous root (or splash screen) into the new root.
          * @param {string} [applicationHost] The application host element or id. By default the id 'applicationHost' will be used.
          */
-        setRoot: function(root, transition, applicationHost) {
-            var hostElement, settings = { activate:true, transition: transition };
+        setRoot: function (root, transition, applicationHost) {
+            var hostElement, settings = { activate: true, transition: transition };
 
             if (!applicationHost || system.isString(applicationHost)) {
                 hostElement = document.getElementById(applicationHost || 'applicationHost');
@@ -122,7 +122,7 @@ define(['durandal/system', 'durandal/viewEngine', 'durandal/composition', 'duran
             }
 
             function finishComposition() {
-                if(settings.model) {
+                if (settings.model) {
                     if (settings.model.canActivate) {
                         try {
                             var result = settings.model.canActivate();
@@ -148,11 +148,11 @@ define(['durandal/system', 'durandal/viewEngine', 'durandal/composition', 'duran
                 }
             }
 
-            if(system.isString(settings.model)) {
-                system.acquire(settings.model).then(function(module) {
+            if (system.isString(settings.model)) {
+                system.acquire(settings.model).then(function (module) {
                     settings.model = system.resolveObject(module);
                     finishComposition();
-                }).fail(function(err) {
+                }).fail(function (err) {
                     system.error('Failed to load root module (' + settings.model + '). Details: ' + err.message);
                 });
             } else {

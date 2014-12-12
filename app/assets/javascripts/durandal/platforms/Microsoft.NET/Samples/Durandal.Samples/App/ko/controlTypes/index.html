@@ -1,16 +1,18 @@
 ﻿<div>
     <h1>Control Types</h1>
+
     <div class="well row" style="margin: 0">
         <div class="col-md-7">
             <h3>HTML Controls</h3>
             <table class="table table-bordered">
                 <tr>
                     <td>Text value (updates on change):</td>
-                    <td><input type="text" class="form-control" data-bind="value: stringValue" /></td>
+                    <td><input type="text" class="form-control" data-bind="value: stringValue"/></td>
                 </tr>
                 <tr>
                     <td>Text value (updates on keystroke):</td>
-                    <td><input type="text" class="form-control" data-bind='value: stringValue, valueUpdate: "afterkeydown"' /></td>
+                    <td><input type="text" class="form-control"
+                               data-bind='value: stringValue, valueUpdate: "afterkeydown"'/></td>
                 </tr>
                 <tr>
                     <td>Text value (multi-line):</td>
@@ -18,26 +20,32 @@
                 </tr>
                 <tr>
                     <td>Password:</td>
-                    <td><input type="password" class="form-control" data-bind="value: passwordValue" /></td>
+                    <td><input type="password" class="form-control" data-bind="value: passwordValue"/></td>
                 </tr>
                 <tr>
                     <td>Checkbox:</td>
-                    <td><input type="checkbox" data-bind="checked: booleanValue" /></td>
+                    <td><input type="checkbox" data-bind="checked: booleanValue"/></td>
                 </tr>
                 <tr>
                     <td>Drop-down list:</td>
-                    <td><select class="form-control"data-bind="options: optionValues, value: selectedOptionValue"></select></td>
+                    <td><select class="form-control"
+                                data-bind="options: optionValues, value: selectedOptionValue"></select></td>
                 </tr>
                 <tr>
                     <td>Multi-select drop-down list:</td>
-                    <td><select class="form-control"multiple="multiple" data-bind="options: optionValues, selectedOptions: multipleSelectedOptionValues"></select></td>
+                    <td><select class="form-control" multiple="multiple"
+                                data-bind="options: optionValues, selectedOptions: multipleSelectedOptionValues"></select>
+                    </td>
                 </tr>
                 <tr>
                     <td>Radio buttons:</td>
                     <td>
-                        <label><input type="radio" value="Alpha" data-bind="checked: radioSelectedOptionValue" />Alpha</label>
-                        <label><input type="radio" value="Beta" data-bind="checked: radioSelectedOptionValue" />Beta</label>
-                        <label><input type="radio" value="Gamma" data-bind="checked: radioSelectedOptionValue" />Gamma</label>
+                        <label><input type="radio" value="Alpha"
+                                      data-bind="checked: radioSelectedOptionValue"/>Alpha</label>
+                        <label><input type="radio" value="Beta"
+                                      data-bind="checked: radioSelectedOptionValue"/>Beta</label>
+                        <label><input type="radio" value="Gamma"
+                                      data-bind="checked: radioSelectedOptionValue"/>Gamma</label>
                     </td>
                 </tr>
             </table>

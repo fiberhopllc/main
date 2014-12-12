@@ -7,7 +7,7 @@
  * @copyright Famous Industries, Inc. 2014
  */
 
-define(function(require, exports, module) {
+define(function (require, exports, module) {
     var Body = require('./Body');
     var Matrix = require('../../math/Matrix');
 
@@ -35,7 +35,7 @@ define(function(require, exports, module) {
      */
     Circle.prototype.setRadius = function setRadius(r) {
         this.radius = r;
-        this.size = [2*this.radius, 2*this.radius];
+        this.size = [2 * this.radius, 2 * this.radius];
         this.setMomentsOfInertia();
     };
 

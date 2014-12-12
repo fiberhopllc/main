@@ -1,5 +1,5 @@
 exports.config =
-  minMimosaVersion:'2.0.0'
+  minMimosaVersion: '2.0.0'
 
   modules: [
     'server'
@@ -24,13 +24,13 @@ exports.config =
     extensions: ['html']
 
   requireBuildInclude:
-    folder:"javascripts"
+    folder: "javascripts"
     patterns: ['app/**/*.js', 'vendor/durandal/**/*.js']
 
   bower:
     copy:
       mainOverrides:
-        "knockout.js":["knockout.js","knockout-2.3.0.debug.js"]
+        "knockout.js": ["knockout.js", "knockout-2.3.0.debug.js"]
         "bootstrap": [
           "docs/assets/js/bootstrap.js"
           "docs/assets/css/bootstrap.css"
@@ -52,8 +52,8 @@ exports.config =
   combine:
     folders: [
       {
-        folder:'stylesheets'
-        output:'stylesheets/styles.css'
+        folder: 'stylesheets'
+        output: 'stylesheets/styles.css'
         order: [
           'vendor/bootstrap/bootstrap.css'
           'vendor/bootstrap/bootstrap-responsive.css'

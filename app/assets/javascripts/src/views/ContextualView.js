@@ -7,7 +7,7 @@
  * @copyright Famous Industries, Inc. 2014
  */
 
-define(function(require, exports, module) {
+define(function (require, exports, module) {
     var Entity = require('../core/Entity');
     var Transform = require('../core/Transform');
     var EventHandler = require('../core/EventHandler');
@@ -78,7 +78,8 @@ define(function(require, exports, module) {
      * @method commit
      * @param {Context} context commit context
      */
-    ContextualView.prototype.commit = function commit(context) {};
+    ContextualView.prototype.commit = function commit(context) {
+    };
 
     module.exports = ContextualView;
 });

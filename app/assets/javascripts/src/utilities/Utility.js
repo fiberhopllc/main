@@ -7,7 +7,7 @@
  * @copyright Famous Industries, Inc. 2014
  */
 
-define(function(require, exports, module) {
+define(function (require, exports, module) {
     /**
      * This namespace holds standalone functionality.
      *  Currently includes name mapping for transition curves,
@@ -43,7 +43,7 @@ define(function(require, exports, module) {
      */
     Utility.after = function after(count, callback) {
         var counter = count;
-        return function() {
+        return function () {
             counter--;
             if (counter === 0) callback.apply(this, arguments);
         };
@@ -103,7 +103,7 @@ define(function(require, exports, module) {
                         }
                     }
                     else {
-                      a[key] = Utility.clone(b[key]);
+                        a[key] = Utility.clone(b[key]);
                     }
                 }
                 else {

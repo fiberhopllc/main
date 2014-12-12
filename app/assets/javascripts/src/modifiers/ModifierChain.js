@@ -7,7 +7,7 @@
  * @copyright Famous Industries, Inc. 2014
  */
 
-define(function(require, exports, module) {
+define(function (require, exports, module) {
 
     /**
      * A class to add and remove a chain of modifiers
@@ -58,7 +58,7 @@ define(function(require, exports, module) {
      *    provided target
      */
     ModifierChain.prototype.modify = function modify(input) {
-        var chain  = this._chain;
+        var chain = this._chain;
         var result = input;
         for (var i = 0; i < chain.length; i++) {
             result = chain[i].modify(result);

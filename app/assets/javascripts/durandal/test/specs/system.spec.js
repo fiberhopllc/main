@@ -1,5 +1,5 @@
 ﻿define(['durandal/system'], function (sut) {
-    describe('durandal/system', function(){
+    describe('durandal/system', function () {
         describe('debug', function () {
             it('returns false when no arguments', function () {
                 var isDebugging = sut.debug();

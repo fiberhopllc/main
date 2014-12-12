@@ -4,9 +4,9 @@ requirejs.config({
         'knockout': '../vendor/knockout.js/knockout-3.1.0',
         'jquery': '../vendor/jquery/jquery',
         'bootstrap': '../vendor/bootstrap/bootstrap',
-        'durandal':'../vendor/durandal',
-        'plugins' : '../vendor/durandal/plugins',
-        'transitions' : '../vendor/durandal/transitions'
+        'durandal': '../vendor/durandal',
+        'plugins': '../vendor/durandal/plugins',
+        'transitions': '../vendor/durandal/transitions'
     },
     shim: {
         'bootstrap': {
@@ -16,7 +16,7 @@ requirejs.config({
     }
 });
 
-define(function(require) {
+define(function (require) {
     var app = require('durandal/app'),
         viewLocator = require('durandal/viewLocator'),
         system = require('durandal/system');
@@ -28,11 +28,11 @@ define(function(require) {
     app.title = 'Durandal Starter Kit';
 
     app.configurePlugins({
-        router:true,
+        router: true,
         dialog: true
     });
 
-    app.start().then(function() {
+    app.start().then(function () {
         //Replace 'viewmodels' in the moduleId with 'views' to locate the view.
         //Look for partial views in a 'views' folder in the root.
         viewLocator.useConvention();

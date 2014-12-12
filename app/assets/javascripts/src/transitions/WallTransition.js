@@ -7,7 +7,7 @@
  * @copyright Famous Industries, Inc. 2014
  */
 
-define(function(require, exports, module) {
+define(function (require, exports, module) {
     var PE = require('../physics/PhysicsEngine');
     var Particle = require('../physics/bodies/Particle');
     var Spring = require('../physics/forces/Spring');
@@ -28,11 +28,11 @@ define(function(require, exports, module) {
     function WallTransition(state) {
         state = state || 0;
 
-        this.endState  = new Vector(state);
+        this.endState = new Vector(state);
         this.initState = new Vector();
 
-        this.spring = new Spring({anchor : this.endState});
-        this.wall   = new Wall();
+        this.spring = new Spring({anchor: this.endState});
+        this.wall = new Wall();
 
         this._restTolerance = 1e-10;
         this._dimensions = 1;
@@ -65,7 +65,7 @@ define(function(require, exports, module) {
          * @type Number
          * @default 300
          */
-        period : 300,
+        period: 300,
 
         /**
          * The damping of the snap.
@@ -77,7 +77,7 @@ define(function(require, exports, module) {
          * @type Number
          * @default 0.5
          */
-        dampingRatio : 0.5,
+        dampingRatio: 0.5,
 
         /**
          * The initial velocity of the transition.
@@ -86,7 +86,7 @@ define(function(require, exports, module) {
          * @type Number|Array
          * @default 0
          */
-        velocity : 0,
+        velocity: 0,
 
         /**
          * The percentage of momentum transferred to the wall
@@ -95,7 +95,7 @@ define(function(require, exports, module) {
          * @type Number
          * @default 0.5
          */
-        restitution : 0.5
+        restitution: 0.5
     };
 
     function _getEnergy() {
@@ -123,8 +123,8 @@ define(function(require, exports, module) {
         var dist = this.endState.sub(this.initState).norm();
 
         this.wall.setOptions({
-            distance : this.endState.norm(),
-            normal : (dist === 0)
+            distance: this.endState.norm(),
+            normal: (dist === 0)
                 ? this.particle.velocity.normalize(-1)
                 : this.endState.sub(this.initState).normalize(-1)
         });
@@ -169,7 +169,7 @@ define(function(require, exports, module) {
         if (energy < this._absRestTolerance) {
             _sleep.call(this);
             _setParticlePosition.call(this, this.endState);
-            _setParticleVelocity.call(this, [0,0,0]);
+            _setParticleVelocity.call(this, [0, 0, 0]);
         }
     }
 
@@ -184,13 +184,13 @@ define(function(require, exports, module) {
 
         //setup spring
         this.spring.setOptions({
-            period : def.period,
-            dampingRatio : def.dampingRatio
+            period: def.period,
+            dampingRatio: def.dampingRatio
         });
 
         //setup wall
         this.wall.setOptions({
-            restitution : def.restitution,
+            restitution: def.restitution,
             drift: def.drift,
             slop: def.slop
         });

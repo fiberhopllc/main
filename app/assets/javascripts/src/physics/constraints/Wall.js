@@ -7,7 +7,7 @@
  * @copyright Famous Industries, Inc. 2014
  */
 
-define(function(require, exports, module) {
+define(function (require, exports, module) {
     var Constraint = require('./Constraint');
     var Vector = require('../../math/Vector');
 
@@ -67,22 +67,22 @@ define(function(require, exports, module) {
          * Physical bodies bounce off the wall
          * @attribute REFLECT
          */
-        REFLECT : 0,
+        REFLECT: 0,
 
         /**
          * Physical bodies are unaffected. Usecase is to fire events on contact.
          * @attribute SILENT
          */
-        SILENT : 1
+        SILENT: 1
     };
 
     Wall.DEFAULT_OPTIONS = {
-        restitution : 0.5,
-        drift : 0.5,
-        slop : 0,
-        normal : [1, 0, 0],
-        distance : 0,
-        onContact : Wall.ON_CONTACT.REFLECT
+        restitution: 0.5,
+        drift: 0.5,
+        slop: 0,
+        normal: [1, 0, 0],
+        distance: 0,
+        onContact: Wall.ON_CONTACT.REFLECT
     };
 
     /*
@@ -127,7 +127,7 @@ define(function(require, exports, module) {
         var gamma = 0;
 
         if (this._eventOutput) {
-            var data = {particle : particle, wall : this, overlap : overlap, normal : n};
+            var data = {particle: particle, wall: this, overlap: overlap, normal: n};
             this._eventOutput.emit('preCollision', data);
             this._eventOutput.emit('collision', data);
         }

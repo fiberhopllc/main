@@ -1,22 +1,22 @@
-! function (e) {
+!function (e) {
     var t = function (t, i) {
         this.element = e(t), this.picker = e('<div class="slider"><div class="slider-track"><div class="slider-selection"></div><div class="slider-handle"></div><div class="slider-handle"></div></div><div class="tooltip"><div class="tooltip-arrow"></div><div class="tooltip-inner"></div></div></div>').insertBefore(this.element).append(this.element), this.id = this.element.data("slider-id") || i.id, this.id && (this.picker[0].id = this.id), "undefined" != typeof Modernizr && Modernizr.touch && (this.touchCapable = !0);
         var n = this.element.data("slider-tooltip") || i.tooltip;
         switch (this.tooltip = this.picker.find(".tooltip"), this.tooltipInner = this.tooltip.find("div.tooltip-inner"), this.orientation = this.element.data("slider-orientation") || i.orientation, this.orientation) {
-        case "vertical":
-            this.picker.addClass("slider-vertical"), this.stylePos = "top", this.mousePos = "pageY", this.sizePos = "offsetHeight", this.tooltip.addClass("right")[0].style.left = "100%";
-            break;
-        default:
-            this.picker.addClass("slider-horizontal").css("width", "100%"), this.orientation = "horizontal", this.stylePos = "left", this.mousePos = "pageX", this.sizePos = "offsetWidth", this.tooltip.addClass("top")[0].style.top = -this.tooltip.outerHeight() - 14 + "px"
+            case "vertical":
+                this.picker.addClass("slider-vertical"), this.stylePos = "top", this.mousePos = "pageY", this.sizePos = "offsetHeight", this.tooltip.addClass("right")[0].style.left = "100%";
+                break;
+            default:
+                this.picker.addClass("slider-horizontal").css("width", "100%"), this.orientation = "horizontal", this.stylePos = "left", this.mousePos = "pageX", this.sizePos = "offsetWidth", this.tooltip.addClass("top")[0].style.top = -this.tooltip.outerHeight() - 14 + "px"
         }
         this.min = this.element.data("slider-min") || i.min, this.max = this.element.data("slider-max") || i.max, this.step = this.element.data("slider-step") || i.step, this.value = this.element.data("slider-value") || i.value, this.value[1] && (this.range = !0), this.selection = this.element.data("slider-selection") || i.selection, this.selectionEl = this.picker.find(".slider-selection"), "none" === this.selection && this.selectionEl.addClass("hide"), this.selectionElStyle = this.selectionEl[0].style, this.handle1 = this.picker.find(".slider-handle:first"), this.handle1Stype = this.handle1[0].style, this.handle2 = this.picker.find(".slider-handle:last"), this.handle2Stype = this.handle2[0].style;
         var a = this.element.data("slider-handle") || i.handle;
         switch (a) {
-        case "round":
-            this.handle1.addClass("round"), this.handle2.addClass("round");
-            break;
-        case "triangle":
-            this.handle1.addClass("triangle"), this.handle2.addClass("triangle")
+            case "round":
+                this.handle1.addClass("round"), this.handle2.addClass("round");
+                break;
+            case "triangle":
+                this.handle1.addClass("triangle"), this.handle2.addClass("triangle")
         }
         this.range ? (this.value[0] = Math.max(this.min, Math.min(this.max, this.value[0])), this.value[1] = Math.max(this.min, Math.min(this.max, this.value[1]))) : (this.value = [Math.max(this.min, Math.min(this.max, this.value))], this.handle2.addClass("hide"), this.value[1] = "after" == this.selection ? this.max : this.min), this.diff = this.max - this.min, this.percentage = [100 * (this.value[0] - this.min) / this.diff, 100 * (this.value[1] - this.min) / this.diff, 100 * this.step / this.diff], this.offset = this.picker.offset(), this.size = this.picker[0][this.sizePos], this.formater = i.formater, this.layout(), this.touchCapable ? this.picker.on({
             touchstart: e.proxy(this.mousedown, this)

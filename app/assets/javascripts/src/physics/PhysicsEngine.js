@@ -5,7 +5,7 @@
  * @license MPL 2.0
  * @copyright Famous Industries, Inc. 2014
  */
-define(function(require, exports, module) {
+define(function (require, exports, module) {
     var EventHandler = require('../core/EventHandler');
 
     /**
@@ -26,19 +26,19 @@ define(function(require, exports, module) {
         this.options = Object.create(PhysicsEngine.DEFAULT_OPTIONS);
         if (options) this.setOptions(options);
 
-        this._particles      = [];   //list of managed particles
-        this._bodies         = [];   //list of managed bodies
-        this._agentData      = {};   //hash of managed agent data
-        this._forces         = [];   //list of Ids of agents that are forces
-        this._constraints    = [];   //list of Ids of agents that are constraints
+        this._particles = [];   //list of managed particles
+        this._bodies = [];   //list of managed bodies
+        this._agentData = {};   //hash of managed agent data
+        this._forces = [];   //list of Ids of agents that are forces
+        this._constraints = [];   //list of Ids of agents that are constraints
 
-        this._buffer         = 0.0;
-        this._prevTime       = now();
-        this._isSleeping     = false;
-        this._eventHandler   = null;
-        this._currAgentId    = 0;
-        this._hasBodies      = false;
-        this._eventHandler   = null;
+        this._buffer = 0.0;
+        this._prevTime = now();
+        this._isSleeping = false;
+        this._eventHandler = null;
+        this._currAgentId = 0;
+        this._hasBodies = false;
+        this._eventHandler = null;
     }
 
     /** const */
@@ -50,9 +50,9 @@ define(function(require, exports, module) {
 
     // Catalogue of outputted events
     var _events = {
-        start : 'start',
-        update : 'update',
-        end : 'end'
+        start: 'start',
+        update: 'update',
+        end: 'end'
     };
 
     /**
@@ -68,14 +68,14 @@ define(function(require, exports, module) {
          * @attribute constraintSteps
          * @type Number
          */
-        constraintSteps : 1,
+        constraintSteps: 1,
 
         /**
          * The energy threshold required for the Physics Engine to update
          * @attribute sleepTolerance
          * @type Number
          */
-        sleepTolerance : 1e-7,
+        sleepTolerance: 1e-7,
 
         /**
          * The maximum velocity magnitude of a physics body
@@ -83,7 +83,7 @@ define(function(require, exports, module) {
          * @attribute velocityCap
          * @type Number
          */
-        velocityCap : undefined,
+        velocityCap: undefined,
 
         /**
          * The maximum angular velocity magnitude of a physics body
@@ -91,7 +91,7 @@ define(function(require, exports, module) {
          * @attribute angularVelocityCap
          * @type Number
          */
-        angularVelocityCap : undefined
+        angularVelocityCap: undefined
     };
 
     /**
@@ -141,7 +141,7 @@ define(function(require, exports, module) {
                     this.detachFrom(this._agentData[agentKey].id, body);
                 }
             }
-            array.splice(index,1);
+            array.splice(index, 1);
         }
         if (this.getBodies().length === 0) this._hasBodies = false;
     };
@@ -158,10 +158,10 @@ define(function(require, exports, module) {
         agent.on('change', this.wake.bind(this));
 
         this._agentData[this._currAgentId] = {
-            agent   : agent,
-            id      : this._currAgentId,
-            targets : targets,
-            source  : source
+            agent: agent,
+            id: this._currAgentId,
+            targets: targets,
+            source: source
         };
 
         _mapAgentArray.call(this, agent).push(this._currAgentId);
@@ -213,7 +213,7 @@ define(function(require, exports, module) {
         var agent = this.getAgent(id);
         var agentArray = _mapAgentArray.call(this, agent);
         var index = agentArray.indexOf(id);
-        agentArray.splice(index,1);
+        agentArray.splice(index, 1);
 
         // detach agents array
         delete this._agentData[id];
@@ -232,7 +232,7 @@ define(function(require, exports, module) {
         else {
             var targets = boundAgent.targets;
             var index = targets.indexOf(target);
-            if (index > -1) targets.splice(index,1);
+            if (index > -1) targets.splice(index, 1);
         }
     };
 
@@ -243,10 +243,10 @@ define(function(require, exports, module) {
      * @method detachAll
      */
     PhysicsEngine.prototype.detachAll = function detachAll() {
-        this._agentData     = {};
-        this._forces        = [];
-        this._constraints   = [];
-        this._currAgentId   = 0;
+        this._agentData = {};
+        this._forces = [];
+        this._constraints = [];
+        this._currAgentId = 0;
     };
 
     function _getAgentData(id) {
@@ -393,7 +393,7 @@ define(function(require, exports, module) {
     function _getParticlesEnergy() {
         var energy = 0.0;
         var particleEnergy = 0.0;
-        this.forEach(function(particle) {
+        this.forEach(function (particle) {
             particleEnergy = particle.getEnergy();
             energy += particleEnergy;
         });
@@ -414,7 +414,7 @@ define(function(require, exports, module) {
      * @param agentId {Number} The attached agent Id
      * @return energy {Number}
      */
-    PhysicsEngine.prototype.getAgentEnergy = function(agentId) {
+    PhysicsEngine.prototype.getAgentEnergy = function (agentId) {
         var agentData = _getAgentData.call(this, agentId);
         return agentData.agent.getEnergy(agentData.targets, agentData.source);
     };
@@ -494,7 +494,7 @@ define(function(require, exports, module) {
      */
     PhysicsEngine.prototype.sleep = function sleep() {
         if (this._isSleeping) return;
-        this.forEach(function(body) {
+        this.forEach(function (body) {
             body.sleep();
         });
         this.emit(_events.end, this);

@@ -7,7 +7,7 @@
  * @copyright Famous Industries, Inc. 2014
  */
 
-define(function(require, exports, module) {
+define(function (require, exports, module) {
 
     /**
      * Helper object used to iterate through items sequentially. Used in
@@ -52,7 +52,9 @@ define(function(require, exports, module) {
         this.loop = false;
         this.firstNode = null;
         this.lastNode = null;
-        this.cumulativeSizes = [[0, 0]];
+        this.cumulativeSizes = [
+            [0, 0]
+        ];
         this.sizeDirty = true;
         this.trackSize = false;
     };
@@ -300,7 +302,7 @@ define(function(require, exports, module) {
         if (this._.trackSize) this._.sizeDirty = true;
     };
 
-   /**
+    /**
      * Return value of this ViewSequence node.
      *
      * @method get
@@ -310,7 +312,7 @@ define(function(require, exports, module) {
         return this._.getValue(this.index);
     };
 
-   /**
+    /**
      * Call getSize() on the contained View.
      *
      * @method getSize

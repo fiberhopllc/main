@@ -4,16 +4,16 @@ var fs = require('fs'),
     specFiles;
 
 specFiles = fs.list('specs')
-    .filter(function(item) {
+    .filter(function (item) {
         return item.match(/\w+.spec.js$/) !== null;
     })
-    .map(function(item) {
+    .map(function (item) {
         return 'specs/' + item.substring(0, item.length - 3);
     });
 
 console.log('Running spec files: ' + specFiles);
 
-page.onConsoleMessage = function(msg) {
+page.onConsoleMessage = function (msg) {
     console.log(msg);
 
     if (msg === "ConsoleReporter finished") {

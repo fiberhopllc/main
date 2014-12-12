@@ -7,7 +7,7 @@
  * @copyright Famous Industries, Inc. 2014
  */
 
-define(function(require, exports, module) {
+define(function (require, exports, module) {
     var Surface = require('../core/Surface');
 
     /**
@@ -43,7 +43,8 @@ define(function(require, exports, module) {
      * @method setContent
      *
      */
-    CanvasSurface.prototype.setContent = function setContent() {};
+    CanvasSurface.prototype.setContent = function setContent() {
+    };
 
     /**
      * Place the document element this component manages into the document.

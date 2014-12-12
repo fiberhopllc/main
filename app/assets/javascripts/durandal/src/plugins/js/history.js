@@ -51,7 +51,7 @@ define(['durandal/system', 'jquery'], function (system, $) {
          */
         active: false
     };
-    
+
     // Ensure that `History` can be used outside of the browser.
     if (typeof window !== 'undefined') {
         history.location = window.location;
@@ -64,11 +64,11 @@ define(['durandal/system', 'jquery'], function (system, $) {
      * @param {string} [window] The optional window instance
      * @return {string} The hash.
      */
-    history.getHash = function(window) {
+    history.getHash = function (window) {
         var match = (window || history).location.href.match(/#(.*)$/);
         return match ? match[1] : '';
     };
-    
+
     /**
      * Get the cross-browser normalized URL fragment, either from the URL, the hash, or the override.
      * @method getFragment
@@ -76,7 +76,7 @@ define(['durandal/system', 'jquery'], function (system, $) {
      * @param {boolean} forcePushState Should we force push state?
      * @return {string} he fragment.
      */
-    history.getFragment = function(fragment, forcePushState) {
+    history.getFragment = function (fragment, forcePushState) {
         if (fragment == null) {
             if (history._hasPushState || !history._wantsHashChange || forcePushState) {
                 fragment = history.location.pathname + history.location.search;
@@ -88,7 +88,7 @@ define(['durandal/system', 'jquery'], function (system, $) {
                 fragment = history.getHash();
             }
         }
-        
+
         return fragment.replace(routeStripper, '');
     };
 
@@ -98,7 +98,7 @@ define(['durandal/system', 'jquery'], function (system, $) {
      * @param {HistoryOptions} options.
      * @return {boolean|undefined} Returns true/false from loading the url unless the silent option was selected.
      */
-    history.activate = function(options) {
+    history.activate = function (options) {
         if (history.active) {
             system.error("History has already been activated.");
         }
@@ -151,8 +151,8 @@ define(['durandal/system', 'jquery'], function (system, $) {
                 // Return immediately as browser will do redirect to new url
                 return true;
 
-            // Or if we've started out with a hash-based route, but we're currently
-            // in a browser where it could be `pushState`-based instead...
+                // Or if we've started out with a hash-based route, but we're currently
+                // in a browser where it could be `pushState`-based instead...
             } else if (history._hasPushState && atRoot && loc.hash) {
                 this.fragment = history.getHash().replace(routeStripper, '');
                 this.history.replaceState({}, document.title, history.root + history.fragment + loc.search);
@@ -168,7 +168,7 @@ define(['durandal/system', 'jquery'], function (system, $) {
      * Disable history, perhaps temporarily. Not useful in a real app, but possibly useful for unit testing Routers.
      * @method deactivate
      */
-    history.deactivate = function() {
+    history.deactivate = function () {
         $(window).off('popstate', history.checkUrl).off('hashchange', history.checkUrl);
         clearInterval(history._checkUrlInterval);
         history.active = false;
@@ -179,7 +179,7 @@ define(['durandal/system', 'jquery'], function (system, $) {
      * @method checkUrl
      * @return {boolean} Returns true/false from loading the url.
      */
-    history.checkUrl = function() {
+    history.checkUrl = function () {
         var current = history.getFragment();
         if (current === history.fragment && history.iframe) {
             current = history.getFragment(history.getHash(history.iframe));
@@ -192,16 +192,16 @@ define(['durandal/system', 'jquery'], function (system, $) {
         if (history.iframe) {
             history.navigate(current, false);
         }
-        
+
         history.loadUrl();
     };
-    
+
     /**
      * Attempts to load the current URL fragment. A pass-through to options.routeHandler.
      * @method loadUrl
      * @return {boolean} Returns true/false from the route handler.
      */
-    history.loadUrl = function(fragmentOverride) {
+    history.loadUrl = function (fragmentOverride) {
         var fragment = history.fragment = history.getFragment(fragmentOverride);
 
         return history.options.routeHandler ?
@@ -221,16 +221,16 @@ define(['durandal/system', 'jquery'], function (system, $) {
      * @param {object|boolean} options An options object with optional trigger and replace flags. You can also pass a boolean directly to set the trigger option. Trigger is `true` by default.
      * @return {boolean} Returns true/false from loading the url.
      */
-    history.navigate = function(fragment, options) {
+    history.navigate = function (fragment, options) {
         if (!history.active) {
             return false;
         }
 
-        if(options === undefined) {
+        if (options === undefined) {
             options = {
                 trigger: true
             };
-        }else if(system.isBoolean(options)) {
+        } else if (system.isBoolean(options)) {
             options = {
                 trigger: options
             };
@@ -247,7 +247,7 @@ define(['durandal/system', 'jquery'], function (system, $) {
         var url = history.root + fragment;
 
         // Don't include a trailing slash on the root.
-        if(fragment === '' && url !== '/') {
+        if (fragment === '' && url !== '/') {
             url = url.slice(0, -1);
         }
 
@@ -259,7 +259,7 @@ define(['durandal/system', 'jquery'], function (system, $) {
             // fragment to store history.
         } else if (history._wantsHashChange) {
             updateHash(history.location, fragment, options.replace);
-            
+
             if (history.iframe && (fragment !== history.getFragment(history.getHash(history.iframe)))) {
                 // Opening and closing the iframe tricks IE7 and earlier to push a
                 // history entry on hash-tag change.  When replace is true, we don't
@@ -267,7 +267,7 @@ define(['durandal/system', 'jquery'], function (system, $) {
                 if (!options.replace) {
                     history.iframe.document.open().close();
                 }
-                
+
                 updateHash(history.iframe.location, fragment, options.replace);
             }
 
@@ -286,7 +286,7 @@ define(['durandal/system', 'jquery'], function (system, $) {
      * Navigates back in the browser history.
      * @method navigateBack
      */
-    history.navigateBack = function() {
+    history.navigateBack = function () {
         history.history.back();
     };
 

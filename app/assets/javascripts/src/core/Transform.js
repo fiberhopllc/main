@@ -7,7 +7,7 @@
  * @copyright Famous Industries, Inc. 2014
  */
 
-define(function(require, exports, module) {
+define(function (require, exports, module) {
 
     /**
      *  A high-performance static matrix math library used to calculate
@@ -434,9 +434,11 @@ define(function(require, exports, module) {
     function _normSquared(v) {
         return (v.length === 2) ? v[0] * v[0] + v[1] * v[1] : v[0] * v[0] + v[1] * v[1] + v[2] * v[2];
     }
+
     function _norm(v) {
         return Math.sqrt(_normSquared(v));
     }
+
     function _sign(n) {
         return (n < 0) ? -1 : 1;
     }
@@ -472,8 +474,8 @@ define(function(require, exports, module) {
         var Q1 = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1];
 
         //diagonals
-        Q1[0]  = 1 - mult * v[0] * v[0];    // 0,0 entry
-        Q1[5]  = 1 - mult * v[1] * v[1];    // 1,1 entry
+        Q1[0] = 1 - mult * v[0] * v[0];    // 0,0 entry
+        Q1[5] = 1 - mult * v[1] * v[1];    // 1,1 entry
         Q1[10] = 1 - mult * v[2] * v[2];    // 2,2 entry
 
         //upper diagonal
@@ -500,7 +502,7 @@ define(function(require, exports, module) {
         var Q2 = [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1];
 
         //diagonal
-        Q2[5]  = 1 - mult2 * v2[0] * v2[0]; // 1,1 entry
+        Q2[5] = 1 - mult2 * v2[0] * v2[0]; // 1,1 entry
         Q2[10] = 1 - mult2 * v2[1] * v2[1]; // 2,2 entry
 
         //off diagonals

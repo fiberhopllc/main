@@ -6,9 +6,9 @@
 // practices to access and manipulate data from various online and offline sources.
 //
 // Credits:
-//     Hajnalka Battancs, Dániel József, János Roden, László Horváth, Péter Nochta
-//     Péter Zentai, Róbert Bónay, Szabolcs Czinege, Viktor Borza, Viktor Lázár,
-//     Zoltán Gyebrovszki, Gábor Dolla
+//     Hajnalka Battancs, Dï¿½niel Jï¿½zsef, Jï¿½nos Roden, Lï¿½szlï¿½ Horvï¿½th, Pï¿½ter Nochta
+//     Pï¿½ter Zentai, Rï¿½bert Bï¿½nay, Szabolcs Czinege, Viktor Borza, Viktor Lï¿½zï¿½r,
+//     Zoltï¿½n Gyebrovszki, Gï¿½bor Dolla
 //
 // More info: http://jaydata.org
 
@@ -19,7 +19,7 @@
         ///<param name="targetId" type="string"/>
         ///<param name="callback" type="function"/>
 
-        //Adat tulajdonság jelölése. Akár ugy is mint tmpl-ben: prefix: '\\${', postfix: '}'
+        //Adat tulajdonsï¿½g jelï¿½lï¿½se. Akï¿½r ugy is mint tmpl-ben: prefix: '\\${', postfix: '}'
         var prefix = '\\${', postfix = '}';
         return this.toArray(function (data) {
             var template = document.getElementById(templateId);
@@ -56,11 +56,11 @@
         ///<param name="callback" type="function"/>
         return this.toArray(function (data) {
             if ($ && $.tmpl) {
-				var templateSource = $(templateName);
-				if (templateSource.length)
-					templateSource.tmpl(data, options).appendTo($(targetSelector));
-				else
-					$.tmpl(templateName, data, options).appendTo($(targetSelector));
+                var templateSource = $(templateName);
+                if (templateSource.length)
+                    templateSource.tmpl(data, options).appendTo($(targetSelector));
+                else
+                    $.tmpl(templateName, data, options).appendTo($(targetSelector));
             }
             if (typeof callback == "function")
                 callback(data);
@@ -73,11 +73,11 @@
     if (typeof $ != 'undefined' && typeof $.tmpl != 'undefined') {
         $data.Queryable.prototype.tojQueryTemplate = $data.Queryable.prototype.tojQueryTemplate || tojQueryTemplate;
         $data.EntitySet.prototype.tojQueryTemplate = $data.EntitySet.prototype.tojQueryTemplate || tojQueryTemplate;
-    } else { 
-        $data.Queryable.prototype.tojQueryTemplate = 
-        $data.EntitySet.prototype.tojQueryTemplate = function() {
-            Guard.raise(new Exception('jQuery and jQuery tmpl plugin is required', 'Not Found!'));
-        };
+    } else {
+        $data.Queryable.prototype.tojQueryTemplate =
+            $data.EntitySet.prototype.tojQueryTemplate = function () {
+                Guard.raise(new Exception('jQuery and jQuery tmpl plugin is required', 'Not Found!'));
+            };
     }
 
 })($data);

@@ -7,7 +7,7 @@
  * @copyright Famous Industries, Inc. 2014
  */
 
-define(function(require, exports, module) {
+define(function (require, exports, module) {
     var PE = require('../physics/PhysicsEngine');
     var Particle = require('../physics/bodies/Particle');
     var Spring = require('../physics/constraints/Snap');
@@ -26,17 +26,17 @@ define(function(require, exports, module) {
     function SnapTransition(state) {
         state = state || 0;
 
-        this.endState  = new Vector(state);
+        this.endState = new Vector(state);
         this.initState = new Vector();
 
-        this._dimensions       = 1;
-        this._restTolerance    = 1e-10;
+        this._dimensions = 1;
+        this._restTolerance = 1e-10;
         this._absRestTolerance = this._restTolerance;
-        this._callback         = undefined;
+        this._callback = undefined;
 
-        this.PE       = new PE();
+        this.PE = new PE();
         this.particle = new Particle();
-        this.spring   = new Spring({anchor : this.endState});
+        this.spring = new Spring({anchor: this.endState});
 
         this.PE.addBody(this.particle);
         this.PE.attach(this.spring, this.particle);
@@ -61,7 +61,7 @@ define(function(require, exports, module) {
          * @type Number
          * @default 100
          */
-        period : 100,
+        period: 100,
 
         /**
          * The damping of the snap.
@@ -71,7 +71,7 @@ define(function(require, exports, module) {
          * @type Number
          * @default 0.2
          */
-        dampingRatio : 0.2,
+        dampingRatio: 0.2,
 
         /**
          * The initial velocity of the transition.
@@ -80,7 +80,7 @@ define(function(require, exports, module) {
          * @type Number|Array
          * @default 0
          */
-        velocity : 0
+        velocity: 0
     };
 
     function _getEnergy() {
@@ -133,14 +133,14 @@ define(function(require, exports, module) {
 
     function _setupDefinition(definition) {
         var defaults = SnapTransition.DEFAULT_OPTIONS;
-        if (definition.period === undefined)       definition.period       = defaults.period;
+        if (definition.period === undefined)       definition.period = defaults.period;
         if (definition.dampingRatio === undefined) definition.dampingRatio = defaults.dampingRatio;
-        if (definition.velocity === undefined)     definition.velocity     = defaults.velocity;
+        if (definition.velocity === undefined)     definition.velocity = defaults.velocity;
 
         //setup spring
         this.spring.setOptions({
-            period       : definition.period,
-            dampingRatio : definition.dampingRatio
+            period: definition.period,
+            dampingRatio: definition.dampingRatio
         });
 
         //setup particle
@@ -159,7 +159,7 @@ define(function(require, exports, module) {
 
         if (_getEnergy.call(this) < this._absRestTolerance) {
             _setParticlePosition.call(this, this.endState);
-            _setParticleVelocity.call(this, [0,0,0]);
+            _setParticleVelocity.call(this, [0, 0, 0]);
             _sleep.call(this);
         }
     }
@@ -228,7 +228,7 @@ define(function(require, exports, module) {
 
     /**
      * Get the current position of the transition
-s     *
+     s     *
      * @method get
      *
      * @return state {Number|Array}

@@ -1,4 +1,4 @@
-define(function(require, exports, module) {
+define(function (require, exports, module) {
     var EventHandler = require('../core/EventHandler');
     var Transitionable = require('../transitions/Transitionable');
 
@@ -29,7 +29,7 @@ define(function(require, exports, module) {
         var delta = data.delta;
         var state = this.get();
 
-        if (delta.constructor === state.constructor){
+        if (delta.constructor === state.constructor) {
             var newState = (delta instanceof Array)
                 ? [state[0] + delta[0], state[1] + delta[1]]
                 : state + delta;

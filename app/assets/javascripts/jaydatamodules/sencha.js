@@ -6,9 +6,9 @@
 // practices to access and manipulate data from various online and offline sources.
 //
 // Credits:
-//     Hajnalka Battancs, Dániel József, János Roden, László Horváth, Péter Nochta
-//     Péter Zentai, Róbert Bónay, Szabolcs Czinege, Viktor Borza, Viktor Lázár,
-//     Zoltán Gyebrovszki, Gábor Dolla
+//     Hajnalka Battancs, Dï¿½niel Jï¿½zsef, Jï¿½nos Roden, Lï¿½szlï¿½ Horvï¿½th, Pï¿½ter Nochta
+//     Pï¿½ter Zentai, Rï¿½bert Bï¿½nay, Szabolcs Czinege, Viktor Borza, Viktor Lï¿½zï¿½r,
+//     Zoltï¿½n Gyebrovszki, Gï¿½bor Dolla
 //
 // More info: http://jaydata.org
 (function ($data, Ext) {
@@ -17,7 +17,9 @@
         if (!type.isAssignableTo)
             return [];
 
-        var fields = type.memberDefinitions.getPublicMappedProperties().map(function (memDef) { return memDef.name; });
+        var fields = type.memberDefinitions.getPublicMappedProperties().map(function (memDef) {
+            return memDef.name;
+        });
 
         if (config instanceof $data.Array) {
             config.forEach(function (fieldConfig) {
@@ -60,8 +62,8 @@
 
         buildRequest: function (operation) {
             var me = this,
-            params = Ext.applyIf(operation.getParams() || {}, me.getExtraParams() || {}),
-            request;
+                params = Ext.applyIf(operation.getParams() || {}, me.getExtraParams() || {}),
+                request;
 
             //copy any sorters, filters etc into the params so they can be sent over the wire
             params = Ext.applyIf(params, me.getParams(operation));
@@ -94,7 +96,7 @@
 
             return request;
         },
-        
+
         buildQueryable: function (operation, queryable) {
             if (!queryable)
                 return queryable;

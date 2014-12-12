@@ -7,7 +7,7 @@
  * @copyright Famous Industries, Inc. 2014
  */
 
-define(function(require, exports, module) {
+define(function (require, exports, module) {
     var ElementOutput = require('./ElementOutput');
 
     /**
@@ -50,6 +50,7 @@ define(function(require, exports, module) {
 
         this._currentTarget = null;
     }
+
     Surface.prototype = Object.create(ElementOutput.prototype);
     Surface.prototype.constructor = Surface;
     Surface.prototype.elementType = 'div';
@@ -60,7 +61,7 @@ define(function(require, exports, module) {
      *    dirtying and thus re-rendering, even if values do not change.
      *
      * @method setAttributes
-    * @param {Object} attributes property dictionary of "key" => "value"
+     * @param {Object} attributes property dictionary of "key" => "value"
      */
     Surface.prototype.setAttributes = function setAttributes(attributes) {
         for (var n in attributes) {
@@ -347,7 +348,7 @@ define(function(require, exports, module) {
             if (size[0] === undefined) size[0] = origSize[0];
             if (size[1] === undefined) size[1] = origSize[1];
             if (size[0] === true || size[1] === true) {
-                if (size[0] === true){
+                if (size[0] === true) {
                     if (this._trueSizeCheck || (this._size[0] === 0)) {
                         var width = target.offsetWidth;
                         if (this._size && this._size[0] !== width) {
@@ -359,7 +360,7 @@ define(function(require, exports, module) {
                         if (this._size) size[0] = this._size[0];
                     }
                 }
-                if (size[1] === true){
+                if (size[1] === true) {
                     if (this._trueSizeCheck || (this._size[1] === 0)) {
                         var height = target.offsetHeight;
                         if (this._size && this._size[1] !== height) {
@@ -386,7 +387,7 @@ define(function(require, exports, module) {
         if (this._sizeDirty) {
             if (this._size) {
                 target.style.width = (this.size && this.size[0] === true) ? '' : this._size[0] + 'px';
-                target.style.height = (this.size && this.size[1] === true) ?  '' : this._size[1] + 'px';
+                target.style.height = (this.size && this.size[1] === true) ? '' : this._size[1] + 'px';
             }
 
             this._eventOutput.emit('resize');

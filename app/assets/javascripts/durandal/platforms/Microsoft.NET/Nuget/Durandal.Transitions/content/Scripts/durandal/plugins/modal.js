@@ -7,7 +7,7 @@ define(['durandal/system', 'durandal/app', 'durandal/composition', 'durandal/act
     var contexts = {},
         modalCount = 0;
 
-    var MessageBox = function(message, title, options) {
+    var MessageBox = function (message, title, options) {
         this.message = message;
         this.title = title || MessageBox.defaultTitle;
         this.options = options || MessageBox.defaultOptions;
@@ -17,7 +17,7 @@ define(['durandal/system', 'durandal/app', 'durandal/composition', 'durandal/act
         this.modal.close(dialogResult);
     };
 
-    MessageBox.prototype.getView = function(){
+    MessageBox.prototype.getView = function () {
         return viewEngine.processMarkup(MessageBox.defaultViewMarkup);
     };
 
@@ -25,20 +25,20 @@ define(['durandal/system', 'durandal/app', 'durandal/composition', 'durandal/act
     MessageBox.defaultOptions = ['Ok'];
     MessageBox.defaultViewMarkup = [
         '<div class="messageBox">',
-            '<div class="modal-header">',
-                '<h3 data-bind="text: title"></h3>',
-            '</div>',
-            '<div class="modal-body">',
-                '<p class="message" data-bind="text: message"></p>',
-            '</div>',
-            '<div class="modal-footer" data-bind="foreach: options">',
-                '<button class="btn" data-bind="click: function () { $parent.selectOption($data); }, text: $data, css: { \'btn-primary\': $index() == 0, autofocus: $index() == 0 }"></button>',
-            '</div>',
+        '<div class="modal-header">',
+        '<h3 data-bind="text: title"></h3>',
+        '</div>',
+        '<div class="modal-body">',
+        '<p class="message" data-bind="text: message"></p>',
+        '</div>',
+        '<div class="modal-footer" data-bind="foreach: options">',
+        '<button class="btn" data-bind="click: function () { $parent.selectOption($data); }, text: $data, css: { \'btn-primary\': $index() == 0, autofocus: $index() == 0 }"></button>',
+        '</div>',
         '</div>'
     ].join('\n');
 
     function ensureModalInstance(objOrModuleId) {
-        return system.defer(function(dfd) {
+        return system.defer(function (dfd) {
             if (system.isString(objOrModuleId)) {
                 system.acquire(objOrModuleId).then(function (module) {
                     dfd.resolve(new (system.getObjectResolver(module))());
@@ -50,18 +50,18 @@ define(['durandal/system', 'durandal/app', 'durandal/composition', 'durandal/act
     }
 
     var modalDialog = {
-        MessageBox:MessageBox,
+        MessageBox: MessageBox,
         currentZIndex: 1050,
         getNextZIndex: function () {
             return ++this.currentZIndex;
         },
-        isDialogOpen: function() {
+        isDialogOpen: function () {
             return modalCount > 0;
         },
-        getContext: function(name) {
+        getContext: function (name) {
             return contexts[name || 'default'];
         },
-        addContext: function(name, modalContext) {
+        addContext: function (name, modalContext) {
             modalContext.name = name;
             contexts[name] = modalContext;
 
@@ -70,10 +70,10 @@ define(['durandal/system', 'durandal/app', 'durandal/composition', 'durandal/act
                 return this.show(obj, activationData, name);
             };
         },
-        createCompositionSettings: function(obj, modalContext) {
+        createCompositionSettings: function (obj, modalContext) {
             var settings = {
-                model:obj,
-                activate:false
+                model: obj,
+                activate: false
             };
 
             if (modalContext.documentAttached) {
@@ -82,12 +82,12 @@ define(['durandal/system', 'durandal/app', 'durandal/composition', 'durandal/act
 
             return settings;
         },
-        show: function(obj, activationData, context) {
+        show: function (obj, activationData, context) {
             var that = this;
             var modalContext = contexts[context || 'default'];
 
-            return system.defer(function(dfd) {
-                ensureModalInstance(obj).then(function(instance) {
+            return system.defer(function (dfd) {
+                ensureModalInstance(obj).then(function (instance) {
                     var modalActivator = activator.create();
 
                     modalActivator.activateItem(instance, activationData).then(function (success) {
@@ -121,8 +121,8 @@ define(['durandal/system', 'durandal/app', 'durandal/composition', 'durandal/act
                 });
             }).promise();
         },
-        showMessage:function(message, title, options){
-            if(system.isString(this.MessageBox)){
+        showMessage: function (message, title, options) {
+            if (system.isString(this.MessageBox)) {
                 return modalDialog.show(this.MessageBox, [
                     message,
                     title || MessageBox.defaultTitle,
@@ -132,21 +132,21 @@ define(['durandal/system', 'durandal/app', 'durandal/composition', 'durandal/act
 
             return modalDialog.show(new this.MessageBox(message, title, options));
         },
-        install:function(config){
-            app.showModal = function(obj, activationData, context) {
+        install: function (config) {
+            app.showModal = function (obj, activationData, context) {
                 return modalDialog.show(obj, activationData, context);
             };
 
-            app.showMessage = function(message, title, options) {
+            app.showMessage = function (message, title, options) {
                 return modalDialog.showMessage(message, title, options);
             };
 
-            if(config.messageBox){
+            if (config.messageBox) {
                 modalDialog.MessageBox = config.messageBox;
             }
 
-            if(config.messageBoxView){
-                modalDialog.MessageBox.prototype.getView = function(){
+            if (config.messageBoxView) {
+                modalDialog.MessageBox.prototype.getView = function () {
                     return config.messageBoxView;
                 };
             }
@@ -156,7 +156,7 @@ define(['durandal/system', 'durandal/app', 'durandal/composition', 'durandal/act
     modalDialog.addContext('default', {
         blockoutOpacity: .2,
         removeDelay: 200,
-        addHost: function(modal) {
+        addHost: function (modal) {
             var body = $('body');
             var blockout = $('<div class="modalBlockout"></div>')
                 .css({ 'z-index': modalDialog.getNextZIndex(), 'opacity': this.blockoutOpacity })
@@ -171,7 +171,7 @@ define(['durandal/system', 'durandal/app', 'durandal/composition', 'durandal/act
 
             if (!modalDialog.isDialogOpen()) {
                 modal.oldBodyMarginRight = $("body").css("margin-right");
-                
+
                 var html = $("html");
                 var oldBodyOuterWidth = body.outerWidth(true);
                 var oldScrollTop = html.scrollTop();
@@ -181,15 +181,15 @@ define(['durandal/system', 'durandal/app', 'durandal/composition', 'durandal/act
                 html.scrollTop(oldScrollTop); // necessary for Firefox
             }
         },
-        removeHost: function(modal) {
+        removeHost: function (modal) {
             $(modal.host).css('opacity', 0);
             $(modal.blockout).css('opacity', 0);
 
-            setTimeout(function() {
+            setTimeout(function () {
                 $(modal.host).remove();
                 $(modal.blockout).remove();
             }, this.removeDelay);
-            
+
             if (!modalDialog.isDialogOpen()) {
                 var html = $("html");
                 var oldScrollTop = html.scrollTop(); // necessary for Firefox.
@@ -210,12 +210,12 @@ define(['durandal/system', 'durandal/app', 'durandal/composition', 'durandal/act
             $(context.model.modal.host).css('opacity', 1);
 
             if ($(child).hasClass('autoclose')) {
-                $(context.model.modal.blockout).click(function() {
+                $(context.model.modal.blockout).click(function () {
                     context.model.modal.close();
                 });
             }
 
-            $('.autofocus', child).each(function() {
+            $('.autofocus', child).each(function () {
                 $(this).focus();
             });
         }

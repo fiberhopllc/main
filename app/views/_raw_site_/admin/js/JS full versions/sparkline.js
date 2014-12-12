@@ -158,7 +158,8 @@
                     e._super = arguments[0].prototype
                 } else {
                     e.prototype = arguments[arguments.length - 1]
-                } if (arguments.length > 2) {
+                }
+                if (arguments.length > 2) {
                     t = Array.prototype.slice.call(arguments, 1, -1);
                     t.unshift(e.prototype);
                     r.extend.apply(r, t)
@@ -244,23 +245,23 @@
         l = function (e) {
             var t;
             switch (e) {
-            case "undefined":
-                e = n;
-                break;
-            case "null":
-                e = null;
-                break;
-            case "true":
-                e = true;
-                break;
-            case "false":
-                e = false;
-                break;
-            default:
-                t = parseFloat(e);
-                if (e == t) {
-                    e = t
-                }
+                case "undefined":
+                    e = n;
+                    break;
+                case "null":
+                    e = null;
+                    break;
+                case "true":
+                    e = true;
+                    break;
+                case "false":
+                    e = false;
+                    break;
+                default:
+                    t = parseFloat(e);
+                    if (e == t) {
+                        e = t
+                    }
             }
             return e
         };
@@ -595,7 +596,8 @@
                 } else {
                     this.mousex = e = e - this.offsetLeft;
                     this.mousey = t = t - this.offsetTop
-                } if (!this.height || !this.width || this.hidden) {
+                }
+                if (!this.height || !this.width || this.hidden) {
                     return
                 }
                 t -= this.height + this.tooltipOffsetY;
@@ -653,7 +655,8 @@
                         }
                     } else {
                         a = s.get("height")
-                    } if (!s.get("disableInteraction")) {
+                    }
+                    if (!s.get("disableInteraction")) {
                         l = r.data(this, "_jqs_mhandler");
                         if (!l) {
                             l = new w(this, s);
@@ -663,14 +666,15 @@
                         }
                     } else {
                         l = false
-                    } if (s.get("composite") && !r.data(this, "_jqs_vcanvas")) {
+                    }
+                    if (s.get("composite") && !r.data(this, "_jqs_vcanvas")) {
                         if (!r.data(this, "_jqs_errnotify")) {
                             alert("Attempted to attach a composite sparkline to an element with no existing sparkline");
                             r.data(this, "_jqs_errnotify", true)
                         }
                         return
                     }
-                    c = new(r.fn.sparkline[s.get("type")])(this, i, s, u, a);
+                    c = new (r.fn.sparkline[s.get("type")])(this, i, s, u, a);
                     c.render();
                     if (l) {
                         l.registerSparkline(c)
@@ -794,7 +798,8 @@
                 }
                 return true
             },
-            getRegion: function (e, t) {},
+            getRegion: function (e, t) {
+            },
             setRegionHighlight: function (e, t, r) {
                 var i = this.currentRegion,
                     s = !this.options.get("disableHighlight"),
@@ -829,7 +834,8 @@
             removeHighlight: function () {
                 this.changeHighlight(false)
             },
-            changeHighlight: function (e) {},
+            changeHighlight: function (e) {
+            },
             getCurrentRegionTooltip: function () {
                 var e = this.options,
                     t = "",
@@ -892,7 +898,8 @@
                 }
                 return ""
             },
-            getCurrentRegionFields: function () {},
+            getCurrentRegionFields: function () {
+            },
             calcHighlightColor: function (e, n) {
                 var r = n.get("highlightColor"),
                     i = n.get("highlightLighten"),
@@ -1396,7 +1403,8 @@
                     a = u.get("stackedBarColor")
                 } else {
                     a = t < 0 ? u.get("negBarColor") : u.get("barColor")
-                } if (t === 0 && u.get("zeroColor") !== n) {
+                }
+                if (t === 0 && u.get("zeroColor") !== n) {
                     a = u.get("zeroColor")
                 }
                 if (o && (f = o.get(t))) {
@@ -1445,7 +1453,8 @@
                         g = t.floor(p * (t.abs(x - u) / f)) + 1
                     } else {
                         g = 1
-                    } if (x < u || x === u && v === 0) {
+                    }
+                    if (x < u || x === u && v === 0) {
                         m = w;
                         w += g
                     } else {
@@ -1650,15 +1659,15 @@
                     r;
                 delete this.shapes[n];
                 switch (t.substr(0, 1)) {
-                case "r":
-                    r = this.renderRange(t.substr(1), e);
-                    break;
-                case "p":
-                    r = this.renderPerformance(e);
-                    break;
-                case "t":
-                    r = this.renderTarget(e);
-                    break
+                    case "r":
+                        r = this.renderRange(t.substr(1), e);
+                        break;
+                    case "p":
+                        r = this.renderPerformance(e);
+                        break;
+                    case "t":
+                        r = this.renderTarget(e);
+                        break
                 }
                 this.valueShapes[t] = r.id;
                 this.shapes[r.id] = t;
@@ -1828,16 +1837,20 @@
                 return 1
             },
             getCurrentRegionFields: function () {
-                var e = [{
-                    field: "lq",
-                    value: this.quartiles[0]
-                }, {
-                    field: "med",
-                    value: this.quartiles[1]
-                }, {
-                    field: "uq",
-                    value: this.quartiles[2]
-                }];
+                var e = [
+                    {
+                        field: "lq",
+                        value: this.quartiles[0]
+                    },
+                    {
+                        field: "med",
+                        value: this.quartiles[1]
+                    },
+                    {
+                        field: "uq",
+                        value: this.quartiles[2]
+                    }
+                ];
                 if (this.loutlier !== n) {
                     e.push({
                         field: "lo",

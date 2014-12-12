@@ -7,7 +7,7 @@
  * @copyright Famous Industries, Inc. 2014
  */
 
-define(function(require, exports, module) {
+define(function (require, exports, module) {
     var Transform = require('./Transform');
     var Modifier = require('./Modifier');
     var RenderNode = require('./RenderNode');
@@ -39,7 +39,7 @@ define(function(require, exports, module) {
         'rotateAxis': Transform.rotateAxis,
         'scale': Transform.scale,
         'skew': Transform.skew,
-        'matrix3d': function() {
+        'matrix3d': function () {
             return arguments;
         }
     };

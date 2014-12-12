@@ -6,7 +6,7 @@
  * @license MPL 2.0
  * @copyright Famous Industries, Inc. 2014
  */
-define(function(require, exports, module) {
+define(function (require, exports, module) {
     var EventHandler = require('../core/EventHandler');
 
     var _now = Date.now;
@@ -15,7 +15,7 @@ define(function(require, exports, module) {
         return {
             x: touch.clientX,
             y: touch.clientY,
-            identifier : touch.identifier,
+            identifier: touch.identifier,
             origin: event.origin,
             timestamp: _now(),
             count: event.touches.length,

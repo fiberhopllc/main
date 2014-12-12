@@ -8,7 +8,7 @@
  * @module serializer
  * @requires system
  */
-define(['durandal/system'], function(system) {
+define(['durandal/system'], function (system) {
     /**
      * @class SerializerModule
      * @static
@@ -25,7 +25,7 @@ define(['durandal/system'], function(system) {
          * @property {string|number} space
          * @default undefined
          */
-        space:undefined,
+        space: undefined,
         /**
          * The default replacer function used during serialization. By default properties starting with '_' or '$' are removed from the serialized object.
          * @method replacer
@@ -33,10 +33,10 @@ define(['durandal/system'], function(system) {
          * @param {object} value The object value to check.
          * @return {object} The value to serialize.
          */
-        replacer: function(key, value) {
-            if(key){
+        replacer: function (key, value) {
+            if (key) {
                 var first = key[0];
-                if(first === '_' || first === '$'){
+                if (first === '_' || first === '$') {
                     return undefined;
                 }
             }
@@ -50,10 +50,10 @@ define(['durandal/system'], function(system) {
          * @param {object} [settings] Settings can specify a replacer or space to override the serializer defaults.
          * @return {string} The JSON string.
          */
-        serialize: function(object, settings) {
+        serialize: function (object, settings) {
             settings = (settings === undefined) ? {} : settings;
 
-            if(system.isString(settings) || system.isNumber(settings)) {
+            if (system.isString(settings) || system.isNumber(settings)) {
                 settings = { space: settings };
             }
 
@@ -65,7 +65,7 @@ define(['durandal/system'], function(system) {
          * @param {object} object The object to serialize.
          * @return {string} The type.
          */
-        getTypeId: function(object) {
+        getTypeId: function (object) {
             if (object) {
                 return object[this.typeAttribute];
             }
@@ -83,7 +83,7 @@ define(['durandal/system'], function(system) {
          * @param {string} typeId The type id.
          * @param {function} constructor The constructor.
          */
-        registerType: function() {
+        registerType: function () {
             var first = arguments[0];
 
             if (arguments.length == 1) {
@@ -102,7 +102,7 @@ define(['durandal/system'], function(system) {
          * @param {object} getConstructor A custom function used to get the constructor function associated with a type id.
          * @return {object} The value.
          */
-        reviver: function(key, value, getTypeId, getConstructor) {
+        reviver: function (key, value, getTypeId, getConstructor) {
             var typeId = getTypeId(value);
             if (typeId) {
                 var ctor = getConstructor(typeId);
@@ -124,13 +124,19 @@ define(['durandal/system'], function(system) {
          * @param {object} [settings] Settings can specify a reviver, getTypeId function or getConstructor function.
          * @return {object} The deserialized object.
          */
-        deserialize: function(text, settings) {
+        deserialize: function (text, settings) {
             var that = this;
             settings = settings || {};
 
-            var getTypeId = settings.getTypeId || function(object) { return that.getTypeId(object); };
-            var getConstructor = settings.getConstructor || function(id) { return that.typeMap[id]; };
-            var reviver = settings.reviver || function(key, value) { return that.reviver(key, value, getTypeId, getConstructor); };
+            var getTypeId = settings.getTypeId || function (object) {
+                return that.getTypeId(object);
+            };
+            var getConstructor = settings.getConstructor || function (id) {
+                return that.typeMap[id];
+            };
+            var reviver = settings.reviver || function (key, value) {
+                return that.reviver(key, value, getTypeId, getConstructor);
+            };
 
             return JSON.parse(text, reviver);
         },
@@ -141,7 +147,7 @@ define(['durandal/system'], function(system) {
          * @param {object} [settings] Settings can specify any of the options allowed by the serialize or deserialize methods.
          * @return {object} The new clone.
          */
-        clone:function(obj, settings) {
+        clone: function (obj, settings) {
             return this.deserialize(this.serialize(obj, settings), settings);
         }
     };

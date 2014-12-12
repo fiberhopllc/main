@@ -7,7 +7,7 @@
  * @copyright Famous Industries, Inc. 2014
  */
 
-define(function(require, exports, module) {
+define(function (require, exports, module) {
     var EventEmitter = require('./EventEmitter');
 
     /**
@@ -27,6 +27,7 @@ define(function(require, exports, module) {
         this.upstream = []; // upstream event handlers
         this.upstreamListeners = {}; // upstream listeners
     }
+
     EventHandler.prototype = Object.create(EventEmitter.prototype);
     EventHandler.prototype.constructor = EventHandler;
 

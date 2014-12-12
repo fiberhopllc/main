@@ -1,39 +1,41 @@
 $C('$data.storageProviders.Storm.StormProvider', $data.StorageProviderBase, null, {
-    constructor: function(cfg, ctx){
+    constructor: function (cfg, ctx) {
         this.context = ctx;
         this.providerConfiguration = $data.typeSystem.extend({
             url: 'http://localhost:3000/'
         }, cfg);
     },
-    initializeStore: function(callback){
+    initializeStore: function (callback) {
         callback = $data.typeSystem.createCallbackSetting(callback);
         callback.success(this.context);
     },
-    executeQuery: function(query, callback){
+    executeQuery: function (query, callback) {
         callBack = $data.typeSystem.createCallbackSetting(callback);
-        
+
         query.modelBinderConfig = {};
         var modelBinder = Container.createModelBinderConfigCompiler(query, this.includes, false);
         modelBinder.Visit(query.expression);
-        
+
         var compiler = new $data.storageProviders.InMemory.InMemoryCompiler(this);
         var compiled = compiler.compile(query);
-        
-        var sets = query.getEntitySets().map(function(it){ return it.name; });
-        
-        for (var i in compiled){
-            if (i.indexOf('$') == 0){
+
+        var sets = query.getEntitySets().map(function (it) {
+            return it.name;
+        });
+
+        for (var i in compiled) {
+            if (i.indexOf('$') == 0) {
                 if (typeof compiled[i] === 'function')
                     compiled[i] = compiled[i].toString().replace('function anonymous', 'function').replace(/\n/g, ' ');
-                else if (compiled[i] instanceof Array && i === '$order'){
-                    for (var k = 0; k < compiled[i].length; k++){
-                        if (typeof compiled[i][k] === 'function'){
+                else if (compiled[i] instanceof Array && i === '$order') {
+                    for (var k = 0; k < compiled[i].length; k++) {
+                        if (typeof compiled[i][k] === 'function') {
                             var dir = compiled[i][k].ASC;
                             compiled[i][k] = compiled[i][k].toString().replace('function anonymous', 'function').replace(/\n/g, ' ');
                             compiled[i][k] = { fn: compiled[i][k], direction: dir };
                             /*if (compiled[i][k].ASC){
-                                if (!compiled.$orderby) compiled*/
-                        }else{
+                             if (!compiled.$orderby) compiled*/
+                        } else {
                             var dir = compiled[i][k].ASC;
                             compiled[i][k] = { fn: compiled[i][k], direction: dir };
                         }
@@ -41,35 +43,37 @@ $C('$data.storageProviders.Storm.StormProvider', $data.StorageProviderBase, null
                 }
             }
         }
-        
+
         /*var qs = 'db.' + sets[0];
-        if (compiled.$include){
-            for (var i = 0; i < compiled.$include.length; i++){
-                qs += '.include("' + compiled.$include[i] + '")';
-            }
-        }
-        if (compiled.$filter) qs += '.filter(' + compiled.$filter + ')';
-        if (compiled.$order){
-            for (var i = 0; i < compiled.$order.length; i++){
-                qs += compiled.$order[i];
-            }
-        }
-        if (compiled.$skip) qs += '.skip(' + compiled.$skip + ')';
-        if (compiled.$take) qs += '.take(' + compiled.$take + ')';
-        if (compiled.$length) qs += '.length(callback)';
-        else qs += '.toArray(callback)';*/
-        
+         if (compiled.$include){
+         for (var i = 0; i < compiled.$include.length; i++){
+         qs += '.include("' + compiled.$include[i] + '")';
+         }
+         }
+         if (compiled.$filter) qs += '.filter(' + compiled.$filter + ')';
+         if (compiled.$order){
+         for (var i = 0; i < compiled.$order.length; i++){
+         qs += compiled.$order[i];
+         }
+         }
+         if (compiled.$skip) qs += '.skip(' + compiled.$skip + ')';
+         if (compiled.$take) qs += '.take(' + compiled.$take + ')';
+         if (compiled.$length) qs += '.length(callback)';
+         else qs += '.toArray(callback)';*/
+
         $data.ajax({
             url: this.providerConfiguration.url,
             dataType: 'json',
             data: { entitySet: sets[0], expression: compiled },
-            success: function(data, textStatus, jqXHR){
-                query.rawDataList = typeof data.length !== 'undefined' ? data : [{ cnt: data }];
+            success: function (data, textStatus, jqXHR) {
+                query.rawDataList = typeof data.length !== 'undefined' ? data : [
+                    { cnt: data }
+                ];
                 query.context = this;
-                
+
                 callBack.success(query);
             },
-            error: function(jqXHR, textStatus, errorThrown){
+            error: function (jqXHR, textStatus, errorThrown) {
                 var errorData = {};
                 try {
                     errorData = JSON.parse(jqXHR.responseText).error;
@@ -80,38 +84,40 @@ $C('$data.storageProviders.Storm.StormProvider', $data.StorageProviderBase, null
             }
         });
     },
-    saveChanges: function(callBack, changedItems){
+    saveChanges: function (callBack, changedItems) {
         var self = this;
-        if (changedItems.length){
+        if (changedItems.length) {
             var independentBlocks = this.buildIndependentBlocks(changedItems);
-            
+
             var convertedItems = [];
             var collections = {};
             var entities = [];
-            for (var i = 0; i < independentBlocks.length; i++){
+            for (var i = 0; i < independentBlocks.length; i++) {
                 for (var j = 0; j < independentBlocks[i].length; j++) {
                     convertedItems.push(independentBlocks[i][j].data);
-                    
+
                     var es = collections[independentBlocks[i][j].entitySet.name];
-                    if (!es){
+                    if (!es) {
                         es = {};
                         collections[independentBlocks[i][j].entitySet.name] = es;
                     }
-                    
-                    switch (independentBlocks[i][j].data.entityState){
-                        case $data.EntityState.Unchanged: continue; break;
+
+                    switch (independentBlocks[i][j].data.entityState) {
+                        case $data.EntityState.Unchanged:
+                            continue;
+                            break;
                         case $data.EntityState.Added:
-                            /*if (!es.insertAll) es.insertAll = [];
-                            es.insertAll.push(this.save_getInitData(independentBlocks[i][j], convertedItems));
-                            break;*/
+                        /*if (!es.insertAll) es.insertAll = [];
+                         es.insertAll.push(this.save_getInitData(independentBlocks[i][j], convertedItems));
+                         break;*/
                         case $data.EntityState.Modified:
-                            /*if (!es.updateAll) es.updateAll = [];
-                            es.updateAll.push(this.save_getInitData(independentBlocks[i][j], convertedItems));
-                            break;*/
+                        /*if (!es.updateAll) es.updateAll = [];
+                         es.updateAll.push(this.save_getInitData(independentBlocks[i][j], convertedItems));
+                         break;*/
                         case $data.EntityState.Deleted:
                             /*if (!es.removeAll) es.removeAll = [];
-                            es.removeAll.push(this.save_getInitData(independentBlocks[i][j], convertedItems));
-                            break;*/
+                             es.removeAll.push(this.save_getInitData(independentBlocks[i][j], convertedItems));
+                             break;*/
                             entities.push({
                                 entitySet: independentBlocks[i][j].entitySet.name,
                                 entityState: independentBlocks[i][j].data.entityState,
@@ -119,26 +125,29 @@ $C('$data.storageProviders.Storm.StormProvider', $data.StorageProviderBase, null
                                 data: this.save_getInitData(independentBlocks[i][j], convertedItems)
                             });
                             break;
-                        default: Guard.raise(new Exception("Not supported Entity state"));
+                        default:
+                            Guard.raise(new Exception("Not supported Entity state"));
                     }
                 }
             }
-            
+
             $data.ajax({
                 url: this.providerConfiguration.url,
                 type: 'post',
                 dataType: 'json',
-                data: { items: JSON.stringify(entities.map(function(it){ return { entitySet: it.entitySet, entityState: it.entityState, data: it.data }; })) },
-                success: function(data, textStatus, jqXHR){
-                    for (var i = 0; i < data.items.length; i++){
+                data: { items: JSON.stringify(entities.map(function (it) {
+                    return { entitySet: it.entitySet, entityState: it.entityState, data: it.data };
+                })) },
+                success: function (data, textStatus, jqXHR) {
+                    for (var i = 0; i < data.items.length; i++) {
                         var item = data.items[i];
-                        for (var p in item){
+                        for (var p in item) {
                             entities[i].entity[p] = item[p];
                         }
                     }
                     callBack.success(data.__count);
                 },
-                error: function(jqXHR, textStatus, errorThrown){
+                error: function (jqXHR, textStatus, errorThrown) {
                     var errorData = {};
                     try {
                         errorData = JSON.parse(jqXHR.responseText).error;
@@ -148,10 +157,10 @@ $C('$data.storageProviders.Storm.StormProvider', $data.StorageProviderBase, null
                     callBack.error(errorData);
                 }
             });
-            
-        }else callBack.success(0);
+
+        } else callBack.success(0);
     },
-    save_getInitData: function(item, convertedItems) {
+    save_getInitData: function (item, convertedItems) {
         item.physicalData = this.context._storageModel.getStorageModel(item.data.getType()).PhysicalType.convertTo(item.data, convertedItems);
         var serializableObject = {};
         var self = this;
@@ -194,19 +203,19 @@ $C('$data.storageProviders.Storm.StormProvider', $data.StorageProviderBase, null
             toArray: {},
             single: {},
             /*some: {
-                invokable: false,
-                allowedIn: [$data.Expressions.FilterExpression],
-                parameters: [{ name: "filter", dataType: "$data.Queryable" }],
-                mapTo: 'any',
-                frameType: $data.Expressions.SomeExpression
-            },
-            every: {
-                invokable: false,
-                allowedIn: [$data.Expressions.FilterExpression],
-                parameters: [{ name: "filter", dataType: "$data.Queryable" }],
-                mapTo: 'all',
-                frameType: $data.Expressions.EveryExpression
-            },*/
+             invokable: false,
+             allowedIn: [$data.Expressions.FilterExpression],
+             parameters: [{ name: "filter", dataType: "$data.Queryable" }],
+             mapTo: 'any',
+             frameType: $data.Expressions.SomeExpression
+             },
+             every: {
+             invokable: false,
+             allowedIn: [$data.Expressions.FilterExpression],
+             parameters: [{ name: "filter", dataType: "$data.Queryable" }],
+             mapTo: 'all',
+             frameType: $data.Expressions.EveryExpression
+             },*/
             take: {},
             skip: {},
             orderBy: {},
@@ -220,37 +229,79 @@ $C('$data.storageProviders.Storm.StormProvider', $data.StorageProviderBase, null
     fieldConverter: {
         value: {
             fromDb: {
-                '$data.Integer': function (number) { return number; },
-                '$data.Number': function (number) { return number; },
-                '$data.Date': function (date) { return typeof date === 'string' ? new Date(date) : date; },
-                '$data.String': function (text) { return text; },
-                '$data.Boolean': function (bool) { return bool; },
-                '$data.Blob': function (blob) { return blob; },
-                '$data.Object': function (o) { if (o === undefined) { return new $data.Object(); } return JSON.parse(o); },
-                '$data.Array': function (o) { if (o === undefined) { return new $data.Array(); } return JSON.parse(o); },
-                '$data.ObjectID': function (id) { return id; }
+                '$data.Integer': function (number) {
+                    return number;
+                },
+                '$data.Number': function (number) {
+                    return number;
+                },
+                '$data.Date': function (date) {
+                    return typeof date === 'string' ? new Date(date) : date;
+                },
+                '$data.String': function (text) {
+                    return text;
+                },
+                '$data.Boolean': function (bool) {
+                    return bool;
+                },
+                '$data.Blob': function (blob) {
+                    return blob;
+                },
+                '$data.Object': function (o) {
+                    if (o === undefined) {
+                        return new $data.Object();
+                    }
+                    return JSON.parse(o);
+                },
+                '$data.Array': function (o) {
+                    if (o === undefined) {
+                        return new $data.Array();
+                    }
+                    return JSON.parse(o);
+                },
+                '$data.ObjectID': function (id) {
+                    return id;
+                }
             },
             toDb: {
-                '$data.Integer': function (number) { return number; },
-                '$data.Number': function (number) { return number; },
-                '$data.Date': function (date) { return 'ISODate("' + date.toISOString() + '")'; },
-                '$data.String': function (text) { return "\"" + text + "\""; },
-                '$data.Boolean': function (bool) { return bool; },
-                '$data.Blob': function (blob) { return blob; },
-                '$data.Object': function (o) { return JSON.stringify(o); },
-                '$data.Array': function (o) { return JSON.stringify(o); },
-                '$data.ObjectID': function (id) { return '"' + id + '"'; }
+                '$data.Integer': function (number) {
+                    return number;
+                },
+                '$data.Number': function (number) {
+                    return number;
+                },
+                '$data.Date': function (date) {
+                    return 'ISODate("' + date.toISOString() + '")';
+                },
+                '$data.String': function (text) {
+                    return "\"" + text + "\"";
+                },
+                '$data.Boolean': function (bool) {
+                    return bool;
+                },
+                '$data.Blob': function (blob) {
+                    return blob;
+                },
+                '$data.Object': function (o) {
+                    return JSON.stringify(o);
+                },
+                '$data.Array': function (o) {
+                    return JSON.stringify(o);
+                },
+                '$data.ObjectID': function (id) {
+                    return '"' + id + '"';
+                }
             }
         }
     }
 }, {
     isSuppported: {
-        get: function(){
+        get: function () {
             return 'XMLHttpRequest' in window;
         }
     }
 });
 
-if ($data.storageProviders.Storm.StormProvider.isSupported){
+if ($data.storageProviders.Storm.StormProvider.isSupported) {
     $data.StorageProviderBase.registerProvider('storm', $data.storageProviders.Storm.StormProvider);
 }

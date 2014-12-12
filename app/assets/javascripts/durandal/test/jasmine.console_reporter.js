@@ -1,12 +1,12 @@
 /**
-Jasmine Reporter that outputs test results to the browser console. 
-Useful for running in a headless environment such as PhantomJs, ZombieJs etc.
+ Jasmine Reporter that outputs test results to the browser console.
+ Useful for running in a headless environment such as PhantomJs, ZombieJs etc.
 
-Usage:
-// From your html file that loads jasmine:  
-jasmine.getEnv().addReporter(new jasmine.ConsoleReporter());
-jasmine.getEnv().execute();
-*/
+ Usage:
+ // From your html file that loads jasmine:
+ jasmine.getEnv().addReporter(new jasmine.ConsoleReporter());
+ jasmine.getEnv().execute();
+ */
 
 (function (jasmine, console) {
     if (!jasmine) {
@@ -25,7 +25,9 @@ jasmine.getEnv().execute();
     }
 
     var ConsoleReporter = function () {
-        if (!console || !console.log) { throw "console isn't present!"; }
+        if (!console || !console.log) {
+            throw "console isn't present!";
+        }
         this.status = this.statuses.stopped;
     };
 
@@ -60,7 +62,7 @@ jasmine.getEnv().execute();
         this.status = (failed > 0) ? this.statuses.fail : this.statuses.success;
 
         /* Print something that signals that testing is over so that headless browsers
-        like PhantomJs know when to terminate. */
+         like PhantomJs know when to terminate. */
         this.log("");
         this.log("ConsoleReporter finished");
     };
@@ -87,7 +89,9 @@ jasmine.getEnv().execute();
     };
 
     proto.reportSuiteResults = function (suite) {
-        if (!suite.parentSuite) { return; }
+        if (!suite.parentSuite) {
+            return;
+        }
         var results = suite.results();
         var failed = results.totalCount - results.passedCount;
         var color = (failed > 0) ? "red" : "green";

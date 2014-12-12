@@ -7,7 +7,7 @@
  * @copyright Famous Industries, Inc. 2014
  */
 
-define(function(require, exports, module) {
+define(function (require, exports, module) {
     var Transform = require('../core/Transform');
     var Transitionable = require('../transitions/Transitionable');
     var EventHandler = require('../core/EventHandler');
@@ -37,13 +37,13 @@ define(function(require, exports, module) {
         this.options = Object.create(Draggable.DEFAULT_OPTIONS);
         if (options) this.setOptions(options);
 
-        this._positionState = new Transitionable([0,0]);
-        this._differential  = [0,0];
+        this._positionState = new Transitionable([0, 0]);
+        this._differential = [0, 0];
         this._active = true;
 
-        this.sync = new GenericSync(['mouse', 'touch'], {scale : this.options.scale});
+        this.sync = new GenericSync(['mouse', 'touch'], {scale: this.options.scale});
         this.eventOutput = new EventHandler();
-        EventHandler.setInputHandler(this,  this.sync);
+        EventHandler.setInputHandler(this, this.sync);
         EventHandler.setOutputHandler(this, this.eventOutput);
 
         _bindEvents.call(this);
@@ -51,8 +51,8 @@ define(function(require, exports, module) {
 
     //binary representation of directions for bitwise operations
     var _direction = {
-        x : 0x01,         //001
-        y : 0x02          //010
+        x: 0x01,         //001
+        y: 0x02          //010
     };
 
     Draggable.DIRECTION_X = _direction.x;
@@ -61,20 +61,20 @@ define(function(require, exports, module) {
     var _clamp = Utilities.clamp;
 
     Draggable.DEFAULT_OPTIONS = {
-        projection  : _direction.x | _direction.y,
-        scale       : 1,
-        xRange      : null,
-        yRange      : null,
-        snapX       : 0,
-        snapY       : 0,
-        transition  : {duration : 0}
+        projection: _direction.x | _direction.y,
+        scale: 1,
+        xRange: null,
+        yRange: null,
+        snapX: 0,
+        snapY: 0,
+        transition: {duration: 0}
     };
 
     function _mapDifferential(differential) {
-        var opts        = this.options;
-        var projection  = opts.projection;
-        var snapX       = opts.snapX;
-        var snapY       = opts.snapY;
+        var opts = this.options;
+        var projection = opts.projection;
+        var snapX = opts.snapX;
+        var snapY = opts.snapY;
 
         //axes
         var tx = (projection & _direction.x) ? differential[0] : 0;
@@ -90,7 +90,7 @@ define(function(require, exports, module) {
     function _handleStart() {
         if (!this._active) return;
         if (this._positionState.isActive()) this._positionState.halt();
-        this.eventOutput.emit('start', {position : this.getPosition()});
+        this.eventOutput.emit('start', {position: this.getPosition()});
     }
 
     function _handleMove(event) {
@@ -111,22 +111,22 @@ define(function(require, exports, module) {
         pos[1] += newDifferential[1];
 
         //handle bounding box
-        if (options.xRange){
+        if (options.xRange) {
             var xRange = [options.xRange[0] + 0.5 * options.snapX, options.xRange[1] - 0.5 * options.snapX];
             pos[0] = _clamp(pos[0], xRange);
         }
 
-        if (options.yRange){
+        if (options.yRange) {
             var yRange = [options.yRange[0] + 0.5 * options.snapY, options.yRange[1] - 0.5 * options.snapY];
             pos[1] = _clamp(pos[1], yRange);
         }
 
-        this.eventOutput.emit('update', {position : pos});
+        this.eventOutput.emit('update', {position: pos});
     }
 
     function _handleEnd() {
         if (!this._active) return;
-        this.eventOutput.emit('end', {position : this.getPosition()});
+        this.eventOutput.emit('end', {position: this.getPosition()});
     }
 
     function _bindEvents() {
@@ -147,20 +147,20 @@ define(function(require, exports, module) {
         if (options.projection !== undefined) {
             var proj = options.projection;
             this.options.projection = 0;
-            ['x', 'y'].forEach(function(val) {
+            ['x', 'y'].forEach(function (val) {
                 if (proj.indexOf(val) !== -1) currentOptions.projection |= _direction[val];
             });
         }
-        if (options.scale  !== undefined) {
-            currentOptions.scale  = options.scale;
+        if (options.scale !== undefined) {
+            currentOptions.scale = options.scale;
             this.sync.setOptions({
                 scale: options.scale
             });
         }
         if (options.xRange !== undefined) currentOptions.xRange = options.xRange;
         if (options.yRange !== undefined) currentOptions.yRange = options.yRange;
-        if (options.snapX  !== undefined) currentOptions.snapX  = options.snapX;
-        if (options.snapY  !== undefined) currentOptions.snapY  = options.snapY;
+        if (options.snapX !== undefined) currentOptions.snapX = options.snapX;
+        if (options.snapY !== undefined) currentOptions.snapY = options.snapY;
     };
 
     /**

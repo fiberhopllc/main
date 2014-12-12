@@ -1,23 +1,22 @@
 /*!
-* jqAmp UI Spinner v1.0 (for jQuery/jQuery UI)
-*
-* Copyright 2012, Tony Kramer
-* Dual licensed under the MIT or GPL Version 2 licenses.
-* https://github.com/flamewave/jqamp-ui-spinner/raw/master/GPL-LICENSE.txt
-* https://github.com/flamewave/jqamp-ui-spinner/raw/master/MIT-LICENSE.txt
-*/
+ * jqAmp UI Spinner v1.0 (for jQuery/jQuery UI)
+ *
+ * Copyright 2012, Tony Kramer
+ * Dual licensed under the MIT or GPL Version 2 licenses.
+ * https://github.com/flamewave/jqamp-ui-spinner/raw/master/GPL-LICENSE.txt
+ * https://github.com/flamewave/jqamp-ui-spinner/raw/master/MIT-LICENSE.txt
+ */
 
 /*
-* For documentation and for the latest version, see:
-* https://github.com/flamewave/jqamp-ui-spinner
-*
-* Dependencies:
-* - jQuery (1.7.1+)
-* - jQuery-ui (1.8.18+ - core, widget, button)
-* - jQuery MouseWheel (3.0.6+ - optional, for mousewheel support)
-*/
-(function($)
-{
+ * For documentation and for the latest version, see:
+ * https://github.com/flamewave/jqamp-ui-spinner
+ *
+ * Dependencies:
+ * - jQuery (1.7.1+)
+ * - jQuery-ui (1.8.18+ - core, widget, button)
+ * - jQuery MouseWheel (3.0.6+ - optional, for mousewheel support)
+ */
+(function ($) {
     var defaultIcons = ['ui-icon-triangle-1-n', 'ui-icon-triangle-1-s'];
 
     $.widget('jqAmpUI.spinner', {
@@ -82,16 +81,14 @@
         _mwEvents: false,
         _buttons: false,
 
-        _create: function()
-        {
+        _create: function () {
             var element = this.element, uiSpinner, options = this.options, $this = this;
             this.document = $(element.style ? element.ownerDocument : element.document || element);
             this.window = this.document[0].defaultView || this.document[0].parentWindow;
             this._setValue(this._parse(element.val()), false, false);
 
             // load min, max, and step from input attributes
-            $.each(['min', 'max', 'step'], function(i, option)
-            {
+            $.each(['min', 'max', 'step'], function (i, option) {
                 var value = element.attr(option);
                 if (value !== undefined && value.length && !options[option])
                     options[option] = $this._parse(value);
@@ -108,13 +105,11 @@
                 })
                 .wrap(this._uiSpinnerHtml())
                 .bind({
-                    'focus.spinner': function()
-                    {
+                    'focus.spinner': function () {
                         uiSpinner.addClass('ui-state-active');
                         $this._previous = $this.value();
                     },
-                    'blur.spinner': function(event)
-                    {
+                    'blur.spinner': function (event) {
                         var val = $this.value();
                         uiSpinner.removeClass('ui-state-active');
                         element.attr('aria-valuenow', val);
@@ -127,12 +122,10 @@
                 .parent();
 
             this.uiSpinner.bind({
-                'mouseenter.spinner': function(event)
-                {
+                'mouseenter.spinner': function (event) {
                     uiSpinner.addClass('ui-state-hover');
                 },
-                'mouseleave.spinner': function(event)
-                {
+                'mouseleave.spinner': function (event) {
                     uiSpinner.removeClass('ui-state-hover');
                 }
             });
@@ -154,16 +147,16 @@
                 this._setOption('readonly', true);
 
             // Turning off autocomplete prevents browser from remembering value when navigating history; re-enable autocomplete if page is unloaded before widget is destroyed.
-            $(this.window).bind('beforeunload.spinner', function() { element.removeAttr('autocomplete'); });
+            $(this.window).bind('beforeunload.spinner', function () {
+                element.removeAttr('autocomplete');
+            });
         },
 
-        _uiSpinnerHtml: function()
-        {
+        _uiSpinnerHtml: function () {
             return '<span class="ui-widget ui-spinner ui-spinner-nobuttons" />';
         },
 
-        destroy: function()
-        {
+        destroy: function () {
             $(this.window).unbind('beforeunload.spinner');
             this.element.siblings('.ui-spinner-button').remove();
             this.element.unbind('.spinner')
@@ -173,8 +166,7 @@
             $.Widget.prototype.destroy.call(this);
         },
 
-        _setupButtons: function()
-        {
+        _setupButtons: function () {
             if (this._buttons)
                 return;
 
@@ -182,8 +174,7 @@
             if (!buttons)
                 return;
 
-            if (buttons.position)
-            {
+            if (buttons.position) {
                 if (buttons.position === 'insideStacked' || buttons.position === 'outsideStacked')
                     stacked = true;
 
@@ -205,8 +196,7 @@
                 .button()
                 .removeClass('ui-corner-all')
                 .bind({
-                    'mousedown.spinner': function(event)
-                    {
+                    'mousedown.spinner': function (event) {
                         // ensure focus is on (or stays on) the text field
                         event.preventDefault();
                         if (document.activeElement !== element)
@@ -220,7 +210,9 @@
 
                         $this._spin($this._getAmount(buttons, event.ctrlKey, event.shiftKey), $(event.currentTarget).hasClass('ui-spinner-down'), true, event);
                     },
-                    'mouseup.spinner': function(event) { $this._stop(event); }
+                    'mouseup.spinner': function (event) {
+                        $this._stop(event);
+                    }
                 });
 
             if (buttons && buttons.up && buttons.up.title)
@@ -232,8 +224,7 @@
             this._buttons = true;
         },
 
-        _removeButtons: function()
-        {
+        _removeButtons: function () {
             if (!this._buttons)
                 return;
 
@@ -245,22 +236,18 @@
             this._buttons = false;
         },
 
-        _buttonHtml: function(stacked, inside)
-        {
+        _buttonHtml: function (stacked, inside) {
             var buttons = this.options.buttons, upcorner, downcorner;
-            if (stacked)
-            {
+            if (stacked) {
                 upcorner = inside ? ' ui-corner-tr' : ' ui-corner-top';
                 downcorner = inside ? 'ui-corner-br' : 'ui-corner-bottom';
             }
-            else
-            {
+            else {
                 upcorner = inside ? '' : ' ui-corner-left';
                 downcorner = 'ui-corner-right';
             }
 
-            function _getIcon(name, index)
-            {
+            function _getIcon(name, index) {
                 if (!buttons || !buttons[name] || !buttons[name].icon || typeof buttons[name].icon !== 'string')
                     return defaultIcons[index];
 
@@ -268,26 +255,22 @@
             }
 
             return '<a class="ui-spinner-button ui-spinner-up' + upcorner + '"><span class="ui-icon ' + _getIcon('up', 0) + '">&#9650;</span></a>' +
-			    '<a class="ui-spinner-button ui-spinner-down ' + downcorner + '"><span class="ui-icon ' + _getIcon('down', 1) + '">&#9660;</span></a>';
+                '<a class="ui-spinner-button ui-spinner-down ' + downcorner + '"><span class="ui-icon ' + _getIcon('down', 1) + '">&#9660;</span></a>';
         },
 
-        _setupKeyboard: function()
-        {
+        _setupKeyboard: function () {
             var $this = this, options = this.options, keyboard = options.keyboard, keyCode = $.ui.keyCode;
             if (this._kbEvents || !keyboard)
                 return;
 
             this.element.bind({
-                'keydown.spinner': function(event)
-                {
+                'keydown.spinner': function (event) {
                     if (options.disabled || options.readonly || !keyboard)
                         return;
 
-                    switch (event.which)
-                    {
+                    switch (event.which) {
                         case keyCode.UP:
-                            if (keyboard === true || keyboard.upDownArrows)
-                            {
+                            if (keyboard === true || keyboard.upDownArrows) {
                                 if ($this._start(event))
                                     $this._spin($this._getAmount(keyboard.upDownArrows, event.ctrlKey, event.shiftKey), false, false, event);
 
@@ -297,8 +280,7 @@
                             break;
 
                         case keyCode.DOWN:
-                            if (keyboard === true || keyboard.upDownArrows)
-                            {
+                            if (keyboard === true || keyboard.upDownArrows) {
                                 if ($this._start(event))
                                     $this._spin($this._getAmount(keyboard.upDownArrows, event.ctrlKey, event.shiftKey), true, false, event);
 
@@ -308,8 +290,7 @@
                             break;
 
                         case keyCode.PAGE_UP:
-                            if (keyboard === true || keyboard.pageUpDown)
-                            {
+                            if (keyboard === true || keyboard.pageUpDown) {
                                 if ($this._start(event))
                                     $this._spin($this._getPage(), false, false, event);
 
@@ -319,8 +300,7 @@
                             break;
 
                         case keyCode.PAGE_DOWN:
-                            if (keyboard === true || keyboard.pageUpDown)
-                            {
+                            if (keyboard === true || keyboard.pageUpDown) {
                                 if ($this._start(event))
                                     $this._spin($this._getPage(), true, false, event);
 
@@ -342,18 +322,18 @@
                     // Don't allow the key that was pressed to do anything since it is not an allowed key.
                     event.preventDefault();
                 },
-                'keyup.spinner': function(event) { $this._stop(event); }
+                'keyup.spinner': function (event) {
+                    $this._stop(event);
+                }
             });
             this._kbEvents = true;
         },
 
-        _isAllowedKey: function(keyCode)
-        {
+        _isAllowedKey: function (keyCode) {
             return $.isControlKey(keyCode);
         },
 
-        _removeKeyboard: function()
-        {
+        _removeKeyboard: function () {
             if (!this._kbEvents)
                 return;
 
@@ -361,16 +341,14 @@
             this._kbEvents = false;
         },
 
-        _setupMouseWheel: function()
-        {
+        _setupMouseWheel: function () {
             var $this = this, mousewheel = this.options.mousewheel;
             if (this._mwEvents || !mousewheel)
                 return;
 
             this.element.bind(
                 'mousewheel.spinner',
-                function(event, delta)
-                {
+                function (event, delta) {
                     if (!delta || $this.options.disabled || $this.options.readonly)
                         return;
 
@@ -381,8 +359,7 @@
                     $this._spin($this._getAmount(mousewheel, event.ctrlKey, event.shiftKey), delta < 0, false, event);
 
                     clearTimeout($this._timer);
-                    $this._timer = setTimeout(function()
-                    {
+                    $this._timer = setTimeout(function () {
                         if ($this._isSpinning)
                             $this._stop(event);
                     }, 100);
@@ -390,8 +367,7 @@
             this._mwEvents = true;
         },
 
-        _removeMouseWheel: function()
-        {
+        _removeMouseWheel: function () {
             if (!this._mwEvents)
                 return;
 
@@ -399,10 +375,8 @@
             this._mwEvents = false;
         },
 
-        _getAmount: function(obj, ctrl, shift)
-        {
-            if (!obj || typeof obj !== 'object')
-            {
+        _getAmount: function (obj, ctrl, shift) {
+            if (!obj || typeof obj !== 'object') {
                 // Use defaults
                 if (ctrl)
                     return this._getHalfStep();
@@ -422,8 +396,7 @@
             return obj.defaultAction ? this._actionAmount(obj.defaultAction) : this._getStep();
         },
 
-        _actionAmount: function(action)
-        {
+        _actionAmount: function (action) {
             if (action === 'halfStep')
                 return this._getHalfStep();
 
@@ -433,84 +406,69 @@
             return this._getStep();
         },
 
-        _getStep: function()
-        {
+        _getStep: function () {
             return this.options.step || 1;
         },
 
-        _getHalfStep: function()
-        {
+        _getHalfStep: function () {
             return this.options.halfStep || this._getStep();
         },
 
-        _getPage: function()
-        {
+        _getPage: function () {
             return this.options.page || this._getStep();
         },
 
-        _parse: function(val)
-        {
+        _parse: function (val) {
             if ($.isFunction(this.options.parse))
                 return this.options.parse.apply(this, [val]);
 
-            try
-            {
+            try {
                 return this._defaultParse(val);
             }
-            catch (e)
-            {
+            catch (e) {
                 throw 'SpinnerException: Unable to parse the value specified without a custom parser (parse option). Reason: ' + e;
             }
         },
 
-        _defaultParse: function(val)
-        {
+        _defaultParse: function (val) {
             if (typeof val === 'number')
                 return val;
 
             return parseFloat(val) || 0;
         },
 
-        _format: function(val)
-        {
+        _format: function (val) {
             if (val === undefined || val === null || val === false)
                 return '';
 
             if ($.isFunction(this.options.format))
                 return this.options.format.apply(this, [val]);
 
-            try
-            {
+            try {
                 return this._defaultFormat(val);
             }
-            catch (e)
-            {
+            catch (e) {
                 throw 'SpinnerException: Unable to convert value to a string without a custom converter (format option). Reason: ' + e;
             }
         },
 
-        _defaultFormat: function(val)
-        {
+        _defaultFormat: function (val) {
             return val.toString();
         },
 
-        _compare: function(left, right)
-        {
+        _compare: function (left, right) {
             if ($.isFunction(this.options.compare))
                 return this.options.compare.apply(this, [left, right]);
 
-            try
-            {
+            try {
                 return this._defaultCompare(left, right);
             }
-            catch (e)
-            {
+            catch (e) {
                 throw 'SpinnerExpcetion: Unable to compare the value type without a custom converter (compare option).';
             }
         },
 
-        _defaultCompare: function(left, right)
-        {
+        _defaultCompare: function (left, right) {
             if (left === null || left === undefined)
                 left = this._emptyVal() || 0;
 
@@ -526,8 +484,7 @@
             return 1;
         },
 
-        _isEmptyVal: function(val)
-        {
+        _isEmptyVal: function (val) {
             var empty = this._emptyVal();
             if (empty === false)
                 return false;
@@ -535,8 +492,7 @@
             return this._compare(empty, val === undefined ? this.value() : val) === 0;
         },
 
-        _emptyVal: function()
-        {
+        _emptyVal: function () {
             var empty = this.options.empty;
             if (empty === false || empty === undefined)
                 return false;
@@ -548,8 +504,7 @@
             return empty;
         },
 
-        _minVal: function()
-        {
+        _minVal: function () {
             var min = this.options.min;
             if (min === false || min === undefined)
                 return false;
@@ -561,8 +516,7 @@
             return min;
         },
 
-        _maxVal: function()
-        {
+        _maxVal: function () {
             var max = this.options.max;
             if (max === false || max === undefined)
                 return false;
@@ -574,18 +528,15 @@
             return max;
         },
 
-        _checkMinMax: function(val, currentValue)
-        {
+        _checkMinMax: function (val, currentValue) {
             var min = this._minVal(), max = this._maxVal();
-            if (min !== false && this._compare(val, min) < 0)
-            {
+            if (min !== false && this._compare(val, min) < 0) {
                 if (this._compare(currentValue, min) === 0)
                     return false;
 
                 return min;
             }
-            else if (max !== false && this._compare(val, max) > 0)
-            {
+            else if (max !== false && this._compare(val, max) > 0) {
                 if (this._compare(currentValue, max) === 0)
                     return false;
 
@@ -595,10 +546,8 @@
             return val;
         },
 
-        _setValue: function(val, raiseChange, noMinMaxCheck)
-        {
-            if (!noMinMaxCheck)
-            {
+        _setValue: function (val, raiseChange, noMinMaxCheck) {
+            if (!noMinMaxCheck) {
                 val = this._checkMinMax(val, this.value());
                 if (val === false)
                     return;
@@ -610,20 +559,18 @@
                 this._trigger('change');
         },
 
-        _adjustValue: function(count, amount, decrement, raiseChange, event)
-        {
+        _adjustValue: function (count, amount, decrement, raiseChange, event) {
             if (this.options.disabled || !amount)
                 return false;
 
             var currentValue = this.value(), val = this._checkMinMax($.isFunction(amount) ? amount.call(this, [currentValue, count, decrement]) : this._defaultValueCalc(currentValue, amount, count, decrement), currentValue);
-            if (val === false)
-            {
+            if (val === false) {
                 if (this._isSpinning)
                     this._stop(event);
 
                 return false;
             }
-            
+
             if (this._isSpinning && this._trigger('spin', event, { value: val }) === false)
                 return false;
 
@@ -631,23 +578,19 @@
             return true;
         },
 
-        _defaultValueCalc: function(value, amount, count, decrement)
-        {
-            try
-            {
+        _defaultValueCalc: function (value, amount, count, decrement) {
+            try {
                 if (decrement)
                     return value - (amount * count);
 
                 return value + (amount * count);
             }
-            catch (e)
-            {
+            catch (e) {
                 throw 'SpinnerException: Unable to increment/decrement the value without a custom stepper (step, halfStep, and page options).';
             }
         },
 
-        _increment: function(spinCount)
-        {
+        _increment: function (spinCount) {
             var incremental = this.options.incremental;
             if (incremental)
                 return $.isFunction(incremental) ? incremental.apply(this, [spinCount]) : this._defaultIncrement(spinCount);
@@ -655,13 +598,11 @@
             return 1;
         },
 
-        _defaultIncrement: function(spinCount)
-        {
+        _defaultIncrement: function (spinCount) {
             return Math.floor(spinCount * spinCount * spinCount / 50000 - spinCount * spinCount / 500 + 17 * spinCount / 200 + 1);
         },
 
-        _start: function(event)
-        {
+        _start: function (event) {
             if (!this._isSpinning && this._trigger('start', event) === false)
                 return false;
 
@@ -672,13 +613,11 @@
             return true;
         },
 
-        _spin: function(amount, decrement, repeat, event)
-        {
+        _spin: function (amount, decrement, repeat, event) {
             if (!this._spinCount)
                 this._spinCount = 1;
 
-            if (!this._adjustValue(this._increment(this._spinCount), amount, decrement, false, event))
-            {
+            if (!this._adjustValue(this._increment(this._spinCount), amount, decrement, false, event)) {
                 this._stop(event);
                 return;
             }
@@ -688,8 +627,7 @@
                 this._repeat(amount, decrement, event);
         },
 
-        _repeat: function(amount, decrement, event)
-        {
+        _repeat: function (amount, decrement, event) {
             var delay = this.options.delay;
             if (typeof delay !== 'number' || delay <= 0)
                 delay = 500;
@@ -697,35 +635,32 @@
             var $this = this;
             this._timeout = setTimeout(_firstInterval, delay);
 
-            function _firstInterval()
-            {
+            function _firstInterval() {
                 clearTimeout($this._timeout);
                 $this._timeout = null;
                 $this._spin(amount, decrement, false, event);
-                $this._interval = setInterval(function() { $this._spin(amount, decrement, false, event); }, 40);
+                $this._interval = setInterval(function () {
+                    $this._spin(amount, decrement, false, event);
+                }, 40);
             }
         },
 
-        _stop: function(event)
-        {
+        _stop: function (event) {
             clearTimeout(this._timeout);
             clearInterval(this._interval);
             this._timeout = null;
             this._interval = null;
             this._spinCount = 0;
 
-            if (this._isSpinning)
-            {
+            if (this._isSpinning) {
                 this._isSpinning = false;
                 this._trigger('stop', event);
             }
         },
 
-        _setOption: function(key, value)
-        {
+        _setOption: function (key, value) {
             var options = this.options, element = this.element, uiSpinner = this.uiSpinner, setupkb, setupmw, setupbtns;
-            switch (key)
-            {
+            switch (key) {
                 case 'disabled':
                     options.disabled = value;
                     element._prop('disabled', value).parent()[value ? 'addClass' : 'removeClass']('ui-spinner-disabled ui-state-disabled').attr('aria-disabled', value);
@@ -778,15 +713,13 @@
                     break;
 
                 case 'empty':
-                    if (value === false || value === undefined)
-                    {
+                    if (value === false || value === undefined) {
                         var empty = this._emptyVal();
                         options.empty = false;
                         if (!element.val() && empty !== false)
                             this._setValue(empty, false, true);
                     }
-                    else
-                    {
+                    else {
                         options.empty = value;
                         if (this._isEmptyVal(this.value()))
                             element.val('');
@@ -803,13 +736,11 @@
 
         // Public methods
 
-        value: function(val)
-        {
+        value: function (val) {
             var options = this.options;
 
             // Method called as a getter.
-            if (val === undefined)
-            {
+            if (val === undefined) {
                 val = this.element.val();
                 if (val)
                     return this._parse(val);
@@ -827,8 +758,7 @@
             return this;
         },
 
-        _cloneValue: function(val)
-        {
+        _cloneValue: function (val) {
             if (typeof val !== 'object')
                 return val;
 
@@ -838,99 +768,89 @@
             return $.extend(true, {}, val);
         },
 
-        stepUp: function(count)
-        {
+        stepUp: function (count) {
             this._adjustValue(count || 1, this._getStep(), false, true, null);
             return this;
         },
 
-        stepDown: function(count)
-        {
+        stepDown: function (count) {
             this._adjustValue(count || 1, this._getStep(), true, true, null);
             return this;
         },
 
-        halfStepUp: function(count)
-        {
+        halfStepUp: function (count) {
             this._adjustValue(count || 1, this._getHalfStep(), false, true, null);
             return this;
         },
 
-        halfStepDown: function(count)
-        {
+        halfStepDown: function (count) {
             this._adjustValue(count || 1, this._getHalfStep(), true, true, null);
             return this;
         },
 
-        pageUp: function(count)
-        {
+        pageUp: function (count) {
             this._adjustValue(count || 1, this._getPage(), false, true, null);
             return this;
         },
 
-        pageDown: function(count)
-        {
+        pageDown: function (count) {
             this._adjustValue(count || 1, this._getPage(), true, true, null);
             return this;
         },
 
-        spinStart: function(duration, decrement)
-        {
+        spinStart: function (duration, decrement) {
             if (this._isSpinning)
                 this._stop(null);
 
             if (!this._start(null))
                 return;
 
-            if (duration === true)
-            {
+            if (duration === true) {
                 decrement = true;
                 duration = 0;
             }
-                
+
             var $this = this;
             this._spin(this._getStep(), decrement, false, null);
-            this._interval = setInterval(function() { $this._spin($this._getStep(), decrement, false, null); }, 40);
+            this._interval = setInterval(function () {
+                $this._spin($this._getStep(), decrement, false, null);
+            }, 40);
 
             if (duration)
-                setTimeout(function() { $this._stop(null); }, duration);
+                setTimeout(function () {
+                    $this._stop(null);
+                }, duration);
         },
 
-        spinStop: function()
-        {
+        spinStop: function () {
             this._stop(null);
         },
 
         // Selects the input value.
-        select: function()
-        {
+        select: function () {
             if (!this.options.disabled)
                 this.element.select();
 
             return this;
         },
 
-        readonly: function()
-        {
+        readonly: function () {
             this._setOption('readonly', true);
             return this;
         },
 
-        editable: function()
-        {
+        editable: function () {
             this._setOption('readonly', false);
             return this;
         },
 
-        widget: function()
-        {
+        widget: function () {
             return this.uiSpinner;
         }
     });
 
     // Properly make use of the "prop" jQuery function if it exists, otherwise use the old "attr" way.
-    $.fn._prop = function(name, value)
-    {
+    $.fn._prop = function (name, value) {
         if (this.prop)
             return value === undefined ? this.prop(name) : this.prop(name, value);
 
@@ -940,8 +860,7 @@
         return value === undefined ? this.attr(name) : this.attr(name, value === true ? name : value);
     }
 
-    $.isControlKey = function(keyCode)
-    {
+    $.isControlKey = function (keyCode) {
         // See http://www.cambiaresearch.com/articles/15/javascript-char-codes-key-codes for a list of key codes.
         return (keyCode <= 47 && keyCode != 32)
             || (keyCode >= 91 && keyCode <= 95)

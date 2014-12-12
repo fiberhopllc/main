@@ -7,7 +7,7 @@
  * @copyright Famous Industries, Inc. 2014
  */
 
-define(function(require, exports, module) {
+define(function (require, exports, module) {
     var Vector = require('./Vector');
 
     /**
@@ -21,9 +21,9 @@ define(function(require, exports, module) {
     function Matrix(values) {
         this.values = values ||
             [
-                [1,0,0],
-                [0,1,0],
-                [0,0,1]
+                [1, 0, 0],
+                [0, 1, 0],
+                [0, 0, 1]
             ];
 
         return this;
@@ -85,9 +85,9 @@ define(function(require, exports, module) {
         var M22 = M2[2];
 
         return _vectorRegister.setXYZ(
-            M00*v0 + M01*v1 + M02*v2,
-            M10*v0 + M11*v1 + M12*v2,
-            M20*v0 + M21*v1 + M22*v2
+            M00 * v0 + M01 * v1 + M02 * v2,
+            M10 * v0 + M11 * v1 + M12 * v2,
+            M20 * v0 + M21 * v1 + M22 * v2
         );
     };
 
@@ -103,7 +103,9 @@ define(function(require, exports, module) {
      */
     Matrix.prototype.multiply = function multiply(M2) {
         var M1 = this.get();
-        var result = [[]];
+        var result = [
+            []
+        ];
         for (var i = 0; i < 3; i++) {
             result[i] = [];
             for (var j = 0; j < 3; j++) {

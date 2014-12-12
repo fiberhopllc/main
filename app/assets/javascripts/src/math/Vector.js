@@ -7,7 +7,7 @@
  * @copyright Famous Industries, Inc. 2014
  */
 
-define(function(require, exports, module) {
+define(function (require, exports, module) {
 
     /**
      * Three-element floating point vector.
@@ -19,7 +19,7 @@ define(function(require, exports, module) {
      * @param {number} y y element value
      * @param {number} z z element value
      */
-    function Vector(x,y,z) {
+    function Vector(x, y, z) {
         if (arguments.length === 1 && x !== undefined) this.set(x);
         else {
             this.x = x || 0;
@@ -29,7 +29,7 @@ define(function(require, exports, module) {
         return this;
     }
 
-    var _register = new Vector(0,0,0);
+    var _register = new Vector(0, 0, 0);
 
     /**
      * Add this element-wise to another Vector, element-wise.
@@ -259,7 +259,7 @@ define(function(require, exports, module) {
         return !(this.x || this.y || this.z);
     };
 
-    function _setXYZ(x,y,z) {
+    function _setXYZ(x, y, z) {
         this.x = x;
         this.y = y;
         this.z = z;
@@ -267,7 +267,7 @@ define(function(require, exports, module) {
     }
 
     function _setFromArray(v) {
-        return _setXYZ.call(this,v[0],v[1],v[2] || 0);
+        return _setXYZ.call(this, v[0], v[1], v[2] || 0);
     }
 
     function _setFromVector(v) {
@@ -275,7 +275,7 @@ define(function(require, exports, module) {
     }
 
     function _setFromNumber(x) {
-        return _setXYZ.call(this,x,0,0);
+        return _setXYZ.call(this, x, 0, 0);
     }
 
     /**
@@ -291,11 +291,11 @@ define(function(require, exports, module) {
         return _setFromVector.call(this, v);
     };
 
-    Vector.prototype.setXYZ = function(x,y,z) {
+    Vector.prototype.setXYZ = function (x, y, z) {
         return _setXYZ.apply(this, arguments);
     };
 
-    Vector.prototype.set1D = function(x) {
+    Vector.prototype.set1D = function (x) {
         return _setFromNumber.call(this, x);
     };
 
@@ -318,7 +318,7 @@ define(function(require, exports, module) {
      * @method clear
      */
     Vector.prototype.clear = function clear() {
-        return _setXYZ.call(this,0,0,0);
+        return _setXYZ.call(this, 0, 0, 0);
     };
 
     /**
@@ -371,7 +371,7 @@ define(function(require, exports, module) {
         return [this.x, this.y, this.z];
     };
 
-    Vector.prototype.get1D = function() {
+    Vector.prototype.get1D = function () {
         return this.x;
     };
 

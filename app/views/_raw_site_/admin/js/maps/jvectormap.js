@@ -32,42 +32,45 @@
         return this
     }
 })(jQuery),
-function (e) {
-    function r(t) {
-        var n = t || window.event,
-            r = [].slice.call(arguments, 1),
-            i = 0,
-            s = !0,
-            o = 0,
-            u = 0;
-        return t = e.event.fix(n), t.type = "mousewheel", n.wheelDelta && (i = n.wheelDelta / 120), n.detail && (i = -n.detail / 3), u = i, n.axis !== undefined && n.axis === n.HORIZONTAL_AXIS && (u = 0, o = -1 * i), n.wheelDeltaY !== undefined && (u = n.wheelDeltaY / 120), n.wheelDeltaX !== undefined && (o = -1 * n.wheelDeltaX / 120), r.unshift(t, i, o, u), (e.event.dispatch || e.event.handle).apply(this, r)
-    }
-    var t = ["DOMMouseScroll", "mousewheel"];
-    if (e.event.fixHooks)
-        for (var n = t.length; n;) e.event.fixHooks[t[--n]] = e.event.mouseHooks;
-    e.event.special.mousewheel = {
-        setup: function () {
-            if (this.addEventListener)
-                for (var e = t.length; e;) this.addEventListener(t[--e], r, !1);
-            else this.onmousewheel = r
-        },
-        teardown: function () {
-            if (this.removeEventListener)
-                for (var e = t.length; e;) this.removeEventListener(t[--e], r, !1);
-            else this.onmousewheel = null
+    function (e) {
+        function r(t) {
+            var n = t || window.event,
+                r = [].slice.call(arguments, 1),
+                i = 0,
+                s = !0,
+                o = 0,
+                u = 0;
+            return t = e.event.fix(n), t.type = "mousewheel", n.wheelDelta && (i = n.wheelDelta / 120), n.detail && (i = -n.detail / 3), u = i, n.axis !== undefined && n.axis === n.HORIZONTAL_AXIS && (u = 0, o = -1 * i), n.wheelDeltaY !== undefined && (u = n.wheelDeltaY / 120), n.wheelDeltaX !== undefined && (o = -1 * n.wheelDeltaX / 120), r.unshift(t, i, o, u), (e.event.dispatch || e.event.handle).apply(this, r)
         }
-    }, e.fn.extend({
-        mousewheel: function (e) {
-            return e ? this.bind("mousewheel", e) : this.trigger("mousewheel")
-        },
-        unmousewheel: function (e) {
-            return this.unbind("mousewheel", e)
-        }
-    })
-}(jQuery);
+
+        var t = ["DOMMouseScroll", "mousewheel"];
+        if (e.event.fixHooks)
+            for (var n = t.length; n;) e.event.fixHooks[t[--n]] = e.event.mouseHooks;
+        e.event.special.mousewheel = {
+            setup: function () {
+                if (this.addEventListener)
+                    for (var e = t.length; e;) this.addEventListener(t[--e], r, !1);
+                else this.onmousewheel = r
+            },
+            teardown: function () {
+                if (this.removeEventListener)
+                    for (var e = t.length; e;) this.removeEventListener(t[--e], r, !1);
+                else this.onmousewheel = null
+            }
+        }, e.fn.extend({
+            mousewheel: function (e) {
+                return e ? this.bind("mousewheel", e) : this.trigger("mousewheel")
+            },
+            unmousewheel: function (e) {
+                return this.unbind("mousewheel", e)
+            }
+        })
+    }(jQuery);
 var jvm = {
     inherits: function (e, t) {
-        function n() {}
+        function n() {
+        }
+
         n.prototype = t.prototype, e.prototype = new n, e.prototype.constructor = e, e.parentClass = t
     },
     mixin: function (e, t) {
@@ -224,26 +227,26 @@ jvm.$ = jQuery, jvm.AbstractElement = function (e, t) {
     jvm.VMLShapeElement.parentClass.call(this, e, t), this.fillElement = new jvm.VMLElement("fill"), this.strokeElement = new jvm.VMLElement("stroke"), this.node.appendChild(this.fillElement.node), this.node.appendChild(this.strokeElement.node), this.node.stroked = !1, jvm.AbstractShapeElement.apply(this, arguments)
 }, jvm.inherits(jvm.VMLShapeElement, jvm.VMLElement), jvm.mixin(jvm.VMLShapeElement, jvm.AbstractShapeElement), jvm.VMLShapeElement.prototype.applyAttr = function (e, t) {
     switch (e) {
-    case "fill":
-        this.node.fillcolor = t;
-        break;
-    case "fill-opacity":
-        this.fillElement.node.opacity = Math.round(t * 100) + "%";
-        break;
-    case "stroke":
-        t === "none" ? this.node.stroked = !1 : this.node.stroked = !0, this.node.strokecolor = t;
-        break;
-    case "stroke-opacity":
-        this.strokeElement.node.opacity = Math.round(t * 100) + "%";
-        break;
-    case "stroke-width":
-        parseInt(t, 10) === 0 ? this.node.stroked = !1 : this.node.stroked = !0, this.node.strokeweight = t;
-        break;
-    case "d":
-        this.node.path = jvm.VMLPathElement.pathSvgToVml(t);
-        break;
-    default:
-        jvm.VMLShapeElement.parentClass.prototype.applyAttr.apply(this, arguments)
+        case "fill":
+            this.node.fillcolor = t;
+            break;
+        case "fill-opacity":
+            this.fillElement.node.opacity = Math.round(t * 100) + "%";
+            break;
+        case "stroke":
+            t === "none" ? this.node.stroked = !1 : this.node.stroked = !0, this.node.strokecolor = t;
+            break;
+        case "stroke-opacity":
+            this.strokeElement.node.opacity = Math.round(t * 100) + "%";
+            break;
+        case "stroke-width":
+            parseInt(t, 10) === 0 ? this.node.stroked = !1 : this.node.stroked = !0, this.node.strokeweight = t;
+            break;
+        case "d":
+            this.node.path = jvm.VMLPathElement.pathSvgToVml(t);
+            break;
+        default:
+            jvm.VMLShapeElement.parentClass.prototype.applyAttr.apply(this, arguments)
     }
 }, jvm.VMLPathElement = function (e, t) {
     var n = new jvm.VMLElement("skew");
@@ -255,34 +258,34 @@ jvm.$ = jQuery, jvm.AbstractElement = function (e, t) {
         n = 0,
         r = 0,
         i, s;
-    return e = e.replace(/(-?\d+)e(-?\d+)/g, "0"), e.replace(/([MmLlHhVvCcSs])\s*((?:-?\d*(?:\.\d+)?\s*,?\s*)+)/g, function (e, t, o, u) {
+    return e = e.replace(/(-?\d+)e(-?\d+)/g, "0"), e.replace(/([MmLlHhVvCcSs])\s*((?:-?\d*(?:\.\d+)?\s*,?\s*)+)/g,function (e, t, o, u) {
         o = o.replace(/(\d)-/g, "$1,-").replace(/^\s+/g, "").replace(/\s+$/g, "").replace(/\s+/g, ",").split(","), o[0] || o.shift();
         for (var a = 0, f = o.length; a < f; a++) o[a] = Math.round(100 * o[a]);
         switch (t) {
-        case "m":
-            return n += o[0], r += o[1], "t" + o.join(",");
-        case "M":
-            return n = o[0], r = o[1], "m" + o.join(",");
-        case "l":
-            return n += o[0], r += o[1], "r" + o.join(",");
-        case "L":
-            return n = o[0], r = o[1], "l" + o.join(",");
-        case "h":
-            return n += o[0], "r" + o[0] + ",0";
-        case "H":
-            return n = o[0], "l" + n + "," + r;
-        case "v":
-            return r += o[0], "r0," + o[0];
-        case "V":
-            return r = o[0], "l" + n + "," + r;
-        case "c":
-            return i = n + o[o.length - 4], s = r + o[o.length - 3], n += o[o.length - 2], r += o[o.length - 1], "v" + o.join(",");
-        case "C":
-            return i = o[o.length - 4], s = o[o.length - 3], n = o[o.length - 2], r = o[o.length - 1], "c" + o.join(",");
-        case "s":
-            return o.unshift(r - s), o.unshift(n - i), i = n + o[o.length - 4], s = r + o[o.length - 3], n += o[o.length - 2], r += o[o.length - 1], "v" + o.join(",");
-        case "S":
-            return o.unshift(r + r - s), o.unshift(n + n - i), i = o[o.length - 4], s = o[o.length - 3], n = o[o.length - 2], r = o[o.length - 1], "c" + o.join(",")
+            case "m":
+                return n += o[0], r += o[1], "t" + o.join(",");
+            case "M":
+                return n = o[0], r = o[1], "m" + o.join(",");
+            case "l":
+                return n += o[0], r += o[1], "r" + o.join(",");
+            case "L":
+                return n = o[0], r = o[1], "l" + o.join(",");
+            case "h":
+                return n += o[0], "r" + o[0] + ",0";
+            case "H":
+                return n = o[0], "l" + n + "," + r;
+            case "v":
+                return r += o[0], "r0," + o[0];
+            case "V":
+                return r = o[0], "l" + n + "," + r;
+            case "c":
+                return i = n + o[o.length - 4], s = r + o[o.length - 3], n += o[o.length - 2], r += o[o.length - 1], "v" + o.join(",");
+            case "C":
+                return i = o[o.length - 4], s = o[o.length - 3], n = o[o.length - 2], r = o[o.length - 1], "c" + o.join(",");
+            case "s":
+                return o.unshift(r - s), o.unshift(n - i), i = n + o[o.length - 4], s = r + o[o.length - 3], n += o[o.length - 2], r += o[o.length - 1], "v" + o.join(",");
+            case "S":
+                return o.unshift(r + r - s), o.unshift(n + n - i), i = o[o.length - 4], s = o[o.length - 3], n = o[o.length - 2], r = o[o.length - 1], "c" + o.join(",")
         }
         return ""
     }).replace(/z/g, "e")
@@ -290,19 +293,19 @@ jvm.$ = jQuery, jvm.AbstractElement = function (e, t) {
     jvm.VMLCircleElement.parentClass.call(this, "oval", e, t)
 }, jvm.inherits(jvm.VMLCircleElement, jvm.VMLShapeElement), jvm.VMLCircleElement.prototype.applyAttr = function (e, t) {
     switch (e) {
-    case "r":
-        this.node.style.width = t * 2 + "px", this.node.style.height = t * 2 + "px", this.applyAttr("cx", this.get("cx") || 0), this.applyAttr("cy", this.get("cy") || 0);
-        break;
-    case "cx":
-        if (!t) return;
-        this.node.style.left = t - (this.get("r") || 0) + "px";
-        break;
-    case "cy":
-        if (!t) return;
-        this.node.style.top = t - (this.get("r") || 0) + "px";
-        break;
-    default:
-        jvm.VMLCircleElement.parentClass.prototype.applyAttr.call(this, e, t)
+        case "r":
+            this.node.style.width = t * 2 + "px", this.node.style.height = t * 2 + "px", this.applyAttr("cx", this.get("cx") || 0), this.applyAttr("cy", this.get("cy") || 0);
+            break;
+        case "cx":
+            if (!t) return;
+            this.node.style.left = t - (this.get("r") || 0) + "px";
+            break;
+        case "cy":
+            if (!t) return;
+            this.node.style.top = t - (this.get("r") || 0) + "px";
+            break;
+        default:
+            jvm.VMLCircleElement.parentClass.prototype.applyAttr.call(this, e, t)
     }
 }, jvm.VectorCanvas = function (e, t, n) {
     return this.mode = window.SVGAngle ? "svg" : "vml", this.mode == "svg" ? this.impl = new jvm.SVGCanvasElement(e, t, n) : this.impl = new jvm.VMLCanvasElement(e, t, n), this.impl

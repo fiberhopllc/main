@@ -6,13 +6,14 @@
  */
 define(['durandal/system'], function (system) {
     var eventSplitter = /\s+/;
-    var Events = function() { };
+    var Events = function () {
+    };
 
     /**
      * Represents an event subscription.
      * @class Subscription
      */
-    var Subscription = function(owner, events) {
+    var Subscription = function (owner, events) {
         this.owner = owner;
         this.events = events;
     };
@@ -27,7 +28,7 @@ define(['durandal/system'], function (system) {
     Subscription.prototype.then = function (callback, context) {
         this.callback = callback || this.callback;
         this.context = context || this.context;
-        
+
         if (!this.callback) {
             return this;
         }
@@ -68,7 +69,7 @@ define(['durandal/system'], function (system) {
      * @param {object} [context] An object to use as `this` when invoking the `callback`.
      * @return {Subscription|Events} A subscription is returned if no callback is supplied, otherwise the events object is returned for chaining.
      */
-    Events.prototype.on = function(events, callback, context) {
+    Events.prototype.on = function (events, callback, context) {
         var calls, event, list;
 
         if (!callback) {
@@ -94,7 +95,7 @@ define(['durandal/system'], function (system) {
      * @param {object} [context] The object that was used as `this`. Callbacks with this context will be removed.
      * @chainable
      */
-    Events.prototype.off = function(events, callback, context) {
+    Events.prototype.off = function (events, callback, context) {
         var event, calls, list, i;
 
         // No events
@@ -133,7 +134,7 @@ define(['durandal/system'], function (system) {
      * @param {string} [events] One or more events, separated by white space to trigger.
      * @chainable
      */
-    Events.prototype.trigger = function(events) {
+    Events.prototype.trigger = function (events) {
         var event, calls, list, i, length, args, all, rest;
         if (!(calls = this.callbacks)) {
             return this;
@@ -182,9 +183,9 @@ define(['durandal/system'], function (system) {
      * @param {string} events One or more events, separated by white space to trigger by invoking the returned function.
      * @return {function} Calling the function will invoke the previously specified events on the events object.
      */
-    Events.prototype.proxy = function(events) {
+    Events.prototype.proxy = function (events) {
         var that = this;
-        return (function(arg) {
+        return (function (arg) {
             that.trigger(events, arg);
         });
     };
@@ -200,7 +201,7 @@ define(['durandal/system'], function (system) {
      * @method includeIn
      * @param {object} targetObject The object to add eventing capabilities to.
      */
-    Events.includeIn = function(targetObject) {
+    Events.includeIn = function (targetObject) {
         targetObject.on = Events.prototype.on;
         targetObject.off = Events.prototype.off;
         targetObject.trigger = Events.prototype.trigger;

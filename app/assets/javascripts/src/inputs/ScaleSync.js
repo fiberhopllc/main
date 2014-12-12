@@ -6,7 +6,7 @@
  * @license MPL 2.0
  * @copyright Famous Industries, Inc. 2014
  */
-define(function(require, exports, module) {
+define(function (require, exports, module) {
     var TwoFingerSync = require('./TwoFingerSync');
     var OptionsManager = require('../core/OptionsManager');
 
@@ -37,7 +37,7 @@ define(function(require, exports, module) {
     ScaleSync.prototype.constructor = ScaleSync;
 
     ScaleSync.DEFAULT_OPTIONS = {
-        scale : 1
+        scale: 1
     };
 
     function _reset() {
@@ -69,11 +69,11 @@ define(function(require, exports, module) {
         var veloScale = (newScaleFactor - this._scaleFactor) / diffTime;
 
         this._eventOutput.emit('update', {
-            delta : delta,
+            delta: delta,
             scale: newScaleFactor,
             velocity: veloScale,
             distance: currDist,
-            center : center,
+            center: center,
             touches: [this.touchAId, this.touchBId]
         });
 

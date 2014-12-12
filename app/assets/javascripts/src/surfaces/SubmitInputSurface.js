@@ -1,4 +1,4 @@
-define(function(require, exports, module) {
+define(function (require, exports, module) {
     var InputSurface = require('./InputSurface');
 
     function SubmitInputSurface(options) {
@@ -10,7 +10,7 @@ define(function(require, exports, module) {
     SubmitInputSurface.prototype = Object.create(InputSurface.prototype);
     SubmitInputSurface.prototype.constructor = SubmitInputSurface;
 
-    SubmitInputSurface.prototype.setOnClick = function(onClick) {
+    SubmitInputSurface.prototype.setOnClick = function (onClick) {
         this.onClick = onClick;
     };
 

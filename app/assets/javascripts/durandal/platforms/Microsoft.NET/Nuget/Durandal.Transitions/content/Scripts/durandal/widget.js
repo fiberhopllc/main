@@ -3,7 +3,7 @@
  * Available via the MIT license.
  * see: http://durandaljs.com or https://github.com/BlueSpire/Durandal for details.
  */
-define(['durandal/system', 'durandal/composition', 'jquery', 'knockout'], function(system, composition, $, ko) {
+define(['durandal/system', 'durandal/composition', 'jquery', 'knockout'], function (system, composition, $, ko) {
     var partAttributeName = 'data-part',
         partAttributeSelector = '[' + partAttributeName + ']';
 
@@ -12,7 +12,7 @@ define(['durandal/system', 'durandal/composition', 'jquery', 'knockout'], functi
         bindableSettings = ['model', 'view', 'kind'];
 
     var widget = {
-        getParts: function(elements) {
+        getParts: function (elements) {
             var parts = {};
 
             if (!system.isArray(elements)) {
@@ -29,7 +29,7 @@ define(['durandal/system', 'durandal/composition', 'jquery', 'knockout'], functi
                     }
 
                     var childParts = $(partAttributeSelector, element)
-                                        .not($('[data-bind^="widget:"] ' + partAttributeSelector, element));
+                        .not($('[data-bind^="widget:"] ' + partAttributeSelector, element));
 
                     for (var j = 0; j < childParts.length; j++) {
                         var part = childParts.get(j);
@@ -40,7 +40,7 @@ define(['durandal/system', 'durandal/composition', 'jquery', 'knockout'], functi
 
             return parts;
         },
-        getSettings: function(valueAccessor) {
+        getSettings: function (valueAccessor) {
             var value = ko.utils.unwrapObservable(valueAccessor()) || {};
 
             if (system.isString(value)) {
@@ -57,12 +57,12 @@ define(['durandal/system', 'durandal/composition', 'jquery', 'knockout'], functi
 
             return value;
         },
-        registerKind: function(kind) {
+        registerKind: function (kind) {
             ko.bindingHandlers[kind] = {
-                init: function() {
+                init: function () {
                     return { controlsDescendantBindings: true };
                 },
-                update: function(element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
+                update: function (element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
                     var settings = widget.getSettings(valueAccessor);
                     settings.kind = kind;
                     widget.create(element, settings, bindingContext);
@@ -71,7 +71,7 @@ define(['durandal/system', 'durandal/composition', 'jquery', 'knockout'], functi
 
             ko.virtualElements.allowedBindings[kind] = true;
         },
-        mapKind: function(kind, viewId, moduleId) {
+        mapKind: function (kind, viewId, moduleId) {
             if (viewId) {
                 kindViewMaps[kind] = viewId;
             }
@@ -80,16 +80,16 @@ define(['durandal/system', 'durandal/composition', 'jquery', 'knockout'], functi
                 kindModuleMaps[kind] = moduleId;
             }
         },
-        mapKindToModuleId: function(kind) {
+        mapKindToModuleId: function (kind) {
             return kindModuleMaps[kind] || widget.convertKindToModulePath(kind);
         },
-        convertKindToModulePath: function(kind) {
+        convertKindToModulePath: function (kind) {
             return 'widgets/' + kind + '/viewmodel';
         },
-        mapKindToViewId: function(kind) {
+        mapKindToViewId: function (kind) {
             return kindViewMaps[kind] || widget.convertKindToViewPath(kind);
         },
-        convertKindToViewPath: function(kind) {
+        convertKindToViewPath: function (kind) {
             return 'widgets/' + kind + '/view';
         },
         beforeBind: function (child, context) {
@@ -100,7 +100,7 @@ define(['durandal/system', 'durandal/composition', 'jquery', 'knockout'], functi
                 $(standardParts[partId]).replaceWith(replacementParts[partId]);
             }
         },
-        createCompositionSettings: function(element, settings) {
+        createCompositionSettings: function (element, settings) {
             if (!settings.model) {
                 settings.model = this.mapKindToModuleId(settings.kind);
             }
@@ -116,7 +116,7 @@ define(['durandal/system', 'durandal/composition', 'jquery', 'knockout'], functi
 
             return settings;
         },
-        create: function(element, settings, bindingContext) {
+        create: function (element, settings, bindingContext) {
             if (system.isString(settings)) {
                 settings = { kind: settings };
             }
@@ -128,10 +128,10 @@ define(['durandal/system', 'durandal/composition', 'jquery', 'knockout'], functi
     };
 
     ko.bindingHandlers.widget = {
-        init: function() {
+        init: function () {
             return { controlsDescendantBindings: true };
         },
-        update: function(element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
+        update: function (element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
             var settings = widget.getSettings(valueAccessor);
             widget.create(element, settings, bindingContext);
         }

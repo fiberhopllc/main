@@ -6,7 +6,7 @@
  * @license MPL 2.0
  * @copyright Famous Industries, Inc. 2014
  */
-define(function(require, exports, module) {
+define(function (require, exports, module) {
     var TouchTracker = require('./TouchTracker');
     var EventHandler = require('../core/EventHandler');
     var OptionsManager = require('../core/OptionsManager');
@@ -40,7 +40,7 @@ define(function(require, exports, module) {
      * @param [options.touchLimit] {Number}  touchLimit upper bound for emitting events based on number of touches
      */
     function TouchSync(options) {
-        this.options =  Object.create(TouchSync.DEFAULT_OPTIONS);
+        this.options = Object.create(TouchSync.DEFAULT_OPTIONS);
         this._optionsManager = new OptionsManager(this.options);
         if (options) this.setOptions(options);
 
@@ -57,13 +57,13 @@ define(function(require, exports, module) {
         this._touchTracker.on('trackend', _handleEnd.bind(this));
 
         this._payload = {
-            delta    : null,
-            position : null,
-            velocity : null,
-            clientX  : undefined,
-            clientY  : undefined,
-            count    : 0,
-            touch    : undefined
+            delta: null,
+            position: null,
+            velocity: null,
+            clientX: undefined,
+            clientY: undefined,
+            count: 0,
+            touch: undefined
         };
 
         this._position = null; // to be deprecated
@@ -90,7 +90,7 @@ define(function(require, exports, module) {
     function _handleStart(data) {
         var velocity;
         var delta;
-        if (this.options.direction !== undefined){
+        if (this.options.direction !== undefined) {
             this._position = 0;
             velocity = 0;
             delta = 0;
@@ -125,8 +125,8 @@ define(function(require, exports, module) {
         var prevHistory = history[history.length - 2];
 
         var distantHistory = history[history.length - this.options.velocitySampleLength] ?
-          history[history.length - this.options.velocitySampleLength] :
-          history[history.length - 2];
+            history[history.length - this.options.velocitySampleLength] :
+            history[history.length - 2];
 
         var distantTime = distantHistory.timestamp;
         var currTime = currHistory.timestamp;
@@ -172,13 +172,13 @@ define(function(require, exports, module) {
         }
 
         var payload = this._payload;
-        payload.delta    = nextDelta;
+        payload.delta = nextDelta;
         payload.velocity = nextVel;
         payload.position = this._position;
-        payload.clientX  = data.x;
-        payload.clientY  = data.y;
-        payload.count    = data.count;
-        payload.touch    = data.identifier;
+        payload.clientX = data.x;
+        payload.clientY = data.y;
+        payload.count = data.count;
+        payload.touch = data.identifier;
 
         this._eventOutput.emit('update', payload);
     }

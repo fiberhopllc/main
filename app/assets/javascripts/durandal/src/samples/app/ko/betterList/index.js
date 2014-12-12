@@ -10,7 +10,7 @@
         addItem: function () {
             var value = itemToAdd();
 
-            if (value != "" && allItems.indexOf(value) < 0){ // Prevent blanks and duplicates
+            if (value != "" && allItems.indexOf(value) < 0) { // Prevent blanks and duplicates
                 allItems.push(value);
             }
 

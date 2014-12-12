@@ -1,4 +1,4 @@
-define(function(require, exports, module) {
+define(function (require, exports, module) {
     var Entity = require('../core/Entity');
     var Group = require('../core/Group');
     var OptionsManager = require('../core/OptionsManager');
@@ -13,7 +13,7 @@ define(function(require, exports, module) {
      * when you've hit the 'edges' of it's renderable collection.
      * @class Scroller
      * @constructor
-      * @event error
+     * @event error
      * @param {Options} [options] An object of configurable options.
      * @param {Number} [options.direction=Utility.Direction.Y] Using the direction helper found in the famous Utility
      * module, this option will lay out the Scroller instance's renderables either horizontally
@@ -86,11 +86,11 @@ define(function(require, exports, module) {
     }
 
     /**
-    * Returns the cumulative size of the renderables in the view sequence
-    * @method getCumulativeSize
-    * @return {array} a two value array of the view sequence's cumulative size up to the index.
-    */
-    Scroller.prototype.getCumulativeSize = function(index) {
+     * Returns the cumulative size of the renderables in the view sequence
+     * @method getCumulativeSize
+     * @return {array} a two value array of the view sequence's cumulative size up to the index.
+     */
+    Scroller.prototype.getCumulativeSize = function (index) {
         if (index === undefined) index = this._node._.cumulativeSizes.length - 1;
         return this._node._.getSize(index);
     };
@@ -130,13 +130,13 @@ define(function(require, exports, module) {
      */
     Scroller.prototype.outputFrom = function outputFrom(fn, masterFn) {
         if (!fn) {
-            fn = function(offset) {
+            fn = function (offset) {
                 return (this.options.direction === Utility.Direction.X) ? Transform.translate(offset, 0) : Transform.translate(0, offset);
             }.bind(this);
             if (!masterFn) masterFn = fn;
         }
         this._outputFunction = fn;
-        this._masterOutputFunction = masterFn ? masterFn : function(offset) {
+        this._masterOutputFunction = masterFn ? masterFn : function (offset) {
             return Transform.inverse(fn(-offset));
         };
     };
@@ -264,7 +264,7 @@ define(function(require, exports, module) {
         }
 
         if (!currNode && offset - position < clipSize - EDGE_TOLERANCE) {
-            if (this._onEdge !== 1){
+            if (this._onEdge !== 1) {
                 this._onEdge = 1;
                 this._eventOutput.emit('onEdge', {
                     position: offset - clipSize
@@ -280,7 +280,7 @@ define(function(require, exports, module) {
             }
         }
         else {
-            if (this._onEdge !== 0){
+            if (this._onEdge !== 0) {
                 this._onEdge = 0;
                 this._eventOutput.emit('offEdge');
             }

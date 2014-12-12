@@ -20,7 +20,9 @@
         self.lines = ko.observableArray([new CartLine()]); // Put one line in by default
         self.grandTotal = ko.computed(function () {
             var total = 0;
-            $.each(self.lines(), function () { total += this.subtotal() })
+            $.each(self.lines(), function () {
+                total += this.subtotal()
+            })
             return total;
         });
 
@@ -39,13 +41,13 @@
                 } : undefined
             });
 
-            app.showMessage('You could now send this to server: ' + JSON.stringify(dataToSave),'Your Shopping Cart');
+            app.showMessage('You could now send this to server: ' + JSON.stringify(dataToSave), 'Your Shopping Cart');
         };
     };
 
     return {
         Cart: new Cart(),
-        formatCurrency : function(value) {
+        formatCurrency: function (value) {
             return "$" + value.toFixed(2);
         },
         sampleProductCategories: sampleProductCategories

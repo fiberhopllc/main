@@ -7,7 +7,7 @@
  * @copyright Famous Industries, Inc. 2014
  */
 
-define(function(require, exports, module) {
+define(function (require, exports, module) {
     var Surface = require('../core/Surface');
     var EventHandler = require('../core/EventHandler');
     var RenderController = require('../views/RenderController');
@@ -38,19 +38,19 @@ define(function(require, exports, module) {
         EventHandler.setOutputHandler(this, this._eventOutput);
 
         this.offSurface = new Surface();
-        this.offSurface.on('click', function() {
+        this.offSurface.on('click', function () {
             if (this.options.toggleMode !== ToggleButton.OFF) this.select();
         }.bind(this));
         this.offSurface.pipe(this._eventOutput);
 
         this.onSurface = new Surface();
-        this.onSurface.on('click', function() {
+        this.onSurface.on('click', function () {
             if (this.options.toggleMode !== ToggleButton.ON) this.deselect();
         }.bind(this));
         this.onSurface.pipe(this._eventOutput);
 
         this.arbiter = new RenderController({
-            overlap : this.options.crossfade
+            overlap: this.options.crossfade
         });
 
         this.deselect();

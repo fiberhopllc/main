@@ -7,7 +7,7 @@
  * @copyright Famous Industries, Inc. 2014
  */
 
-define(function(require, exports, module) {
+define(function (require, exports, module) {
     var Force = require('./Force');
 
     /**
@@ -44,7 +44,7 @@ define(function(require, exports, module) {
          * @param {Vector} velocity
          * @return {Vector} drag force
          */
-        LINEAR : function(velocity) {
+        LINEAR: function (velocity) {
             return velocity;
         },
 
@@ -55,7 +55,7 @@ define(function(require, exports, module) {
          * @param {Vector} velocity
          * @return {Vector} drag force
          */
-        QUADRATIC : function(velocity) {
+        QUADRATIC: function (velocity) {
             return velocity.mult(velocity.norm());
         }
     };
@@ -75,14 +75,14 @@ define(function(require, exports, module) {
          * @type Number
          * @default 0.01
          */
-        strength : 0.01,
+        strength: 0.01,
 
         /**
          * The type of opposing force
          * @attribute forceFunction
          * @type Function
          */
-        forceFunction : Drag.FORCE_FUNCTIONS.LINEAR
+        forceFunction: Drag.FORCE_FUNCTIONS.LINEAR
     };
 
     /**
@@ -92,9 +92,9 @@ define(function(require, exports, module) {
      * @param targets {Array.Body} Array of bodies to apply drag force to.
      */
     Drag.prototype.applyForce = function applyForce(targets) {
-        var strength        = this.options.strength;
-        var forceFunction   = this.options.forceFunction;
-        var force           = this.force;
+        var strength = this.options.strength;
+        var forceFunction = this.options.forceFunction;
+        var force = this.force;
         var index;
         var particle;
 

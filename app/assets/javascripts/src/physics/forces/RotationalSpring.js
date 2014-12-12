@@ -8,7 +8,7 @@
  */
 
 //TODO: test inheritance
-define(function(require, exports, module) {
+define(function (require, exports, module) {
     var Force = require('./Force');
     var Spring = require('./Spring');
     var Quaternion = require('../../math/Quaternion');
@@ -61,7 +61,7 @@ define(function(require, exports, module) {
             if (options.anchor  instanceof Array) this.options.anchor = new Quaternion(options.anchor);
         }
 
-        if (options.period !== undefined){
+        if (options.period !== undefined) {
             this.options.period = options.period;
         }
 
@@ -106,9 +106,9 @@ define(function(require, exports, module) {
             if (dist === 0) return;
 
             //if dampingRatio specified, then override strength and damping
-            m      = target.mass;
+            m = target.mass;
             stiffness *= m;
-            damping   *= m;
+            damping *= m;
 
             force.set(disp.normalize(stiffness * forceFunction(dist, maxLength)));
 
@@ -125,10 +125,10 @@ define(function(require, exports, module) {
      * @param [targets] target The physics body attached to the spring
      */
     RotationalSpring.prototype.getEnergy = function getEnergy(targets) {
-        var options     = this.options;
-        var restLength  = options.length;
-        var anchor      = options.anchor;
-        var strength    = options.stiffness;
+        var options = this.options;
+        var restLength = options.length;
+        var anchor = options.anchor;
+        var strength = options.stiffness;
 
         var energy = 0.0;
         for (var i = 0; i < targets.length; i++) {

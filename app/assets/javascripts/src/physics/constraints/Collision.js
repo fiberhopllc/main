@@ -7,7 +7,7 @@
  * @copyright Famous Industries, Inc. 2014
  */
 
-define(function(require, exports, module) {
+define(function (require, exports, module) {
     var Constraint = require('./Constraint');
     var Vector = require('../../math/Vector');
 
@@ -28,9 +28,9 @@ define(function(require, exports, module) {
         if (options) this.setOptions(options);
 
         //registers
-        this.normal   = new Vector();
-        this.pDiff    = new Vector();
-        this.vDiff    = new Vector();
+        this.normal = new Vector();
+        this.pDiff = new Vector();
+        this.vDiff = new Vector();
         this.impulse1 = new Vector();
         this.impulse2 = new Vector();
 
@@ -41,9 +41,9 @@ define(function(require, exports, module) {
     Collision.prototype.constructor = Collision;
 
     Collision.DEFAULT_OPTIONS = {
-        restitution : 0.5,
-        drift : 0.5,
-        slop : 0
+        restitution: 0.5,
+        drift: 0.5,
+        slop: 0
     };
 
     function _normalVelocity(particle1, particle2) {
@@ -81,7 +81,7 @@ define(function(require, exports, module) {
         var slop = -options.slop;
         var restitution = options.restitution;
 
-        var n     = this.normal;
+        var n = this.normal;
         var pDiff = this.pDiff;
         var vDiff = this.vDiff;
         var impulse1 = this.impulse1;
@@ -100,10 +100,10 @@ define(function(require, exports, module) {
             pDiff.set(p2.sub(p1));
             vDiff.set(v2.sub(v1));
 
-            var dist    = pDiff.norm();
+            var dist = pDiff.norm();
             var overlap = dist - (r1 + r2);
-            var effMass = 1/(w1 + w2);
-            var gamma   = 0;
+            var effMass = 1 / (w1 + w2);
+            var gamma = 0;
 
             if (overlap < 0) {
 
@@ -111,10 +111,10 @@ define(function(require, exports, module) {
 
                 if (this._eventOutput) {
                     var collisionData = {
-                        target  : target,
-                        source  : source,
-                        overlap : overlap,
-                        normal  : n
+                        target: target,
+                        source: source,
+                        overlap: overlap,
+                        normal: n
                     };
 
                     this._eventOutput.emit('preCollision', collisionData);
@@ -122,10 +122,10 @@ define(function(require, exports, module) {
                 }
 
                 var lambda = (overlap <= slop)
-                    ? ((1 + restitution) * n.dot(vDiff) + drift/dt * (overlap - slop)) / (gamma + dt/effMass)
-                    : ((1 + restitution) * n.dot(vDiff)) / (gamma + dt/effMass);
+                    ? ((1 + restitution) * n.dot(vDiff) + drift / dt * (overlap - slop)) / (gamma + dt / effMass)
+                    : ((1 + restitution) * n.dot(vDiff)) / (gamma + dt / effMass);
 
-                n.mult(dt*lambda).put(impulse1);
+                n.mult(dt * lambda).put(impulse1);
                 impulse1.mult(-1).put(impulse2);
 
                 source.applyImpulse(impulse1);

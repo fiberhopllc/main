@@ -29,13 +29,23 @@
 		"valorin/deploy": "~1.2",
         "webpatser/laravel-uuid": "1.*",
 		"pragmarx/ci": "~0.1",
-        "laracasts/validation": "~1.0"
+        "laracasts/validation": "~1.0",
+        "graham-campbell/throttle": "~2.0",
+		"barryvdh/laravel-ide-helper": "~1.11@dev",
+        "laracasts/presenter": "0.1.*",
+        "toddish/verify": "3.*",
+        "michaelesmith/throttle": "*",
+        "zizaco/entrust": "1.2.*@dev"
     },
     "require-dev": {
+        "behat/behat": "~3.0.6",
         "darsain/laravel-console": "dev-master",
+        "fzaninotto/faker": "1.5.x-dev",
+        "laravelbook/ardent": "dev-master",
+        "phpspec/phpspec": "~2.0",
+        "phpunit/phpunit": "dev-master",
         "way/generators": "~2.0",
-        "xethron/migrations-generator": "dev-master",
-        "phpspec/phpspec": "~2.0"
+        "xethron/migrations-generator": "dev-master"
     },
 	"autoload": {
  		"classmap": [
@@ -58,6 +68,7 @@
 		],
 		"post-update-cmd": [
 			"php artisan clear-compiled",
+			"php artisan ide-helper:generate",
 			"php artisan optimize"
 		],
 		"post-create-project-cmd": [
@@ -70,5 +81,4 @@
 	},
 	"minimum-stability": "dev"
 }
-
 

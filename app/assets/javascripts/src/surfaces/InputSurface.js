@@ -7,7 +7,7 @@
  * @copyright Famous Industries, Inc. 2014
  */
 
-define(function(require, exports, module) {
+define(function (require, exports, module) {
     var Surface = require('../core/Surface');
 
     /**
@@ -24,17 +24,18 @@ define(function(require, exports, module) {
      */
     function InputSurface(options) {
         this._placeholder = options.placeholder || '';
-        this._value       = options.value || '';
-        this._type        = options.type || 'text';
-        this._name        = options.name || '';
+        this._value = options.value || '';
+        this._type = options.type || 'text';
+        this._name = options.name || '';
 
         Surface.apply(this, arguments);
 
         this.on('click', this.focus.bind(this));
-        window.addEventListener('click', function(event) {
+        window.addEventListener('click', function (event) {
             if (event.target !== this._currentTarget) this.blur();
         }.bind(this));
     }
+
     InputSurface.prototype = Object.create(Surface.prototype);
     InputSurface.prototype.constructor = InputSurface;
 

@@ -21,7 +21,8 @@ import router = require('plugins/router');
 function test_system() {
     system.log(system.version);
 
-    system.noop = () => { };
+    system.noop = () => {
+    };
 
     var moduleId = system.getModuleId({});
     system.setModuleId({}, moduleId);
@@ -42,8 +43,8 @@ function test_system() {
     system.defer<number>(dfd => {
         dfd.resolve(42);
     }).promise().then(value => {
-            system.log(value);
-        });
+        system.log(value);
+    });
 
     var uuid = system.guid();
 
@@ -81,7 +82,7 @@ function test_system() {
 
 function test_Events() {
     var ev = new Events();
-    
+
     ev.on('test:event').then(arg => {
         console.log(arg);
     });
@@ -117,10 +118,11 @@ function test_router() {
     var currentActiveRoute = router.activeInstruction().config.route;
 
     var vm = {
-        router:router
+        router: router
     };
 
-    vm.router.on('test', x => { }).map(null).activate();
+    vm.router.on('test',x => {
+    }).map(null).activate();
 
     router.activate().then(() => {
         router.createChildRouter();

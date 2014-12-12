@@ -7,15 +7,15 @@
  * @copyright Famous Industries, Inc. 2014
  */
 
-define(function(require, exports, module) {
+define(function (require, exports, module) {
 
     var RAND = Math.random;
 
-    function _randomFloat(min,max) {
+    function _randomFloat(min, max) {
         return min + RAND() * (max - min);
     }
 
-    function _randomInteger(min,max) {
+    function _randomInteger(min, max) {
         return (min + RAND() * (max - min + 1)) >> 0;
     }
 
@@ -38,15 +38,15 @@ define(function(require, exports, module) {
      * @param {Number} dim (optional) dimension of output array, if specified
      * @return {number | array<number>} random integer, or optionally, an array of random integers
      */
-    Random.integer = function integer(min,max,dim) {
+    Random.integer = function integer(min, max, dim) {
         min = (min !== undefined) ? min : 0;
         max = (max !== undefined) ? max : 1;
         if (dim !== undefined) {
             var result = [];
-            for (var i = 0; i < dim; i++) result.push(_randomInteger(min,max));
+            for (var i = 0; i < dim; i++) result.push(_randomInteger(min, max));
             return result;
         }
-        else return _randomInteger(min,max);
+        else return _randomInteger(min, max);
     };
 
     /**
@@ -60,15 +60,15 @@ define(function(require, exports, module) {
      * @param {Number} [dim] dimension of output array, if specified
      * @return {Number} random float, or optionally an array
      */
-    Random.range = function range(min,max,dim) {
+    Random.range = function range(min, max, dim) {
         min = (min !== undefined) ? min : 0;
         max = (max !== undefined) ? max : 1;
         if (dim !== undefined) {
             var result = [];
-            for (var i = 0; i < dim; i++) result.push(_randomFloat(min,max));
+            for (var i = 0; i < dim; i++) result.push(_randomFloat(min, max));
             return result;
         }
-        else return _randomFloat(min,max);
+        else return _randomFloat(min, max);
     };
 
     /**

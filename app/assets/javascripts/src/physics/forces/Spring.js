@@ -9,7 +9,7 @@
 
 /*global console */
 
-define(function(require, exports, module) {
+define(function (require, exports, module) {
     var Force = require('./Force');
     var Vector = require('../../math/Vector');
 
@@ -29,7 +29,7 @@ define(function(require, exports, module) {
         if (options) this.setOptions(options);
 
         //registers
-        this.disp = new Vector(0,0,0);
+        this.disp = new Vector(0, 0, 0);
 
         _init.call(this);
     }
@@ -58,10 +58,10 @@ define(function(require, exports, module) {
          * @param {Number} rMax maximum range of influence
          * @return {Number} unscaled force
          */
-        FENE : function(dist, rMax) {
+        FENE: function (dist, rMax) {
             var rMaxSmall = rMax * .99;
             var r = Math.max(Math.min(dist, rMaxSmall), -rMaxSmall);
-            return r / (1 - r * r/(rMax * rMax));
+            return r / (1 - r * r / (rMax * rMax));
         },
 
         /**
@@ -72,7 +72,7 @@ define(function(require, exports, module) {
          * @param {Number} dist current distance target is from source body
          * @return {Number} unscaled force
          */
-        HOOK : function(dist) {
+        HOOK: function (dist) {
             return dist;
         }
     };
@@ -93,7 +93,7 @@ define(function(require, exports, module) {
          * @type Number
          * @default 300
          */
-        period : 300,
+        period: 300,
 
         /**
          * The damping of the spring.
@@ -104,7 +104,7 @@ define(function(require, exports, module) {
          * @type Number
          * @default 0.1
          */
-        dampingRatio : 0.1,
+        dampingRatio: 0.1,
 
         /**
          * The rest length of the spring
@@ -113,7 +113,7 @@ define(function(require, exports, module) {
          * @type Number
          * @default 0
          */
-        length : 0,
+        length: 0,
 
         /**
          * The maximum length of the spring (for a FENE spring)
@@ -122,7 +122,7 @@ define(function(require, exports, module) {
          * @type Number
          * @default Infinity
          */
-        maxLength : Infinity,
+        maxLength: Infinity,
 
         /**
          * The location of the spring's anchor, if not another physics body
@@ -131,14 +131,14 @@ define(function(require, exports, module) {
          * @type Array
          * @optional
          */
-        anchor : undefined,
+        anchor: undefined,
 
         /**
          * The type of spring force
          * @attribute forceFunction
          * @type Function
          */
-        forceFunction : Spring.FORCE_FUNCTIONS.HOOK
+        forceFunction: Spring.FORCE_FUNCTIONS.HOOK
     };
 
     function _calcStiffness() {
@@ -172,7 +172,7 @@ define(function(require, exports, module) {
             if (options.anchor instanceof Array)  this.options.anchor = new Vector(options.anchor);
         }
 
-        if (options.period !== undefined){
+        if (options.period !== undefined) {
             if (options.period < MIN_PERIOD) {
                 options.period = MIN_PERIOD;
                 console.warn('The period of a SpringTransition is capped at ' + MIN_PERIOD + ' ms. Use a SnapTransition for faster transitions');
@@ -225,9 +225,9 @@ define(function(require, exports, module) {
             if (dist === 0) return;
 
             //if dampingRatio specified, then override strength and damping
-            m      = target.mass;
+            m = target.mass;
             stiffness *= m;
-            damping   *= m;
+            damping *= m;
 
             disp.normalize(stiffness * forceFunction(dist, maxLength))
                 .put(force);
@@ -249,13 +249,13 @@ define(function(require, exports, module) {
      * @return {source}         The potential energy of the spring
      */
     Spring.prototype.getEnergy = function getEnergy(targets, source) {
-        var options     = this.options;
-        var restLength  = options.length;
-        var anchor      = (source) ? source.position : options.anchor;
-        var strength    = options.stiffness;
+        var options = this.options;
+        var restLength = options.length;
+        var anchor = (source) ? source.position : options.anchor;
+        var strength = options.stiffness;
 
         var energy = 0.0;
-        for (var i = 0; i < targets.length; i++){
+        for (var i = 0; i < targets.length; i++) {
             var target = targets[i];
             var dist = anchor.sub(target.position).norm() - restLength;
             energy += 0.5 * strength * dist * dist;

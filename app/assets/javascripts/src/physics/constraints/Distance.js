@@ -7,7 +7,7 @@
  * @copyright Famous Industries, Inc. 2014
  */
 
-define(function(require, exports, module) {
+define(function (require, exports, module) {
     var Constraint = require('./Constraint');
     var Vector = require('../../math/Vector');
 
@@ -32,10 +32,10 @@ define(function(require, exports, module) {
         if (options) this.setOptions(options);
 
         //registers
-        this.impulse  = new Vector();
-        this.normal   = new Vector();
-        this.diffP    = new Vector();
-        this.diffV    = new Vector();
+        this.impulse = new Vector();
+        this.normal = new Vector();
+        this.diffP = new Vector();
+        this.diffV = new Vector();
 
         Constraint.call(this);
     }
@@ -44,11 +44,11 @@ define(function(require, exports, module) {
     Distance.prototype.constructor = Distance;
 
     Distance.DEFAULT_OPTIONS = {
-        anchor : null,
-        length : 0,
-        minLength : 0,
-        period : 0,
-        dampingRatio : 0
+        anchor: null,
+        length: 0,
+        minLength: 0,
+        period: 0,
+        dampingRatio: 0
     };
 
     /** @const */ var pi = Math.PI;
@@ -95,15 +95,15 @@ define(function(require, exports, module) {
      * @param dt {Number}           Delta time
      */
     Distance.prototype.applyConstraint = function applyConstraint(targets, source, dt) {
-        var n        = this.normal;
-        var diffP    = this.diffP;
-        var diffV    = this.diffV;
-        var impulse  = this.impulse;
-        var options  = this.options;
+        var n = this.normal;
+        var diffP = this.diffP;
+        var diffV = this.diffV;
+        var impulse = this.impulse;
+        var options = this.options;
 
         var dampingRatio = options.dampingRatio;
-        var period       = options.period;
-        var minLength    = options.minLength;
+        var period = options.period;
+        var minLength = options.minLength;
 
         var p2;
         var w2;
@@ -144,20 +144,20 @@ define(function(require, exports, module) {
 
             if (period === 0) {
                 gamma = 0;
-                beta  = 1;
+                beta = 1;
             }
             else {
                 var c = 4 * effMass * pi * dampingRatio / period;
                 var k = 4 * effMass * pi * pi / (period * period);
 
-                gamma = 1 / (c + dt*k);
-                beta  = dt*k / (c + dt*k);
+                gamma = 1 / (c + dt * k);
+                beta = dt * k / (c + dt * k);
             }
 
-            var antiDrift = beta/dt * dist;
-            var lambda    = -(n.dot(diffV) + antiDrift) / (gamma + dt/effMass);
+            var antiDrift = beta / dt * dist;
+            var lambda = -(n.dot(diffV) + antiDrift) / (gamma + dt / effMass);
 
-            impulse.set(n.mult(dt*lambda));
+            impulse.set(n.mult(dt * lambda));
             body.applyImpulse(impulse);
 
             if (source) source.applyImpulse(impulse.mult(-1));

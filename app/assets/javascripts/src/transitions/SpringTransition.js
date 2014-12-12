@@ -9,7 +9,7 @@
 
 /*global console*/
 
-define(function(require, exports, module) {
+define(function (require, exports, module) {
     var PE = require('../physics/PhysicsEngine');
     var Particle = require('../physics/bodies/Particle');
     var Spring = require('../physics/forces/Spring');
@@ -27,16 +27,16 @@ define(function(require, exports, module) {
      */
     function SpringTransition(state) {
         state = state || 0;
-        this.endState  = new Vector(state);
+        this.endState = new Vector(state);
         this.initState = new Vector();
 
-        this._dimensions       = undefined;
-        this._restTolerance    = 1e-10;
+        this._dimensions = undefined;
+        this._restTolerance = 1e-10;
         this._absRestTolerance = this._restTolerance;
-        this._callback         = undefined;
+        this._callback = undefined;
 
-        this.PE       = new PE();
-        this.spring   = new Spring({anchor : this.endState});
+        this.PE = new PE();
+        this.spring = new Spring({anchor: this.endState});
         this.particle = new Particle();
 
         this.PE.addBody(this.particle);
@@ -62,7 +62,7 @@ define(function(require, exports, module) {
          * @type Number
          * @default 300
          */
-        period : 300,
+        period: 300,
 
         /**
          * The damping of the snap.
@@ -74,7 +74,7 @@ define(function(require, exports, module) {
          * @type Number
          * @default 0.5
          */
-        dampingRatio : 0.5,
+        dampingRatio: 0.5,
 
         /**
          * The initial velocity of the transition.
@@ -83,7 +83,7 @@ define(function(require, exports, module) {
          * @type Number|Array
          * @default 0
          */
-        velocity : 0
+        velocity: 0
     };
 
     function _getEnergy() {
@@ -134,7 +134,7 @@ define(function(require, exports, module) {
 
         if (_getEnergy.call(this) < this._absRestTolerance) {
             _setParticlePosition.call(this, this.endState);
-            _setParticleVelocity.call(this, [0,0,0]);
+            _setParticleVelocity.call(this, [0, 0, 0]);
             _sleep.call(this);
         }
     }
@@ -143,9 +143,9 @@ define(function(require, exports, module) {
         // TODO fix no-console error
         /* eslint no-console: 0 */
         var defaults = SpringTransition.DEFAULT_OPTIONS;
-        if (definition.period === undefined)       definition.period       = defaults.period;
+        if (definition.period === undefined)       definition.period = defaults.period;
         if (definition.dampingRatio === undefined) definition.dampingRatio = defaults.dampingRatio;
-        if (definition.velocity === undefined)     definition.velocity     = defaults.velocity;
+        if (definition.velocity === undefined)     definition.velocity = defaults.velocity;
 
         if (definition.period < 150) {
             definition.period = 150;
@@ -154,8 +154,8 @@ define(function(require, exports, module) {
 
         //setup spring
         this.spring.setOptions({
-            period       : definition.period,
-            dampingRatio : definition.dampingRatio
+            period: definition.period,
+            dampingRatio: definition.dampingRatio
         });
 
         //setup particle

@@ -7,7 +7,7 @@
  * @copyright Famous Industries, Inc. 2014
  */
 
-define(function(require, exports, module) {
+define(function (require, exports, module) {
     var MultipleTransition = require('./MultipleTransition');
     var TweenTransition = require('./TweenTransition');
 
@@ -171,9 +171,9 @@ define(function(require, exports, module) {
      */
     Transitionable.prototype.delay = function delay(duration, callback) {
         this.set(this.get(), {duration: duration,
-            curve: function() {
-                return 0;
-            }},
+                curve: function () {
+                    return 0;
+                }},
             callback
         );
     };

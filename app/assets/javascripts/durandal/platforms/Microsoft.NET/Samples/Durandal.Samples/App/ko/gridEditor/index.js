@@ -1,4 +1,4 @@
-﻿define(['durandal/system', 'durandal/app', 'jquery', 'knockout'], function(system, app, $, ko) {
+﻿define(['durandal/system', 'durandal/app', 'jquery', 'knockout'], function (system, app, $, ko) {
     var GiftModel = function (gifts) {
         var self = this;
         self.gifts = ko.observableArray(gifts);
@@ -38,5 +38,8 @@
         };
     };
 
-    return new GiftModel([{ name: "Tall Hat", price: "39.95" }, { name: "Long Cloak", price: "120.00" }]);
+    return new GiftModel([
+        { name: "Tall Hat", price: "39.95" },
+        { name: "Long Cloak", price: "120.00" }
+    ]);
 });

@@ -7,7 +7,7 @@
  * @copyright Famous Industries, Inc. 2014
  */
 
-define(function(require, exports, module) {
+define(function (require, exports, module) {
     var Force = require('./Force');
     var Vector = require('../../math/Vector');
 
@@ -25,7 +25,7 @@ define(function(require, exports, module) {
         if (options) this.setOptions(options);
 
         //registers
-        this.disp  = new Vector();
+        this.disp = new Vector();
 
         Force.call(this);
     }
@@ -47,7 +47,7 @@ define(function(require, exports, module) {
          * @param {Number} r distance from the source body
          * @param {Number} cutoff the effective radius of influence
          */
-        LINEAR : function(r, cutoff) {
+        LINEAR: function (r, cutoff) {
             return Math.max(1 - (1 / cutoff) * r, 0);
         },
 
@@ -58,10 +58,10 @@ define(function(require, exports, module) {
          * @param {Number} r distance from the source body
          * @param {Number} cutoff the minimum radius of influence
          */
-        MORSE : function(r, cutoff) {
+        MORSE: function (r, cutoff) {
             var r0 = (cutoff === 0) ? 100 : cutoff;
             var rShifted = r + r0 * (1 - Math.log(2)); //shift by x-intercept
-            return Math.max(1 - Math.pow(1 - Math.exp(rShifted/r0 - 1), 2), 0);
+            return Math.max(1 - Math.pow(1 - Math.exp(rShifted / r0 - 1), 2), 0);
         },
 
         /**
@@ -71,7 +71,7 @@ define(function(require, exports, module) {
          * @param {Number} r distance from the source body
          * @param {Number} cutoff a distance shift to avoid singularities
          */
-        INVERSE : function(r, cutoff) {
+        INVERSE: function (r, cutoff) {
             return 1 / (1 - cutoff + r);
         },
 
@@ -82,8 +82,8 @@ define(function(require, exports, module) {
          * @param {Number} r distance from the source body
          * @param {Number} cutoff a distance shift to avoid singularities
          */
-        GRAVITY : function(r, cutoff) {
-            return 1 / (1 - cutoff + r*r);
+        GRAVITY: function (r, cutoff) {
+            return 1 / (1 - cutoff + r * r);
         }
     };
 
@@ -102,7 +102,7 @@ define(function(require, exports, module) {
          * @type Number
          * @default 1
          */
-        strength : 1,
+        strength: 1,
 
         /**
          * The location of the force, if not another physics body
@@ -112,7 +112,7 @@ define(function(require, exports, module) {
          * @default 0.01
          * @optional
          */
-        anchor : undefined,
+        anchor: undefined,
 
         /**
          * The range of the repulsive force
@@ -120,7 +120,7 @@ define(function(require, exports, module) {
          * @type Array
          * @default [0, Infinity]
          */
-        range : [0, Infinity],
+        range: [0, Infinity],
 
         /**
          * A normalization for the force to avoid singularities at the origin
@@ -128,7 +128,7 @@ define(function(require, exports, module) {
          * @type Number
          * @default 0
          */
-        cutoff : 0,
+        cutoff: 0,
 
         /**
          * The maximum magnitude of the force
@@ -137,14 +137,14 @@ define(function(require, exports, module) {
          * @type Number
          * @default Infinity
          */
-        cap : Infinity,
+        cap: Infinity,
 
         /**
          * The type of decay the repulsive force should have
          * @attribute decayFunction
          * @type Function
          */
-        decayFunction : Repulsion.DECAY_FUNCTIONS.GRAVITY
+        decayFunction: Repulsion.DECAY_FUNCTIONS.GRAVITY
     };
 
     /*
@@ -170,17 +170,17 @@ define(function(require, exports, module) {
      * @param source {Body}         The source of the force
      */
     Repulsion.prototype.applyForce = function applyForce(targets, source) {
-        var options     = this.options;
-        var force       = this.force;
-        var disp        = this.disp;
+        var options = this.options;
+        var force = this.force;
+        var disp = this.disp;
 
-        var strength    = options.strength;
-        var anchor      = options.anchor || source.position;
-        var cap         = options.cap;
-        var cutoff      = options.cutoff;
-        var rMin        = options.range[0];
-        var rMax        = options.range[1];
-        var decayFn     = options.decayFunction;
+        var strength = options.strength;
+        var anchor = options.anchor || source.position;
+        var cap = options.cap;
+        var cutoff = options.cutoff;
+        var rMin = options.range[0];
+        var rMax = options.range[1];
+        var decayFn = options.decayFunction;
 
         if (strength === 0) return;
 

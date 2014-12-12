@@ -6,7 +6,7 @@
  * @license MPL 2.0
  * @copyright Famous Industries, Inc. 2014
  */
-define(function(require, exports, module) {
+define(function (require, exports, module) {
     var EventHandler = require('../core/EventHandler');
     var Engine = require('../core/Engine');
     var OptionsManager = require('../core/OptionsManager');
@@ -37,10 +37,10 @@ define(function(require, exports, module) {
         if (options) this.setOptions(options);
 
         this._payload = {
-            delta    : null,
-            position : null,
-            velocity : null,
-            slip     : true
+            delta: null,
+            position: null,
+            velocity: null,
+            slip: true
         };
 
         this._eventInput = new EventHandler();
@@ -49,7 +49,7 @@ define(function(require, exports, module) {
         EventHandler.setInputHandler(this, this._eventInput);
         EventHandler.setOutputHandler(this, this._eventOutput);
 
-        this._position = (this.options.direction === undefined) ? [0,0] : 0;
+        this._position = (this.options.direction === undefined) ? [0, 0] : 0;
         this._prevTime = undefined;
         this._prevVel = undefined;
         this._eventInput.on('mousewheel', _handleMove.bind(this));
@@ -97,7 +97,7 @@ define(function(require, exports, module) {
 
         if (!this._inProgress) {
             this._inProgress = true;
-            this._position = (this.options.direction === undefined) ? [0,0] : 0;
+            this._position = (this.options.direction === undefined) ? [0, 0] : 0;
             payload = this._payload;
             payload.slip = true;
             payload.position = this._position;
@@ -155,10 +155,10 @@ define(function(require, exports, module) {
         }
 
         var payload = this._payload;
-        payload.delta    = nextDelta;
+        payload.delta = nextDelta;
         payload.velocity = nextVel;
         payload.position = this._position;
-        payload.slip     = true;
+        payload.slip = true;
 
         this._eventOutput.emit('update', payload);
 

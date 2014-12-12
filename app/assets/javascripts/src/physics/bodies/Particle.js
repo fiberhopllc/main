@@ -7,7 +7,7 @@
  * @copyright Famous Industries, Inc. 2014
  */
 
-define(function(require, exports, module) {
+define(function (require, exports, module) {
     var Vector = require('../../math/Vector');
     var Transform = require('../../core/Transform');
     var EventHandler = require('../../core/EventHandler');
@@ -28,7 +28,7 @@ define(function(require, exports, module) {
      * @param [options.velocity] {Array}    The velocity of the particle.
      * @param [options.mass] {Number}       The mass of the particle.
      */
-     function Particle(options) {
+    function Particle(options) {
         options = options || {};
         var defaults = Particle.DEFAULT_OPTIONS;
 
@@ -52,32 +52,32 @@ define(function(require, exports, module) {
         // set vectors
         this.setPosition(options.position || defaults.position);
         this.setVelocity(options.velocity || defaults.velocity);
-        this.force.set(options.force || [0,0,0]);
+        this.force.set(options.force || [0, 0, 0]);
 
         this.transform = Transform.identity.slice();
 
         // cached _spec
         this._spec = {
-            size : [true, true],
-            target : {
-                transform : this.transform,
-                origin : [0.5, 0.5],
-                target : null
+            size: [true, true],
+            target: {
+                transform: this.transform,
+                origin: [0.5, 0.5],
+                target: null
             }
         };
     }
 
     Particle.DEFAULT_OPTIONS = {
-        position : [0, 0, 0],
-        velocity : [0, 0, 0],
-        mass : 1
+        position: [0, 0, 0],
+        velocity: [0, 0, 0],
+        mass: 1
     };
 
     //Catalogue of outputted events
     var _events = {
-        start : 'start',
-        update : 'update',
-        end : 'end'
+        start: 'start',
+        update: 'update',
+        end: 'end'
     };
 
     // Cached timing function
@@ -249,8 +249,8 @@ define(function(require, exports, module) {
      * @param velocity {Array|Vector}
      */
     Particle.prototype.reset = function reset(position, velocity) {
-        this.setPosition(position || [0,0,0]);
-        this.setVelocity(velocity || [0,0,0]);
+        this.setPosition(position || [0, 0, 0]);
+        this.setVelocity(velocity || [0, 0, 0]);
     };
 
     /**

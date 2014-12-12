@@ -7,7 +7,7 @@
  * @copyright Famous Industries, Inc. 2014
  */
 
-define(function(require, exports, module) {
+define(function (require, exports, module) {
     var EventHandler = require('../../core/EventHandler');
 
     /**
@@ -39,7 +39,8 @@ define(function(require, exports, module) {
      *
      * @method applyConstraint
      */
-    Constraint.prototype.applyConstraint = function applyConstraint() {};
+    Constraint.prototype.applyConstraint = function applyConstraint() {
+    };
 
     /**
      * Getter for energy

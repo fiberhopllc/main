@@ -7,7 +7,7 @@
  * @copyright Famous Industries, Inc. 2014
  */
 
-define(function(require, exports, module) {
+define(function (require, exports, module) {
     var Vector = require('../../math/Vector');
     var EventHandler = require('../../core/EventHandler');
 

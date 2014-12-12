@@ -6,7 +6,7 @@
  * @license MPL 2.0
  * @copyright Famous Industries, Inc. 2014
  */
-define(function(require, exports, module) {
+define(function (require, exports, module) {
     var EventHandler = require('../core/EventHandler');
 
     /**
@@ -39,19 +39,19 @@ define(function(require, exports, module) {
         this._eventInput.on('touchcancel', this.handleEnd.bind(this));
     }
 
-    TwoFingerSync.calculateAngle = function(posA, posB) {
+    TwoFingerSync.calculateAngle = function (posA, posB) {
         var diffX = posB[0] - posA[0];
         var diffY = posB[1] - posA[1];
         return Math.atan2(diffY, diffX);
     };
 
-    TwoFingerSync.calculateDistance = function(posA, posB) {
+    TwoFingerSync.calculateDistance = function (posA, posB) {
         var diffX = posB[0] - posA[0];
         var diffY = posB[1] - posA[1];
         return Math.sqrt(diffX * diffX + diffY * diffY);
     };
 
-    TwoFingerSync.calculateCenter = function(posA, posB) {
+    TwoFingerSync.calculateCenter = function (posA, posB) {
         return [(posA[0] + posB[0]) / 2.0, (posA[1] + posB[1]) / 2.0];
     };
 
@@ -106,8 +106,8 @@ define(function(require, exports, module) {
             if (touch.identifier === this.touchAId || touch.identifier === this.touchBId) {
                 if (this.touchAEnabled && this.touchBEnabled) {
                     this._eventOutput.emit('end', {
-                        touches : [this.touchAId, this.touchBId],
-                        angle   : this._angle
+                        touches: [this.touchAId, this.touchBId],
+                        angle: this._angle
                     });
                 }
                 this.touchAEnabled = false;

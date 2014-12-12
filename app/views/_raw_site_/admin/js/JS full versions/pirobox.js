@@ -99,7 +99,8 @@
             }
         });
         $('html').bind('keyup', function (e) {
-            if ($('.item').is('.first')) {} else if (e.keyCode == 37) {
+            if ($('.item').is('.first')) {
+            } else if (e.keyCode == 37) {
                 e.preventDefault();
                 if ($(piro_close).is(':visible')) {
                     piro_prev.click();
@@ -107,7 +108,8 @@
             }
         });
         $('html').bind('keyup', function (z) {
-            if ($('.item').is('.last')) {} else if (z.keyCode == 39) {
+            if ($('.item').is('.last')) {
+            } else if (z.keyCode == 39) {
                 z.preventDefault();
                 if ($(piro_close).is(':visible')) {
                     piro_next.click();
@@ -137,6 +139,7 @@
                 });
             });
         }
+
         if (opt.piro_scroll == true) {
             scrollIt()
         }
@@ -238,7 +241,8 @@
                         var y = $(window).height();
                         var x = $(window).width();
                         $(img).height(imgH).width(imgW).hide();
-                        $(img).fadeOut(300, function () {});
+                        $(img).fadeOut(300, function () {
+                        });
                         $('.div_reg img').remove();
                         $('.div_reg').html('');
                         div_reg.append(img).show();
@@ -282,67 +286,68 @@
                         img.src = 'about:blank';
                     });
                 }
+
                 switch (params[0]) {
-                case 'iframe':
-                    div_reg.html('').css('overflow', 'hidden');
-                    resize.css('overflow', 'hidden');
-                    piro_close.add(btn_info).add(piro_capt).hide();
-                    animate_html();
-                    div_reg.piroFadeIn(300, function () {
-                        div_reg.append('<iframe id="my_frame" class="my_frame" src="' + p_link + '" frameborder="0" allowtransparency="true" scrolling="auto" align="top"></iframe>');
-                        $('.my_frame').css({
-                            'height': +(params[2]) + 'px',
-                            'width': +(params[1]) + 'px'
+                    case 'iframe':
+                        div_reg.html('').css('overflow', 'hidden');
+                        resize.css('overflow', 'hidden');
+                        piro_close.add(btn_info).add(piro_capt).hide();
+                        animate_html();
+                        div_reg.piroFadeIn(300, function () {
+                            div_reg.append('<iframe id="my_frame" class="my_frame" src="' + p_link + '" frameborder="0" allowtransparency="true" scrolling="auto" align="top"></iframe>');
+                            $('.my_frame').css({
+                                'height': +(params[2]) + 'px',
+                                'width': +(params[1]) + 'px'
+                            });
+                            piro_loader.hide();
                         });
-                        piro_loader.hide();
-                    });
-                    break;
-                case 'content':
-                    div_reg.html('').css('overflow', 'auto');
-                    resize.css('overflow', 'auto');
-                    $('.my_frame').remove();
-                    piro_close.add(btn_info).add(piro_capt).hide();
-                    animate_html()
-                    div_reg.piroFadeIn(300, function () {
-                        div_reg.load(p_link);
-                        piro_loader.hide();
-                    });
-                    break;
-                case 'inline':
-                    div_reg.html('').css('overflow', 'auto');
-                    resize.css('overflow', 'auto');
-                    $('.my_frame').remove();
-                    piro_close.add(btn_info).add(piro_capt).hide();
-                    animate_html()
-                    div_reg.piroFadeIn(300, function () {
-                        $(p_link).clone(true).appendTo(div_reg).piroFadeIn(300);
-                        piro_loader.hide();
-                    });
-                    break
-                case 'gallery':
-                    div_reg.css('overflow', 'hidden');
-                    resize.css('overflow', 'hidden');
-                    $('.my_frame').remove();
-                    piro_close.add(btn_info).add(piro_capt).hide();
-                    if (descr == "") {
-                        piro_capt.html('');
-                    } else {
-                        piro_capt.html('<p>' + descr + '</p>');
-                    }
-                    animate_image();
-                    break;
-                case 'single':
-                    piro_close.add(btn_info).add(piro_capt).hide();
-                    div_reg.html('').css('overflow', 'hidden');
-                    resize.css('overflow', 'hidden');
-                    $('.my_frame').remove();
-                    if (descr == "") {
-                        piro_capt.html('');
-                    } else {
-                        piro_capt.html('<p>' + descr + '</p>');
-                    }
-                    animate_image();
-                    break
+                        break;
+                    case 'content':
+                        div_reg.html('').css('overflow', 'auto');
+                        resize.css('overflow', 'auto');
+                        $('.my_frame').remove();
+                        piro_close.add(btn_info).add(piro_capt).hide();
+                        animate_html()
+                        div_reg.piroFadeIn(300, function () {
+                            div_reg.load(p_link);
+                            piro_loader.hide();
+                        });
+                        break;
+                    case 'inline':
+                        div_reg.html('').css('overflow', 'auto');
+                        resize.css('overflow', 'auto');
+                        $('.my_frame').remove();
+                        piro_close.add(btn_info).add(piro_capt).hide();
+                        animate_html()
+                        div_reg.piroFadeIn(300, function () {
+                            $(p_link).clone(true).appendTo(div_reg).piroFadeIn(300);
+                            piro_loader.hide();
+                        });
+                        break
+                    case 'gallery':
+                        div_reg.css('overflow', 'hidden');
+                        resize.css('overflow', 'hidden');
+                        $('.my_frame').remove();
+                        piro_close.add(btn_info).add(piro_capt).hide();
+                        if (descr == "") {
+                            piro_capt.html('');
+                        } else {
+                            piro_capt.html('<p>' + descr + '</p>');
+                        }
+                        animate_image();
+                        break;
+                    case 'single':
+                        piro_close.add(btn_info).add(piro_capt).hide();
+                        div_reg.html('').css('overflow', 'hidden');
+                        resize.css('overflow', 'hidden');
+                        $('.my_frame').remove();
+                        if (descr == "") {
+                            piro_capt.html('');
+                        } else {
+                            piro_capt.html('<p>' + descr + '</p>');
+                        }
+                        animate_image();
+                        break
                 }
             }
         });
@@ -369,6 +374,7 @@
                 });
             }
         }
+
         piro_close.add(piro_loader).add(piro_bg).bind('click', function (y) {
             y.preventDefault();
             close_all();

@@ -1,4 +1,4 @@
-﻿define(['knockout'], function(ko) {
+﻿define(['knockout'], function (ko) {
     var SimpleGrid = function (configuration) {
         this.data = configuration.data;
         this.currentPageIndex = ko.observable(0);
@@ -7,17 +7,17 @@
         // If you don't specify columns configuration, we'll use scaffolding
         this.columns = configuration.columns || this.getColumnsForScaffolding(ko.utils.unwrapObservable(this.data));
 
-        this.itemsOnCurrentPage = ko.computed(function() {
+        this.itemsOnCurrentPage = ko.computed(function () {
             var startIndex = this.pageSize * this.currentPageIndex();
             return this.data.slice(startIndex, startIndex + this.pageSize);
         }, this);
 
-        this.maxPageIndex = ko.computed(function() {
+        this.maxPageIndex = ko.computed(function () {
             return Math.ceil(ko.utils.unwrapObservable(this.data).length / this.pageSize) - 1;
         }, this);
     };
 
-    SimpleGrid.prototype.getColumnsForScaffolding = function(data) {
+    SimpleGrid.prototype.getColumnsForScaffolding = function (data) {
         if ((typeof data.length !== 'number') || data.length === 0) {
             return [];
         }

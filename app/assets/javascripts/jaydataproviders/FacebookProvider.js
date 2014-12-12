@@ -6,9 +6,9 @@
 // practices to access and manipulate data from various online and offline sources.
 //
 // Credits:
-//     Hajnalka Battancs, Dániel József, János Roden, László Horváth, Péter Nochta
-//     Péter Zentai, Róbert Bónay, Szabolcs Czinege, Viktor Borza, Viktor Lázár,
-//     Zoltán Gyebrovszki, Gábor Dolla
+//     Hajnalka Battancs, Dï¿½niel Jï¿½zsef, Jï¿½nos Roden, Lï¿½szlï¿½ Horvï¿½th, Pï¿½ter Nochta
+//     Pï¿½ter Zentai, Rï¿½bert Bï¿½nay, Szabolcs Czinege, Viktor Borza, Viktor Lï¿½zï¿½r,
+//     Zoltï¿½n Gyebrovszki, Gï¿½bor Dolla
 //
 // More info: http://jaydata.org
 $data.FacebookConverter = {
@@ -22,10 +22,19 @@ $data.FacebookConverter = {
         '$data.Number': $data.Container.proxyConverter,
         '$data.Integer': $data.Container.proxyConverter,
         '$data.String': $data.Container.proxyConverter,
-        '$data.Date': function (value) { return new Date(typeof value === "string" ? parseInt(value) : value); },
-        '$data.Boolean': function (value) { return !!value },
+        '$data.Date': function (value) {
+            return new Date(typeof value === "string" ? parseInt(value) : value);
+        },
+        '$data.Boolean': function (value) {
+            return !!value
+        },
         '$data.Blob': $data.Container.proxyConverter,
-        '$data.Array': function (value) { if (value === undefined) { return new $data.Array(); } return value; }
+        '$data.Array': function (value) {
+            if (value === undefined) {
+                return new $data.Array();
+            }
+            return value;
+        }
     },
     toDb: {
         '$data.Byte': $data.Container.proxyConverter,
@@ -36,199 +45,222 @@ $data.FacebookConverter = {
         '$data.Int64': $data.Container.proxyConverter,
         '$data.Number': $data.Container.proxyConverter,
         '$data.Integer': $data.Container.proxyConverter,
-        '$data.String': function (value) { return "'" + value + "'"; },
-        '$data.Date': function (value) { return value ? value.valueOf() : null; },
+        '$data.String': function (value) {
+            return "'" + value + "'";
+        },
+        '$data.Date': function (value) {
+            return value ? value.valueOf() : null;
+        },
         '$data.Boolean': $data.Container.proxyConverter,
         '$data.Blob': $data.Container.proxyConverter,
-        '$data.Array': function (value) { return '(' + value.join(', ') + ')'; }
+        '$data.Array': function (value) {
+            return '(' + value.join(', ') + ')';
+        }
     }
 };
 
 $data.Class.define('$data.storageProviders.Facebook.FacebookProvider', $data.StorageProviderBase, null,
-{
-    constructor: function (cfg) {
-        var provider = this;
-        this.SqlCommands = [];
-        this.context = {};
-        this.providerConfiguration = $data.typeSystem.extend({
-            FQLFormat: "format=json",
-            FQLQueryUrl: "https://graph.facebook.com/fql?q=",
-            Access_Token: ''
-        }, cfg);
-        this.initializeStore = function (callBack) {
+    {
+        constructor: function (cfg) {
+            var provider = this;
+            this.SqlCommands = [];
+            this.context = {};
+            this.providerConfiguration = $data.typeSystem.extend({
+                FQLFormat: "format=json",
+                FQLQueryUrl: "https://graph.facebook.com/fql?q=",
+                Access_Token: ''
+            }, cfg);
+            this.initializeStore = function (callBack) {
+                callBack = $data.typeSystem.createCallbackSetting(callBack);
+                callBack.success(this.context);
+            };
+
+        },
+        AuthenticationProvider: { dataType: '$data.Authentication.AuthenticationBase', enumerable: false },
+        supportedDataTypes: { value: [$data.Integer, $data.Number, $data.Date, $data.String, $data.Boolean, $data.Blob, $data.Array], writable: false },
+        supportedFieldOperations: {
+            value: {
+                'contains': {
+                    dataType: $data.String,
+                    allowedIn: $data.Expressions.FilterExpression,
+                    mapTo: "strpos",
+                    parameters: [
+                        { name: "@expression", dataType: $data.String },
+                        { name: "strFragment", dataType: $data.String }
+                    ],
+                    rigthValue: ') >= 0'
+                },
+                'startsWith': {
+                    dataType: $data.String,
+                    allowedIn: $data.Expressions.FilterExpression,
+                    mapTo: "strpos",
+                    parameters: [
+                        { name: "@expression", dataType: $data.String },
+                        { name: "strFragment", dataType: $data.String }
+                    ],
+                    rigthValue: ') = 0'
+                },
+                'strpos': {
+                    dataType: $data.Integer,
+                    allowedIn: [$data.Expressions.FilterExpression, $data.Expressions.ProjectionExpression],
+                    mapTo: "strpos",
+                    parameters: [
+                        { name: "@expression", dataType: $data.String },
+                        { name: "strFragment", dataType: $data.String }
+                    ]
+                },
+                'substr': {
+                    dataType: $data.String,
+                    allowedIn: [$data.Expressions.FilterExpression, $data.Expressions.ProjectionExpression],
+                    mapTo: "substr",
+                    parameters: [
+                        { name: "@expression", dataType: $data.String },
+                        { name: "startIdx", dataType: $data.Number },
+                        { name: "length", dataType: $data.Number }
+                    ]
+                },
+                'strlen': {
+                    dataType: $data.Integer,
+                    allowedIn: [$data.Expressions.FilterExpression, $data.Expressions.ProjectionExpression],
+                    mapTo: "strlen",
+                    parameters: [
+                        { name: "@expression", dataType: $data.String }
+                    ]
+                }
+
+            },
+            enumerable: true,
+            writable: true
+        },
+        supportedBinaryOperators: {
+            value: {
+                equal: { mapTo: ' = ', dataType: $data.Boolean, allowedIn: $data.Expressions.FilterExpression },
+                notEqual: { mapTo: ' != ', dataType: $data.Boolean, allowedIn: $data.Expressions.FilterExpression },
+                equalTyped: { mapTo: ' = ', dataType: $data.Boolean, allowedIn: $data.Expressions.FilterExpression },
+                notEqualTyped: { mapTo: ' != ', dataType: $data.Boolean, allowedIn: $data.Expressions.FilterExpression },
+                greaterThan: { mapTo: ' > ', dataType: $data.Boolean, allowedIn: $data.Expressions.FilterExpression },
+                greaterThanOrEqual: { mapTo: ' >= ', dataType: $data.Boolean, allowedIn: $data.Expressions.FilterExpression },
+
+                lessThan: { mapTo: ' < ', dataType: $data.Boolean, allowedIn: $data.Expressions.FilterExpression },
+                lessThenOrEqual: { mapTo: ' <= ', dataType: $data.Boolean, allowedIn: $data.Expressions.FilterExpression },
+                or: { mapTo: ' OR ', dataType: $data.Boolean, allowedIn: $data.Expressions.FilterExpression },
+                and: { mapTo: ' AND ', dataType: $data.Booleanv },
+                'in': { mapTo: ' IN ', dataType: $data.Boolean, resolvableType: [$data.Array, $data.Queryable], allowedIn: $data.Expressions.FilterExpression }
+            }
+        },
+        supportedUnaryOperators: {
+            value: {}
+        },
+        fieldConverter: { value: $data.FacebookConverter },
+        supportedSetOperations: {
+            value: {
+                filter: {},
+                length: {},
+                map: {},
+                forEach: {},
+                toArray: {},
+                single: {},
+                take: {},
+                skip: {},
+                orderBy: {},
+                orderByDescending: {},
+                first: {}
+            },
+            enumerable: true,
+            writable: true
+        },
+        executeQuery: function (query, callBack) {
             callBack = $data.typeSystem.createCallbackSetting(callBack);
-            callBack.success(this.context);
-        };
 
-    },
-    AuthenticationProvider: { dataType: '$data.Authentication.AuthenticationBase', enumerable: false },
-    supportedDataTypes: { value: [$data.Integer, $data.Number, $data.Date, $data.String, $data.Boolean, $data.Blob, $data.Array], writable: false },
-    supportedFieldOperations: {
-        value: {
-            'contains': {
-                dataType: $data.String,
-                allowedIn: $data.Expressions.FilterExpression,
-                mapTo: "strpos",
-                parameters: [{ name: "@expression", dataType: $data.String }, { name: "strFragment", dataType: $data.String }],
-                rigthValue: ') >= 0'
-            },
-            'startsWith': {
-                dataType: $data.String,
-                allowedIn: $data.Expressions.FilterExpression,
-                mapTo: "strpos",
-                parameters: [{ name: "@expression", dataType: $data.String }, { name: "strFragment", dataType: $data.String }],
-                rigthValue: ') = 0'
-            },
-            'strpos': {
-                dataType: $data.Integer,
-                allowedIn: [$data.Expressions.FilterExpression, $data.Expressions.ProjectionExpression],
-                mapTo: "strpos",
-                parameters: [{ name: "@expression", dataType: $data.String }, { name: "strFragment", dataType: $data.String }]
-            },
-            'substr': {
-                dataType: $data.String,
-                allowedIn: [$data.Expressions.FilterExpression, $data.Expressions.ProjectionExpression],
-                mapTo: "substr",
-                parameters: [{ name: "@expression", dataType: $data.String }, { name: "startIdx", dataType: $data.Number }, { name: "length", dataType: $data.Number }]
-            },
-            'strlen': {
-                dataType: $data.Integer,
-                allowedIn: [$data.Expressions.FilterExpression, $data.Expressions.ProjectionExpression],
-                mapTo: "strlen",
-                parameters: [{ name: "@expression", dataType: $data.String }]
+            if (!this.AuthenticationProvider)
+                this.AuthenticationProvider = new $data.Authentication.Anonymous({});
+
+            var sql;
+            try {
+                sql = this._compile(query);
+            } catch (e) {
+                callBack.error(e);
+                return;
             }
 
+            var schema = query.defaultType;
+            var ctx = this.context;
+
+            var includes = [];
+            if (!sql.selectMapping)
+                this._discoverType('', schema, includes);
+
+            var requestUrl = this.providerConfiguration.FQLQueryUrl + encodeURIComponent(sql.queryText) + "&" + this.providerConfiguration.FQLFormat;
+            if (this.providerConfiguration.Access_Token) {
+                requestUrl += '&access_token=' + this.providerConfiguration.Access_Token;
+            }
+
+            var requestData = {
+                url: requestUrl,
+                dataType: "JSON",
+                success: function (data, textStatus, jqXHR) {
+                    query.rawDataList = data.data;
+                    var compiler = Container.createModelBinderConfigCompiler(query, []);
+                    compiler.Visit(query.expression);
+
+                    if (query.expression instanceof $data.Expressions.CountExpression) {
+                        query.rawDataList = [
+                            { cnt: data.data.length }
+                        ];
+                    }
+                    callBack.success(query);
+                },
+                error: function (jqXHR, textStatus, errorThrow) {
+                    var errorData = {};
+                    try {
+                        errorData = JSON.parse(jqXHR.responseText).error;
+                    } catch (e) {
+                        errorData = errorThrow + ': ' + jqXHR.responseText;
+                    }
+                    callBack.error(errorData);
+                }
+            };
+
+            this.context.prepareRequest.call(this, requestData);
+            this.AuthenticationProvider.CreateRequest(requestData);
         },
-        enumerable: true,
-        writable: true
-    },
-    supportedBinaryOperators: {
-        value: {
-            equal: { mapTo: ' = ', dataType: $data.Boolean, allowedIn: $data.Expressions.FilterExpression },
-            notEqual: { mapTo: ' != ', dataType: $data.Boolean, allowedIn: $data.Expressions.FilterExpression },
-            equalTyped: { mapTo: ' = ', dataType: $data.Boolean, allowedIn: $data.Expressions.FilterExpression },
-            notEqualTyped: { mapTo: ' != ', dataType: $data.Boolean, allowedIn: $data.Expressions.FilterExpression },
-            greaterThan: { mapTo: ' > ', dataType: $data.Boolean, allowedIn: $data.Expressions.FilterExpression },
-            greaterThanOrEqual: { mapTo: ' >= ', dataType: $data.Boolean, allowedIn: $data.Expressions.FilterExpression },
+        _discoverType: function (dept, type, result) {
+            type.memberDefinitions.getPublicMappedProperties().forEach(function (memDef) {
+                var type = Container.resolveType(memDef.dataType);
 
-            lessThan: { mapTo: ' < ', dataType: $data.Boolean, allowedIn: $data.Expressions.FilterExpression },
-            lessThenOrEqual: { mapTo: ' <= ', dataType: $data.Boolean, allowedIn: $data.Expressions.FilterExpression },
-            or: { mapTo: ' OR ', dataType: $data.Boolean, allowedIn: $data.Expressions.FilterExpression },
-            and: { mapTo: ' AND ', dataType: $data.Booleanv },
-            'in': { mapTo: ' IN ', dataType: $data.Boolean, resolvableType: [$data.Array, $data.Queryable], allowedIn: $data.Expressions.FilterExpression }
-        }
-    },
-    supportedUnaryOperators: {
-        value: {}
-    },
-    fieldConverter: { value: $data.FacebookConverter },
-    supportedSetOperations: {
-        value: {
-            filter: {},
-            length: {},
-            map: {},
-            forEach: {},
-            toArray: {},
-            single: {},
-            take: {},
-            skip: {},
-            orderBy: {},
-            orderByDescending: {},
-            first: {}
+                if (type.isAssignableTo || type == Array) {
+                    var name = dept ? (dept + '.' + memDef.name) : memDef.name;
+
+                    if (type == Array || type.isAssignableTo($data.EntitySet)) {
+                        if (memDef.inverseProperty)
+                            type = Container.resolveType(memDef.elementType);
+                        else
+                            return;
+                    }
+
+                    result.push({ name: name, type: type })
+                    this._discoverType(name, type, result);
+                }
+            }, this);
         },
-        enumerable: true,
-        writable: true
-    },
-    executeQuery: function (query, callBack) {
-        callBack = $data.typeSystem.createCallbackSetting(callBack);
+        _compile: function (query) {
+            var sqlText = Container.createFacebookCompiler().compile(query);
+            return sqlText;
+        },
+        getTraceString: function (query) {
+            if (!this.AuthenticationProvider)
+                this.AuthenticationProvider = new $data.Authentication.Anonymous({});
 
-        if (!this.AuthenticationProvider)
-            this.AuthenticationProvider = new $data.Authentication.Anonymous({});
-
-        var sql;
-        try {
-            sql = this._compile(query);
-        } catch (e) {
-            callBack.error(e);
-            return;
+            var sqlText = this._compile(query);
+            return sqlText;
+        },
+        setContext: function (ctx) {
+            this.context = ctx;
+        },
+        saveChanges: function (callBack) {
+            Guard.raise(new Exception("Not implemented", "Not implemented"));
         }
-
-        var schema = query.defaultType;
-        var ctx = this.context;
-
-        var includes = [];
-        if (!sql.selectMapping)
-            this._discoverType('', schema, includes);
-
-        var requestUrl = this.providerConfiguration.FQLQueryUrl + encodeURIComponent(sql.queryText) + "&" + this.providerConfiguration.FQLFormat;
-        if (this.providerConfiguration.Access_Token) {
-            requestUrl += '&access_token=' + this.providerConfiguration.Access_Token;
-        }
-
-        var requestData = {
-            url: requestUrl,
-            dataType: "JSON",
-            success: function (data, textStatus, jqXHR) {
-                query.rawDataList = data.data;
-                var compiler = Container.createModelBinderConfigCompiler(query, []);
-                compiler.Visit(query.expression);
-
-                if (query.expression instanceof $data.Expressions.CountExpression) {
-                    query.rawDataList = [{ cnt: data.data.length }];
-                }
-                callBack.success(query);
-            },
-            error: function (jqXHR, textStatus, errorThrow) {
-                var errorData = {};
-                try {
-                    errorData = JSON.parse(jqXHR.responseText).error;
-                } catch (e) {
-                    errorData = errorThrow + ': ' + jqXHR.responseText;
-                }
-                callBack.error(errorData);
-            }
-        };
-
-        this.context.prepareRequest.call(this, requestData);
-        this.AuthenticationProvider.CreateRequest(requestData);
-    },
-    _discoverType: function (dept, type, result) {
-        type.memberDefinitions.getPublicMappedProperties().forEach(function (memDef) {
-            var type = Container.resolveType(memDef.dataType);
-
-            if (type.isAssignableTo || type == Array) {
-                var name = dept ? (dept + '.' + memDef.name) : memDef.name;
-
-                if (type == Array || type.isAssignableTo($data.EntitySet)) {
-                    if (memDef.inverseProperty)
-                        type = Container.resolveType(memDef.elementType);
-                    else
-                        return;
-                }
-
-                result.push({ name: name, type: type })
-                this._discoverType(name, type, result);
-            }
-        }, this);
-    },
-    _compile: function (query) {
-        var sqlText = Container.createFacebookCompiler().compile(query);
-        return sqlText;
-    },
-    getTraceString: function (query) {
-        if (!this.AuthenticationProvider)
-            this.AuthenticationProvider = new $data.Authentication.Anonymous({});
-
-        var sqlText = this._compile(query);
-        return sqlText;
-    },
-    setContext: function (ctx) {
-        this.context = ctx;
-    },
-    saveChanges: function (callBack) {
-        Guard.raise(new Exception("Not implemented", "Not implemented"));
-    }
-}, null);
+    }, null);
 
 $data.StorageProviderBase.registerProvider("Facebook", $data.storageProviders.Facebook.FacebookProvider);
 
@@ -295,8 +327,12 @@ $C('$data.storageProviders.Facebook.FacebookCompiler', $data.Expressions.EntityE
     generateProjectionFunc: function (query) {
         var isAuthenticated = this.provider.AuthenticationProvider.Authenticated || this.provider.providerConfiguration.Access_Token;
         var publicMemberDefinitions = query.defaultType.memberDefinitions.getPublicMappedProperties();
-        if (!isAuthenticated && publicMemberDefinitions.some(function (memDef) { return memDef.isPublic == true; })) {
-            publicMemberDefinitions = publicMemberDefinitions.filter(function (memDef) { return memDef.isPublic == true; });
+        if (!isAuthenticated && publicMemberDefinitions.some(function (memDef) {
+            return memDef.isPublic == true;
+        })) {
+            publicMemberDefinitions = publicMemberDefinitions.filter(function (memDef) {
+                return memDef.isPublic == true;
+            });
         }
 
         var selectStr = 'function (s){ return {';
@@ -369,10 +405,9 @@ $C('$data.storageProviders.Facebook.FacebookCompiler', $data.Expressions.EntityE
         var left = this.Visit(expression.left, context);
         context.sql += expression.resolution.mapTo;
 
-        if (expression.resolution.resolvableType &&
-            !Guard.requireType(expression.resolution.mapTo + ' expression.right.value', expression.right.value, expression.resolution.resolvableType)) {
-                Guard.raise(new Exception(expression.right.type + " not allowed in '" + expression.resolution.mapTo + "' statement", "invalid operation"));
-            }
+        if (expression.resolution.resolvableType && !Guard.requireType(expression.resolution.mapTo + ' expression.right.value', expression.right.value, expression.resolution.resolvableType)) {
+            Guard.raise(new Exception(expression.right.type + " not allowed in '" + expression.resolution.mapTo + "' statement", "invalid operation"));
+        }
 
         if (expression.resolution.name === 'in' && expression.right.value instanceof Array) {
             var self = this;
@@ -399,9 +434,13 @@ $C('$data.storageProviders.Facebook.FacebookCompiler', $data.Expressions.EntityE
 
         if (context.type == 'Projection' && !context.selectFields) {
             if (context.fieldOperation === true)
-                context.selectFields = [{ from: 'anon' }];
+                context.selectFields = [
+                    { from: 'anon' }
+                ];
             else
-                context.selectFields = [{ from: memberName, dataType: expression.memberDefinition.dataType }];
+                context.selectFields = [
+                    { from: memberName, dataType: expression.memberDefinition.dataType }
+                ];
         }
     },
 
@@ -422,7 +461,7 @@ $C('$data.storageProviders.Facebook.FacebookCompiler', $data.Expressions.EntityE
             if (this.provider.supportedDataTypes.indexOf(expressionValueType) != -1)
                 context.sql += this.provider.fieldConverter.toDb[Container.resolveName(expressionValueType)](expression.value);
             else {
-              context.sql += "" + expression.value + "";
+                context.sql += "" + expression.value + "";
             }
         }
     },
@@ -485,7 +524,8 @@ $C('$data.storageProviders.Facebook.FacebookCompiler', $data.Expressions.EntityE
             } else {
                 result.value = expression.parameters[paramCounter];
                 result.itemType = expression.parameters[paramCounter++].type;
-            };
+            }
+            ;
             return result;
         });
 
@@ -494,7 +534,8 @@ $C('$data.storageProviders.Facebook.FacebookCompiler', $data.Expressions.EntityE
             if (!itemType || ((arg.dataType instanceof Array && arg.dataType.indexOf(itemType) != -1) || arg.dataType == itemType)) {
                 if (index > 0) {
                     context.sql += ", ";
-                };
+                }
+                ;
 
                 if (context.type == 'Projection')
                     context.fieldOperation = true;
@@ -610,7 +651,7 @@ $data.Class.define("$data.Facebook.types.FbPage", $data.Entity, null, {
     pic_square: { type: "string", isPublic: true },
     pic: { type: "string", isPublic: true },
     pic_large: { type: "string", isPublic: true },
-    pic_cover: { type: "object", isPublic: true },	//object	The JSON object containing three fields: cover_id (the ID of the cover photo), source (the URL for the cover photo), andoffset_y (indicating percentage offset from top [0-100])
+    pic_cover: { type: "object", isPublic: true },	//object	The JSON object containing three fields:ï¿½cover_idï¿½(the ID of the cover photo),ï¿½sourceï¿½(the URL for the cover photo), andoffset_yï¿½(indicating percentage offset from top [0-100])
     unread_notif_count: { type: "number", isPublic: false },
     new_like_count: { type: "number", isPublic: false },
     fan_count: { type: "number", isPublic: true },
@@ -625,18 +666,18 @@ $data.Class.define("$data.Facebook.types.FbPage", $data.Entity, null, {
     company_overview: { type: "string", isPublic: true },
     mission: { type: "string", isPublic: true },
     products: { type: "string", isPublic: true },
-    location: { type: "object", isPublic: true }, //	array	Applicable to all Places.
-    parking: { type: "object", isPublic: true }, //     array	Applicable to Businesses and Places. Can be one of street, lot orvalet
-    hours: { type: "array", isPublic: true }, //	array	Applicable to Businesses and Places.
+    location: { type: "object", isPublic: true }, //	array	Applicable to allï¿½Places.
+    parking: { type: "object", isPublic: true }, //     array	Applicable toï¿½Businessesï¿½andï¿½Places. Can be one ofï¿½street,ï¿½lotï¿½orvalet
+    hours: { type: "array", isPublic: true }, //	array	Applicable toï¿½Businessesï¿½andï¿½Places.
     pharma_safety_info: { type: "string", isPublic: true },
     public_transit: { type: "string", isPublic: true },
     attire: { type: "string", isPublic: true },
-    payment_options: { type: "object", isPublic: true },	//array	Applicable to Restaurants or Nightlife.
+    payment_options: { type: "object", isPublic: true },	//array	Applicable toï¿½Restaurantsï¿½orï¿½Nightlife.
     culinary_team: { type: "string", isPublic: true },
     general_manager: { type: "string", isPublic: true },
     price_range: { type: "string", isPublic: true },
-    restaurant_services: { type: "object", isPublic: true },//	array	Applicable to Restaurants.
-    restaurant_specialties: { type: "object", isPublic: true },//	array	Applicable to Restaurants.
+    restaurant_services: { type: "object", isPublic: true },//	array	Applicable toï¿½Restaurants.
+    restaurant_specialties: { type: "object", isPublic: true },//	array	Applicable toï¿½Restaurants.
     phone: { type: "string", isPublic: true },
     release_date: { type: "string", isPublic: true },
     genre: { type: "string", isPublic: true },
@@ -690,13 +731,19 @@ $data.Class.define('$data.storageProviders.Facebook.EntitySets.Command', null, n
 });
 
 $data.Class.define("$data.Facebook.FQLContext", $data.EntityContext, null, {
-    constructor: function(){
+    constructor: function () {
         var friendsQuery = this.Friends
-                .where(function (f) { return f.uid1 == this.me; }, { me: $data.Facebook.FQLCommands.me })
-                .select(function (f) { return f.uid2; });
+            .where(function (f) {
+                return f.uid1 == this.me;
+            }, { me: $data.Facebook.FQLCommands.me })
+            .select(function (f) {
+                return f.uid2;
+            });
 
         this.MyFriends = this.Users
-                .where(function (u) { return u.uid in this.friends; }, { friends: friendsQuery });
+            .where(function (u) {
+                return u.uid in this.friends;
+            }, { friends: friendsQuery });
     },
     Users: {
         dataType: $data.EntitySet,

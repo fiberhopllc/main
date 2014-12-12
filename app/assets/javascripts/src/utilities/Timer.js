@@ -9,7 +9,7 @@
 // TODO fix func-style
 /*eslint func-style: [0, "declaration"] */
 
-define(function(require, exports, module) {
+define(function (require, exports, module) {
     /**
      * An internal library to reproduce javascript time-based scheduling.
      *   Using standard javascript setTimeout methods can have a negative performance impact
@@ -21,15 +21,15 @@ define(function(require, exports, module) {
      */
     var FamousEngine = require('../core/Engine');
 
-    var _event  = 'prerender';
+    var _event = 'prerender';
 
     var getTime = (window.performance && window.performance.now) ?
-        function() {
+        function () {
             return window.performance.now();
         }
-        : function() {
-            return Date.now();
-        };
+        : function () {
+        return Date.now();
+    };
 
     /**
      * Add a function to be run on every prerender
@@ -59,7 +59,7 @@ define(function(require, exports, module) {
      */
     function setTimeout(fn, duration) {
         var t = getTime();
-        var callback = function() {
+        var callback = function () {
             var t2 = getTime();
             if (t2 - t >= duration) {
                 fn.apply(this, arguments);
@@ -83,7 +83,7 @@ define(function(require, exports, module) {
      */
     function setInterval(fn, duration) {
         var t = getTime();
-        var callback = function() {
+        var callback = function () {
             var t2 = getTime();
             if (t2 - t >= duration) {
                 fn.apply(this, arguments);
@@ -106,7 +106,7 @@ define(function(require, exports, module) {
      */
     function after(fn, numTicks) {
         if (numTicks === undefined) return undefined;
-        var callback = function() {
+        var callback = function () {
             numTicks--;
             if (numTicks <= 0) { //in case numTicks is fraction or negative
                 fn.apply(this, arguments);
@@ -130,7 +130,7 @@ define(function(require, exports, module) {
     function every(fn, numTicks) {
         numTicks = numTicks || 1;
         var initial = numTicks;
-        var callback = function() {
+        var callback = function () {
             numTicks--;
             if (numTicks <= 0) { //in case numTicks is fraction or negative
                 fn.apply(this, arguments);
@@ -168,12 +168,12 @@ define(function(require, exports, module) {
         var timestamp;
         var result;
         var args;
-        return function() {
+        return function () {
             ctx = this;
             args = arguments;
             timestamp = getTime();
 
-            var fn = function() {
+            var fn = function () {
                 var last = getTime - timestamp;
 
                 if (last < wait) {
@@ -192,12 +192,12 @@ define(function(require, exports, module) {
     }
 
     module.exports = {
-        setTimeout : setTimeout,
-        setInterval : setInterval,
-        debounce : debounce,
-        after : after,
-        every : every,
-        clear : clear
+        setTimeout: setTimeout,
+        setInterval: setInterval,
+        debounce: debounce,
+        after: after,
+        every: every,
+        clear: clear
     };
 
 });

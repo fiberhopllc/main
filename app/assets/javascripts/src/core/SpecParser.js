@@ -7,7 +7,7 @@
  * @copyright Famous Industries, Inc. 2014
  */
 
-define(function(require, exports, module) {
+define(function (require, exports, module) {
     var Transform = require('./Transform');
 
     /**
@@ -23,6 +23,7 @@ define(function(require, exports, module) {
     function SpecParser() {
         this.result = {};
     }
+
     SpecParser._instance = new SpecParser();
 
     /**

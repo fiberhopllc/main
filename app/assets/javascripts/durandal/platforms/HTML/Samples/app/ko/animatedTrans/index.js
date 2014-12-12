@@ -57,7 +57,9 @@
         },
         hidePlanetElement: function (elem) {
             if (elem.nodeType === 1) {
-                $(elem).slideUp(function () { $(elem).remove(); })
+                $(elem).slideUp(function () {
+                    $(elem).remove();
+                })
             }
         }
     }

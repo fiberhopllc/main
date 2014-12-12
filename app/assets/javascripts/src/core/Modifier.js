@@ -7,7 +7,7 @@
  * @copyright Famous Industries, Inc. 2014
  */
 
-define(function(require, exports, module) {
+define(function (require, exports, module) {
     var Transform = require('./Transform');
 
     /* TODO: remove these dependencies when deprecation complete */
@@ -173,7 +173,7 @@ define(function(require, exports, module) {
         return this;
     };
 
-     /**
+    /**
      * Deprecated: Prefer transformFrom with static Transform, or use a TransitionableTransform.
      * @deprecated
      * @method setTransform

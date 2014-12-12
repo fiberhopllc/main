@@ -1,9 +1,9 @@
 ﻿define(['durandal/system', 'jquery', 'knockout'], function (system, $, ko) {
     var initialLists = [
-            { name: "SPA Advocates", userNames: ['DurandalJS','John_Papa','EisenbergEffect','wardbell','DanWahlin', 'mikekidder',] },
-            { name: "Celebrities", userNames: ['JohnCleese', 'MCHammer', 'StephenFry', 'algore', 'StevenSanderson'] },
-            { name: "Microsoft people", userNames: ['BillGates', 'shanselman', 'ScottGu'] },
-            { name: "Tech pundits", userNames: ['Scobleizer', 'LeoLaporte', 'techcrunch', 'BoingBoing', 'timoreilly', 'codinghorror'] }
+        { name: "SPA Advocates", userNames: ['DurandalJS', 'John_Papa', 'EisenbergEffect', 'wardbell', 'DanWahlin', 'mikekidder', ] },
+        { name: "Celebrities", userNames: ['JohnCleese', 'MCHammer', 'StephenFry', 'algore', 'StevenSanderson'] },
+        { name: "Microsoft people", userNames: ['BillGates', 'shanselman', 'ScottGu'] },
+        { name: "Tech pundits", userNames: ['Scobleizer', 'LeoLaporte', 'techcrunch', 'BoingBoing', 'timoreilly', 'codinghorror'] }
     ];
 
     var selectedList = "SPA Advocates";
@@ -34,7 +34,11 @@
                 $.ajax({
                     url: url,
                     dataType: "jsonp",
-                    success: function (data) { callback($.grep(data.results || [], function (tweet) { return !tweet.to_user_id; })); }
+                    success: function (data) {
+                        callback($.grep(data.results || [], function (tweet) {
+                            return !tweet.to_user_id;
+                        }));
+                    }
                 });
             }
         }, 50);
@@ -135,17 +139,17 @@
     });
 
     return {
-        savedLists : savedLists,
-        editingList : editingList,
-        userNameToAdd : userNameToAdd,
-        currentTweets : currentTweets,
-        findSavedList : findSavedList,
-        addUser : addUser,
-        removeUser : removeUser,
-        saveChanges : saveChanges,
-        deleteList : deleteList,
-        hasUnsavedChanges : hasUnsavedChanges,
-        userNameToAddIsValid : userNameToAddIsValid,
+        savedLists: savedLists,
+        editingList: editingList,
+        userNameToAdd: userNameToAdd,
+        currentTweets: currentTweets,
+        findSavedList: findSavedList,
+        addUser: addUser,
+        removeUser: removeUser,
+        saveChanges: saveChanges,
+        deleteList: deleteList,
+        hasUnsavedChanges: hasUnsavedChanges,
+        userNameToAddIsValid: userNameToAddIsValid,
         canAddUserName: canAddUserName
     }
 });

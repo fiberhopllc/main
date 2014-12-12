@@ -6,9 +6,9 @@
 // practices to access and manipulate data from various online and offline sources.
 //
 // Credits:
-//     Hajnalka Battancs, Dániel József, János Roden, László Horváth, Péter Nochta
-//     Péter Zentai, Róbert Bónay, Szabolcs Czinege, Viktor Borza, Viktor Lázár,
-//     Zoltán Gyebrovszki, Gábor Dolla
+//     Hajnalka Battancs, Dï¿½niel Jï¿½zsef, Jï¿½nos Roden, Lï¿½szlï¿½ Horvï¿½th, Pï¿½ter Nochta
+//     Pï¿½ter Zentai, Rï¿½bert Bï¿½nay, Szabolcs Czinege, Viktor Borza, Viktor Lï¿½zï¿½r,
+//     Zoltï¿½n Gyebrovszki, Gï¿½bor Dolla
 //
 // More info: http://jaydata.org
 (function ($data) {
@@ -42,28 +42,28 @@
                     Array.prototype.push.call(arguments, self.deferred);
                     callBack.error.apply(self.deferred, arguments);
                     /*self.deferred.reject.apply(self.deferred, arguments);
-                    
-                    var finalErr;
-                    
-                    try{
-                        callBack.error.apply(self.deferred, arguments);
-                        try{
-                            self.deferred.reject.apply(self.deferred, arguments);
-                        }catch(err){
-                            finalErr = err;
-                        }
-                    }catch(err){
-                        finalErr = arguments[0];
-                        try{
-                            self.deferred.reject.apply(self.deferred, arguments);
-                        }catch(err){
-                            finalErr = err;
-                        }
-                    }
-                    
-                    if (finalErr){
-                        //throw finalErr;
-                    }*/
+
+                     var finalErr;
+
+                     try{
+                     callBack.error.apply(self.deferred, arguments);
+                     try{
+                     self.deferred.reject.apply(self.deferred, arguments);
+                     }catch(err){
+                     finalErr = err;
+                     }
+                     }catch(err){
+                     finalErr = arguments[0];
+                     try{
+                     self.deferred.reject.apply(self.deferred, arguments);
+                     }catch(err){
+                     finalErr = err;
+                     }
+                     }
+
+                     if (finalErr){
+                     //throw finalErr;
+                     }*/
                 }
             };
         },

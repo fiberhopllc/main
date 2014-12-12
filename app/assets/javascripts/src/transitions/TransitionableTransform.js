@@ -7,7 +7,7 @@
  * @copyright Famous Industries, Inc. 2014
  */
 
-define(function(require, exports, module) {
+define(function (require, exports, module) {
     var Transitionable = require('./Transitionable');
     var Transform = require('../core/Transform');
     var Utility = require('../utilities/Utility');

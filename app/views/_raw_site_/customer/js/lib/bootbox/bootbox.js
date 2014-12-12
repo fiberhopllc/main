@@ -3,62 +3,62 @@
  *
  * http://bootboxjs.com/license.txt
  */
-var bootbox = window.bootbox || (function($) {
+var bootbox = window.bootbox || (function ($) {
 
-    var _locale        = 'en',
+    var _locale = 'en',
         _defaultLocale = 'en',
-        _animate       = true,
-        _backdrop      = 'static',
-        _defaultHref   = 'javascript:;',
-        _classes       = '',
-        _icons         = {},
-        /* last var should always be the public object we'll return */
-        that           = {};
+        _animate = true,
+        _backdrop = 'static',
+        _defaultHref = 'javascript:;',
+        _classes = '',
+        _icons = {},
+    /* last var should always be the public object we'll return */
+        that = {};
 
     /**
      * standard locales. Please add more according to ISO 639-1 standard. Multiple language variants are
      * unlikely to be required. If this gets too large it can be split out into separate JS files.
      */
     var _locales = {
-        'en' : {
-            OK      : 'OK',
-            CANCEL  : 'Cancel',
-            CONFIRM : 'OK'
+        'en': {
+            OK: 'OK',
+            CANCEL: 'Cancel',
+            CONFIRM: 'OK'
         },
-        'fr' : {
-            OK      : 'OK',
-            CANCEL  : 'Annuler',
-            CONFIRM : 'D\'accord'
+        'fr': {
+            OK: 'OK',
+            CANCEL: 'Annuler',
+            CONFIRM: 'D\'accord'
         },
-        'de' : {
-            OK      : 'OK',
-            CANCEL  : 'Abbrechen',
-            CONFIRM : 'Akzeptieren'
+        'de': {
+            OK: 'OK',
+            CANCEL: 'Abbrechen',
+            CONFIRM: 'Akzeptieren'
         },
-        'es' : {
-            OK      : 'OK',
-            CANCEL  : 'Cancelar',
-            CONFIRM : 'Aceptar'
+        'es': {
+            OK: 'OK',
+            CANCEL: 'Cancelar',
+            CONFIRM: 'Aceptar'
         },
-        'br' : {
-            OK      : 'OK',
-            CANCEL  : 'Cancelar',
-            CONFIRM : 'Sim'
+        'br': {
+            OK: 'OK',
+            CANCEL: 'Cancelar',
+            CONFIRM: 'Sim'
         },
-        'nl' : {
-            OK      : 'OK',
-            CANCEL  : 'Annuleren',
-            CONFIRM : 'Accepteren'
+        'nl': {
+            OK: 'OK',
+            CANCEL: 'Annuleren',
+            CONFIRM: 'Accepteren'
         },
-        'ru' : {
-            OK      : 'OK',
-            CANCEL  : 'Отмена',
-            CONFIRM : 'Применить'
+        'ru': {
+            OK: 'OK',
+            CANCEL: 'Отмена',
+            CONFIRM: 'Применить'
         },
-        'it' : {
-            OK      : 'OK',
-            CANCEL  : 'Annulla',
-            CONFIRM : 'Conferma'
+        'it': {
+            OK: 'OK',
+            CANCEL: 'Annulla',
+            CONFIRM: 'Conferma'
         }
     };
 
@@ -87,17 +87,17 @@ var bootbox = window.bootbox || (function($) {
     /**
      * public API
      */
-    that.setLocale = function(locale) {
+    that.setLocale = function (locale) {
         for (var i in _locales) {
             if (i == locale) {
                 _locale = locale;
                 return;
             }
         }
-        throw new Error('Invalid locale: '+locale);
+        throw new Error('Invalid locale: ' + locale);
     };
 
-    that.addLocale = function(locale, translations) {
+    that.addLocale = function (locale, translations) {
         if (typeof _locales[locale] == 'undefined') {
             _locales[locale] = {};
         }
@@ -106,17 +106,17 @@ var bootbox = window.bootbox || (function($) {
         }
     };
 
-    that.setIcons = function(icons) {
+    that.setIcons = function (icons) {
         _icons = icons;
         if (typeof _icons !== 'object' || _icons == null) {
             _icons = {};
         }
     };
 
-    that.alert = function(/*str, label, cb*/) {
-        var str   = "",
+    that.alert = function (/*str, label, cb*/) {
+        var str = "",
             label = _translate('OK'),
-            cb    = null;
+            cb = null;
 
         switch (arguments.length) {
             case 1:
@@ -134,9 +134,9 @@ var bootbox = window.bootbox || (function($) {
                 break;
             case 3:
                 // callback and custom button label
-                str   = arguments[0];
+                str = arguments[0];
                 label = arguments[1];
-                cb    = arguments[2];
+                cb = arguments[2];
                 break;
             default:
                 throw new Error("Incorrect number of arguments: expected 1-3");
@@ -145,18 +145,18 @@ var bootbox = window.bootbox || (function($) {
 
         return that.dialog(str, {
             "label": label,
-            "icon" : _icons.OK,
+            "icon": _icons.OK,
             "callback": cb
         }, {
             "onEscape": cb
         });
     };
 
-    that.confirm = function(/*str, labelCancel, labelOk, cb*/) {
-        var str         = "",
+    that.confirm = function (/*str, labelCancel, labelOk, cb*/) {
+        var str = "",
             labelCancel = _translate('CANCEL'),
-            labelOk     = _translate('CONFIRM'),
-            cb          = null;
+            labelOk = _translate('CONFIRM'),
+            cb = null;
 
         switch (arguments.length) {
             case 1:
@@ -171,7 +171,7 @@ var bootbox = window.bootbox || (function($) {
                 }
                 break;
             case 3:
-                str         = arguments[0];
+                str = arguments[0];
                 labelCancel = arguments[1];
                 if (typeof arguments[2] == 'function') {
                     cb = arguments[2];
@@ -180,41 +180,44 @@ var bootbox = window.bootbox || (function($) {
                 }
                 break;
             case 4:
-                str         = arguments[0];
+                str = arguments[0];
                 labelCancel = arguments[1];
-                labelOk     = arguments[2];
-                cb          = arguments[3];
+                labelOk = arguments[2];
+                cb = arguments[3];
                 break;
             default:
                 throw new Error("Incorrect number of arguments: expected 1-4");
                 break;
         }
 
-        return that.dialog(str, [{
-            "label": labelCancel,
-            "icon" : _icons.CANCEL,
-            "callback": function() {
-                if (typeof cb == 'function') {
-                    cb(false);
+        return that.dialog(str, [
+            {
+                "label": labelCancel,
+                "icon": _icons.CANCEL,
+                "callback": function () {
+                    if (typeof cb == 'function') {
+                        cb(false);
+                    }
+                }
+            },
+            {
+                "label": labelOk,
+                "icon": _icons.CONFIRM,
+                "callback": function () {
+                    if (typeof cb == 'function') {
+                        cb(true);
+                    }
                 }
             }
-        }, {
-            "label": labelOk,
-            "icon" : _icons.CONFIRM,
-            "callback": function() {
-                if (typeof cb == 'function') {
-                    cb(true);
-                }
-            }
-        }]);
+        ]);
     };
 
-    that.prompt = function(/*str, labelCancel, labelOk, cb, defaultVal*/) {
-        var str         = "",
+    that.prompt = function (/*str, labelCancel, labelOk, cb, defaultVal*/) {
+        var str = "",
             labelCancel = _translate('CANCEL'),
-            labelOk     = _translate('CONFIRM'),
-            cb          = null,
-            defaultVal  = "";
+            labelOk = _translate('CONFIRM'),
+            cb = null,
+            defaultVal = "";
 
         switch (arguments.length) {
             case 1:
@@ -229,7 +232,7 @@ var bootbox = window.bootbox || (function($) {
                 }
                 break;
             case 3:
-                str         = arguments[0];
+                str = arguments[0];
                 labelCancel = arguments[1];
                 if (typeof arguments[2] == 'function') {
                     cb = arguments[2];
@@ -238,17 +241,17 @@ var bootbox = window.bootbox || (function($) {
                 }
                 break;
             case 4:
-                str         = arguments[0];
+                str = arguments[0];
                 labelCancel = arguments[1];
-                labelOk     = arguments[2];
-                cb          = arguments[3];
+                labelOk = arguments[2];
+                cb = arguments[3];
                 break;
             case 5:
-                str         = arguments[0];
+                str = arguments[0];
                 labelCancel = arguments[1];
-                labelOk     = arguments[2];
-                cb          = arguments[3];
-                defaultVal  = arguments[4];
+                labelOk = arguments[2];
+                cb = arguments[3];
+                defaultVal = arguments[4];
                 break;
             default:
                 throw new Error("Incorrect number of arguments: expected 1-5");
@@ -261,34 +264,37 @@ var bootbox = window.bootbox || (function($) {
         var form = $("<form></form>");
         form.append("<input autocomplete=off type=text value='" + defaultVal + "' />");
 
-        var div = that.dialog(form, [{
-            "label": labelCancel,
-            "icon" : _icons.CANCEL,
-            "callback": function() {
-                if (typeof cb == 'function') {
-                    cb(null);
+        var div = that.dialog(form, [
+            {
+                "label": labelCancel,
+                "icon": _icons.CANCEL,
+                "callback": function () {
+                    if (typeof cb == 'function') {
+                        cb(null);
+                    }
+                }
+            },
+            {
+                "label": labelOk,
+                "icon": _icons.CONFIRM,
+                "callback": function () {
+                    if (typeof cb == 'function') {
+                        cb(
+                            form.find("input[type=text]").val()
+                        );
+                    }
                 }
             }
-        }, {
-            "label": labelOk,
-            "icon" : _icons.CONFIRM,
-            "callback": function() {
-                if (typeof cb == 'function') {
-                    cb(
-                        form.find("input[type=text]").val()
-                    );
-                }
-            }
-        }], {
+        ], {
             "header": header
         });
 
-        div.on("shown", function() {
+        div.on("shown", function () {
             form.find("input[type=text]").focus();
 
             // ensure that submitting the form (e.g. with the enter key)
             // replicates the behaviour of a normal prompt()
-            form.on("submit", function(e) {
+            form.on("submit", function (e) {
                 e.preventDefault();
                 div.find(".btn-primary").click();
             });
@@ -297,7 +303,7 @@ var bootbox = window.bootbox || (function($) {
         return div;
     };
 
-    that.modal = function(/*str, label, options*/) {
+    that.modal = function (/*str, label, options*/) {
         var str;
         var label;
         var options;
@@ -321,8 +327,8 @@ var bootbox = window.bootbox || (function($) {
                 }
                 break;
             case 3:
-                str     = arguments[0];
-                label   = arguments[1];
+                str = arguments[0];
+                label = arguments[1];
                 options = arguments[2];
                 break;
             default:
@@ -341,11 +347,11 @@ var bootbox = window.bootbox || (function($) {
         return that.dialog(str, [], options);
     };
 
-    that.dialog = function(str, handlers, options) {
+    that.dialog = function (str, handlers, options) {
         var hideSource = null,
-            buttons    = "",
-            callbacks  = [],
-            options    = options || {};
+            buttons = "",
+            callbacks = [],
+            options = options || {};
 
         // check for single object and convert to array if necessary
         if (handlers == null) {
@@ -356,19 +362,19 @@ var bootbox = window.bootbox || (function($) {
 
         var i = handlers.length;
         while (i--) {
-            var label    = null,
-                href     = null,
-                _class   = null,
-                icon     = '',
+            var label = null,
+                href = null,
+                _class = null,
+                icon = '',
                 callback = null;
 
-            if (typeof handlers[i]['label']    == 'undefined' &&
-                typeof handlers[i]['class']    == 'undefined' &&
+            if (typeof handlers[i]['label'] == 'undefined' &&
+                typeof handlers[i]['class'] == 'undefined' &&
                 typeof handlers[i]['callback'] == 'undefined') {
                 // if we've got nothing we expect, check for condensed format
 
                 var propCount = 0,      // condensed will only match if this == 1
-                    property  = null;   // save the last property we found
+                    property = null;   // save the last property we found
 
                 // be nicer to count the properties without this, but don't think it's possible...
                 for (var j in handlers[i]) {
@@ -381,18 +387,18 @@ var bootbox = window.bootbox || (function($) {
 
                 if (propCount == 1 && typeof handlers[i][j] == 'function') {
                     // matches condensed format of label -> function
-                    handlers[i]['label']    = property;
+                    handlers[i]['label'] = property;
                     handlers[i]['callback'] = handlers[i][j];
                 }
             }
 
-            if (typeof handlers[i]['callback']== 'function') {
+            if (typeof handlers[i]['callback'] == 'function') {
                 callback = handlers[i]['callback'];
             }
 
             if (handlers[i]['class']) {
                 _class = handlers[i]['class'];
-            } else if (i == handlers.length -1 && handlers.length <= 2) {
+            } else if (i == handlers.length - 1 && handlers.length <= 2) {
                 // always add a primary to the main option in a two-button dialog
                 _class = 'btn-primary';
             }
@@ -400,11 +406,11 @@ var bootbox = window.bootbox || (function($) {
             if (handlers[i]['label']) {
                 label = handlers[i]['label'];
             } else {
-                label = "Option "+(i+1);
+                label = "Option " + (i + 1);
             }
 
             if (handlers[i]['icon']) {
-                icon = "<i class='"+handlers[i]['icon']+"'></i> ";
+                icon = "<i class='" + handlers[i]['icon'] + "'></i> ";
             }
 
             if (handlers[i]['href']) {
@@ -414,7 +420,7 @@ var bootbox = window.bootbox || (function($) {
                 href = _defaultHref;
             }
 
-            buttons += "<a data-handler='"+i+"' class='btn "+_class+"' href='" + href + "'>"+icon+""+label+"</a>";
+            buttons += "<a data-handler='" + i + "' class='btn " + _class + "' href='" + href + "'>" + icon + "" + label + "</a>";
 
             callbacks[i] = callback;
         }
@@ -428,17 +434,17 @@ var bootbox = window.bootbox || (function($) {
         if (options['header']) {
             var closeButton = '';
             if (typeof options['headerCloseButton'] == 'undefined' || options['headerCloseButton']) {
-                closeButton = "<a href='"+_defaultHref+"' class='close'>&times;</a>";
+                closeButton = "<a href='" + _defaultHref + "' class='close'>&times;</a>";
             }
 
-            parts.push("<div class='modal-header'>"+closeButton+"<h3>"+options['header']+"</h3></div>");
+            parts.push("<div class='modal-header'>" + closeButton + "<h3>" + options['header'] + "</h3></div>");
         }
 
         // push an empty body into which we'll inject the proper content later
         parts.push("<div class='modal-body'></div>");
 
         if (buttons) {
-            parts.push("<div class='modal-footer'>"+buttons+"</div>");
+            parts.push("<div class='modal-footer'>" + buttons + "</div>");
         }
 
         parts.push("</div>");
@@ -453,18 +459,18 @@ var bootbox = window.bootbox || (function($) {
         }
 
         var optionalClasses = (typeof options.classes === 'undefined') ? _classes : options.classes;
-        if( optionalClasses )  {
-          div.addClass( optionalClasses );
+        if (optionalClasses) {
+            div.addClass(optionalClasses);
         }
 
         // now we've built up the div properly we can inject the content whether it was a string or a jQuery object
         $(".modal-body", div).html(str);
 
-        div.bind('hidden', function() {
+        div.bind('hidden', function () {
             div.remove();
         });
 
-        div.bind('hide', function() {
+        div.bind('hide', function () {
             if (hideSource == 'escape' &&
                 typeof options.onEscape == 'function') {
                 options.onEscape();
@@ -472,27 +478,27 @@ var bootbox = window.bootbox || (function($) {
         });
 
         // hook into the modal's keyup trigger to check for the escape key
-        $(document).bind('keyup.modal', function ( e ) {
+        $(document).bind('keyup.modal', function (e) {
             if (e.which == 27) {
                 hideSource = 'escape';
             }
         });
 
         // well, *if* we have a primary - give the last dom element (first displayed) focus
-        div.bind('shown', function() {
+        div.bind('shown', function () {
             $("a.btn-primary:last", div).focus();
         });
 
         // wire up button handlers
-        div.on('click', '.modal-footer a, a.close', function(e) {
+        div.on('click', '.modal-footer a, a.close', function (e) {
 
-            var handler   = $(this).data("handler"),
-                cb        = callbacks[handler],
+            var handler = $(this).data("handler"),
+                cb = callbacks[handler],
                 hideModal = null;
 
             // sort of @see https://github.com/makeusabrew/bootbox/pull/68 - heavily adapted
             // if we've got a custom href attribute, all bets are off
-            if (typeof handler                   !== 'undefined' &&
+            if (typeof handler !== 'undefined' &&
                 typeof handlers[handler]['href'] !== 'undefined') {
 
                 return;
@@ -520,29 +526,29 @@ var bootbox = window.bootbox || (function($) {
         $("body").append(div);
 
         div.modal({
-            "backdrop" : (typeof options.backdrop  === 'undefined') ? _backdrop : options.backdrop,
-            "keyboard" : options.keyboard
+            "backdrop": (typeof options.backdrop === 'undefined') ? _backdrop : options.backdrop,
+            "keyboard": options.keyboard
         });
 
         return div;
     };
 
-    that.hideAll = function() {
+    that.hideAll = function () {
         $(".bootbox").modal("hide");
     };
 
-    that.animate = function(animate) {
+    that.animate = function (animate) {
         _animate = animate;
     };
 
-    that.backdrop = function(backdrop) {
+    that.backdrop = function (backdrop) {
         _backdrop = backdrop;
     };
 
-    that.classes = function(classes) {
+    that.classes = function (classes) {
         _classes = classes;
     };
 
     return that;
 
-})( window.jQuery );
+})(window.jQuery);

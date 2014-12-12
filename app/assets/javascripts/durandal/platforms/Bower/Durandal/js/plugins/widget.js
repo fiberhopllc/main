@@ -11,18 +11,18 @@
  * @requires jquery
  * @requires knockout
  */
-define(['durandal/system', 'durandal/composition', 'jquery', 'knockout'], function(system, composition, $, ko) {
+define(['durandal/system', 'durandal/composition', 'jquery', 'knockout'], function (system, composition, $, ko) {
     var kindModuleMaps = {},
         kindViewMaps = {},
         bindableSettings = ['model', 'view', 'kind'],
         widgetDataKey = 'durandal-widget-data';
 
-    function extractParts(element, settings){
+    function extractParts(element, settings) {
         var data = ko.utils.domData.get(element, widgetDataKey);
 
-        if(!data){
+        if (!data) {
             data = {
-                parts:composition.cloneNodes(ko.virtualElements.childNodes(element))
+                parts: composition.cloneNodes(ko.virtualElements.childNodes(element))
             };
 
             ko.virtualElements.emptyNode(element);
@@ -37,7 +37,7 @@ define(['durandal/system', 'durandal/composition', 'jquery', 'knockout'], functi
      * @static
      */
     var widget = {
-        getSettings: function(valueAccessor) {
+        getSettings: function (valueAccessor) {
             var settings = ko.utils.unwrapObservable(valueAccessor()) || {};
 
             if (system.isString(settings)) {
@@ -59,12 +59,12 @@ define(['durandal/system', 'durandal/composition', 'jquery', 'knockout'], functi
          * @method registerKind
          * @param {string} kind The kind to create a custom binding handler for.
          */
-        registerKind: function(kind) {
+        registerKind: function (kind) {
             ko.bindingHandlers[kind] = {
-                init: function() {
+                init: function () {
                     return { controlsDescendantBindings: true };
                 },
-                update: function(element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
+                update: function (element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
                     var settings = widget.getSettings(valueAccessor);
                     settings.kind = kind;
                     extractParts(element, settings);
@@ -82,7 +82,7 @@ define(['durandal/system', 'durandal/composition', 'jquery', 'knockout'], functi
          * @param {string} [viewId] The unconventional view id to map the kind to.
          * @param {string} [moduleId] The unconventional module id to map the kind to.
          */
-        mapKind: function(kind, viewId, moduleId) {
+        mapKind: function (kind, viewId, moduleId) {
             if (viewId) {
                 kindViewMaps[kind] = viewId;
             }
@@ -97,7 +97,7 @@ define(['durandal/system', 'durandal/composition', 'jquery', 'knockout'], functi
          * @param {string} kind The kind name.
          * @return {string} The module id.
          */
-        mapKindToModuleId: function(kind) {
+        mapKindToModuleId: function (kind) {
             return kindModuleMaps[kind] || widget.convertKindToModulePath(kind);
         },
         /**
@@ -106,7 +106,7 @@ define(['durandal/system', 'durandal/composition', 'jquery', 'knockout'], functi
          * @param {string} kind The kind name.
          * @return {string} The module path.
          */
-        convertKindToModulePath: function(kind) {
+        convertKindToModulePath: function (kind) {
             return 'widgets/' + kind + '/viewmodel';
         },
         /**
@@ -115,7 +115,7 @@ define(['durandal/system', 'durandal/composition', 'jquery', 'knockout'], functi
          * @param {string} kind The kind name.
          * @return {string} The view id.
          */
-        mapKindToViewId: function(kind) {
+        mapKindToViewId: function (kind) {
             return kindViewMaps[kind] || widget.convertKindToViewPath(kind);
         },
         /**
@@ -124,10 +124,10 @@ define(['durandal/system', 'durandal/composition', 'jquery', 'knockout'], functi
          * @param {string} kind The kind name.
          * @return {string} The view id.
          */
-        convertKindToViewPath: function(kind) {
+        convertKindToViewPath: function (kind) {
             return 'widgets/' + kind + '/view';
         },
-        createCompositionSettings: function(element, settings) {
+        createCompositionSettings: function (element, settings) {
             if (!settings.model) {
                 settings.model = this.mapKindToModuleId(settings.kind);
             }
@@ -150,9 +150,11 @@ define(['durandal/system', 'durandal/composition', 'jquery', 'knockout'], functi
          * @param {object} settings The widget settings.
          * @param {object} [bindingContext] The current binding context.
          */
-        create: function(element, settings, bindingContext, fromBinding) {
-            if(!fromBinding){
-                settings = widget.getSettings(function() { return settings; }, element);
+        create: function (element, settings, bindingContext, fromBinding) {
+            if (!fromBinding) {
+                settings = widget.getSettings(function () {
+                    return settings;
+                }, element);
             }
 
             var compositionSettings = widget.createCompositionSettings(element, settings);
@@ -164,22 +166,22 @@ define(['durandal/system', 'durandal/composition', 'jquery', 'knockout'], functi
          * @method install
          * @param {object} config The module config. Add a `kinds` array with the names of widgets to automatically register. You can also specify a `bindingName` if you wish to use another name for the widget binding, such as "control" for example.
          */
-        install:function(config){
+        install: function (config) {
             config.bindingName = config.bindingName || 'widget';
 
-            if(config.kinds){
+            if (config.kinds) {
                 var toRegister = config.kinds;
 
-                for(var i = 0; i < toRegister.length; i++){
+                for (var i = 0; i < toRegister.length; i++) {
                     widget.registerKind(toRegister[i]);
                 }
             }
 
             ko.bindingHandlers[config.bindingName] = {
-                init: function() {
+                init: function () {
                     return { controlsDescendantBindings: true };
                 },
-                update: function(element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
+                update: function (element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
                     var settings = widget.getSettings(valueAccessor);
                     extractParts(element, settings);
                     widget.create(element, settings, bindingContext, true);

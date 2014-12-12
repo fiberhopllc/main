@@ -6,7 +6,7 @@
  * @license MPL 2.0
  * @copyright Famous Industries, Inc. 2014
  */
-define(function(require, exports, module) {
+define(function (require, exports, module) {
     var TwoFingerSync = require('./TwoFingerSync');
     var OptionsManager = require('../core/OptionsManager');
 
@@ -36,7 +36,7 @@ define(function(require, exports, module) {
     PinchSync.prototype.constructor = PinchSync;
 
     PinchSync.DEFAULT_OPTIONS = {
-        scale : 1
+        scale: 1
     };
 
     PinchSync.prototype._startUpdate = function _startUpdate(event) {
@@ -63,7 +63,7 @@ define(function(require, exports, module) {
         this._displacement += delta;
 
         this._eventOutput.emit('update', {
-            delta : delta,
+            delta: delta,
             velocity: velocity,
             distance: currDist,
             displacement: this._displacement,

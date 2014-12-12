@@ -51,18 +51,18 @@
         this.numberOfDecimals = $.fn.spinedit.defaults.numberOfDecimals;
         if (hasOptions && typeof options.numberOfDecimals == 'number') {
             this.setNumberOfDecimals(options.numberOfDecimals);
-        }        
-		
-		var value = $.fn.spinedit.defaults.value;
+        }
+
+        var value = $.fn.spinedit.defaults.value;
         if (hasOptions && typeof options.value == 'number') {
             value = options.value;
-        } else {			
-			if (this.element.val()) {
-				var initialValue = parseFloat(this.element.val());
-				if (!isNaN(initialValue)) value = initialValue.toFixed(this.numberOfDecimals);				
-			}
-		}		
-        this.setValue(value);		
+        } else {
+            if (this.element.val()) {
+                var initialValue = parseFloat(this.element.val());
+                if (!isNaN(initialValue)) value = initialValue.toFixed(this.numberOfDecimals);
+            }
+        }
+        this.setValue(value);
 
         this.step = $.fn.spinedit.defaults.step;
         if (hasOptions && typeof options.step == 'number') {
@@ -71,8 +71,10 @@
 
         var template = $(DRPGlobal.template);
         this.element.after(template);
-	$(template).each(function (i,x) {
-            $(x).bind('selectstart click mousedown', function () { return false; });
+        $(template).each(function (i, x) {
+            $(x).bind('selectstart click mousedown', function () {
+                return false;
+            });
         });
 
         template.find('.icon-chevron-up').mousehold($.proxy(this.increase, this));
@@ -159,12 +161,12 @@
         args.shift();
         return this.each(function () {
             var $this = $(this),
-				data = $this.data('spinedit'),
-				options = typeof option == 'object' && option;
+                data = $this.data('spinedit'),
+                options = typeof option == 'object' && option;
 
             if (!data) {
                 $this.data('spinedit', new SpinEdit(this, $.extend({}, $.fn.spinedit().defaults, options)));
-				data = $this.data('spinedit');
+                data = $this.data('spinedit');
             }
             if (typeof option == 'string' && typeof data[option] == 'function') {
                 data[option].apply(data, args);
@@ -185,9 +187,9 @@
     var DRPGlobal = {};
 
     DRPGlobal.template =
-	'<div class="spinedit">' +
-	'<span class="icon-chevron-up"><i alt="" class="tooltips icon" title="Increase">&#61736</i></span>' +
-	'<span class="icon-chevron-down"><i alt="" class="tooltips icon" title="Decrease">&#61701</i></span>' +
-	'</div>';
+        '<div class="spinedit">' +
+            '<span class="icon-chevron-up"><i alt="" class="tooltips icon" title="Increase">&#61736</i></span>' +
+            '<span class="icon-chevron-down"><i alt="" class="tooltips icon" title="Decrease">&#61701</i></span>' +
+            '</div>';
 
 }(window.jQuery);

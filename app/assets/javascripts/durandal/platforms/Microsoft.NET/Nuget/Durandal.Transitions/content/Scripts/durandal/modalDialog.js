@@ -8,7 +8,7 @@ define(['durandal/composition', 'durandal/system', 'durandal/activator', 'jquery
         modalCount = 0;
 
     function ensureModalInstance(objOrModuleId) {
-        return system.defer(function(dfd) {
+        return system.defer(function (dfd) {
             if (system.isString(objOrModuleId)) {
                 system.acquire(objOrModuleId).then(function (module) {
                     dfd.resolve(new (system.getObjectResolver(module))());
@@ -24,13 +24,13 @@ define(['durandal/composition', 'durandal/system', 'durandal/activator', 'jquery
         getNextZIndex: function () {
             return ++this.currentZIndex;
         },
-        isModalOpen: function() {
+        isModalOpen: function () {
             return modalCount > 0;
         },
-        getContext: function(name) {
+        getContext: function (name) {
             return contexts[name || 'default'];
         },
-        addContext: function(name, modalContext) {
+        addContext: function (name, modalContext) {
             modalContext.name = name;
             contexts[name] = modalContext;
 
@@ -39,10 +39,10 @@ define(['durandal/composition', 'durandal/system', 'durandal/activator', 'jquery
                 return this.show(obj, activationData, name);
             };
         },
-        createCompositionSettings: function(obj, modalContext) {
+        createCompositionSettings: function (obj, modalContext) {
             var settings = {
-                model:obj,
-                activate:false
+                model: obj,
+                activate: false
             };
 
             if (modalContext.documentAttached) {
@@ -51,12 +51,12 @@ define(['durandal/composition', 'durandal/system', 'durandal/activator', 'jquery
 
             return settings;
         },
-        show: function(obj, activationData, context) {
+        show: function (obj, activationData, context) {
             var that = this;
             var modalContext = contexts[context || 'default'];
 
-            return system.defer(function(dfd) {
-                ensureModalInstance(obj).then(function(instance) {
+            return system.defer(function (dfd) {
+                ensureModalInstance(obj).then(function (instance) {
                     var modalActivator = activator.create();
 
                     modalActivator.activateItem(instance, activationData).then(function (success) {
@@ -95,7 +95,7 @@ define(['durandal/composition', 'durandal/system', 'durandal/activator', 'jquery
     modalDialog.addContext('default', {
         blockoutOpacity: .2,
         removeDelay: 200,
-        addHost: function(modal) {
+        addHost: function (modal) {
             var body = $('body');
             var blockout = $('<div class="modalBlockout"></div>')
                 .css({ 'z-index': modalDialog.getNextZIndex(), 'opacity': this.blockoutOpacity })
@@ -110,7 +110,7 @@ define(['durandal/composition', 'durandal/system', 'durandal/activator', 'jquery
 
             if (!modalDialog.isModalOpen()) {
                 modal.oldBodyMarginRight = $("body").css("margin-right");
-                
+
                 var html = $("html");
                 var oldBodyOuterWidth = body.outerWidth(true);
                 var oldScrollTop = html.scrollTop();
@@ -120,15 +120,15 @@ define(['durandal/composition', 'durandal/system', 'durandal/activator', 'jquery
                 html.scrollTop(oldScrollTop); // necessary for Firefox
             }
         },
-        removeHost: function(modal) {
+        removeHost: function (modal) {
             $(modal.host).css('opacity', 0);
             $(modal.blockout).css('opacity', 0);
 
-            setTimeout(function() {
+            setTimeout(function () {
                 $(modal.host).remove();
                 $(modal.blockout).remove();
             }, this.removeDelay);
-            
+
             if (!modalDialog.isModalOpen()) {
                 var html = $("html");
                 var oldScrollTop = html.scrollTop(); // necessary for Firefox.
@@ -149,12 +149,12 @@ define(['durandal/composition', 'durandal/system', 'durandal/activator', 'jquery
             $(context.model.modal.host).css('opacity', 1);
 
             if ($(child).hasClass('autoclose')) {
-                $(context.model.modal.blockout).click(function() {
+                $(context.model.modal.blockout).click(function () {
                     context.model.modal.close();
                 });
             }
 
-            $('.autofocus', child).each(function() {
+            $('.autofocus', child).each(function () {
                 $(this).focus();
             });
         }

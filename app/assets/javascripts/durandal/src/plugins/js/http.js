@@ -22,7 +22,7 @@ define(['jquery', 'knockout'], function ($, ko) {
          * @param {object} data The data to convert to JSON.
          * @return {string} JSON.
          */
-        toJSON: function(data) {
+        toJSON: function (data) {
             return ko.toJSON(data);
         },
         /**
@@ -73,7 +73,7 @@ define(['jquery', 'knockout'], function ($, ko) {
          * @param {object} [headers] The data to add to the request header.  It will be converted to JSON. If the data contains Knockout observables, they will be converted into normal properties before serialization.
          * @return {Promise} A promise of the response data.
          */
-        put:function(url, data, headers) {
+        put: function (url, data, headers) {
             return $.ajax({
                 url: url,
                 data: this.toJSON(data),
@@ -109,7 +109,7 @@ define(['jquery', 'knockout'], function ($, ko) {
          * @param {object} [headers] The data to add to the request header.  It will be converted to JSON. If the data contains Knockout observables, they will be converted into normal properties before serialization.
          * @return {Promise} A promise of the get response data.
          */
-        remove:function(url, query, headers) {
+        remove: function (url, query, headers) {
             return $.ajax({
                 url: url,
                 data: query,

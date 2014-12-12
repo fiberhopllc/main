@@ -1,46 +1,46 @@
 /*
-Flot plugin for thresholding data. Controlled through the option
-"threshold" in either the global series options
+ Flot plugin for thresholding data. Controlled through the option
+ "threshold" in either the global series options
 
-  series: {
-    threshold: {
-      below: number
-      color: colorspec
-    }
-  }
+ series: {
+ threshold: {
+ below: number
+ color: colorspec
+ }
+ }
 
-or in a specific series
+ or in a specific series
 
-  $.plot($("#placeholder"), [{ data: [ ... ], threshold: { ... }}])
-  
-An array can be passed for multiple thresholding
+ $.plot($("#placeholder"), [{ data: [ ... ], threshold: { ... }}])
 
-  threshold: [{
-    below: number1
-    color: color1
-  },{
-    below: number2
-    color: color2
-  }]
+ An array can be passed for multiple thresholding
 
-These multiple threshold objects can be passed in any order since they
-are sorted by the processing function.
+ threshold: [{
+ below: number1
+ color: color1
+ },{
+ below: number2
+ color: color2
+ }]
 
-The data points below "below" are drawn with the specified color. This
-makes it easy to mark points below 0, e.g. for budget data.
+ These multiple threshold objects can be passed in any order since they
+ are sorted by the processing function.
 
-Internally, the plugin works by splitting the data into two series,
-above and below the threshold. The extra series below the threshold
-will have its label cleared and the special "originSeries" attribute
-set to the original series. You may need to check for this in hover
-events.
-*/
+ The data points below "below" are drawn with the specified color. This
+ makes it easy to mark points below 0, e.g. for budget data.
+
+ Internally, the plugin works by splitting the data into two series,
+ above and below the threshold. The extra series below the threshold
+ will have its label cleared and the special "originSeries" attribute
+ set to the original series. You may need to check for this in hover
+ events.
+ */
 
 (function ($) {
     var options = {
         series: { threshold: null } // or { below: number, color: color spec}
     };
-    
+
     function init(plot) {
         function thresholdData(plot, s, datapoints, below, color) {
             var ps = datapoints.pointsize, i, x, y, p, prevp,
@@ -52,7 +52,7 @@ events.
             thresholded.threshold = null;
             thresholded.originSeries = s;
             thresholded.data = [];
- 
+
             var origpoints = datapoints.points,
                 addCrossingPoints = s.lines.show;
 
@@ -76,7 +76,7 @@ events.
                     prevp.push(below);
                     for (m = 2; m < ps; ++m)
                         prevp.push(origpoints[i + m]);
-                    
+
                     p.push(null); // start new segment
                     p.push(null);
                     for (m = 2; m < ps; ++m)
@@ -95,23 +95,23 @@ events.
 
             datapoints.points = newpoints;
             thresholded.datapoints.points = threspoints;
-            
+
             if (thresholded.datapoints.points.length > 0)
                 plot.getData().push(thresholded);
-                
+
             // FIXME: there are probably some edge cases left in bars
         }
-        
+
         function processThresholds(plot, s, datapoints) {
             if (!s.threshold)
                 return;
-            
+
             if (s.threshold instanceof Array) {
-                s.threshold.sort(function(a, b) {
+                s.threshold.sort(function (a, b) {
                     return a.below - b.below;
                 });
-                
-                $(s.threshold).each(function(i, th) {
+
+                $(s.threshold).each(function (i, th) {
                     thresholdData(plot, s, datapoints, th.below, th.color);
                 });
             }
@@ -119,10 +119,10 @@ events.
                 thresholdData(plot, s, datapoints, s.threshold.below, s.threshold.color);
             }
         }
-        
+
         plot.hooks.processDatapoints.push(processThresholds);
     }
-    
+
     $.plot.plugins.push({
         init: init,
         options: options,

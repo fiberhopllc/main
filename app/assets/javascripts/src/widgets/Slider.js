@@ -7,7 +7,7 @@
  * @copyright Famous Industries, Inc. 2014
  */
 
-define(function(require, exports, module) {
+define(function (require, exports, module) {
     var Surface = require('../core/Surface');
     var CanvasSurface = require('../surfaces/CanvasSurface');
     var Transform = require('../core/Transform');
@@ -20,8 +20,8 @@ define(function(require, exports, module) {
     var GenericSync = require('../inputs/GenericSync');
 
     GenericSync.register({
-        mouse : MouseSync,
-        touch : TouchSync
+        mouse: MouseSync,
+        touch: TouchSync
     });
 
     /** @constructor */
@@ -32,13 +32,13 @@ define(function(require, exports, module) {
 
         this.indicator = new CanvasSurface({
             size: this.options.indicatorSize,
-            classes : ['slider-back']
+            classes: ['slider-back']
         });
 
         this.label = new Surface({
             size: this.options.labelSize,
             content: this.options.label,
-            properties : {pointerEvents : 'none'},
+            properties: {pointerEvents: 'none'},
             classes: ['slider-label']
         });
 
@@ -52,15 +52,15 @@ define(function(require, exports, module) {
         this.sync = new GenericSync(
             ['mouse', 'touch'],
             {
-                scale : scale,
-                direction : GenericSync.DIRECTION_X
+                scale: scale,
+                direction: GenericSync.DIRECTION_X
             }
         );
 
         this.indicator.pipe(this.sync);
         this.sync.pipe(this);
 
-        this.eventInput.on('update', function(data) {
+        this.eventInput.on('update', function (data) {
             this.set(data.position);
         }.bind(this));
 
@@ -112,7 +112,7 @@ define(function(require, exports, module) {
         else if (fillSize > this._drawPos) {
             var ctx = this.indicator.getContext('2d');
             ctx.fillStyle = this.options.fillColor;
-            ctx.fillRect(this._drawPos-1, 0, fillSize - this._drawPos+1, this.options.indicatorSize[1]);
+            ctx.fillRect(this._drawPos - 1, 0, fillSize - this._drawPos + 1, this.options.indicatorSize[1]);
         }
         this._drawPos = fillSize;
 

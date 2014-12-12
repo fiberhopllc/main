@@ -1,5 +1,5 @@
-define(function(){
+define(function () {
     return {
-        someProperty:'This is being bound against an inline view.'
+        someProperty: 'This is being bound against an inline view.'
     };
 });

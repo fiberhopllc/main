@@ -1,4 +1,4 @@
-﻿define(['durandal/system', 'durandal/app', './simpleGrid', 'knockout'], function(system, app, SimpleGrid, ko) {
+﻿define(['durandal/system', 'durandal/app', './simpleGrid', 'knockout'], function (system, app, SimpleGrid, ko) {
     var initialData = [
         { name: "Well-Travelled Kitten", sales: 352, price: 75.95 },
         { name: "Speedy Coyote", sales: 89, price: 190.00 },
@@ -15,22 +15,24 @@
         columns: [
             { headerText: "Item Name", rowText: "name" },
             { headerText: "Sales Count", rowText: "sales" },
-            { headerText: "Price", rowText: function (item) { return "$" + item.price.toFixed(2); } }
+            { headerText: "Price", rowText: function (item) {
+                return "$" + item.price.toFixed(2);
+            } }
         ],
         pageSize: 4
     });
 
     return {
         items: items,
-        addItem:function() {
+        addItem: function () {
             items.push({ name: "New item", sales: 0, price: 100 });
         },
-        sortByName: function() {
-            items.sort(function(a, b) {
+        sortByName: function () {
+            items.sort(function (a, b) {
                 return a.name < b.name ? -1 : 1;
             });
         },
-        jumpToFirstPage: function() {
+        jumpToFirstPage: function () {
             gridViewModel.currentPageIndex(0);
         },
         gridViewModel: gridViewModel,

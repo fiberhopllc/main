@@ -1,4 +1,4 @@
-﻿define(function() {
+﻿define(function () {
     return [
         {
             "products": [
@@ -211,7 +211,7 @@
                     "name": "2003 Harley-Davidson Eagle Drag Bike",
                     "price": 91.02
                 }
-          ],
+            ],
             "name": "Motorcycles"
         },
         {

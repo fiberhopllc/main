@@ -1,433 +1,448 @@
 <!DOCTYPE html>
-<!--[if IE 9 ]><html class="ie9"><![endif]-->
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
-        <meta name="format-detection" content="telephone=no">
-        <meta charset="UTF-8">
+<!--[if IE 9 ]>
+<html class="ie9"><![endif]-->
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no">
+    <meta charset="UTF-8">
 
-        <meta name="description" content="Violate Responsive Admin Template">
-        <meta name="keywords" content="Super Admin, Admin, Template, Bootstrap">
+    <meta name="description" content="Violate Responsive Admin Template">
+    <meta name="keywords" content="Super Admin, Admin, Template, Bootstrap">
 
-        <title>Super Admin</title>
-            
-        <!-- CSS -->
-        <link href="css/bootstrap.min.css" rel="stylesheet">
-        <link href="css/animate.min.css" rel="stylesheet">
-        <link href="css/font-awesome.min.css" rel="stylesheet">
-        <link href="css/form.css" rel="stylesheet">
-        <link href="css/calendar.css" rel="stylesheet">
-        <link href="css/style.css" rel="stylesheet">
-        <link href="css/icons.css" rel="stylesheet">
-        <link href="css/generics.css" rel="stylesheet"> 
-    </head>
-    <body id="bl">
-        <header id="header" class="media">
-            <a href="" id="menu-toggle"></a> 
-           <a class="logo pull-left" href="dashboard.html"><img src="img/logo.png" width="125" height="41" alt=""></a>
-            
+    <title>Super Admin</title>
+
+    <!-- CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/animate.min.css" rel="stylesheet">
+    <link href="css/font-awesome.min.css" rel="stylesheet">
+    <link href="css/form.css" rel="stylesheet">
+    <link href="css/calendar.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/icons.css" rel="stylesheet">
+    <link href="css/generics.css" rel="stylesheet">
+</head>
+<body id="bl">
+<header id="header" class="media">
+    <a href="" id="menu-toggle"></a>
+    <a class="logo pull-left" href="dashboard.html"><img src="img/logo.png" width="125" height="41" alt=""></a>
+
+    <div class="media-body">
+        <div class="media" id="top-menu">
+            <div class="pull-left tm-icon">
+                <a data-drawer="messages" class="drawer-toggle" href="">
+                    <i class="sa-top-message"></i>
+                    <i class="n-count animated">5</i>
+                    <span>Messages</span>
+                </a>
+            </div>
+            <div class="pull-left tm-icon">
+                <a data-drawer="notifications" class="drawer-toggle" href="">
+                    <i class="sa-top-updates"></i>
+                    <i class="n-count animated">9</i>
+                    <span>Updates</span>
+                </a>
+            </div>
+
+            <div id="weather" class="animated pull-right"></div>
+
+            <div id="time" class="pull-right">
+                <span id="hours"></span>
+                :
+                <span id="min"></span>
+                :
+                <span id="sec"></span>
+            </div>
+
             <div class="media-body">
-                <div class="media" id="top-menu">
-                    <div class="pull-left tm-icon">
-                        <a data-drawer="messages" class="drawer-toggle" href="">
-                            <i class="sa-top-message"></i>
-                            <i class="n-count animated">5</i>
-                            <span>Messages</span>
-                        </a>
-                    </div>
-                    <div class="pull-left tm-icon">
-                        <a data-drawer="notifications" class="drawer-toggle" href="">
-                            <i class="sa-top-updates"></i>
-                            <i class="n-count animated">9</i>
-                            <span>Updates</span>
-                        </a>
-                    </div>
-                    
-                    <div id="weather" class="animated pull-right"></div>
+                <input type="text" class="main-search">
+            </div>
+        </div>
+    </div>
+</header>
 
-                    <div id="time" class="pull-right">
-                        <span id="hours"></span>
-                        :
-                        <span id="min"></span>
-                        :
-                        <span id="sec"></span>
-                    </div>
+<div class="clearfix"></div>
 
-                    <div class="media-body">
-                        <input type="text" class="main-search">
-                    </div>
+<section id="main" class="p-relative" role="main">
+
+<!-- Sidebar -->
+<aside id="sidebar">
+
+
+    <!-- Side Menu -->
+    <ul class="list-unstyled side-menu">
+        <li>
+            <a class="sa-side-home" href="dashboard.html">
+                <span class="menu-item">Dashboard</span>
+            </a>
+        </li>
+        <li>
+            <a class="sa-side-secure" href="account.html">
+                <span class="menu-item">Account Security</span>
+            </a>
+        </li>
+        <li class="dropdown">
+            <a class="sa-side-tics" href="all-tickts.html">
+                <span class="menu-item">Tickts</span>
+            </a>
+            <ul class="list-unstyled menu-item">
+                <li><a href="all-tickts.html">View All Tickets</a></li>
+                <li><a href="view.html">View Single Ticket</a></li>
+                <li><a href="add.html">Add New Ticket</a></li>
+            </ul>
+        </li>
+
+        <li class="dropdown">
+            <a class="sa-side-form" href="">
+                <span class="menu-item">Form</span>
+            </a>
+            <ul class="list-unstyled menu-item">
+                <li><a href="form-elements.html">Basic Form Elements</a></li>
+                <li><a href="form-components.html">Form Components</a></li>
+                <li><a href="form-examples.html">Form Examples</a></li>
+                <li><a href="form-validation.html">Form Validation</a></li>
+            </ul>
+        </li>
+        <!-- <li class="dropdown">
+             <a class="sa-side-ui" href="">
+                 <span class="menu-item">User Interface</span>
+             </a>
+             <ul class="list-unstyled menu-item">
+                 <li><a href="buttons.html">Buttons</a></li>
+                 <li><a href="labels.html">Labels</a></li>
+                 <li><a href="images-icons.html">Images &amp; Icons</a></li>
+                 <li><a href="alerts.html">Alerts</a></li>
+                 <li><a href="media.html">Media</a></li>
+                 <li><a href="components.html">Components</a></li>
+                 <li><a href="other-components.html">Others</a></li>
+             </ul>
+         </li>-->
+
+
+    </ul>
+
+
+    <div class="tile">
+        <h2 class="tile-title">User details</h2>
+
+        <div class="tile-config dropdown">
+            <a data-toggle="dropdown" href="" class="tooltips tile-menu" title="" data-original-title="Options"></a>
+            <ul class="dropdown-menu pull-right text-right">
+                <li><a href="">Refresh</a></li>
+                <li><a href="">Settings</a></li>
+            </ul>
+        </div>
+
+        <div class="listview narrow">
+
+            <div class="media">
+                <div class="pull-right">
+                    <h6>google.com</h6>
+                </div>
+                <div class="media-body">
+                    <h6>User</h6>
                 </div>
             </div>
-        </header>
-        
-        <div class="clearfix"></div>
-        
-        <section id="main" class="p-relative" role="main">
-            
-            <!-- Sidebar -->
-            <aside id="sidebar">
-                
-               
-               
-               
-               
-               
-                
-                <!-- Side Menu -->
-                <ul class="list-unstyled side-menu">
-                    <li>
-                        <a class="sa-side-home" href="dashboard.html">
-                            <span class="menu-item">Dashboard</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="sa-side-secure" href="account.html">
-                            <span class="menu-item">Account Security</span>
-                        </a>
-                    </li>
-                    <li class="dropdown">
-                        <a class="sa-side-tics" href="all-tickts.html">
-                            <span class="menu-item">Tickts</span>
-                        </a>
-                        <ul class="list-unstyled menu-item">
-                        	<li><a href="all-tickts.html">View All Tickets</a></li> 
-                        	<li><a href="view.html">View Single Ticket</a></li>  
-                            <li><a href="add.html">Add New Ticket</a></li>                         
-                        </ul>
-                    </li>
-                    
-                    <li class="dropdown">
-                        <a class="sa-side-form" href="">
-                            <span class="menu-item">Form</span>
-                        </a>
-                        <ul class="list-unstyled menu-item">
-                            <li><a href="form-elements.html">Basic Form Elements</a></li>
-                            <li><a href="form-components.html">Form Components</a></li>
-                            <li><a href="form-examples.html">Form Examples</a></li>
-                            <li><a href="form-validation.html">Form Validation</a></li>
-                        </ul>
-                    </li>
-                   <!-- <li class="dropdown">
-                        <a class="sa-side-ui" href="">
-                            <span class="menu-item">User Interface</span>
-                        </a>
-                        <ul class="list-unstyled menu-item">
-                            <li><a href="buttons.html">Buttons</a></li>
-                            <li><a href="labels.html">Labels</a></li>
-                            <li><a href="images-icons.html">Images &amp; Icons</a></li>
-                            <li><a href="alerts.html">Alerts</a></li>
-                            <li><a href="media.html">Media</a></li>
-                            <li><a href="components.html">Components</a></li>
-                            <li><a href="other-components.html">Others</a></li>
-                        </ul>
-                    </li>-->
-                    
-                   
-                   
-                </ul>
-                
-                
-                
-                <div class="tile">
-                                <h2 class="tile-title">User details</h2>
-                                <div class="tile-config dropdown">
-                                    <a data-toggle="dropdown" href="" class="tooltips tile-menu" title="" data-original-title="Options"></a>
-                                    <ul class="dropdown-menu pull-right text-right">
-                                        <li><a href="">Refresh</a></li>
-                                        <li><a href="">Settings</a></li>
-                                    </ul>
-                                </div>
-                                
-                                <div class="listview narrow">
-                                    
-                                    <div class="media">
-                                        <div class="pull-right">
-                                           	<h6>google.com</h6>
-                                        </div>
-                                        <div class="media-body">
-                                            <h6>User</h6>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="media">
-                                        <div class="pull-right">
-                                            <div class="counts">50</div>
-                                        </div>
-                                        <div class="media-body">
-                                            <h6>Tickts Posted</h6>
-                                        </div>
-                                    </div>
-                                    
-                                    
-                                    
-                                   
-                                    <div class="media">
-                                        <div class="pull-right">
-                                            <div class="counts">68</div>
-                                        </div>
-                                        <div class="media-body">
-                                            <h6>WEBSITE COMMENTS</h6>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                
-            </aside>
-        
-            <!-- Content -->
-            <section id="content" class="container">
-            
-                <!-- Messages Drawer -->
-                
-                
-                <!-- Notification Drawer -->
-                
-                
-                
-                <!-- Breadcrumb -->
-                <ol class="breadcrumb hidden-xs">
-                    <li><a href="#">Dashboard</a></li>
-                    <li><a href="#">Tickts</a></li>
-                    <li class="active">Details</li>
-                </ol>
-                
-                <h4 class="page-title">Tickt Details</h4>
-                                
-                <div class="block-area">
-                    <div class="row m-container">
-                        
-                        <div class="col-md-5">
-                            
-                          
-                        
-                            <!-- Activity -->
-                            
-                        
-                            <!-- Works -->
-                            
-                        
-                          <article id="heading" class="block-area">
+
+            <div class="media">
+                <div class="pull-right">
+                    <div class="counts">50</div>
+                </div>
+                <div class="media-body">
+                    <h6>Tickts Posted</h6>
+                </div>
+            </div>
+
+
+            <div class="media">
+                <div class="pull-right">
+                    <div class="counts">68</div>
+                </div>
+                <div class="media-body">
+                    <h6>WEBSITE COMMENTS</h6>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</aside>
+
+<!-- Content -->
+<section id="content" class="container">
+
+    <!-- Messages Drawer -->
+
+
+    <!-- Notification Drawer -->
+
+
+    <!-- Breadcrumb -->
+    <ol class="breadcrumb hidden-xs">
+        <li><a href="#">Dashboard</a></li>
+        <li><a href="#">Tickts</a></li>
+        <li class="active">Details</li>
+    </ol>
+
+    <h4 class="page-title">Tickt Details</h4>
+
+    <div class="block-area">
+        <div class="row m-container">
+
+            <div class="col-md-5">
+
+
+                <!-- Activity -->
+
+
+                <!-- Works -->
+
+
+                <article id="heading" class="block-area">
                     <h3 class="block-title">Headings</h3>
+
                     <h1>This is a Heading 1</h1>
-                    <p>Suspendisse vel quam malesuada, aliquet sem sit amet, fringilla elit. Morbi tempor tincidunt tempor. Etiam id turpis viverra, vulputate sapien nec, varius sem. Curabitur ullamcorper fringilla eleifend. In ut eros hendrerit est consequat posuere et at velit.</p>
+
+                    <p>Suspendisse vel quam malesuada, aliquet sem sit amet, fringilla elit. Morbi tempor tincidunt
+                        tempor. Etiam id turpis viverra, vulputate sapien nec, varius sem. Curabitur ullamcorper
+                        fringilla eleifend. In ut eros hendrerit est consequat posuere et at velit.</p>
+
                     <h2>This is a Heading 2</h2>
-                    <p>In nec rhoncus eros. Vestibulum eu mattis nisl. Quisque viverra viverra magna nec pulvinar. Maecenas pellentesque porta augue, consectetur facilisis diam porttitor sed. Suspendisse tempor est sodales augue rutrum tincidunt. Quisque a malesuada purus.</p>
+
+                    <p>In nec rhoncus eros. Vestibulum eu mattis nisl. Quisque viverra viverra magna nec pulvinar.
+                        Maecenas pellentesque porta augue, consectetur facilisis diam porttitor sed. Suspendisse tempor
+                        est sodales augue rutrum tincidunt. Quisque a malesuada purus.</p>
+
                     <h3>This is a Heading 3</h3>
-                    <p>Vestibulum auctor tincidunt semper. Phasellus ut vulputate lacus. Suspendisse ultricies mi eros, sit amet tempor nulla varius sed. Proin nisl nisi, feugiat quis bibendum vitae, dapibus in tellus.</p>
+
+                    <p>Vestibulum auctor tincidunt semper. Phasellus ut vulputate lacus. Suspendisse ultricies mi eros,
+                        sit amet tempor nulla varius sed. Proin nisl nisi, feugiat quis bibendum vitae, dapibus in
+                        tellus.</p>
                     <h4>This is a Heading 4</h4>
-                    <p>Nulla et mattis nunc. Curabitur scelerisque commodo condimentum. Mauris blandit, velit a consectetur egestas, diam arcu fermentum justo, eget ultrices arcu eros vel erat.</p>
+
+                    <p>Nulla et mattis nunc. Curabitur scelerisque commodo condimentum. Mauris blandit, velit a
+                        consectetur egestas, diam arcu fermentum justo, eget ultrices arcu eros vel erat.</p>
                     <h5>This is a Heading 5</h5>
-                    <p>Quisque nec turpis at urna dictum luctus. Suspendisse convallis dignissim eros at volutpat. In egestas mattis dui. Aliquam mattis dictum aliquet. Nulla sapien mauris, eleifend et sem ac, commodo dapibus odio. Vivamus pretium nec odio cursus elementum. Suspendisse molestie ullamcorper ornare.</p>
+
+                    <p>Quisque nec turpis at urna dictum luctus. Suspendisse convallis dignissim eros at volutpat. In
+                        egestas mattis dui. Aliquam mattis dictum aliquet. Nulla sapien mauris, eleifend et sem ac,
+                        commodo dapibus odio. Vivamus pretium nec odio cursus elementum. Suspendisse molestie
+                        ullamcorper ornare.</p>
                     <h6>This is a Heading 6</h6>
-                    <p>Donec ultricies, lacus id tempor condimentum, orci leo faucibus sem, a molestie libero lectus ac justo. ultricies mi eros, sit amet tempor nulla varius sed. Proin nisl nisi, feugiat quis bibendum vitae, dapibus in tellus.</p>
+
+                    <p>Donec ultricies, lacus id tempor condimentum, orci leo faucibus sem, a molestie libero lectus ac
+                        justo. ultricies mi eros, sit amet tempor nulla varius sed. Proin nisl nisi, feugiat quis
+                        bibendum vitae, dapibus in tellus.</p>
                     <br/>
                 </article>
-                
-                <hr class="whiter" />
-                            
-                            
-                           
-                            
 
-                          
-                            
-                        </div>
-                        
-                        <div class="col-md-7">
-                            
-                           
+                <hr class="whiter"/>
 
-                           
-                            
-                            <!-- Quick Posting -->
-                            <div class="tile">
-                                <h2 class="tile-title">Post Reply</h2>
-                                <div class="tile-config dropdown">
-                                    <a data-toggle="dropdown" href="" class="tooltips tile-menu" title="" data-original-title="Options"></a>
-                                    <ul class="dropdown-menu pull-right text-right">
-                                        <li><a href="">Edit</a></li>
-                                        <li><a href="">Delete</a></li>
-                                    </ul>
-                                </div>
-                                
-                                <form role="form" class="p-15">
-                                    <div class="form-group m-b-15">
-                                        <label>Post Title</label>
-                                        <input type="text" class="form-control input-sm">
-                                    </div>
-                                    
-                                    <div class="form-group m-b-15">
-                                        <label>Post Category</label>
-                                        <select class="select">
-                                            <option>Default</option>
-                                            <option>Toyota Avalon</option>
-                                            <option>Toyota Crown</option>
-                                            <option>Lexus LX570</option>
-                                        </select>
-                                    </div>
-                                    
-                                    <div class="form-group m-b-15">
-                                        <label>Post Content</label>
-                                        <div class="wysiwye-editor"></div>
-                                    </div>
-                                    
-                                    <button type="submit" class="btn btn-sm">Submit</button>
-                                    <button type="submit" class="btn btn-sm">Clear</button>
-                                    
-                                </form>
-                            </div>
-                        </div>
-                        <div class="clearfix"></div>
+
+            </div>
+
+            <div class="col-md-7">
+
+
+                <!-- Quick Posting -->
+                <div class="tile">
+                    <h2 class="tile-title">Post Reply</h2>
+
+                    <div class="tile-config dropdown">
+                        <a data-toggle="dropdown" href="" class="tooltips tile-menu" title=""
+                           data-original-title="Options"></a>
+                        <ul class="dropdown-menu pull-right text-right">
+                            <li><a href="">Edit</a></li>
+                            <li><a href="">Delete</a></li>
+                        </ul>
                     </div>
-                </div>
-            </section>
-        </section>
-        
- <script src="js/jquery.min.js"></script> <!-- jQuery Library -->
-        <script src="js/jquery-ui.min.js"></script> <!-- jQuery UI -->
 
-        <!-- Bootstrap -->
-        <script src="js/bootstrap.min.js"></script>
-        
-        <!-- Form Related -->
-        <script src="js/select.min.js"></script> <!-- Custom Select -->
-        <script src="js/icheck.js"></script> <!-- Custom Checkbox + Radio -->
-        
-        <!-- Text Editor -->
-        <script src="js/editor.min.js"></script> <!-- WYSIWYG Editor -->
-        
-        <!-- Media -->
-        <script src="js/media-player.min.js"></script> <!-- Video Player -->
-        
-        <!-- UX -->
-        <script src="js/scroll.min.js"></script> <!-- Custom Scrollbar -->
-        
-        <!-- Other -->
-        <script src="js/calendar.min.js"></script> <!-- Calendar -->
-        <script src="js/feeds.min.js"></script> <!-- News Feeds -->
-        
-        
-        <!-- All JS functions -->
-        <script src="js/functions.js"></script>
-        
-        <script type="text/javascript">
-            $(document).ready(function() {
-                
-                //Calendar
-                (function(){
-                    var date = new Date();
-                    var d = date.getDate();
-                    var m = date.getMonth();
-                    var y = date.getFullYear();
-                    $('#calendar').fullCalendar({
-                        header: {
-                             center: '',
-                             right: 'prev, next',
-                             left: 'title'
-                        },
-    
-                        selectable: true,
-                        selectHelper: true,
-                        editable: true,
-                        events: [
-                            {
-                                title: 'Hangout with friends',
-                                start: new Date(y, m, 1),
-                                end: new Date(y, m, 2)
-                            },
-                            {
-                                title: 'Meeting with client',
-                                start: new Date(y, m, 10),
-                                allDay: true
-                            },
-                            {
-                                title: 'Repeat Event',
-                                start: new Date(y, m, 18),
-                                allDay: true
-                            },
-                            {
-                                title: 'Semester Exam',
-                                start: new Date(y, m, 20),
-                                end: new Date(y, m, 23)
-                            },
-                            {
-                                title: 'Soccor match',
-                                start: new Date(y, m, 5),
-                                end: new Date(y, m, 6)
-                            },
-                            {
-                                title: 'Coffee time',
-                                start: new Date(y, m, 21),
-                            },
-                            {
-                                title: 'Job Interview',
-                                start: new Date(y, m, 5),
-                            }
-                        ],
-                         
-                        //On Day Select
-                        select: function(start, end, allDay) {
-                            $('#addNew-event').modal('show');   
-                            $('#addNew-event input:text').val('');
-                            $('#getStart').val(start);
-                            $('#getEnd').val(end);
-                        },
-                         
-                        eventResize: function(event,dayDelta,minuteDelta,revertFunc) {
-                            $('#editEvent').modal('show');
-    
-                            var info =
-                                "The end date of " + event.title + "has been moved " +
-                                dayDelta + " days and " +
-                                minuteDelta + " minutes."
+                    <form role="form" class="p-15">
+                        <div class="form-group m-b-15">
+                            <label>Post Title</label>
+                            <input type="text" class="form-control input-sm">
+                        </div>
+
+                        <div class="form-group m-b-15">
+                            <label>Post Category</label>
+                            <select class="select">
+                                <option>Default</option>
+                                <option>Toyota Avalon</option>
+                                <option>Toyota Crown</option>
+                                <option>Lexus LX570</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group m-b-15">
+                            <label>Post Content</label>
+
+                            <div class="wysiwye-editor"></div>
+                        </div>
+
+                        <button type="submit" class="btn btn-sm">Submit</button>
+                        <button type="submit" class="btn btn-sm">Clear</button>
+
+                    </form>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</section>
+</section>
+
+<script src="js/jquery.min.js"></script>
+<!-- jQuery Library -->
+<script src="js/jquery-ui.min.js"></script>
+<!-- jQuery UI -->
+
+<!-- Bootstrap -->
+<script src="js/bootstrap.min.js"></script>
+
+<!-- Form Related -->
+<script src="js/select.min.js"></script>
+<!-- Custom Select -->
+<script src="js/icheck.js"></script>
+<!-- Custom Checkbox + Radio -->
+
+<!-- Text Editor -->
+<script src="js/editor.min.js"></script>
+<!-- WYSIWYG Editor -->
+
+<!-- Media -->
+<script src="js/media-player.min.js"></script>
+<!-- Video Player -->
+
+<!-- UX -->
+<script src="js/scroll.min.js"></script>
+<!-- Custom Scrollbar -->
+
+<!-- Other -->
+<script src="js/calendar.min.js"></script>
+<!-- Calendar -->
+<script src="js/feeds.min.js"></script>
+<!-- News Feeds -->
+
+
+<!-- All JS functions -->
+<script src="js/functions.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        //Calendar
+        (function () {
+            var date = new Date();
+            var d = date.getDate();
+            var m = date.getMonth();
+            var y = date.getFullYear();
+            $('#calendar').fullCalendar({
+                header: {
+                    center: '',
+                    right: 'prev, next',
+                    left: 'title'
+                },
+
+                selectable: true,
+                selectHelper: true,
+                editable: true,
+                events: [
+                    {
+                        title: 'Hangout with friends',
+                        start: new Date(y, m, 1),
+                        end: new Date(y, m, 2)
+                    },
+                    {
+                        title: 'Meeting with client',
+                        start: new Date(y, m, 10),
+                        allDay: true
+                    },
+                    {
+                        title: 'Repeat Event',
+                        start: new Date(y, m, 18),
+                        allDay: true
+                    },
+                    {
+                        title: 'Semester Exam',
+                        start: new Date(y, m, 20),
+                        end: new Date(y, m, 23)
+                    },
+                    {
+                        title: 'Soccor match',
+                        start: new Date(y, m, 5),
+                        end: new Date(y, m, 6)
+                    },
+                    {
+                        title: 'Coffee time',
+                        start: new Date(y, m, 21),
+                    },
+                    {
+                        title: 'Job Interview',
+                        start: new Date(y, m, 5),
+                    }
+                ],
+
+                //On Day Select
+                select: function (start, end, allDay) {
+                    $('#addNew-event').modal('show');
+                    $('#addNew-event input:text').val('');
+                    $('#getStart').val(start);
+                    $('#getEnd').val(end);
+                },
+
+                eventResize: function (event, dayDelta, minuteDelta, revertFunc) {
+                    $('#editEvent').modal('show');
+
+                    var info =
+                                    "The end date of " + event.title + "has been moved " +
+                                            dayDelta + " days and " +
+                                            minuteDelta + " minutes."
                             ;
-                            
-                            $('#eventInfo').html(info);
-                    
-                    
-                            $('#editEvent #editCancel').click(function(){
-                                 revertFunc();
-                            }) 
-                        }
-                    });
-                    
-                    $('body').on('click', '#addEvent', function(){
-                         var eventForm =  $(this).closest('.modal').find('.form-validation');
-                         eventForm.validationEngine('validate');
-                         
-                         if (!(eventForm).find('.formErrorContent')[0]) {
-                              
-                              //Event Name
-                              var eventName = $('#eventName').val();
-    
-                              //Render Event
-                              $('#calendar').fullCalendar('renderEvent',{
-                                   title: eventName,
-                                   start: $('#getStart').val(),
-                                   end:  $('#getEnd').val(),
-                                   allDay: true,
-                              },true ); //Stick the event
-                              
-                              $('#addNew-event form')[0].reset()
-                              $('#addNew-event').modal('hide');
-                         } 
-                    });
-                    
-                    //Calendar views
-                    $('body').on('click', '.calendar-actions > li > a', function(e){
-                        e.preventDefault();
-                        var dataView = $(this).attr('data-view');
-                        $('#calendar').fullCalendar('changeView', dataView);
-                        
-                        //Custom scrollbar
-                        var overflowRegular, overflowInvisible = false;
-                        overflowRegular = $('.overflow').niceScroll();     
-                    });      
-                })();
-            });    
-            
-                          
-            
-       </script>
-    </body>
+
+                    $('#eventInfo').html(info);
+
+
+                    $('#editEvent #editCancel').click(function () {
+                        revertFunc();
+                    })
+                }
+            });
+
+            $('body').on('click', '#addEvent', function () {
+                var eventForm = $(this).closest('.modal').find('.form-validation');
+                eventForm.validationEngine('validate');
+
+                if (!(eventForm).find('.formErrorContent')[0]) {
+
+                    //Event Name
+                    var eventName = $('#eventName').val();
+
+                    //Render Event
+                    $('#calendar').fullCalendar('renderEvent', {
+                        title: eventName,
+                        start: $('#getStart').val(),
+                        end: $('#getEnd').val(),
+                        allDay: true,
+                    }, true); //Stick the event
+
+                    $('#addNew-event form')[0].reset()
+                    $('#addNew-event').modal('hide');
+                }
+            });
+
+            //Calendar views
+            $('body').on('click', '.calendar-actions > li > a', function (e) {
+                e.preventDefault();
+                var dataView = $(this).attr('data-view');
+                $('#calendar').fullCalendar('changeView', dataView);
+
+                //Custom scrollbar
+                var overflowRegular, overflowInvisible = false;
+                overflowRegular = $('.overflow').niceScroll();
+            });
+        })();
+    });
+
+
+</script>
+</body>
 </html>
 

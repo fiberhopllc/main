@@ -7,7 +7,7 @@
  * @copyright Famous Industries, Inc. 2014
  */
 
-define(function(require, exports, module) {
+define(function (require, exports, module) {
     var Body = require('./Body');
     var Matrix = require('../../math/Matrix');
 
@@ -21,7 +21,7 @@ define(function(require, exports, module) {
      */
     function Rectangle(options) {
         options = options || {};
-        this.size = options.size || [0,0];
+        this.size = options.size || [0, 0];
         Body.call(this, options);
     }
 

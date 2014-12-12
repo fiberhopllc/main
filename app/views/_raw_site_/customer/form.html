@@ -1,538 +1,550 @@
 <!DOCTYPE HTML>
 <html lang="en-US">
-    <head>
+<head>
 
-        <meta charset="UTF-8">
-        <title>Customer Forms</title>
-        <meta name="viewport" content="initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
-        <link rel="icon" type="image/ico" href="favicon.ico">
-        
+    <meta charset="UTF-8">
+    <title>Customer Forms</title>
+    <meta name="viewport" content="initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <link rel="icon" type="image/ico" href="favicon.ico">
+
     <!-- common stylesheets-->
-        <!-- bootstrap framework css -->
-            <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
-            <link rel="stylesheet" href="bootstrap/css/bootstrap-responsive.css">
-        <!-- iconSweet2 icon pack (16x16) -->
-            <link rel="stylesheet" href="img/icsw2_16/icsw2_16.css">
-        <!-- splashy icon pack -->
-            <link rel="stylesheet" href="img/splashy/splashy.css">
-        <!-- flag icons -->
-            <link rel="stylesheet" href="img/flags/flags.css">
-        <!-- power tooltips -->
-            <link rel="stylesheet" href="js/lib/powertip/jquery.powertip.css">
-        <!-- google web fonts -->
-            <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Abel">
-            <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300">
+    <!-- bootstrap framework css -->
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="bootstrap/css/bootstrap-responsive.css">
+    <!-- iconSweet2 icon pack (16x16) -->
+    <link rel="stylesheet" href="img/icsw2_16/icsw2_16.css">
+    <!-- splashy icon pack -->
+    <link rel="stylesheet" href="img/splashy/splashy.css">
+    <!-- flag icons -->
+    <link rel="stylesheet" href="img/flags/flags.css">
+    <!-- power tooltips -->
+    <link rel="stylesheet" href="js/lib/powertip/jquery.powertip.css">
+    <!-- google web fonts -->
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Abel">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300">
 
     <!-- aditional stylesheets -->
-        <!-- colorbox -->
-            <link rel="stylesheet" href="js/lib/ibutton/css/jquery.ibutton.css">
-             <link rel="stylesheet" href="js/lib/select2/select2.css">
-        <!--fullcalendar -->
-            <link rel="stylesheet" href="js/lib/fullcalendar/fullcalendar_gobyweb.css">
-			<link rel="stylesheet" href="js/lib/datatables/css/datatables_gobyweb.css">
+    <!-- colorbox -->
+    <link rel="stylesheet" href="js/lib/ibutton/css/jquery.ibutton.css">
+    <link rel="stylesheet" href="js/lib/select2/select2.css">
+    <!--fullcalendar -->
+    <link rel="stylesheet" href="js/lib/fullcalendar/fullcalendar_gobyweb.css">
+    <link rel="stylesheet" href="js/lib/datatables/css/datatables_gobyweb.css">
 
-        <!-- main stylesheet -->
-            <link rel="stylesheet" href="css/gobyweb.css">
+    <!-- main stylesheet -->
+    <link rel="stylesheet" href="css/gobyweb.css">
 
-        <!--[if lte IE 8]><link rel="stylesheet" href="css/ie8.css"><![endif]-->
-        <!--[if IE 9]><link rel="stylesheet" href="css/ie9.css"><![endif]-->
-            
-        <!--[if lt IE 9]>
-            <script src="js/ie/html5shiv.min.js"></script>
-            <script src="js/ie/respond.min.js"></script>
-            <script src="js/lib/flot-charts/excanvas.min.js"></script>
-        <![endif]-->
+    <!--[if lte IE 8]>
+    <link rel="stylesheet" href="css/ie8.css"><![endif]-->
+    <!--[if IE 9]>
+    <link rel="stylesheet" href="css/ie9.css"><![endif]-->
 
-    </head>
-    <body class="bg_d">
-    <!-- main wrapper (without footer) -->    
-        <div class="main-wrapper">
-        <!-- top bar -->
-            <div class="navbar navbar-fixed-top">
-                <div class="navbar-inner">
-                    <div class="container">
-                        <div class="pull-right top-search">
-                            <form action="" >
-                                <input type="text" name="q" id="q-main">
-                                <button class="btn"><i class="icon-search"></i></button>
-                            </form>
-                        </div>
-                        <div id="fade-menu" class="pull-left">
-                            <ul class="clearfix" id="mobile-nav">
-                                <li>
-                                    <a href="dashboard.html">Dashboard</a>
-                                    
-                                </li>
-                               <li><a href="admin.html">Administrative</a>
-                                 	<ul>
-                                    <li><a href="mail.html">Mail Box</a></li> 
-                                    <li><a href="employee_ticket_view.html">Employee Ticket</a></li>
-                                    <li><a href="customer_ticket_view.html">Customer Ticket</a></li>
-                                    <li><a href="form.html">Form</a></li>
-                                    </ul> 
-                                </li>
-                                <li><a href="support.html">Support</a>
-                                    
-                                </li>
-                                <li><a href="security.html">Security</a>
-                                    
-                                </li>
-                                <li><a href="hardware.html">Hardware</a></li>
-                                
-                                <li><a href="software.html">Software</a></li>            
-                                <li><a href="public-network.html">Pubilc Network</a></li>     
-                                <li><a href="private-network.html">Private Network</a></li>            
-                                <li><a href="sales.html">Sales</a></li>
-                                
+    <!--[if lt IE 9]>
+    <script src="js/ie/html5shiv.min.js"></script>
+    <script src="js/ie/respond.min.js"></script>
+    <script src="js/lib/flot-charts/excanvas.min.js"></script>
+    <![endif]-->
+
+</head>
+<body class="bg_d">
+<!-- main wrapper (without footer) -->
+<div class="main-wrapper">
+<!-- top bar -->
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <div class="pull-right top-search">
+                <form action="">
+                    <input type="text" name="q" id="q-main">
+                    <button class="btn"><i class="icon-search"></i></button>
+                </form>
+            </div>
+            <div id="fade-menu" class="pull-left">
+                <ul class="clearfix" id="mobile-nav">
+                    <li>
+                        <a href="dashboard.html">Dashboard</a>
+
+                    </li>
+                    <li><a href="admin.html">Administrative</a>
+                        <ul>
+                            <li><a href="mail.html">Mail Box</a></li>
+                            <li><a href="employee_ticket_view.html">Employee Ticket</a></li>
+                            <li><a href="customer_ticket_view.html">Customer Ticket</a></li>
+                            <li><a href="form.html">Form</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="support.html">Support</a>
+
+                    </li>
+                    <li><a href="security.html">Security</a>
+
+                    </li>
+                    <li><a href="hardware.html">Hardware</a></li>
+
+                    <li><a href="software.html">Software</a></li>
+                    <li><a href="public-network.html">Pubilc Network</a></li>
+                    <li><a href="private-network.html">Private Network</a></li>
+                    <li><a href="sales.html">Sales</a></li>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- header -->
+<header>
+    <div class="container">
+        <div class="row">
+            <div class="span3">
+                <div class="main-logo"><a href="dashboard.html"><img src="img/logo.png" alt="Admin"></a></div>
+            </div>
+            <div class="span3 web">
+                <div class="user-box">
+                    <div class="user-box-inner">
+                        <img src="img/avatars/avatar.png" alt="" class="user-avatar img-avatar">
+
+                        <div class="user-info">
+                            Welcome, <strong>Avijit Brahma</strong>
+                            <ul class="unstyled">
+                                <li><a href="user_profile.html">Settings</a></li>
+                                <li>&middot;</li>
+                                <li><a href="login.html">Logout</a></li>
                             </ul>
                         </div>
                     </div>
                 </div>
             </div>
 
-        <!-- header -->
-           <header>
-                <div class="container">
-                    <div class="row">
-                        <div class="span3">
-                            <div class="main-logo"><a href="dashboard.html"><img src="img/logo.png" alt="Admin"></a></div>
-                        </div>
-                        <div class="span3 web">
-                            <div class="user-box">
-                                <div class="user-box-inner">
-                                    <img src="img/avatars/avatar.png" alt="" class="user-avatar img-avatar">
-                                    <div class="user-info">
-                                        Welcome, <strong>Avijit Brahma</strong>
-                                        <ul class="unstyled">
-                                            <li><a href="user_profile.html">Settings</a></li>
-                                            <li>&middot;</li>
-                                            <li><a href="login.html">Logout</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="span5 web">
-                            <nav class="nav-icons">
-                                <ul>
-                                    <li><a href="javascript:void(0)" class="ptip_s" title="Dashboard"><i class="icsw16-home"></i></a></li>
-                                    <li><a href="javascript:void(0)" class="ptip_s" title="Content"><i class="icsw16-create-write"></i></a></li>
-                                    <li><a href="javascript:void(0)" class="ptip_s" title="Mailbox"><i class="icsw16-mail"></i><span class="badge badge-info">6</span></a></li>
-                                    <li><a href="javascript:void(0)" class="ptip_s" title="Comments"><i class="icsw16-speech-bubbles"></i><span class="badge badge-important">14</span></a></li>
-                                    <li class="active"><span class="ptip_s" title="Statistics (active)"><i class="icsw16-graph"></i></span></li>
-                                    <li><a href="javascript:void(0)" class="ptip_s" title="Settings"><i class="icsw16-cog"></i></a></li>
-                                </ul>
-                             </nav>
-                        </div>
-                        
+            <div class="span5 web">
+                <nav class="nav-icons">
+                    <ul>
+                        <li><a href="javascript:void(0)" class="ptip_s" title="Dashboard"><i
+                                class="icsw16-home"></i></a></li>
+                        <li><a href="javascript:void(0)" class="ptip_s" title="Content"><i
+                                class="icsw16-create-write"></i></a></li>
+                        <li><a href="javascript:void(0)" class="ptip_s" title="Mailbox"><i class="icsw16-mail"></i><span
+                                class="badge badge-info">6</span></a></li>
+                        <li><a href="javascript:void(0)" class="ptip_s" title="Comments"><i
+                                class="icsw16-speech-bubbles"></i><span class="badge badge-important">14</span></a></li>
+                        <li class="active"><span class="ptip_s" title="Statistics (active)"><i class="icsw16-graph"></i></span>
+                        </li>
+                        <li><a href="javascript:void(0)" class="ptip_s" title="Settings"><i class="icsw16-cog"></i></a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+
+        </div>
+    </div>
+</header>
+
+<!-- breadcrumbs -->
+<div class="container">
+    <ul id="breadcrumbs">
+        <li><a href="javascript:void(0)"><i class="icon-home"></i></a></li>
+        <li><a href="javascript:void(0)">Admin</a></li>
+        <li><a href="javascript:void(0)">Tickets</a></li>
+
+        <li><span class="pull-right">Customer Portal</span></li>
+    </ul>
+</div>
+
+<!-- main content -->
+<div class="container">
+<div class="row-fluid">
+
+<div class="span7">
+    <div class="w-box">
+        <div class="w-box-header">
+            <i class="icsw16-pencil icsw16-white pull-right"></i> <h4>Add New Ticket</h4>
+        </div>
+        <div class="w-box-content">
+            <form id="validate_extended">
+                <div class="formSep">
+                    <label class="req">Title</label>
+                    <input class="span10" type="text" name="titlet" id="title" value="Title"/>
+                </div>
+
+
+                <div class="formSep">
+                    <label class="req">Enter a URL</label>
+                    <input value="http://" class="span10" type="text" name="val1_url" id="val1_url"/>
+                </div>
+
+
+                <!-- <div class="formSep">
+                     <label class="req">Select2</label>
+                     <select name="s2_val" id="s2_val" class="span12">
+                         <option value=""></option>
+                     <optgroup label="Alaskan/Hawaiian Time Zone">
+                         <option value="AK">Alaska</option>
+                         <option value="HI">Hawaii</option>
+                     </optgroup>
+                     <optgroup label="Pacific Time Zone">
+                         <option value="CA">California</option>
+                         <option value="NV">Nevada</option>
+                         <option value="OR">Oregon</option>
+                         <option value="WA">Washington</option>
+                     </optgroup>
+                     <optgroup label="Mountain Time Zone">
+                         <option value="AZ">Arizona</option>
+                         <option value="CO">Colorado</option>
+                         <option value="ID">Idaho</option>
+                         <option value="MT">Montana</option>
+                         <option value="NE">Nebraska</option>
+                         <option value="NM">New Mexico</option>
+                         <option value="ND">North Dakota</option>
+                         <option value="UT">Utah</option>
+                         <option value="WY">Wyoming</option>
+                     </optgroup>
+                     <optgroup label="Central Time Zone">
+                         <option value="AL">Alabama</option>
+                         <option value="AR">Arkansas</option>
+                         <option value="IL">Illinois</option>
+                         <option value="IA">Iowa</option>
+                         <option value="KS">Kansas</option>
+                         <option value="KY">Kentucky</option>
+                         <option value="LA">Louisiana</option>
+                         <option value="MN">Minnesota</option>
+                         <option value="MS">Mississippi</option>
+                         <option value="MO">Missouri</option>
+                         <option value="OK">Oklahoma</option>
+                         <option value="SD">South Dakota</option>
+                         <option value="TX">Texas</option>
+                         <option value="TN">Tennessee</option>
+                         <option value="WI">Wisconsin</option>
+                     </optgroup>
+                     <optgroup label="Eastern Time Zone">
+                         <option value="CT">Connecticut</option>
+                         <option value="DE">Delaware</option>
+                         <option value="FL">Florida</option>
+                         <option value="GA">Georgia</option>
+                         <option value="IN">Indiana</option>
+                         <option value="ME">Maine</option>
+                         <option value="MD">Maryland</option>
+                         <option value="MA">Massachusetts</option>
+                         <option value="MI">Michigan</option>
+                         <option value="NH">New Hampshire</option>
+                         <option value="NJ">New Jersey</option>
+                         <option value="NY">New York</option>
+                         <option value="NC">North Carolina</option>
+                         <option value="OH">Ohio</option>
+                         <option value="PA">Pennsylvania</option>
+                         <option value="RI">Rhode Island</option>
+                         <option value="SC">South Carolina</option>
+                         <option value="VT">Vermont</option>
+                         <option value="VA">Virginia</option>
+                         <option value="WV">West Virginia</option>
+                     </optgroup>
+                     </select>
+                 </div>-->
+
+                <div class="row-fluid formSep">
+                    <div class="span5">
+                        <label class="req">Datepicker</label>
+                        <input class="span8" value="" data-date-format="dd/mm/yyyy" id="dp_val" name="dp_val"
+                               type="text">
+                    </div>
+
+                    <div class="span7">
+                        <label class="req">File</label>
+                        <input type="file" name="val1_file" id="val1_file"/>
                     </div>
                 </div>
-            </header>
 
-        <!-- breadcrumbs -->
-            <div class="container">
-                <ul id="breadcrumbs">
-                    <li><a href="javascript:void(0)"><i class="icon-home"></i></a></li>
-                    <li><a href="javascript:void(0)">Admin</a></li>
-                    <li><a href="javascript:void(0)">Tickets</a></li>
-                   
-                    <li><span class="pull-right">Customer Portal</span></li>
+                <div class="formSep">
+                    <label class="req">WYSIWG editor</label>
+                    <textarea name="wysiwg_val" id="wysiwg_val" cols="30" rows="6" class="span12"></textarea>
+                </div>
+                <!--<div class="formSep">
+                    <label class="req">Limit characters</label>
+                    <textarea class="span12" name="count_textarea_val" id="count_textarea_val" cols="70" rows="6"></textarea>
+                </div>-->
+                <div class="formSep">
+                    <button type="submit" class="btn">Validate form</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<div class="span5">
+
+
+    <div class="w-box w-box-green hideable">
+        <div class="w-box-header">
+            <i class="icsw16-alert-2 icsw16-white pull-right"></i><h4>Open Tickets</h4>
+        </div>
+        <div class="w-box-content">
+            <table id="dt_table" class="table table-striped ">
+                <thead>
+                <tr>
+                    <th>id</th>
+                    <th>Title</th>
+
+
+                    <th>Type</th>
+
+                    <th>Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Remove 40 GB NAS</td>
+                    <td><span class="label label-success">Normal</span></td>
+                    <td>
+                        <div class="btn-group">
+                            <a href="#" class="btn btn-mini" title="Edit"><i class="icon-pencil"></i></a>
+                            <a href="#" class="btn btn-mini" title="View"><i class="icon-eye-open"></i></a>
+                            <a href="#" class="btn btn-mini" title="Delete"><i class="icon-trash"></i></a>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Remove Cisco ASA 10 Mbps</td>
+                    <td><span class="label label-success">Normal</span></td>
+                    <td>
+                        <div class="btn-group">
+                            <a href="#" class="btn btn-mini" title="Edit"><i class="icon-pencil"></i></a>
+                            <a href="#" class="btn btn-mini" title="View"><i class="icon-eye-open"></i></a>
+                            <a href="#" class="btn btn-mini" title="Delete"><i class="icon-trash"></i></a>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Payment is late pricing issue</td>
+                    <td><span class="label label-success">Normal</span></td>
+                    <td>
+                        <div class="btn-group">
+                            <a href="#" class="btn btn-mini" title="Edit"><i class="icon-pencil"></i></a>
+                            <a href="#" class="btn btn-mini" title="View"><i class="icon-eye-open"></i></a>
+                            <a href="#" class="btn btn-mini" title="Delete"><i class="icon-trash"></i></a>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>Remove 40 GB NAS</td>
+                    <td><span class="label label-success">Normal</span></td>
+                    <td>
+                        <div class="btn-group">
+                            <a href="#" class="btn btn-mini" title="Edit"><i class="icon-pencil"></i></a>
+                            <a href="#" class="btn btn-mini" title="View"><i class="icon-eye-open"></i></a>
+                            <a href="#" class="btn btn-mini" title="Delete"><i class="icon-trash"></i></a>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>Database Slow</td>
+                    <td><span class="label label-success">Normal</span></td>
+                    <td>
+                        <div class="btn-group">
+                            <a href="#" class="btn btn-mini" title="Edit"><i class="icon-pencil"></i></a>
+                            <a href="#" class="btn btn-mini" title="View"><i class="icon-eye-open"></i></a>
+                            <a href="#" class="btn btn-mini" title="Delete"><i class="icon-trash"></i></a>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>Install Wordpress</td>
+                    <td><span class="label label-important">Critical</span></td>
+                    <td>
+                        <div class="btn-group">
+                            <a href="#" class="btn btn-mini" title="Edit"><i class="icon-pencil"></i></a>
+                            <a href="#" class="btn btn-mini" title="View"><i class="icon-eye-open"></i></a>
+                            <a href="#" class="btn btn-mini" title="Delete"><i class="icon-trash"></i></a>
+                        </div>
+                    </td>
+                </tr>
+
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+    <div class="w-box hideable">
+        <div class="w-box-header">
+            <i class="icsw16-documents icsw16-white pull-right"></i><h4>Closed Tickets</h4>
+        </div>
+        <div class="w-box-content">
+            <table id="dt_table" class="table table-striped ">
+                <thead>
+                <tr>
+                    <th>id</th>
+                    <th>Title</th>
+
+
+                    <th>Type</th>
+
+                    <th>Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Remove 40 GB NAS</td>
+                    <td><span class="label label-warning">Solved</span></td>
+                    <td>
+                        <div class="btn-group">
+                            <a href="#" class="btn btn-mini" title="Edit"><i class="icon-pencil"></i></a>
+                            <a href="#" class="btn btn-mini" title="View"><i class="icon-eye-open"></i></a>
+                            <a href="#" class="btn btn-mini" title="Delete"><i class="icon-trash"></i></a>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Remove Cisco ASA 10 Mbps</td>
+                    <td><span class="label label-warning">Solved</span></td>
+                    <td>
+                        <div class="btn-group">
+                            <a href="#" class="btn btn-mini" title="Edit"><i class="icon-pencil"></i></a>
+                            <a href="#" class="btn btn-mini" title="View"><i class="icon-eye-open"></i></a>
+                            <a href="#" class="btn btn-mini" title="Delete"><i class="icon-trash"></i></a>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Payment is late pricing issue</td>
+                    <td><span class="label label-warning">Solved</span></td>
+                    <td>
+                        <div class="btn-group">
+                            <a href="#" class="btn btn-mini" title="Edit"><i class="icon-pencil"></i></a>
+                            <a href="#" class="btn btn-mini" title="View"><i class="icon-eye-open"></i></a>
+                            <a href="#" class="btn btn-mini" title="Delete"><i class="icon-trash"></i></a>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>Remove 40 GB NAS</td>
+                    <td><span class="label label-warning">Solved</span></td>
+                    <td>
+                        <div class="btn-group">
+                            <a href="#" class="btn btn-mini" title="Edit"><i class="icon-pencil"></i></a>
+                            <a href="#" class="btn btn-mini" title="View"><i class="icon-eye-open"></i></a>
+                            <a href="#" class="btn btn-mini" title="Delete"><i class="icon-trash"></i></a>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>Database Slow</td>
+                    <td><span class="label label-warning">Solved</span></td>
+                    <td>
+                        <div class="btn-group">
+                            <a href="#" class="btn btn-mini" title="Edit"><i class="icon-pencil"></i></a>
+                            <a href="#" class="btn btn-mini" title="View"><i class="icon-eye-open"></i></a>
+                            <a href="#" class="btn btn-mini" title="Delete"><i class="icon-trash"></i></a>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>Install Wordpress</td>
+                    <td><span class="label label-warning">Solved</span></td>
+                    <td>
+                        <div class="btn-group">
+                            <a href="#" class="btn btn-mini" title="Edit"><i class="icon-pencil"></i></a>
+                            <a href="#" class="btn btn-mini" title="View"><i class="icon-eye-open"></i></a>
+                            <a href="#" class="btn btn-mini" title="Delete"><i class="icon-trash"></i></a>
+                        </div>
+                    </td>
+                </tr>
+
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+</div>
+
+
+</div>
+</div>
+<div class="footer_space"></div>
+</div>
+
+<!-- footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="span5">
+                <div>&copy; Copyright to FiberHop LLC 2014</div>
+            </div>
+            <div class="span7">
+                <ul class="unstyled">
+                    <li><a href="#">First link</a></li>
+                    <li>&middot;</li>
+                    <li><a href="#">Second link</a></li>
                 </ul>
             </div>
-            
-        <!-- main content -->
-            <div class="container">
-                <div class="row-fluid">
-                
-                <div class="span7">
-                        <div class="w-box">
-                            <div class="w-box-header">
-                               <i class="icsw16-pencil icsw16-white pull-right"></i> <h4>Add New Ticket</h4>
-                            </div>
-                            <div class="w-box-content">
-                                <form id="validate_extended">
-                                <div class="formSep">
-                                        <label class="req">Title</label>
-                                        <input class="span10" type="text" name="titlet" id="title" value="Title" />
-                                    </div>
-                                    
-                                    
-                                <div class="formSep">
-                                        <label class="req">Enter a URL</label>
-                                        <input value="http://" class="span10" type="text" name="val1_url" id="val1_url" />
-                                    </div>
-                                    
-                                    
-                                   <!-- <div class="formSep">
-                                        <label class="req">Select2</label>
-                                        <select name="s2_val" id="s2_val" class="span12">
-                                            <option value=""></option>
-                                        <optgroup label="Alaskan/Hawaiian Time Zone">
-                                            <option value="AK">Alaska</option>
-                                            <option value="HI">Hawaii</option>
-                                        </optgroup>
-                                        <optgroup label="Pacific Time Zone">
-                                            <option value="CA">California</option>
-                                            <option value="NV">Nevada</option>
-                                            <option value="OR">Oregon</option>
-                                            <option value="WA">Washington</option>
-                                        </optgroup>
-                                        <optgroup label="Mountain Time Zone">
-                                            <option value="AZ">Arizona</option>
-                                            <option value="CO">Colorado</option>
-                                            <option value="ID">Idaho</option>
-                                            <option value="MT">Montana</option>
-                                            <option value="NE">Nebraska</option>
-                                            <option value="NM">New Mexico</option>
-                                            <option value="ND">North Dakota</option>
-                                            <option value="UT">Utah</option>
-                                            <option value="WY">Wyoming</option>
-                                        </optgroup>
-                                        <optgroup label="Central Time Zone">
-                                            <option value="AL">Alabama</option>
-                                            <option value="AR">Arkansas</option>
-                                            <option value="IL">Illinois</option>
-                                            <option value="IA">Iowa</option>
-                                            <option value="KS">Kansas</option>
-                                            <option value="KY">Kentucky</option>
-                                            <option value="LA">Louisiana</option>
-                                            <option value="MN">Minnesota</option>
-                                            <option value="MS">Mississippi</option>
-                                            <option value="MO">Missouri</option>
-                                            <option value="OK">Oklahoma</option>
-                                            <option value="SD">South Dakota</option>
-                                            <option value="TX">Texas</option>
-                                            <option value="TN">Tennessee</option>
-                                            <option value="WI">Wisconsin</option>
-                                        </optgroup>
-                                        <optgroup label="Eastern Time Zone">
-                                            <option value="CT">Connecticut</option>
-                                            <option value="DE">Delaware</option>
-                                            <option value="FL">Florida</option>
-                                            <option value="GA">Georgia</option>
-                                            <option value="IN">Indiana</option>
-                                            <option value="ME">Maine</option>
-                                            <option value="MD">Maryland</option>
-                                            <option value="MA">Massachusetts</option>
-                                            <option value="MI">Michigan</option>
-                                            <option value="NH">New Hampshire</option>
-                                            <option value="NJ">New Jersey</option>
-                                            <option value="NY">New York</option>
-                                            <option value="NC">North Carolina</option>
-                                            <option value="OH">Ohio</option>
-                                            <option value="PA">Pennsylvania</option>
-                                            <option value="RI">Rhode Island</option>
-                                            <option value="SC">South Carolina</option>
-                                            <option value="VT">Vermont</option>
-                                            <option value="VA">Virginia</option>
-                                            <option value="WV">West Virginia</option>
-                                        </optgroup>
-                                        </select>
-                                    </div>-->
-                                    
-                                    <div class="row-fluid formSep">
-                                    <div class="span5">
-                                        <label class="req">Datepicker</label>
-                                        <input class="span8" value="" data-date-format="dd/mm/yyyy" id="dp_val" name="dp_val" type="text">
-                                    </div>
-                                    
-                                     <div class="span7">
-                                        <label class="req">File</label>
-                                        <input type="file" name="val1_file" id="val1_file" />
-                                    </div>
-                                    </div>
-                                    
-                                    <div class="formSep">
-                                        <label class="req">WYSIWG editor</label>
-                                        <textarea name="wysiwg_val" id="wysiwg_val" cols="30" rows="6" class="span12"></textarea>
-                                    </div>
-                                    <!--<div class="formSep">
-                                        <label class="req">Limit characters</label>
-                                        <textarea class="span12" name="count_textarea_val" id="count_textarea_val" cols="70" rows="6"></textarea>	
-                                    </div>-->
-                                    <div class="formSep">
-                                        <button type="submit" class="btn">Validate form</button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                        </div>
-                        
-                        
-                        
-                        
-                        
-                        
-                <div class="span5">
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                  <div class="w-box w-box-green hideable">
-                            <div class="w-box-header">
-                                <i class="icsw16-alert-2 icsw16-white pull-right"></i><h4>Open Tickets</h4>
-                            </div>
-                            <div class="w-box-content">
-                                <table id="dt_table" class="table table-striped ">
-                                <thead>
-                                    <tr>
-                                        <th>id</th>
-                                        <th>Title</th>
-                                        
-                                        
-                                        <th>Type</th>
-                                       
-                                       <th>Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr><td>1</td><td>Remove 40 GB NAS</td><td><span class="label label-success">Normal</span></td>
-                                    		<td>
-                                                <div class="btn-group">
-                                                    <a href="#" class="btn btn-mini" title="Edit"><i class="icon-pencil"></i></a>
-                                                    <a href="#" class="btn btn-mini" title="View"><i class="icon-eye-open"></i></a>
-                                                    <a href="#" class="btn btn-mini" title="Delete"><i class="icon-trash"></i></a>
-                                                </div>
-                                            </td>
-                                            </tr>
-                                    <tr><td>2</td><td>Remove Cisco ASA 10 Mbps</td><td><span class="label label-success">Normal</span></td>
-                                    		<td>
-                                                <div class="btn-group">
-                                                    <a href="#" class="btn btn-mini" title="Edit"><i class="icon-pencil"></i></a>
-                                                    <a href="#" class="btn btn-mini" title="View"><i class="icon-eye-open"></i></a>
-                                                    <a href="#" class="btn btn-mini" title="Delete"><i class="icon-trash"></i></a>
-                                                </div>
-                                            </td>
-                                            </tr>
-                                    <tr><td>3</td><td>Payment is late pricing issue</td><td><span class="label label-success">Normal</span></td><td>
-                                                <div class="btn-group">
-                                                    <a href="#" class="btn btn-mini" title="Edit"><i class="icon-pencil"></i></a>
-                                                    <a href="#" class="btn btn-mini" title="View"><i class="icon-eye-open"></i></a>
-                                                    <a href="#" class="btn btn-mini" title="Delete"><i class="icon-trash"></i></a>
-                                                </div>
-                                            </td></tr>
-                                    <tr><td>4</td><td>Remove 40 GB NAS</td><td><span class="label label-success">Normal</span></td><td>
-                                                <div class="btn-group">
-                                                    <a href="#" class="btn btn-mini" title="Edit"><i class="icon-pencil"></i></a>
-                                                    <a href="#" class="btn btn-mini" title="View"><i class="icon-eye-open"></i></a>
-                                                    <a href="#" class="btn btn-mini" title="Delete"><i class="icon-trash"></i></a>
-                                                </div>
-                                            </td></tr>
-                                    <tr><td>5</td><td>Database Slow</td><td><span class="label label-success">Normal</span></td><td>
-                                                <div class="btn-group">
-                                                    <a href="#" class="btn btn-mini" title="Edit"><i class="icon-pencil"></i></a>
-                                                    <a href="#" class="btn btn-mini" title="View"><i class="icon-eye-open"></i></a>
-                                                    <a href="#" class="btn btn-mini" title="Delete"><i class="icon-trash"></i></a>
-                                                </div>
-                                            </td></tr>
-                                    <tr><td>6</td><td>Install Wordpress</td><td><span class="label label-important">Critical</span></td><td>
-                                                <div class="btn-group">
-                                                    <a href="#" class="btn btn-mini" title="Edit"><i class="icon-pencil"></i></a>
-                                                    <a href="#" class="btn btn-mini" title="View"><i class="icon-eye-open"></i></a>
-                                                    <a href="#" class="btn btn-mini" title="Delete"><i class="icon-trash"></i></a>
-                                                </div>
-                                            </td></tr>
-                                   
-                                    
-                                </tbody>
-                                </table>
-                            </div>
-                        </div>
-                        
-                        
-                        
-                        
-                        
-                        
-                          <div class="w-box hideable">
-                            <div class="w-box-header">
-                                <i class="icsw16-documents icsw16-white pull-right"></i><h4>Closed Tickets</h4>
-                            </div>
-                            <div class="w-box-content">
-                                <table id="dt_table" class="table table-striped ">
-                                <thead>
-                                    <tr>
-                                        <th>id</th>
-                                        <th>Title</th>
-                                        
-                                        
-                                        <th>Type</th>
-                                       
-                                       <th>Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr><td>1</td><td>Remove 40 GB NAS</td><td><span class="label label-warning">Solved</span></td>
-                                    		<td>
-                                                <div class="btn-group">
-                                                    <a href="#" class="btn btn-mini" title="Edit"><i class="icon-pencil"></i></a>
-                                                    <a href="#" class="btn btn-mini" title="View"><i class="icon-eye-open"></i></a>
-                                                    <a href="#" class="btn btn-mini" title="Delete"><i class="icon-trash"></i></a>
-                                                </div>
-                                            </td>
-                                            </tr>
-                                    <tr><td>2</td><td>Remove Cisco ASA 10 Mbps</td><td><span class="label label-warning">Solved</span></td>
-                                    		<td>
-                                                <div class="btn-group">
-                                                    <a href="#" class="btn btn-mini" title="Edit"><i class="icon-pencil"></i></a>
-                                                    <a href="#" class="btn btn-mini" title="View"><i class="icon-eye-open"></i></a>
-                                                    <a href="#" class="btn btn-mini" title="Delete"><i class="icon-trash"></i></a>
-                                                </div>
-                                            </td>
-                                            </tr>
-                                    <tr><td>3</td><td>Payment is late pricing issue</td><td><span class="label label-warning">Solved</span></td><td>
-                                                <div class="btn-group">
-                                                    <a href="#" class="btn btn-mini" title="Edit"><i class="icon-pencil"></i></a>
-                                                    <a href="#" class="btn btn-mini" title="View"><i class="icon-eye-open"></i></a>
-                                                    <a href="#" class="btn btn-mini" title="Delete"><i class="icon-trash"></i></a>
-                                                </div>
-                                            </td></tr>
-                                    <tr><td>4</td><td>Remove 40 GB NAS</td><td><span class="label label-warning">Solved</span></td><td>
-                                                <div class="btn-group">
-                                                    <a href="#" class="btn btn-mini" title="Edit"><i class="icon-pencil"></i></a>
-                                                    <a href="#" class="btn btn-mini" title="View"><i class="icon-eye-open"></i></a>
-                                                    <a href="#" class="btn btn-mini" title="Delete"><i class="icon-trash"></i></a>
-                                                </div>
-                                            </td></tr>
-                                    <tr><td>5</td><td>Database Slow</td><td><span class="label label-warning">Solved</span></td><td>
-                                                <div class="btn-group">
-                                                    <a href="#" class="btn btn-mini" title="Edit"><i class="icon-pencil"></i></a>
-                                                    <a href="#" class="btn btn-mini" title="View"><i class="icon-eye-open"></i></a>
-                                                    <a href="#" class="btn btn-mini" title="Delete"><i class="icon-trash"></i></a>
-                                                </div>
-                                            </td></tr>
-                                    <tr><td>6</td><td>Install Wordpress</td><td><span class="label label-warning">Solved</span></td><td>
-                                                <div class="btn-group">
-                                                    <a href="#" class="btn btn-mini" title="Edit"><i class="icon-pencil"></i></a>
-                                                    <a href="#" class="btn btn-mini" title="View"><i class="icon-eye-open"></i></a>
-                                                    <a href="#" class="btn btn-mini" title="Delete"><i class="icon-trash"></i></a>
-                                                </div>
-                                            </td></tr>
-                                   
-                                    
-                                </tbody>
-                                </table>
-                            </div>
-                        </div>
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                    </div>
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-            
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                </div>
-            </div>
-            <div class="footer_space"></div>
-        </div> 
+        </div>
+    </div>
+</footer>
 
-    <!-- footer --> 
-       <footer>
-            <div class="container">
-                <div class="row">
-                    <div class="span5">
-                        <div>&copy; Copyright to FiberHop LLC  2014</div>
-                    </div>
-                    <div class="span7">
-                        <ul class="unstyled">
-                            <li><a href="#">First link</a></li>
-                            <li>&middot;</li>
-                            <li><a href="#">Second link</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </footer>
-        
-    <!-- Common JS -->
-        <!-- jQuery framework -->
-            <script src="js/jquery.min.js"></script>
-        <!-- bootstrap Framework plugins -->
-            <script src="bootstrap/js/bootstrap.min.js"></script>
-        <!-- top menu -->
-            <script src="js/jquery.fademenu.js"></script>
-        <!-- top mobile menu -->
-            <script src="js/selectnav.min.js"></script>
-        <!-- actual width/height of hidden DOM elements -->
-            <script src="js/jquery.actual.min.js"></script>
-        <!-- jquery easing animations -->
-            <script src="js/jquery.easing.1.3.min.js"></script>
-        <!-- power tooltips -->
-            <script src="js/lib/powertip/jquery.powertip-1.1.0.min.js"></script>
-        <!-- date library -->
-            <script src="js/moment.min.js"></script>
-        <!-- common functions -->
-            <script src="js/gobyweb_common.js"></script>
+<!-- Common JS -->
+<!-- jQuery framework -->
+<script src="js/jquery.min.js"></script>
+<!-- bootstrap Framework plugins -->
+<script src="bootstrap/js/bootstrap.min.js"></script>
+<!-- top menu -->
+<script src="js/jquery.fademenu.js"></script>
+<!-- top mobile menu -->
+<script src="js/selectnav.min.js"></script>
+<!-- actual width/height of hidden DOM elements -->
+<script src="js/jquery.actual.min.js"></script>
+<!-- jquery easing animations -->
+<script src="js/jquery.easing.1.3.min.js"></script>
+<!-- power tooltips -->
+<script src="js/lib/powertip/jquery.powertip-1.1.0.min.js"></script>
+<!-- date library -->
+<script src="js/moment.min.js"></script>
+<!-- common functions -->
+<script src="js/gobyweb_common.js"></script>
 
-        <!-- switch buttons -->
-            <script src="js/lib/ibutton/js/jquery.ibutton.gobyweb.min.js"></script>
-        <!-- enchanced select box, tag handler -->
-            <script src="js/lib/select2/select2.min.js"></script>
+<!-- switch buttons -->
+<script src="js/lib/ibutton/js/jquery.ibutton.gobyweb.min.js"></script>
+<!-- enchanced select box, tag handler -->
+<script src="js/lib/select2/select2.min.js"></script>
 
-            <script src="js/pages/gobyweb_settings.js"></script>
-            
-            
-          <!-- datatables -->
-            <script src="js/lib/datatables/js/jquery.dataTables.min.js"></script>
-        <!-- datatables column reorder -->
-            <script src="js/lib/datatables/extras/ColReorder/media/js/ColReorder.min.js"></script>
-        <!-- datatables column toggle visibility -->
-            <script src="js/lib/datatables/extras/ColVis/media/js/ColVis.min.js"></script>
-        <!-- datatable table tools -->
-            <script src="js/lib/datatables/extras/TableTools/media/js/TableTools.min.js"></script>
-            <script src="js/lib/datatables/extras/TableTools/media/js/ZeroClipboard.js"></script>
-        <!-- datatables bootstrap integration -->
-            <script src="js/lib/datatables/js/jquery.dataTables.bootstrap.min.js"></script>
-			<script src="js/pages/gobyweb_form_validation.js"></script>
-            <script src="js/pages/gobyweb_datatables.js"></script>
-                        <script src="js/lib/jquery-validation/jquery.validate.min.js"></script>
-        <!-- enchanced select box, tag handler -->
-            <script src="js/lib/select2/select2.min.js"></script>
-        <!-- datepicker -->
-            <script src="js/lib/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
-        <!-- WYSIWG Editor -->
-            <script src="js/lib/ckeditor/ckeditor.js"></script>
-        <!-- textarea counter -->
-            <script src="js/lib/jquery-textarea-counter/jquery.textareaCounter.plugin.min.js"></script>
+<script src="js/pages/gobyweb_settings.js"></script>
 
-    </body>
+
+<!-- datatables -->
+<script src="js/lib/datatables/js/jquery.dataTables.min.js"></script>
+<!-- datatables column reorder -->
+<script src="js/lib/datatables/extras/ColReorder/media/js/ColReorder.min.js"></script>
+<!-- datatables column toggle visibility -->
+<script src="js/lib/datatables/extras/ColVis/media/js/ColVis.min.js"></script>
+<!-- datatable table tools -->
+<script src="js/lib/datatables/extras/TableTools/media/js/TableTools.min.js"></script>
+<script src="js/lib/datatables/extras/TableTools/media/js/ZeroClipboard.js"></script>
+<!-- datatables bootstrap integration -->
+<script src="js/lib/datatables/js/jquery.dataTables.bootstrap.min.js"></script>
+<script src="js/pages/gobyweb_form_validation.js"></script>
+<script src="js/pages/gobyweb_datatables.js"></script>
+<script src="js/lib/jquery-validation/jquery.validate.min.js"></script>
+<!-- enchanced select box, tag handler -->
+<script src="js/lib/select2/select2.min.js"></script>
+<!-- datepicker -->
+<script src="js/lib/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
+<!-- WYSIWG Editor -->
+<script src="js/lib/ckeditor/ckeditor.js"></script>
+<!-- textarea counter -->
+<script src="js/lib/jquery-textarea-counter/jquery.textareaCounter.plugin.min.js"></script>
+
+</body>
 </html>

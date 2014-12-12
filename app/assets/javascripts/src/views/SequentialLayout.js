@@ -7,7 +7,7 @@
  * @copyright Famous Industries, Inc. 2014
  */
 
-define(function(require, exports, module) {
+define(function (require, exports, module) {
     var OptionsManager = require('../core/OptionsManager');
     var Transform = require('../core/Transform');
     var ViewSequence = require('../core/ViewSequence');
@@ -105,14 +105,14 @@ define(function(require, exports, module) {
      * @return {number} Render spec for this component
      */
     SequentialLayout.prototype.render = function render() {
-        var length             = 0;
+        var length = 0;
         var secondaryDirection = this.options.direction ^ 1;
-        var currentNode        = this._items;
-        var item               = null;
-        var itemSize           = [];
-        var output             = {};
-        var result             = [];
-        var i                  = 0;
+        var currentNode = this._items;
+        var item = null;
+        var itemSize = [];
+        var output = {};
+        var result = [];
+        var i = 0;
 
         this._size = [0, 0];
 

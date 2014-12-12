@@ -1,1 +1,3 @@
-../../js/jquery.multi-select.js
+..
+/../
+js / jquery.multi - select.js

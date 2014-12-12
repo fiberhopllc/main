@@ -7,7 +7,7 @@
  * @copyright Famous Industries, Inc. 2014
  */
 
-define(function(require, exports, module) {
+define(function (require, exports, module) {
     var Surface = require('../core/Surface');
 
     /**
@@ -27,15 +27,16 @@ define(function(require, exports, module) {
      */
     function TextareaSurface(options) {
         this._placeholder = options.placeholder || '';
-        this._value       = options.value || '';
-        this._name        = options.name || '';
-        this._wrap        = options.wrap || '';
-        this._cols        = options.cols || '';
-        this._rows        = options.rows || '';
+        this._value = options.value || '';
+        this._name = options.name || '';
+        this._wrap = options.wrap || '';
+        this._cols = options.cols || '';
+        this._rows = options.rows || '';
 
         Surface.apply(this, arguments);
         this.on('click', this.focus.bind(this));
     }
+
     TextareaSurface.prototype = Object.create(Surface.prototype);
     TextareaSurface.prototype.constructor = TextareaSurface;
 

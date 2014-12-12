@@ -7,7 +7,7 @@
  * @copyright Famous Industries, Inc. 2014
  */
 
-define(function(require, exports, module) {
+define(function (require, exports, module) {
     var Utility = require('../utilities/Utility');
     var View = require('../core/View');
     var GridLayout = require('../views/GridLayout');

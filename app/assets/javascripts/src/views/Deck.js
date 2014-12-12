@@ -7,7 +7,7 @@
  * @copyright Famous Industries, Inc. 2014
  */
 
-define(function(require, exports, module) {
+define(function (require, exports, module) {
     var Transform = require('../core/Transform');
     var OptionsManager = require('../core/OptionsManager');
     var Transitionable = require('../transitions/Transitionable');
@@ -38,7 +38,7 @@ define(function(require, exports, module) {
         this.state = new Transitionable(0);
         this._isOpen = false;
 
-        this.setOutputFunction(function(input, offset, index) {
+        this.setOutputFunction(function (input, offset, index) {
             var state = _getState.call(this);
             var positionMatrix = (this.options.direction === Utility.Direction.X) ?
                 Transform.translate(state * offset, 0, 0.001 * (state - 1) * offset) :
@@ -59,6 +59,7 @@ define(function(require, exports, module) {
             };
         });
     }
+
     Deck.prototype = Object.create(SequentialLayout.prototype);
     Deck.prototype.constructor = Deck;
 
@@ -114,7 +115,7 @@ define(function(require, exports, module) {
      */
     Deck.prototype.open = function open(callback) {
         this._isOpen = true;
-       _setState.call(this, 1, this.options.transition, callback);
+        _setState.call(this, 1, this.options.transition, callback);
     };
 
     /**

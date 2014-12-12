@@ -76,14 +76,14 @@ define(['durandal/system', 'durandal/app', 'durandal/composition', 'durandal/act
      */
     MessageBox.defaultOptions = ['Ok'];
 
-    
+
     MessageBox.defaultSettings = { buttonClass: "btn btn-default", primaryButtonClass: "btn-primary autofocus", secondaryButtonClass: "", "class": "modal-content messageBox", style: null };
 
     /**
-    * Sets the classes and styles used throughout the message box markup.
-    * @method setDefaults
-    * @param {object} settings A settings object containing the following optional properties: buttonClass, primaryButtonClass, secondaryButtonClass, class, style.
-    */
+     * Sets the classes and styles used throughout the message box markup.
+     * @method setDefaults
+     * @param {object} settings A settings object containing the following optional properties: buttonClass, primaryButtonClass, secondaryButtonClass, class, style.
+     */
     MessageBox.setDefaults = function (settings) {
         $.extend(MessageBox.defaultSettings, settings);
     };
@@ -165,18 +165,18 @@ define(['durandal/system', 'durandal/app', 'durandal/composition', 'durandal/act
      */
     MessageBox.defaultViewMarkup = [
         '<div data-view="plugins/messageBox" data-bind="css: getClass(), style: getStyle()">',
-            '<div class="modal-header">',
-                '<h3 data-bind="html: title"></h3>',
-            '</div>',
-            '<div class="modal-body">',
-                '<p class="message" data-bind="html: message"></p>',
-            '</div>',
-            '<div class="modal-footer">',
-                '<!-- ko foreach: options -->',
-                '<button data-bind="click: function () { $parent.selectOption($parent.getButtonValue($data)); }, text: $parent.getButtonText($data), css: $parent.getButtonClass($index)"></button>',
-                '<!-- /ko -->',
-                '<div style="clear:both;"></div>',
-            '</div>',
+        '<div class="modal-header">',
+        '<h3 data-bind="html: title"></h3>',
+        '</div>',
+        '<div class="modal-body">',
+        '<p class="message" data-bind="html: message"></p>',
+        '</div>',
+        '<div class="modal-footer">',
+        '<!-- ko foreach: options -->',
+        '<button data-bind="click: function () { $parent.selectOption($parent.getButtonValue($data)); }, text: $parent.getButtonText($data), css: $parent.getButtonClass($index)"></button>',
+        '<!-- /ko -->',
+        '<div style="clear:both;"></div>',
+        '</div>',
         '</div>'
     ].join('\n');
 
@@ -222,7 +222,7 @@ define(['durandal/system', 'durandal/app', 'durandal/composition', 'durandal/act
          * @method isOpen
          * @return {boolean} True if a dialog is open. false otherwise.
          */
-        isOpen: ko.computed(function() {
+        isOpen: ko.computed(function () {
             return dialogCount() > 0;
         }),
         /**

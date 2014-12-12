@@ -7,7 +7,7 @@
  * @copyright Famous Industries, Inc. 2014
  */
 
-define(function(require, exports, module) {
+define(function (require, exports, module) {
     var Entity = require('../core/Entity');
     var Transform = require('../core/Transform');
     var OptionsManager = require('../core/OptionsManager');
@@ -51,7 +51,7 @@ define(function(require, exports, module) {
     FlexibleLayout.DEFAULT_OPTIONS = {
         direction: FlexibleLayout.DIRECTION_X,
         transition: false,
-        ratios : []
+        ratios: []
     };
 
     function _reflow(ratios, length, direction) {
@@ -66,7 +66,7 @@ define(function(require, exports, module) {
         this._cachedLengths = [];
         this._cachedTransforms = [];
 
-        for (i = 0; i < ratios.length; i++){
+        for (i = 0; i < ratios.length; i++) {
             ratio = ratios[i];
             node = this._nodes[i];
 
@@ -208,14 +208,14 @@ define(function(require, exports, module) {
             length = this._cachedLengths[i];
             size[direction] = length;
             result.push({
-                transform : this._cachedTransforms[i],
+                transform: this._cachedTransforms[i],
                 size: size,
-                target : this._nodes[i].render()
+                target: this._nodes[i].render()
             });
         }
 
         if (parentSize && (parentOrigin[0] !== 0 && parentOrigin[1] !== 0))
-            parentTransform = Transform.moveThen([-parentSize[0]*parentOrigin[0], -parentSize[1]*parentOrigin[1], 0], parentTransform);
+            parentTransform = Transform.moveThen([-parentSize[0] * parentOrigin[0], -parentSize[1] * parentOrigin[1], 0], parentTransform);
 
         return {
             transform: parentTransform,

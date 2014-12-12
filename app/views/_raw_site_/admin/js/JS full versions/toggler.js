@@ -1,4 +1,4 @@
-! function (e) {
+!function (e) {
     "use strict";
     e.fn.bootstrapSwitch = function (t) {
         var i = 'input[type!="hidden"]',
@@ -137,8 +137,8 @@
         return n[t] ? n[t].apply(this, Array.prototype.slice.call(arguments, 1)) : "object" != typeof t && t ? (e.error("Method " + t + " does not exist!"), void 0) : n.init.apply(this, arguments)
     }
 }(jQuery),
-function (e) {
-    e(function () {
-        e(".make-switch").bootstrapSwitch()
-    })
-}(jQuery);
+    function (e) {
+        e(function () {
+            e(".make-switch").bootstrapSwitch()
+        })
+    }(jQuery);
