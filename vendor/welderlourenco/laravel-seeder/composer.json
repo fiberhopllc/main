@@ -1,0 +1,24 @@
+{
+    "name": "welderlourenco/laravel-seeder",
+    "type": "library",
+    "description": "Run your seeder files without touching your DatabaseSeeder.php file.",
+    "keywords": ["laravel","seed","seeder","command","auto"],
+    "homepage": "https://github.com/welderlourenco/laravel-seeder",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Welder Lourenço",
+            "email": "welderlourenco@yahoo.com.br"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0",
+        "illuminate/support": ">=4.0.0"
+    },
+    "autoload": {
+        "psr-0": {
+            "WelderLourenco\\LaravelSeeder\\": "src/"
+        }
+    },
+    "minimum-stability": "stable"
+}

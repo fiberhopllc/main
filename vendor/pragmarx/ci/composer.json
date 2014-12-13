@@ -1,0 +1,39 @@
+{
+    "name": "pragmarx/ci",
+
+    "description": "A Continuous Integration Service & Dashboard Package",
+
+    "keywords": ["laravel", "ci", "continuous integration", "test", "testing", "tdd"],
+
+    "license": "BSD-3-Clause",
+
+    "authors": [
+        {
+            "name": "Antonio Carlos Ribeiro",
+            "email": "acr@antoniocarlosribeiro.com",
+            "role": "Creator & Designer"
+        }
+    ],
+
+    "require": {
+        "php": ">=5.4.0",
+        "pragmarx/support": "~0.3",
+        "sensiolabs/ansi-to-html": "~1"
+    },
+
+    "autoload": {
+        "psr-4": {
+            "PragmaRX\\Ci\\": "src/"
+        },
+        "psr-0": {
+            "JasonLewis\\ResourceWatcher": "src/Support/jasonlewis/resource-watcher/src"
+        }
+    },
+
+    "extra": {
+        "component": "package",
+        "frameworks": ["Laravel 4", "Laravel 5"]
+    },
+
+    "minimum-stability": "dev"
+}

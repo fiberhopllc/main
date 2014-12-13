@@ -1,0 +1,23 @@
+{
+    "name": "valorin/deploy",
+    "description": "Deploy is an Artisan command with the aim to provide a very simple way to deploy your code into staging and production while ensuring valid version tags are applied.",
+    "license": "MIT",
+    "keywords": ["laravel", "remote", "deploy", "artisan"],
+    "authors": [
+        {
+            "name": "Stephen Rees-Carter",
+            "email": "stephen@rees-carter.net"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0",
+        "illuminate/support": "~4.2",
+        "illuminate/remote": ">=4.2.5,<5"
+    },
+    "autoload": {
+        "psr-4": {
+            "Valorin\\Deploy\\": "src/"
+        }
+    },
+    "minimum-stability": "stable"
+}
