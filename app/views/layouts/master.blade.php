@@ -115,7 +115,7 @@
 
 <!-- TODO -->
 <!--
-http://code.tutsplus.com/tutorials/building-a-customer-management-app-using-angularjs-and-laravel--cms-22234
+http://code.tutsplus.com/tutorials/building-a-customer-management-app-using-angularjs-and-laravelDASHDASHcms-22234
 -->
 </body>
 </html>

@@ -34,7 +34,7 @@
         <div class="row">
             <div class="span9">
                 <!-- Logo + Slogan -->
-                <div class="logo"><img src="/assets/images/logo.png" width="197" height="74" alt="FIBER HOP"></div>
+                <div class="logo"><img src="/assets/images/logo.png" width="250" height="125" alt="FiberHop LLC Logo : 197x74"></div>
 
                 <!-- end Logo + Slogan -->
             </div>
@@ -67,51 +67,50 @@
                     </div>
                     <div class="nav-collapse collapse">
                         <ul class="nav" id="navigation">
-                            <li><a class="active" href="#home">FiberHOP</a></li>
+                            <li><a class="active" href="#home">FiberHOP LLC</a></li>
                             <li><a href="#about-us">Consulting</a>
                                 <ul>
-                                    <li><a href="#">DC design</a></li>
-                                    <li><a href="#">system and cloud architecture</a></li>
-                                    <li><a href="#">network architecture</a></li>
+                                    <li><a href="#">DC Design</a></li>
+                                    <li><a href="#">System & Cloud Architecture</a></li>
+                                    <li><a href="#">Network Architecture</a></li>
                                     <li><a href="#">Layered Security</a></li>
                                     <li><a href="#">Migrations</a></li>
-                                    <li><a href="#">system integration</a></li>
-                                    <li><a href="#">systems and network support</a></li>
+                                    <li><a href="#">System Integration</a></li>
+                                    <li><a href="#">Systems & Network Support</a></li>
                                     <li><a href="#">VoIP</a></li>
                                 </ul>
                             </li>
                             <li><a href="#development">Development</a>
                                 <ul>
-                                    <li><a href="#">html</a></li>
-                                    <li><a href="#">html5</a></li>
-                                    <li><a href="#">java</a></li>
-                                    <li><a href="#">C#</a></li>
-                                    <li><a href="#">asp.net</a></li>
-                                    <li><a href="#">php</a></li>
-                                    <li><a href="#">CSS5</a></li>
+                                    <li><a href="#">HTML</a></li>
+                                    <li><a href="#">HTML5</a></li>
+                                    <li><a href="#">Java</a></li>
+                                    <li><a href="#">C# (C-Sharp)</a></li>
+                                    <li><a href="#">ASP.NET</a></li>
+                                    <li><a href="#">PHP</a></li>
                                 </ul>
                             </li>
                             <li><a href="#hosting">Hosting</a>
                                 <ul>
-                                    <li><a href="#">colo</a></li>
+                                    <li><a href="#">Colocation</a></li>
                                     <li><a href="#">VDI</a></li>
-                                    <li><a href="#">VM</a></li>
+                                    <li><a href="#">Virtual Machines(VM)</a></li>
                                     <li><a href="#">Dedicated</a></li>
-                                    <li><a href="#">webhosting</a></li>
-                                    <li><a href="#">transit</a></li>
-                                    <li><a href="#">DIA</a></li>
-                                    <li><a href="#">LB</a></li>
+                                    <li><a href="#">Virtual Hosting</a></li>
+                                    <li><a href="#">Transit</a></li>
+                                    <li><a href="#">Direct Internet Access (DIA)</a></li>
+                                    <li><a href="#">Load Balancing (LB)</a></li>
                                 </ul>
                             </li>
-                            <li><a href="#services">managed services</a>
+                            <li><a href="#services">Managed Services</a>
                                 <ul>
-                                    <li><a href="#">DC design</a></li>
-                                    <li><a href="#">system and cloud architecture</a></li>
-                                    <li><a href="#">network architecture</a></li>
+                                    <li><a href="#">DC Design</a></li>
+                                    <li><a href="#">System & Cloud Architecture</a></li>
+                                    <li><a href="#">Network Architecture</a></li>
                                     <li><a href="#">Layered Security</a></li>
                                     <li><a href="#">Migrations</a></li>
-                                    <li><a href="#">system integration</a></li>
-                                    <li><a href="#">systems and network support</a></li>
+                                    <li><a href="#">System Integration</a></li>
+                                    <li><a href="#">Systems & Network Support</a></li>
                                     <li><a href="#">VoIP</a></li>
                                 </ul>
                             </li>
@@ -462,8 +461,7 @@
 
                     <p class="testimonial">
                         Hypertext Markup Language (HTML) is a standardized system for tagging text files to achieve
-                        font, color, graphic, and hyperlink effects on World Wide Web pages. <br \><br \><br \><br \><br
-                        \>
+                        font, color, graphic, and hyperlink effects on World Wide Web pages. <br /><br /><br /><br /><br/>
                     </p>
                 </div>
                 <div class="testimony"><span class="testimony-name">HTML</span> <span
@@ -492,7 +490,7 @@
                     <p class="testimonial">ASP.NET is an open source server-side Web application framework designed for
                         Web development to produce dynamic Web pages.
                         It was developed by Microsoft&trade; to allow programmers to build dynamic web sites, web
-                        applications and web services. <br \><br \>
+                        applications and web services. <br /><br />
                     </p>
                 </div>
                 <div class="testimony"><span class="testimony-name">ASP.NET</span> <span class="testimony-post">Get a quote</span>
@@ -506,11 +504,11 @@
                     <p class="testimonial">
                         PHP (recursive acronym for PHP: Hypertext Preprocessor) is a widely-used open source
                         general-purpose scripting language that is especially suited for web development and can be
-                        embedded into HTML. <br \><br \><br \>
+                        embedded into HTML. <br /><br /><br />
                     </p>
                 </div>
-                <div class="testimony"><span class="testimony-name">PHP</span> <span
-                        class="testimony-post">Get a quote</span></div>
+                <div class="testimony"><span class="testimony-name">PHP</span>
+                    <span class="testimony-post">Get a quote</span></div>
             </article>
             <article class="ts-items">
                 <h2>&nbsp;</h2>
@@ -536,7 +534,7 @@
                         class-based, object-oriented, and specifically designed to have as few implementation
                         dependencies as possible.
                         It is intended to let application developers "write once, run anywhere" (WORA), meaning that
-                        code that runs on one platform does not need to be recompiled to run on another. <br \><br \>
+                        code that runs on one platform does not need to be recompiled to run on another. <br /><br />
                     </p>
                 </div>
                 <div class="testimony"><span class="testimony-name">Java</span> <span
@@ -581,15 +579,6 @@
             <div class="v-space-25"></div>
             <div class="row">
                 <article class="s-items span4">
-                    <h3>DC Design</h3>
-
-                    <div class="s-ico"><i class="icon-cogs"></i></div>
-                    <p>Praesent felis augue, placerat a congue id, auctor at ligula. Quisque ac quam in nisi tincidunt
-                        consectetur quis vitae elit. Mauris eget elit quis odio dapibus varius eu in nisi. Nullam quis
-                        nisl sapien. Integer lobortis vulputate diam, vel porttitor neque commodo ac. Mauris a magna sit
-                        amet purus varius dapibus. Pellentesque vestibulum faucibus nunc. </p>
-                </article>
-                <article class="s-items span4">
                     <h3>System & Cloud Architecture</h3>
 
                     <div class="s-ico"><i class="icon-signal"></i></div>
@@ -601,52 +590,61 @@
                         disaster recovery options.</p>
                 </article>
                 <article class="s-items span4">
-                    <h3>Network Architecture</h3>
-
-                    <div class="s-ico"><i class="icon-beaker"></i></div>
-                    <p>Id odio et dui vestibulum gravida. Praesent felis augue, placerat a congue id, auctor at ligula.
-                        Quisque ac quam in nisi tincidunt consectetur quis vitae elit. Mauris eget elit quis odio
-                        dapibus varius eu in nisi. Nullam quis nisl sapien. Integer lobortis vulputate diam, vel
-                        porttitor neque commodo ac. Mauris a magna sit amet purus varius dapibus. Pellentesque
-                        vestibulum faucibus nunc.</p>
-                </article>
-                <article class="s-items span4">
                     <h3>Layered Security</h3>
 
                     <div class="s-ico"><i class="icon-flag"></i></div>
-                    <p>Lorem Nam id odio et dui vestibulum gravida. Praesent felis augue, placerat a congue id, auctor
-                        at ligula. Quisque ac quam in nisi tincidunt consectetur quis vitae elit. Mauris eget elit quis
-                        odio dapibus varius eu in nisi. Nullam quis nisl sapien. Integer lobortis vulputate diam, vel
-                        porttitor neque commodo ac. Mauris a magna sit amet purus varius dapibus. Pellentesque
-                        vestibulum.</p>
+                    <p>Layered security refers to security systems that use multiple components to protect operations on multiple levels, or layers.
+                        This term can also be related to the term defense in depth, which is based on a slightly different idea where multiple strategies
+                        and resources are used to slow, block, delay or hinder a threat until it can be completely neutralized. </p>
                 </article>
                 <article class="s-items span4">
                     <h3>Migrations</h3>
 
                     <div class="s-ico"><i class="icon-bullhorn"></i></div>
-                    <p>Odio et dui vestibulum gravida. Praesent felis augue, placerat a congue id, auctor at ligula.
-                        Quisque ac quam in nisi tincidunt consectetur quis vitae elit. Mauris eget elit quis odio
-                        dapibus varius eu in nisi. Nullam quis nisl sapien. Integer lobortis vulputate diam, vel
-                        porttitor neque commodo ac. Mauris a magna sit amet purus varius dapibus. Pellentesque
-                        vestibulum.</p>
+                    <p> Server migration is a process in which data is moved from one server to another.
+                        Data may be moved between servers for security reasons, because equipment is being replaced, and for any number of other reasons.
+                        This process is performed by our team of specialists who work specifically with the origin and target server architectures and have a combined knowledge-base of
+                        35 years in the field. </p>
+                </article>
+                <article class="s-items span4">
+                    <h3>Network Architecture</h3>
+
+                    <div class="s-ico"><i class="icon-beaker"></i></div>
+                    <p> Design Services help you create a flexible, resilient, scalable architectural foundation to support your business solutions by developing designs
+                        for your IT and network infrastructure, applications, operations processes, and network management. They enable you to: </p>
+                    <ul>
+                        <li>Improve your network infrastructure performance, security, and scalability</li>
+                        <li>Accelerate adoption of new technologies and improve return on investment</li>
+                        <li>Reduce expensive and time-consuming redesign</li>
+                        <li>Strengthen the proficiency of your deployment team and operations team</li>
+                    </ul>
                 </article>
                 <article class="s-items span4">
                     <h3>Systems Integration</h3>
 
                     <div class="s-ico"><i class="icon-retweet"></i></div>
-                    <p>Nam id odio et dui vestibulum gravida. Praesent felis augue, placerat a congue id, auctor at
-                        ligula. Quisque ac quam in nisi tincidunt consectetur quis vitae elit. Mauris eget elit quis
-                        odio dapibus varius eu in nisi. Nullam quis nisl sapien. Integer lobortis vulputate diam, vel
-                        porttitor neque commodo ac. Mauris a magna sit amet purus varius dapibus. Pellentesque.</p>
+                    <p> In our 35+ years of experience, we have found that integrating technology systems can be one of the most frustrating technical hurdles facing many organizations.
+                        Voids existing between sophisticated applications can mean tremendous productivity loss as well as untold opportunity costs.
+                        It is also one of the most difficult things to fix - causing many organizations to limp along with systems that don't interconnect well to each other.</p>
+                </article>
+                <article class="s-items span4">
+                    <h3>DC Design</h3>
+
+                    <div class="s-ico"><i class="icon-cogs"></i></div>
+                    <p>FiberHop is dedicated to help you design a state of the art datacenter
+                        in record breaking time. It is no longer practical or cost-effective to completely engineer all aspects of a unique data center.
+                        Re-use of proven, documented subsystems or complete designs is a best practice for both new data centers and
+                        for upgrades to existing ones. Adopting a well-conceived design can have a positive impact on both the project itself,
+                        as well as on the operation of the data center over its lifetime.</p>
                 </article>
                 <article class="s-items span4">
                     <h3>Systems & Network Support</h3>
 
                     <div class="s-ico"><i class="icon-cogs"></i></div>
-                    <p>Praesent felis augue, placerat a congue id, auctor at ligula. Quisque ac quam in nisi tincidunt
-                        consectetur quis vitae elit. Mauris eget elit quis odio dapibus varius eu in nisi. Nullam quis
-                        nisl sapien. Integer lobortis vulputate diam, vel porttitor neque commodo ac. Mauris a magna sit
-                        amet purus varius dapibus. Pellentesque vestibulum faucibus nunc. </p>
+                    <p>FiberHop, LLC. is setup to support both Remote and Onsite issues. With A+ certified
+                        technicians working around the clock that can guarantee that your issues are resolved or
+                        a solution designed to solve the issues as quickly and efficiently as possible 24 hours a
+                        day / 7 days a week.  </p>
                 </article>
                 <article class="s-items span4">
                     <h3>VoIP</h3>
