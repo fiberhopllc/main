@@ -6,7 +6,7 @@
 <!--[if IE 8 ]>
 <html class="ie ie8" lang="en"> <![endif]-->
 <!--[if (gte IE 9)|!(IE)]><!-->
-<html class="not-ie" lang="en" ng-app="app">
+<html class="not-ie" lang="en">
 <!--<![endif]-->
 <head>
     <!-- Basic meta tags -->

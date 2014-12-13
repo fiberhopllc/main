@@ -1,331 +1,590 @@
 $(document).ready(function () {
-    /* -----------------------------------------------------
-     Bootstrap Components
-     -------------------------------------------------------- */
+    /* --------------------------------------------------------
+     Components
+     -----------------------------------------------------------*/
     (function () {
-        /* Tooltips */
-        $('.t-tips').tooltip();
+        /* Textarea */
+        if ($('.auto-size')[0]) {
+            $('.auto-size').autosize();
+        }
 
-        /* Tabs */
-        $('.my-tab a').click(function (e) {
+        //Select
+        if ($('.select')[0]) {
+            $('.select').selectpicker();
+        }
+
+        //Sortable
+        if ($('.sortable')[0]) {
+            $('.sortable').sortable();
+        }
+
+        //Tag Select
+        if ($('.tag-select')[0]) {
+            $('.tag-select').chosen();
+        }
+
+        /* Tab */
+        if ($('.tab')[0]) {
+            $('.tab a').click(function (e) {
+                e.preventDefault();
+                $(this).tab('show');
+            });
+        }
+
+        /* Collapse */
+        if ($('.collapse')[0]) {
+            $('.collapse').collapse();
+        }
+
+        /* Accordion */
+        $('.panel-collapse').on('shown.bs.collapse', function () {
+            $(this).prev().find('.panel-title a').removeClass('active');
+        });
+
+        $('.panel-collapse').on('hidden.bs.collapse', function () {
+            $(this).prev().find('.panel-title a').addClass('active');
+        });
+
+        //Popover
+        if ($('.pover')[0]) {
+            $('.pover').popover();
+        }
+    })();
+
+    /* --------------------------------------------------------
+     Sidebar + Menu
+     -----------------------------------------------------------*/
+    (function () {
+        /* Menu Toggle */
+        $('body').on('click touchstart', '#menu-toggle', function (e) {
             e.preventDefault();
-            $(this).tab('show');
+            $('html').toggleClass('menu-active');
+            $('#sidebar').toggleClass('toggled');
+            //$('#content').toggleClass('m-0');
         });
 
-        /* Accordian */
-        $('.accordion .accordion-toggle').append('<i class="icon-angle-right"></i>');
-    })();
-    /* -----------------------------------------------------
-     Flex slider
-     -------------------------------------------------------- */
-    (function () {
-        $('.flexslider').flexslider({
-            animation: "fade",
-            slideshow: true,
-            slideshowSpeed: 7000,
-            animationDuration: 500,
-            directionNav: true,
-            controlNav: true,
-            keyboardNav: true,
-            touchSwipe: true,
-            prevText: "Previous",
-            nextText: "Next",
-            randomize: false,
-            slideToStart: 0,
-            pauseOnAction: true,
-            pauseOnHover: false
+        /* Active Menu */
+        $('#sidebar .menu-item').hover(function () {
+            $(this).closest('.dropdown').addClass('hovered');
+        }, function () {
+            $(this).closest('.dropdown').removeClass('hovered');
         });
 
-        /* Add pixel-perfect icons for arrows */
-        $('.flex-prev').html('<i class="icon-double-angle-left"></i>');
-        $('.flex-next').html('<i class="icon-double-angle-right"></i>');
-    })();
-
-    /* ---------------------------------------------------------------------
-     Page Scrolling Animation
-     ------------------------------------------------------------------------ */
-    (function () {
-        $('#navigation a').click(function (e) {
-            var href = $(this).attr("href"),
-                offsetTop = href === "#" ? 0 : $(href).offset().top;
-            $('html, body').stop().animate({
-                scrollTop: offsetTop
-            }, 1000);
+        /* Prevent */
+        $('.side-menu .dropdown > a').click(function (e) {
             e.preventDefault();
         });
+
+
     })();
 
-    /* ---------------------------------------------------------------------
-     Sticky Menu with active menu
-     ------------------------------------------------------------------------ */
+    /* --------------------------------------------------------
+     Chart Info
+     -----------------------------------------------------------*/
     (function () {
-        var nav_container = $(".nav-container");
-        var nav = $("nav");
-        var waypoint_offset = 0;
-        var secs = $('#team, #about-us, #testimonials, #portfolio, #contact');
-        secs.prepend('<div class="v-space-sticky"></div>');
-
-        nav_container.waypoint({
-            handler: function (event, direction) {
-                if (direction == 'down') {
-                    nav_container.css({ 'height': nav.outerHeight() });
-                    nav.stop().addClass("sticky");
-                } else {
-                    nav_container.css({ 'height': 'auto' });
-                    nav.stop().removeClass("sticky").css("top", nav.outerHeight() + waypoint_offset).animate({"top": "0"});
-                }
-            },
-            offset: function () {
-                return -nav.outerHeight() - waypoint_offset;
-            }
-        });
-
-        var sections = $("section");
-        var navigation_links = $("nav a");
-
-        sections.waypoint({
-            handler: function (event, direction) {
-                var active_section;
-                active_section = $(this);
-                if (direction === "up") active_section = active_section.prev();
-
-                var active_link = $('nav a[href="#' + active_section.attr("id") + '"]');
-                navigation_links.removeClass("active");
-                active_link.addClass("active");
-                if ($('.navbar').hasClass('sticky')) {
-                    if (active_section.hasClass('light')) {
-                        active_link.closest('.sticky').removeClass('light');
-                        active_link.closest('.sticky').addClass('light');
-                    }
-                    else {
-                        active_link.closest('.sticky').removeClass('light');
-                        active_link.closest('.sticky').addClass('light');
-                        $()
-                    }
-                }
-                else {
-                    $('.navbar').removeClass('light');
-                    $('.nav li:first a').addClass('active');
-                }
-            },
-            offset: '25%'
+        $('body').on('click touchstart', '.tile .tile-info-toggle', function (e) {
+            e.preventDefault();
+            $(this).closest('.tile').find('.chart-info').toggle();
         });
     })();
 
-    /* ---------------------------------------------------------------------
-     Portfolio
-     ------------------------------------------------------------------------ */
+    /* --------------------------------------------------------
+     Todo List
+     -----------------------------------------------------------*/
     (function () {
-        $('.tp-grid').addClass('initial');
-        var $grid = $('#tp-grid'),
-            $name = $('#p-name'),
-            $ptitle = $('#p-name').html(),
-            $close = $('#close'),
-            $loader = $('<div class="loader"><i></i><i></i><i></i><i></i><i></i><i></i><span>Loading...</span></div>').insertBefore($grid),
-
-            stapel = $grid.stapel({
-                onLoad: function () {
-                    $loader.remove();
-                },
-                onBeforeOpen: function (pileName) {
-                    $name.html('Works we have done for: ' + pileName);
-                    $('.tp-grid').removeClass('initial');
-
-                },
-                onAfterOpen: function (pileName) {
-                    $close.show();
-                },
+        setTimeout(function () {
+            //Add line-through for alreadt checked items
+            $('.todo-list .media .checked').each(function () {
+                $(this).closest('.media').find('.checkbox label').css('text-decoration', 'line-through')
             });
 
-        $close.on('click', function () {
-            $close.hide();
-            $name.html($ptitle);
-            stapel.closePile();
-            $('.tp-grid').addClass('initial');
-        });
+            //Add line-through when checking
+            $('.todo-list .media input').on('ifChecked', function () {
+                $(this).closest('.media').find('.checkbox label').css('text-decoration', 'line-through');
+            });
+
+            $('.todo-list .media input').on('ifUnchecked', function () {
+                $(this).closest('.media').find('.checkbox label').removeAttr('style');
+            });
+        })
     })();
 
-    /* ---------------------------------------------------------------------
-     Center align the span items
-     ------------------------------------------------------------------------ */
+    /* --------------------------------------------------------
+     Custom Scrollbar
+     -----------------------------------------------------------*/
     (function () {
-        $(window).resize(function () {
-            if ($(this).width() < 1200) {
-                $('.l-projects').addClass('t-center');
+        if ($('.overflow')[0]) {
+            var overflowRegular, overflowInvisible = false;
+            overflowRegular = $('.overflow').niceScroll();
+        }
+    })();
+
+    /* --------------------------------------------------------
+     Messages + Notifications
+     -----------------------------------------------------------*/
+    (function () {
+        $('body').on('click touchstart', '.drawer-toggle', function (e) {
+            e.preventDefault();
+            var drawer = $(this).attr('data-drawer');
+
+            $('.drawer:not("#' + drawer + '")').removeClass('toggled');
+
+            if ($('#' + drawer).hasClass('toggled')) {
+                $('#' + drawer).removeClass('toggled');
             }
             else {
-                $('.l-projects').removeClass('t-center');
+                $('#' + drawer).addClass('toggled');
             }
-        })
-            .resize();
-    })();
-
-    /* ---------------------------------------------------------------------
-     Feeds Drawer
-     ------------------------------------------------------------------------ */
-    (function () {
-        $('.feeds-toggle').toggle(function () {
-                feeds = $('.feeds');
-                feedDisplay = $('#feeds-display');
-                screenHeight = $(window).height();
-
-                feeds.animate({height: screenHeight}, 500).css('position', 'fixed');
-                $(this).find('span').addClass('f-close');
-                $(this).addClass('fd-clicked');
-                feedDisplay.animate({opacity: '1'}, 300);
-            },
-            function () {
-                feedDisplay.animate({opacity: '0'}, 300);
-                feeds.animate({height: ''}, 500);
-                $(this).find('span').removeClass('f-close');
-                $(this).removeClass('fd-clicked');
-            });
-    })();
-
-    /* ---------------------------------------------------------------------
-     Socialist Feeds
-     ------------------------------------------------------------------------ */
-    $('.feeds-toggle').one('click', function () {
-        $('.socialist-loader').html('<div class="loader"><i></i><i></i><i></i><i></i><i></i><i></i><span>Loading...</span></div>');
-        $('#feeds-display').socialist({
-            networks: [
-                //{name:'pinterest',id:'rushenn'},
-                //{name:'twitter',id:'in1dotcom'},
-                {name: 'facebook', id: 'in1dotcom'},
-                //{name:'craigslist',id:'boo',areaName:'southcoast'},
-                {name: 'youtube', id: 'smosh'},
-                {name: 'rss', id: 'http://picsisee.blogspot.com/feeds/posts/default'},
-                {name: 'rss', id: 'http://samzmob.blogspot.com/feeds/posts/default'},
-                {name: 'rss', id: 'http://ppeoplez.blogspot.com/feeds/posts/default'},
-            ],
-            isotope: true,
-            random: true,
-            maxResults: '4', /* Number of feeds to show from each network */
-            textLength: '80',
-            fields: ['source', 'heading', 'text', 'date', 'image', 'followers', 'likes']
-
         });
-        $('.socialist-pinterest .foot .api a').html('<i class="icon-pinterest"></i>');
-        $('.socialist-rss .foot .api a').html('<i class="icon-rss"></i>');
-        $('.socialist-twitter .foot .api a').html('<i class="icon-twitter"></i>');
-        $('.socialist-facebook .foot .api a').html('<i class="icon-facebook-sign"></i>');
-        //Add Icons
-    });
 
-    /* ---------------------------------------------------------------------
-     Custom Scrollbar
-     ------------------------------------------------------------------------ */
-    (function () {
-        var sHeight = ($(window).height()) - 120;
-        $('.overflow').css('height', sHeight);
-        $('.overflow').enscroll({
-            showOnHover: true,
-            verticalTrackClass: 'track3',
-            verticalHandleClass: 'handle3'
+        //Close when click outside
+        $(document).on('mouseup touchstart', function (e) {
+            var container = $('.drawer, .tm-icon');
+            if (container.has(e.target).length === 0) {
+                $('.drawer').removeClass('toggled');
+                $('.drawer-toggle').removeClass('open');
+            }
+        });
+
+        //Close
+        $('body').on('click touchstart', '.drawer-close', function () {
+            $(this).closest('.drawer').removeClass('toggled');
+            $('.drawer-toggle').removeClass('open');
         });
     })();
 
-    /* ---------------------------------------------------------------------
-     Contact Form Sizing
-     ------------------------------------------------------------------------ */
+
+    /* --------------------------------------------------------
+     Calendar
+     -----------------------------------------------------------*/
     (function () {
-        $('.c-form').append('<div class="arr"></div>');
-        $('.arr').toggle(function () {
-                $(this).parent().css('height', '55px');
-                $(this).addClass('c-open');
-            },
-            function () {
-                $(this).parent().css('height', '100%');
-                $(this).removeClass('c-open');
-            });
-    })();
 
-    /* ---------------------------------------------------------------------
-     Image Popup [Pirobox]
-     ------------------------------------------------------------------------ */
-    (function () {
-        $().piroBox_ext({
-            piro_speed: 700,
-            bg_alpha: 0.5,
-            piro_scroll: true // pirobox always positioned at the center of the page
-        });
-    })();
-
-    /* ---------------------------------------------------------------------
-     Contact Form Validation and Submission
-     ------------------------------------------------------------------------ */
-    $("#contact-form").submit(function (e) {
-        e.preventDefault();
-
-        email = $("#email");
-        var err = 0;
-        $('#name, #email, #message', this).each(function () {
-            var val = $.trim(this.value);
-            $(this).toggleClass('form-error', !val);
-            if (!val)
-                err++;
-        })
-
-        if (!/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/.test(email.val())) {
-            $('#email').addClass('form-error');
-            return false;
-        }
-
-        if ($("input").hasClass("form-error")) {
-            return false;
-        }
-
-        else {
-            var form = $(this);
-            var post_url = form.attr('action');
-            var post_data = form.serialize();
-            $('#formSubmit', form).html('<i class="icon-spinner icon-spin"></i>&nbsp;&nbsp;Your form being submitted...');
-            $.ajax({
-                type: 'POST',
-                url: post_url,
-                data: post_data,
-                success: function (msg) {
-                    $(form).fadeOut(500, function () {
-                        form.html(msg).fadeIn();
-                    });
+        //Sidebar
+        if ($('#sidebar-calendar')[0]) {
+            var date = new Date();
+            var d = date.getDate();
+            var m = date.getMonth();
+            var y = date.getFullYear();
+            $('#sidebar-calendar').fullCalendar({
+                editable: false,
+                events: [],
+                header: {
+                    left: 'title'
                 }
             });
-            return true;
         }
+
+        //Content widget
+        if ($('#calendar-widget')[0]) {
+            $('#calendar-widget').fullCalendar({
+                header: {
+                    left: 'title',
+                    right: 'prev, next',
+                    //right: 'month,basicWeek,basicDay'
+                },
+                editable: true,
+                events: [
+                    {
+                        title: 'All Day Event',
+                        start: new Date(y, m, 1)
+                    },
+                    {
+                        title: 'Long Event',
+                        start: new Date(y, m, d - 5),
+                        end: new Date(y, m, d - 2)
+                    },
+                    {
+                        title: 'Repeat Event',
+                        start: new Date(y, m, 3),
+                        allDay: false
+                    },
+                    {
+                        title: 'Repeat Event',
+                        start: new Date(y, m, 4),
+                        allDay: false
+                    }
+                ]
+            });
+        }
+
+    })();
+
+    /* --------------------------------------------------------
+     RSS Feed widget
+     -----------------------------------------------------------*/
+    (function () {
+        if ($('#news-feed')[0]) {
+            $('#news-feed').FeedEk({
+                FeedUrl: 'http://rss.cnn.com/rss/edition.rss',
+                MaxCount: 5,
+                ShowDesc: false,
+                ShowPubDate: true,
+                DescCharacterLimit: 0
+            });
+        }
+    })();
+
+    /* --------------------------------------------------------
+     Chat
+     -----------------------------------------------------------*/
+    $(function () {
+        $('body').on('click touchstart', '.chat-list-toggle', function () {
+            $(this).closest('.chat').find('.chat-list').toggleClass('toggled');
+        });
+
+        $('body').on('click touchstart', '.chat .chat-header .btn', function (e) {
+            e.preventDefault();
+            $('.chat .chat-list').removeClass('toggled');
+            $(this).closest('.chat').toggleClass('toggled');
+        });
+
+        $(document).on('mouseup touchstart', function (e) {
+            var container = $('.chat, .chat .chat-list');
+            if (container.has(e.target).length === 0) {
+                container.removeClass('toggled');
+            }
+        });
     });
 
-    /* ---------------------------------------------------------------------
-     Adding Fontawsome icons as bullets
-     ------------------------------------------------------------------------ */
+    /* --------------------------------------------------------
+     Form Validation
+     -----------------------------------------------------------*/
     (function () {
-        $('ul.uno-list-1 li').prepend('<i class="icon-angle-right"></i>');
-        $('ul.uno-list-2 li').prepend('<i class="icon-double-angle-right"></i>');
-        $('ul.uno-list-3 li').prepend('<i class="icon-circle-blank"></i>');
-        $('ul.uno-list-4 li').prepend('<i class="icon-ok"></i>');
-        $('ul.uno-list-5 li').prepend('<i class="icon-arrow-right"></i>');
-        $('ul.uno-list-6 li').prepend('<i class="icon-check-empty"></i>');
+        if ($("[class*='form-validation']")[0]) {
+            $("[class*='form-validation']").validationEngine();
+
+            //Clear Prompt
+            $('body').on('click', '.validation-clear', function (e) {
+                e.preventDefault();
+                $(this).closest('form').validationEngine('hide');
+            });
+        }
+    })();
+
+    /* --------------------------------------------------------
+     `Color Picker
+     -----------------------------------------------------------*/
+    (function () {
+        //Default - hex
+        if ($('.color-picker')[0]) {
+            $('.color-picker').colorpicker();
+        }
+
+        //RGB
+        if ($('.color-picker-rgb')[0]) {
+            $('.color-picker-rgb').colorpicker({
+                format: 'rgb'
+            });
+        }
+
+        //RGBA
+        if ($('.color-picker-rgba')[0]) {
+            $('.color-picker-rgba').colorpicker({
+                format: 'rgba'
+            });
+        }
+
+        //Output Color
+        if ($('[class*="color-picker"]')[0]) {
+            $('[class*="color-picker"]').colorpicker().on('changeColor', function (e) {
+                var colorThis = $(this).val();
+                $(this).closest('.color-pick').find('.color-preview').css('background', e.color.toHex());
+            });
+        }
+    })();
+
+    /* --------------------------------------------------------
+     Date Time Picker
+     -----------------------------------------------------------*/
+    (function () {
+        //Date Only
+        if ($('.date-only')[0]) {
+            $('.date-only').datetimepicker({
+                pickTime: false
+            });
+        }
+
+        //Time only
+        if ($('.time-only')[0]) {
+            $('.time-only').datetimepicker({
+                pickDate: false
+            });
+        }
+
+        //12 Hour Time
+        if ($('.time-only-12')[0]) {
+            $('.time-only-12').datetimepicker({
+                pickDate: false,
+                pick12HourFormat: true
+            });
+        }
+
+        $('.datetime-pick input:text').on('click', function () {
+            $(this).closest('.datetime-pick').find('.add-on i').click();
+        });
+    })();
+
+    /* --------------------------------------------------------
+     Input Slider
+     -----------------------------------------------------------*/
+    (function () {
+        if ($('.input-slider')[0]) {
+            $('.input-slider').slider().on('slide', function (ev) {
+                $(this).closest('.slider-container').find('.slider-value').val(ev.value);
+            });
+        }
+    })();
+
+    /* --------------------------------------------------------
+     WYSIWYE Editor + Markedown
+     -----------------------------------------------------------*/
+    (function () {
+        //Markedown
+        if ($('.markdown-editor')[0]) {
+            $('.markdown-editor').markdown({
+                autofocus: false,
+                savable: false
+            });
+        }
+
+        //WYSIWYE Editor
+        if ($('.wysiwye-editor')[0]) {
+            $('.wysiwye-editor').summernote({
+                height: 200
+            });
+        }
+
+    })();
+
+    /* --------------------------------------------------------
+     Media Player
+     -----------------------------------------------------------*/
+    (function () {
+        if ($('audio, video')[0]) {
+            $('audio,video').mediaelementplayer({
+                success: function (player, node) {
+                    $('#' + node.id + '-mode').html('mode: ' + player.pluginType);
+                }
+            });
+        }
+    })();
+
+    /* ---------------------------
+     Image Popup [Pirobox]
+     --------------------------- */
+    (function () {
+        if ($('.pirobox_gall')[0]) {
+            //Fix IE
+            jQuery.browser = {};
+            (function () {
+                jQuery.browser.msie = false;
+                jQuery.browser.version = 0;
+                if (navigator.userAgent.match(/MSIE ([0-9]+)\./)) {
+                    jQuery.browser.msie = true;
+                    jQuery.browser.version = RegExp.$1;
+                }
+            })();
+
+            //Lightbox
+            $().piroBox_ext({
+                piro_speed: 700,
+                bg_alpha: 0.5,
+                piro_scroll: true // pirobox always positioned at the center of the page
+            });
+        }
+    })();
+
+    /* ---------------------------
+     Vertical tab
+     --------------------------- */
+    (function () {
+        $('.tab-vertical').each(function () {
+            var tabHeight = $(this).outerHeight();
+            var tabContentHeight = $(this).closest('.tab-container').find('.tab-content').outerHeight();
+
+            if ((tabContentHeight) > (tabHeight)) {
+                $(this).height(tabContentHeight);
+            }
+        })
+
+        $('body').on('click touchstart', '.tab-vertical li', function () {
+            var tabVertical = $(this).closest('.tab-vertical');
+            tabVertical.height('auto');
+
+            var tabHeight = tabVertical.outerHeight();
+            var tabContentHeight = $(this).closest('.tab-container').find('.tab-content').outerHeight();
+
+            if ((tabContentHeight) > (tabHeight)) {
+                tabVertical.height(tabContentHeight);
+            }
+        });
+
+
+    })();
+
+    /* --------------------------------------------------------
+     Login + Sign up
+     -----------------------------------------------------------*/
+    (function () {
+        $('body').on('click touchstart', '.box-switcher', function (e) {
+            e.preventDefault();
+            var box = $(this).attr('data-switch');
+            $(this).closest('.box').toggleClass('active');
+            $('#' + box).closest('.box').addClass('active');
+        });
     })();
 
 
+    /* --------------------------------------------------------
+     Checkbox + Radio
+     -----------------------------------------------------------*/
+    if ($('input:checkbox, input:radio')[0]) {
+
+        //Checkbox + Radio skin
+        $('input:checkbox:not([data-toggle="buttons"] input, .make-switch input), input:radio:not([data-toggle="buttons"] input)').iCheck({
+            checkboxClass: 'icheckbox_minimal',
+            radioClass: 'iradio_minimal',
+            increaseArea: '20%' // optional
+        });
+
+        //Checkbox listing
+        var parentCheck = $('.list-parent-check');
+        var listCheck = $('.list-check');
+
+        parentCheck.on('ifChecked', function () {
+            $(this).closest('.list-container').find('.list-check').iCheck('check');
+        });
+
+        parentCheck.on('ifClicked', function () {
+            $(this).closest('.list-container').find('.list-check').iCheck('uncheck');
+        });
+
+        listCheck.on('ifChecked', function () {
+            var parent = $(this).closest('.list-container').find('.list-parent-check');
+            var thisCheck = $(this).closest('.list-container').find('.list-check');
+            var thisChecked = $(this).closest('.list-container').find('.list-check:checked');
+
+            if (thisCheck.length == thisChecked.length) {
+                parent.iCheck('check');
+            }
+        });
+
+        listCheck.on('ifUnchecked', function () {
+            var parent = $(this).closest('.list-container').find('.list-parent-check');
+            parent.iCheck('uncheck');
+        });
+
+        listCheck.on('ifChanged', function () {
+            var thisChecked = $(this).closest('.list-container').find('.list-check:checked');
+            var showon = $(this).closest('.list-container').find('.show-on');
+            if (thisChecked.length > 0) {
+                showon.show();
+            }
+            else {
+                showon.hide();
+            }
+        });
+    }
+
+    /* --------------------------------------------------------
+     MAC Hack
+     -----------------------------------------------------------*/
+    (function () {
+        //Mac only
+        if (navigator.userAgent.indexOf('Mac') > 0) {
+            $('body').addClass('mac-os');
+        }
+    })();
+
+    /* --------------------------------------------------------
+     Photo Gallery
+     -----------------------------------------------------------*/
+    (function () {
+        if ($('.photo-gallery')[0]) {
+            $('.photo-gallery').SuperBox();
+        }
+    })();
+
 });
 
-$(window).bind('load', function () {
-    /* ---------------------------------------------------------------------
-     Page loading animation
-     ------------------------------------------------------------------------ */
-    var page = $('#p-load');
-    page.animate({opacity: '0'}, 1000, function () {
-        page.hide();
-    });
+$(window).load(function () {
+    /* --------------------------------------------------------
+     Tooltips
+     -----------------------------------------------------------*/
+    (function () {
+        if ($('.tooltips')[0]) {
+            $('.tooltips').tooltip();
+        }
+    })();
 
-    /* ---------------------------------------------------------------------
-     Testimonials
-     ------------------------------------------------------------------------ */
-    $('#masonry').masonry({
-        itemSelector: '.ts-items',
-        columnWidth: 270,
-        gutterWidth: 30,
-        isAnimated: true
+    /* --------------------------------------------------------
+     Animate numbers
+     -----------------------------------------------------------*/
+    $('.quick-stats').each(function () {
+        var target = $(this).find('h2');
+        var toAnimate = $(this).find('h2').attr('data-value');
+        // Animate the element's value from x to y:
+        $({someValue: 0}).animate({someValue: toAnimate}, {
+            duration: 1000,
+            easing: 'swing', // can be anything
+            step: function () { // called on every step
+                // Update the element's text with rounded-up value:
+                target.text(commaSeparateNumber(Math.round(this.someValue)));
+            }
+        });
+
+        function commaSeparateNumber(val) {
+            while (/(\d+)(\d{3})/.test(val.toString())) {
+                val = val.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+            }
+            return val;
+        }
     });
 
 });
+
+/* --------------------------------------------------------
+ Date Time Widget
+ -----------------------------------------------------------*/
+(function () {
+    var monthNames = [ "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" ];
+    var dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
+
+    // Create a newDate() object
+    var newDate = new Date();
+
+    // Extract the current date from Date object
+    newDate.setDate(newDate.getDate());
+
+    // Output the day, date, month and year
+    $('#date').html(dayNames[newDate.getDay()] + " " + newDate.getDate() + ' ' + monthNames[newDate.getMonth()] + ' ' + newDate.getFullYear());
+
+    setInterval(function () {
+
+        // Create a newDate() object and extract the seconds of the current time on the visitor's
+        var seconds = new Date().getSeconds();
+
+        // Add a leading zero to seconds value
+        $("#sec").html(( seconds < 10 ? "0" : "" ) + seconds);
+    }, 1000);
+
+    setInterval(function () {
+
+        // Create a newDate() object and extract the minutes of the current time on the visitor's
+        var minutes = new Date().getMinutes();
+
+        // Add a leading zero to the minutes value
+        $("#min").html(( minutes < 10 ? "0" : "" ) + minutes);
+    }, 1000);
+
+    setInterval(function () {
+
+        // Create a newDate() object and extract the hours of the current time on the visitor's
+        var hours = new Date().getHours();
+
+        // Add a leading zero to the hours value
+        $("#hours").html(( hours < 10 ? "0" : "" ) + hours);
+    }, 1000);
+})();
+
+
