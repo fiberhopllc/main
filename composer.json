@@ -36,6 +36,7 @@
         "toddish/verify": "3.*",
         "michaelesmith/throttle": "*",
         "zizaco/entrust": "1.2.*@dev"
+        // install ctags.sf.net
     },
     "require-dev": {
         "behat/behat": "~3.0.6",
