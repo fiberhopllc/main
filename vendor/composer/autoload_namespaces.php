@@ -8,6 +8,8 @@ $baseDir = dirname($vendorDir);
 return array(
     'phpDocumentor' => array($vendorDir . '/phpdocumentor/reflection-docblock/src'),
     'Zizaco\\Entrust' => array($vendorDir . '/zizaco/entrust/src'),
+    'Zend\\' => array($vendorDir . '/zendframework/zendframework/library'),
+    'ZendXml\\' => array($vendorDir . '/zendframework/zendxml/library'),
     'Yhbyun\\Snowman\\' => array($vendorDir . '/yhbyun/snowman/src'),
     'Xethron\\MigrationsGenerator' => array($vendorDir . '/xethron/migrations-generator/src'),
     'Whoops' => array($vendorDir . '/filp/whoops/src'),
@@ -70,7 +72,6 @@ return array(
     'Guzzle' => array($vendorDir . '/guzzle/guzzle/src'),
     'Fitztrev\\LaravelHtmlMinify' => array($vendorDir . '/fitztrev/laravel-html-minify/src'),
     'File' => array($vendorDir . '/phpseclib/phpseclib/phpseclib'),
-    'Doctrine\\Instantiator\\' => array($vendorDir . '/doctrine/instantiator/src'),
     'Doctrine\\DBAL\\' => array($vendorDir . '/doctrine/dbal/lib'),
     'Doctrine\\Common\\Lexer\\' => array($vendorDir . '/doctrine/lexer/lib'),
     'Doctrine\\Common\\Inflector\\' => array($vendorDir . '/doctrine/inflector/lib'),

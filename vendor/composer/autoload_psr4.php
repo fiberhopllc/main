@@ -18,6 +18,7 @@ return array(
     'Faker\\' => array($vendorDir . '/fzaninotto/faker/src/Faker'),
     'EllipseSynergie\\ApiResponse\\Tests\\' => array($vendorDir . '/ellipsesynergie/api-response/tests'),
     'EllipseSynergie\\ApiResponse\\' => array($vendorDir . '/ellipsesynergie/api-response/src'),
+    'Doctrine\\Instantiator\\' => array($vendorDir . '/doctrine/instantiator/src/Doctrine/Instantiator'),
     'Chrisbjr\\ApiGuard\\' => array($vendorDir . '/chrisbjr/api-guard/src/Chrisbjr/ApiGuard'),
     'Barryvdh\\LaravelIdeHelper\\' => array($vendorDir . '/barryvdh/laravel-ide-helper/src'),
     'Barryvdh\\Debugbar\\' => array($vendorDir . '/barryvdh/laravel-debugbar/src'),
