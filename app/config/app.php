@@ -151,6 +151,7 @@
             'Laracasts\Validation\ValidationServiceProvider',
             'basicAuth\Repo\BackendServiceProvider',
             'GrahamCampbell\Throttle\ThrottleServiceProvider',
+            'Zizaco\Confide\ServiceProvider',
             'Zizaco\Entrust\EntrustServiceProvider',
             // Add:  http://packalyst.com/packages/package/creolab/laravel-modules ?
 
@@ -194,6 +195,7 @@
             'Carbon'                          => 'Carbon\Carbon',
             'ClassLoader'                     => 'Illuminate\Support\ClassLoader',
             'Coffee'                          => 'VTalbot\Coffee\Facades\Coffee',
+            'Confide'                         => 'Zizaco\Confide\Facade',
             'Config'                          => 'Illuminate\Support\Facades\Config',
             'Controller'                      => 'Illuminate\Routing\Controller',
             'Cookie'                          => 'Illuminate\Support\Facades\Cookie',

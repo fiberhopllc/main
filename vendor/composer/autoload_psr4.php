@@ -7,6 +7,7 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'basicAuth\\' => array($baseDir . '/app/basicAuth'),
+    'Zizaco\\Confide\\' => array($vendorDir . '/zizaco/confide/src/Confide'),
     'Valorin\\Deploy\\' => array($vendorDir . '/valorin/deploy/src'),
     'Robbo\\Presenter\\' => array($vendorDir . '/robclancy/presenter/src'),
     'PragmaRX\\Support\\' => array($vendorDir . '/pragmarx/support/src'),

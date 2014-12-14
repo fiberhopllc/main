@@ -42,7 +42,8 @@
         "toddish/verify": "3.*",
         "michaelesmith/throttle": "*",
         "zizaco/entrust": "1.2.*@dev",
-        "zendframework/zendframework": "2.3.*"
+        "zendframework/zendframework": "2.3.*",
+        "zizaco/confide": "~4.0@dev"
     },
     "require-dev": {
         "behat/behat": "~3.0.6",
