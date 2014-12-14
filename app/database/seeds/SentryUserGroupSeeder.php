@@ -11,15 +11,41 @@
         {
             DB::table('users_groups')->delete();
 
-            $userUser  = Sentry::getUserProvider()->findByLogin('user@user.com');
-            $adminUser = Sentry::getUserProvider()->findByLogin('admin@admin.com');
 
-            $userGroup  = Sentry::getGroupProvider()->findByName('Users');
-            $adminGroup = Sentry::getGroupProvider()->findByName('Admins');
+            // admin@admin.com
+            // monitoring@monitoring.com
+            // standard@standard.com
+            // vendor@vendor.com
+            // whitelabel@whitelabel.com
+            // deactivated@standard.com
+
+            $adminUser  = Sentry::getUserProvider()->findByLogin('admin@admin.com');
+            $adminGroup  = Sentry::getGroupProvider()->findByName('Admins');
+
+            $monitoringUser  = Sentry::getUserProvider()->findByLogin('monitoring@monitoring.com');
+            $monitoringGroup  = Sentry::getGroupProvider()->findByName('Monitoring');
+
+            $standardUser  = Sentry::getUserProvider()->findByLogin('standard@standard.com');
+            $standardGroup  = Sentry::getGroupProvider()->findByName('Standard');
+
+            $vendorUser  = Sentry::getUserProvider()->findByLogin('vendor@vendor.com');
+            $vendorGroup  = Sentry::getGroupProvider()->findByName('Vendor');
+
+            $whitelabelUser  = Sentry::getUserProvider()->findByLogin('whitelabel@whitelabel.com');
+            $whitelabelGroup  = Sentry::getGroupProvider()->findByName('WhiteLabel');
+
+            $deactivatedUser  = Sentry::getUserProvider()->findByLogin('deactivated@standard.com');
+            $deactivatedGroup  = Sentry::getGroupProvider()->findByName('Standard');
+
 
             // Assign the groups to the users
-            $userUser->addGroup($userGroup);
             $adminUser->addGroup($adminGroup);
+            $monitoringUser->addGroup($monitoringGroup);
+            $standardUser->addGroup($standardGroup);
+            $vendorUser->addGroup($vendorGroup);
+            $whitelabelUser->addGroup($whitelabelGroup);
+            $deactivatedUser->addGroup($deactivatedGroup);
+
         }
 
     }

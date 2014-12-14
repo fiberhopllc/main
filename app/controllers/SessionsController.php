@@ -29,7 +29,7 @@
          */
         public function store()
         {
-            $this->loginForm->validate($input = Input::only('email', 'password'));
+            $this->loginForm->validate($input = Input::all());
 
             try {
                 Sentry::authenticate($input, Input::has('remember'));

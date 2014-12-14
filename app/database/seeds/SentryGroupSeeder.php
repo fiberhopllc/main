@@ -12,11 +12,23 @@
             DB::table('groups')->delete();
 
             Sentry::getGroupProvider()->create(array(
-                'name' => 'Users',
+                'name' => 'Admins',
             ));
 
             Sentry::getGroupProvider()->create(array(
-                'name' => 'Admins',
+                'name' => 'Monitoring',
+            ));
+
+            Sentry::getGroupProvider()->create(array(
+                'name' => 'Standard',
+            ));
+
+            Sentry::getGroupProvider()->create(array(
+                'name' => 'Vendor',
+            ));
+
+            Sentry::getGroupProvider()->create(array(
+                'name' => 'WhiteLabel',
             ));
         }
 

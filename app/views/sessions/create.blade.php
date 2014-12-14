@@ -50,31 +50,40 @@
 </head>
 <body>
 <div id="login-wrapper" class="clearfix">
+    @if (Session::has('flash_message'))
+    <p style="color:red; text-align:center; padding:5px" class="bg-success text-success">{{ Session::get('flash_message') }}</p>
+    @endif
+
+    @if (Session::has('error_message'))
+    <p style="color:red; text-align:center; padding:5px" class="bg-danger text-danger">{{ Session::get('error_message') }}</p>
+    @endif
+
     <div class="main-col">
-        <img src="img/login-logo.png" alt="" class="logo_img" />
+        {{ HTML::image('assets/images/login-logo.png', 'Logo', array('class' => 'logo_img')) }}
         <div class="panel">
             <p class="heading_main">Account Login</p>
             {{ Form::open(array('route' => 'sessions.store', 'id' => 'login-validate')) }}
-                <label for="login_name">Login</label>
-                <input type="text" id="login_name" name="login_name" value="josh@gobyweb2.com" />
-                <label for="login_password">Password</label>
-                <input type="password" id="login_password" name="login_password" value="password" />
-                <label for="login_remember" class="checkbox"><input type="checkbox" id="login_remember" name="login_remember" /> Remember me</label>
+                {{ Form::label('email', 'Login') }}
+                {{ Form::text('email', null, array('id'=>'email', 'name' => 'email', 'placeholder'=>'Username')) }}
+                {{ Form::label('password', 'Password') }}
+                {{ Form::password('password', array('id'=>'password', 'name' => 'password', 'placeholder'=>'Password')) }}
+                <label for="login_remember" class="checkbox">
+                <input type="checkbox" id="login_remember" name="login_remember" />Remember me</label>
                 <div class="submit_sect">
-                    <button type="submit" class="btn btn-gobyweb-3">Login</button>
+                    {{ Form::submit('Login', array('class' => 'btn btn-gobyweb-3')) }}
                 </div>
-            {{ Form::token() }}
+                {{ Form::token() }}
             {{ Form::close() }}
         </div>
         <div class="panel" style="display:none">
             <p class="heading_main">Can't sign in?</p>
             {{ Form::open(array('url' => 'forgot_password', 'id' => 'forgot-validate')) }}
-                <label for="forgot_email">Your email adress</label>
-                <input type="text" id="forgot_email" name="forgot_email" />
+                {{ Form::label('forgot_email', 'Your e-mail address') }}
+                {{ Form::text('forgot_email', null, array('id'=>'forgot_email', 'name' => 'forgot_email', 'placeholder'=>'Username')) }}
                 <div class="submit_sect">
-                    <button type="submit" class="btn btn-gobyweb-3">Request New Password</button>
+                    {{ Form::submit('Request New Password', array('class' => 'btn btn-gobyweb-3')) }}
                 </div>
-            {{ Form::token() }}
+                {{ Form::token() }}
             {{ Form::close() }}
         </div>
     </div>
