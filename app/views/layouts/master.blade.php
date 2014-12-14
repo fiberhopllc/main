@@ -102,7 +102,7 @@
 <!-- Javascript -->
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 <!-- jQuery from Google CDN -->
-<script>window.jQuery || document.write('<script src="/assets/javascripts/min/jquery-1.8.3.min.js"><\/script>')</script>
+<script>window.jQuery || document.write('<script src="/assets/javascripts/min/jquery-1.8.3.min.min.js"><\/script>')</script>
 <!-- jQuery Local if CDN failed -->
 <script src="http://code.angularjs.org/1.2.3/angular.js"></script>
 <script src="http://code.angularjs.org/1.2.3/angular-route.js"></script>
