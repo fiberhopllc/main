@@ -59,7 +59,7 @@
     @endif
 
     <div class="main-col">
-        {{ HTML::image('assets/images/login-logo.png', 'Logo', array('class' => 'logo_img')) }}
+        {{ HTML::image('assets/images/FiberHop_Logo_Transparent.png', 'Logo', array('class' => 'logo_img')) }}
         <div class="panel">
             <p class="heading_main">Account Login</p>
             {{ Form::open(array('route' => 'sessions.store', 'id' => 'login-validate')) }}

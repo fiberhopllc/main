@@ -94,6 +94,13 @@ gulp.task('images-flatten', function(){
         .pipe(gulp.dest('public/assets/images/'));
 });
 
+/**
+ *
+        .pipe(autoprefixer({
+            browsers: ['last 5 versions'],
+            cascade: false
+        }))
+ */
 gulp.task('css', function()
 {
     gulp.src('app/assets/stylesheets/**/*.css')
@@ -101,10 +108,6 @@ gulp.task('css', function()
         .pipe(csslint(".csslintrc"))
         .pipe(csslint.reporter())
         .pipe(changed('app/assets/stylesheets/**/*.css'))
-        .pipe(autoprefixer({
-            browsers: ['last 5 versions'],
-            cascade: false
-        }))
         .pipe(minifycss())                                  // Minify CSS
         .pipe(rev())                                        // Put version number on file
         .pipe(gulp.dest('public/assets/stylesheets/'))      // Move CSS into the public folder
