@@ -1688,12 +1688,12 @@
         "source": {
             "type": "git",
             "url": "https://github.com/phpseclib/phpseclib.git",
-            "reference": "956660e9b979c169c11a6b722db0af1c1c715730"
+            "reference": "eefcb55138d519ca9c1d9d93d27bfaf1cf1cfec3"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/phpseclib/phpseclib/zipball/956660e9b979c169c11a6b722db0af1c1c715730",
-            "reference": "956660e9b979c169c11a6b722db0af1c1c715730",
+            "url": "https://api.github.com/repos/phpseclib/phpseclib/zipball/eefcb55138d519ca9c1d9d93d27bfaf1cf1cfec3",
+            "reference": "eefcb55138d519ca9c1d9d93d27bfaf1cf1cfec3",
             "shasum": ""
         },
         "require": {
@@ -1710,7 +1710,7 @@
             "ext-mcrypt": "Install the Mcrypt extension in order to speed up a wide variety of cryptographic operations.",
             "pear-pear/PHP_Compat": "Install PHP_Compat to get phpseclib working on PHP < 4.3.3."
         },
-        "time": "2014-12-12 21:22:07",
+        "time": "2014-12-14 00:51:38",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -1788,12 +1788,12 @@
         "source": {
             "type": "git",
             "url": "https://github.com/Seldaek/monolog.git",
-            "reference": "3d2567a2f19566a93b6b4add76840266d5f6742d"
+            "reference": "1cb39eedb5949989df860441e3b0bd3bcf0c2a0e"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/Seldaek/monolog/zipball/3d2567a2f19566a93b6b4add76840266d5f6742d",
-            "reference": "3d2567a2f19566a93b6b4add76840266d5f6742d",
+            "url": "https://api.github.com/repos/Seldaek/monolog/zipball/1cb39eedb5949989df860441e3b0bd3bcf0c2a0e",
+            "reference": "1cb39eedb5949989df860441e3b0bd3bcf0c2a0e",
             "shasum": ""
         },
         "require": {
@@ -1823,7 +1823,7 @@
             "ruflin/elastica": "Allow sending log messages to an Elastic Search server",
             "videlalvaro/php-amqplib": "Allow sending log messages to an AMQP server using php-amqplib"
         },
-        "time": "2014-12-06 18:16:08",
+        "time": "2014-12-13 13:54:24",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -2421,12 +2421,12 @@
         "source": {
             "type": "git",
             "url": "https://github.com/barryvdh/laravel-debugbar.git",
-            "reference": "d2e7e2675dc7f7219438bc2ac85bf22c7dd601c6"
+            "reference": "e4daec31dc4534c9ac4a860b73ee3905ba61e13a"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/barryvdh/laravel-debugbar/zipball/d2e7e2675dc7f7219438bc2ac85bf22c7dd601c6",
-            "reference": "d2e7e2675dc7f7219438bc2ac85bf22c7dd601c6",
+            "url": "https://api.github.com/repos/barryvdh/laravel-debugbar/zipball/e4daec31dc4534c9ac4a860b73ee3905ba61e13a",
+            "reference": "e4daec31dc4534c9ac4a860b73ee3905ba61e13a",
             "shasum": ""
         },
         "require": {
@@ -2435,7 +2435,7 @@
             "php": ">=5.3.0",
             "symfony/finder": "~2.3"
         },
-        "time": "2014-12-04 14:54:55",
+        "time": "2014-12-13 21:05:36",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -2947,12 +2947,12 @@
         "source": {
             "type": "git",
             "url": "https://github.com/phpspec/phpspec.git",
-            "reference": "3db2020ea22cfd4bc65a68e2b34ebfd6bb1cbf16"
+            "reference": "0363ae9e79d48048d4aadeacab1ad776b83d1268"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/phpspec/phpspec/zipball/3db2020ea22cfd4bc65a68e2b34ebfd6bb1cbf16",
-            "reference": "3db2020ea22cfd4bc65a68e2b34ebfd6bb1cbf16",
+            "url": "https://api.github.com/repos/phpspec/phpspec/zipball/0363ae9e79d48048d4aadeacab1ad776b83d1268",
+            "reference": "0363ae9e79d48048d4aadeacab1ad776b83d1268",
             "shasum": ""
         },
         "require": {
@@ -2975,7 +2975,7 @@
         "suggest": {
             "phpspec/nyan-formatters": "~1.0 – Adds Nyan formatters"
         },
-        "time": "2014-12-04 09:06:11",
+        "time": "2014-12-13 23:08:25",
         "bin": [
             "bin/phpspec"
         ],
@@ -3355,61 +3355,6 @@
             }
         ],
         "description": "Symfony Translation Component",
-        "homepage": "http://symfony.com"
-    },
-    {
-        "name": "symfony/http-foundation",
-        "version": "2.5.x-dev",
-        "version_normalized": "2.5.9999999.9999999-dev",
-        "target-dir": "Symfony/Component/HttpFoundation",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/symfony/HttpFoundation.git",
-            "reference": "88d0642f6afd56488c9129ebf90839cd3f107df9"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/symfony/HttpFoundation/zipball/88d0642f6afd56488c9129ebf90839cd3f107df9",
-            "reference": "88d0642f6afd56488c9129ebf90839cd3f107df9",
-            "shasum": ""
-        },
-        "require": {
-            "php": ">=5.3.3"
-        },
-        "require-dev": {
-            "symfony/expression-language": "~2.4"
-        },
-        "time": "2014-12-04 20:26:11",
-        "type": "library",
-        "extra": {
-            "branch-alias": {
-                "dev-master": "2.5-dev"
-            }
-        },
-        "installation-source": "dist",
-        "autoload": {
-            "psr-0": {
-                "Symfony\\Component\\HttpFoundation\\": ""
-            },
-            "classmap": [
-                "Symfony/Component/HttpFoundation/Resources/stubs"
-            ]
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Symfony Community",
-                "homepage": "http://symfony.com/contributors"
-            },
-            {
-                "name": "Fabien Potencier",
-                "email": "fabien@symfony.com"
-            }
-        ],
-        "description": "Symfony HttpFoundation Component",
         "homepage": "http://symfony.com"
     },
     {
@@ -6086,5 +6031,60 @@
             "source": "https://github.com/zendframework/zf2/tree/master",
             "issues": "https://github.com/zendframework/zf2/issues"
         }
+    },
+    {
+        "name": "symfony/http-foundation",
+        "version": "2.5.x-dev",
+        "version_normalized": "2.5.9999999.9999999-dev",
+        "target-dir": "Symfony/Component/HttpFoundation",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/symfony/HttpFoundation.git",
+            "reference": "274bc205dc7c305aa0d68d5a0f2836f051cad7bb"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/symfony/HttpFoundation/zipball/274bc205dc7c305aa0d68d5a0f2836f051cad7bb",
+            "reference": "274bc205dc7c305aa0d68d5a0f2836f051cad7bb",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.3"
+        },
+        "require-dev": {
+            "symfony/expression-language": "~2.4"
+        },
+        "time": "2014-12-13 08:38:28",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "2.5-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "Symfony\\Component\\HttpFoundation\\": ""
+            },
+            "classmap": [
+                "Symfony/Component/HttpFoundation/Resources/stubs"
+            ]
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Symfony Community",
+                "homepage": "http://symfony.com/contributors"
+            },
+            {
+                "name": "Fabien Potencier",
+                "email": "fabien@symfony.com"
+            }
+        ],
+        "description": "Symfony HttpFoundation Component",
+        "homepage": "http://symfony.com"
     }
 ]

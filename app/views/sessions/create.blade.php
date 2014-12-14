@@ -10,9 +10,9 @@
     {{ HTML::generateCSS('login.css') }}
 
     <!-- jQuery framework -->
-    <script src="assets/javascripts/min/jquery-1.8.3.min.min.js"></script>
+    {{ HTML::script("/assets/javascripts/min/jquery-1.8.3.min.min.js") }}
     <!-- validation -->
-    <script src="assets/javascripts/min/lib/jquery-validation/jquery.validate.js"></script>
+    {{ HTML::script("/assets/javascripts/min/lib/jquery-validation/jquery.validate.js") }}
     <script type="text/javascript">
         (function(a){a.fn.vAlign=function(){return this.each(function(){var b=a(this).height(),c=a(this).outerHeight(),b=(b+(c-b))/2;a(this).css("margin-top","-"+b+"px");a(this).css("top","50%");a(this).css("position","absolute")})}})(jQuery);(function(a){a.fn.hAlign=function(){return this.each(function(){var b=a(this).width(),c=a(this).outerWidth(),b=(b+(c-b))/2;a(this).css("margin-left","-"+b+"px");a(this).css("left","50%");a(this).css("position","absolute")})}})(jQuery);
         $(document).ready(function() {
@@ -78,8 +78,8 @@
         <div class="panel" style="display:none">
             <p class="heading_main">Can't sign in?</p>
             {{ Form::open(array('url' => 'forgot_password', 'id' => 'forgot-validate')) }}
-                {{ Form::label('forgot_email', 'Your e-mail address') }}
-                {{ Form::text('forgot_email', null, array('id'=>'forgot_email', 'name' => 'forgot_email', 'placeholder'=>'Username')) }}
+                {{ Form::label('email', 'Your e-mail address') }}
+                {{ Form::text('email', null, array('id'=>'email', 'name' => 'email', 'placeholder'=>'Username')) }}
                 <div class="submit_sect">
                     {{ Form::submit('Request New Password', array('class' => 'btn btn-gobyweb-3')) }}
                 </div>

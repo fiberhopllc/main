@@ -16,48 +16,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
     <!-- css -->
-    <link href="/assets/stylesheets/bootstrap.css" rel="stylesheet" media="screen">
-    <link href="/assets/stylesheets/bootstrap-responsive.css" rel="stylesheet" media="screen">
-    <link href="/assets/stylesheets/bootstrap-theme.css" rel="stylesheet" media="screen">
-    <link href="/assets/stylesheets/flexslider.css" rel="stylesheet" media="screen">
-    <link href="/assets/stylesheets/font-awesome.css" rel="stylesheet" media="screen">
-    <link href="/assets/stylesheets/socialist.css" rel="stylesheet" media="screen">
-    <link href="/assets/stylesheets/piro-box.css" rel="stylesheet" media="screen">
-    <link href="/assets/stylesheets/style.css" rel="stylesheet" media="screen">
+    {{ HTML::style("/assets/stylesheets/bootstrap.css") }}
+    {{ HTML::style("/assets/stylesheets/bootstrap-responsive.css") }}
+    {{ HTML::style("/assets/stylesheets/bootstrap-theme.css") }}
+    {{ HTML::style("/assets/stylesheets/flexslider.css") }}
+    {{ HTML::style("/assets/stylesheets/font-awesome.css") }}
+    {{ HTML::style("/assets/stylesheets/socialist.css") }}
+    {{ HTML::style("/assets/stylesheets/piro-box.css") }}
+    {{ HTML::style("/assets/stylesheets/style.css") }}
     <!--<link href="/assets/stylesheets/sprite.css" rel="stylesheet" media="screen">-->
-
-    <!-- Javascript -->
-    <script src="/assets/javascripts/min/application.js"></script>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-    <!-- jQuery from Google CDN -->
-    <script>window.jQuery || document.write('<script src="/assets/javascripts/min/jquery-1.8.3.min.min.js"><\/script>')</script>
-    <!-- jQuery Local if CDN failed -->
-    <script src="/assets/javascripts/min/bootstrap.min.js"></script>
-    <!-- Bootstrap  -->
-    <script src="/assets/javascripts/min/jquery.flexslider-min.min.js"></script>
-    <!-- Flex Slider -->
-    <script src="/assets/javascripts/min/waypoints.min.min.js" type="text/javascript"></script>
-    <!-- Sticky Menu -->
-    <script src="/assets/javascripts/min/modernizr.custom.min.js"></script>
-    <!--  To detact CSS3 & HTML5-->
-    <script src="/assets/javascripts/min/jquery.stapel.min.js"></script>
-    <!-- Portfolio -->
-    <script src="/assets/javascripts/min/jquery.socialist.min.js"></script>
-    <!-- Social Feeds -->
-    <script src="/assets/javascripts/min/enscroll.min.min.js"></script>
-    <!-- Custom Scrollbar -->
-    <script type="text/javascript" src="/assets/javascripts/min/jquery-ui-1.8.2.custom.min.min.js"></script>
-    <!-- Jquery UI -->
-    <script type="text/javascript" src="/assets/javascripts/min/pirobox_extended_min.min.js"></script>
-    <!-- Lightbox popup -->
-    <script type="text/javascript" src="/assets/javascripts/min/jquery.masonry.min.js"></script>
-    <!-- Masonry(Testimonials) -->
-    <script src="/assets/javascripts/min/functions.min.js"></script>
-    <!-- All jQuery functions and callings -->
-
-    <!--[if lt IE 9]>
-    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
 </head>
 
 <body>
@@ -131,6 +98,39 @@
     </ul>
     <p>Upgrade your browser for a Safer and Faster web experience. <br/>Thank you for your patience...</p>
 </div>
+<![endif]-->
+
+<!-- Javascript -->
+{{ HTML::script("/assets/javascripts/min/application.js") }}
+{{ HTML::script("http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js") }}
+<!-- jQuery from Google CDN -->
+<script>window.jQuery || document.write('<script src="/assets/javascripts/min/jquery-1.8.3.min.min.js"><\/script>')</script>
+<!-- jQuery Local if CDN failed -->
+{{ HTML::script("/assets/javascripts/min/bootstrap.min.js") }}
+<!-- Bootstrap  -->
+{{ HTML::script("/assets/javascripts/min/jquery.flexslider-min.min.js") }}
+<!-- Flex Slider -->
+{{ HTML::script("/assets/javascripts/min/waypoints.min.min.js") }}
+<!-- Sticky Menu -->
+{{ HTML::script("/assets/javascripts/min/modernizr.custom.min.js") }}
+<!--  To detact CSS3 & HTML5-->
+{{ HTML::script("/assets/javascripts/min/jquery.stapel.min.js") }}
+<!-- Portfolio -->
+{{ HTML::script("/assets/javascripts/min/jquery.socialist.min.js") }}
+<!-- Social Feeds -->
+{{ HTML::script("/assets/javascripts/min/enscroll.min.min.js") }}
+<!-- Custom Scrollbar -->
+{{ HTML::script("/assets/javascripts/min/jquery-ui-1.8.2.custom.min.min.js") }}
+<!-- Jquery UI -->
+{{ HTML::script("/assets/javascripts/min/pirobox_extended_min.min.js") }}
+<!-- Lightbox popup -->
+{{ HTML::script("/assets/javascripts/min/jquery.masonry.min.js") }}
+<!-- Masonry(Testimonials) -->
+{{ HTML::script("/assets/javascripts/min/functions.min.js") }}
+<!-- All jQuery functions and callings -->
+
+<!--[if lt IE 9]>
+{{ HTML::script("http://html5shim.googlecode.com/svn/trunk/html5.js") }}
 <![endif]-->
 
 <!-- TODO -->

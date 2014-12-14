@@ -470,7 +470,6 @@ return array(
     'Teepluss\\Hmvc\\HmvcFatalErrorException' => $vendorDir . '/teepluss/hmvc/src/Teepluss/Hmvc/Exceptions.php',
     'Teepluss\\Hmvc\\HmvcNotFoundHttpException' => $vendorDir . '/teepluss/hmvc/src/Teepluss/Hmvc/Exceptions.php',
     'TestCase' => $baseDir . '/app/tests/TestCase.php',
-    'TestController' => $baseDir . '/app/controllers/TestController.php',
     'Text_Template' => $vendorDir . '/phpunit/php-text-template/Text/Template.php',
     'Url' => $baseDir . '/app/models/Url.php',
     'UrlController' => $baseDir . '/app/controllers/UrlController.php',
