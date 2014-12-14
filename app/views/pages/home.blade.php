@@ -16,233 +16,233 @@
 
 <!-- Section Home -->
 <section id="home" class="light">
-    <h2>&nbsp;</h2>
-    <!-- Header -->
-    <header id="header" class="container">
+<h2>&nbsp;</h2>
+<!-- Header -->
+<header id="header" class="container">
 
-        <!-- Social feeds -->
-        <div class="feeds hidden-phone hidden-tablet" id="feeds-display">
-            <div class="feeds-content">
-                <div class="overflow">
-                    <div>Test</div>
-                </div>
+    <!-- Social feeds -->
+    <div class="feeds hidden-phone hidden-tablet" id="feeds-display">
+        <div class="feeds-content">
+            <div class="overflow">
+                <div>Test</div>
             </div>
         </div>
-        <!--<div class="feeds-toggle hidden-phone hidden-tablet" id="feed-display"> <span class="down"></span> </div>-->
-        <!-- End Social feeds -->
+    </div>
+    <!--<div class="feeds-toggle hidden-phone hidden-tablet" id="feed-display"> <span class="down"></span> </div>-->
+    <!-- End Social feeds -->
 
+    <div class="row">
+        <div class="span9">
+            <!-- Logo + Slogan -->
+            <div class="logo"><img src="/assets/images/logo.png" width="250" height="125" alt="FiberHop LLC Logo : 197x74"></div>
+
+            <!-- end Logo + Slogan -->
+        </div>
+
+        <!-- Social links -->
+        <div class="span3 hidden-phone">
+            <ul class="social">
+                <li><a href="@yield('facebook_url')"><img src="/assets/images/social/facebook.png" width="30"
+                                                          height="30" alt=""></a></li>
+                <li><a href="@yield('googleplus_url')"><img src="/assets/images/social/google-plus.png" width="30"
+                                                            height="30" alt=""></a></li>
+                <li><a href="@yield('twitter_url')"><img src="/assets/images/social/twitter.png" width="30"
+                                                         height="30" alt=""></a></li>
+                <li><a href="@yield('youtube_url')"><img src="/assets/images/social/youtube.png" width="30"
+                                                         height="30" alt=""></a></li>
+            </ul>
+        </div>
+        <!-- Social links -->
+    </div>
+
+    <!-- Navigation Menu -->
+    <div class="nav-container">
+        <nav class="navbar">
+            <div class="navbar-inner container">
+                <div class="collapse-nav"><span class="collapse-nav-title">NAVIGATION</span>
+
+                    <div class="btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span
+                            class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
+                    </div>
+                </div>
+                <div class="nav-collapse collapse">
+                    <ul class="nav" id="navigation">
+                        <li><a class="active" href="#home">FiberHOP LLC</a></li>
+                        <li><a href="#about-us">Consulting</a>
+                            <ul>
+                                <li><a href="#">DC Design</a></li>
+                                <li><a href="#">System & Cloud Architecture</a></li>
+                                <li><a href="#">Network Architecture</a></li>
+                                <li><a href="#">Layered Security</a></li>
+                                <li><a href="#">Migrations</a></li>
+                                <li><a href="#">System Integration</a></li>
+                                <li><a href="#">Systems & Network Support</a></li>
+                                <li><a href="#">VoIP</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#development">Development</a>
+                            <ul>
+                                <li><a href="#">HTML</a></li>
+                                <li><a href="#">HTML5</a></li>
+                                <li><a href="#">Java</a></li>
+                                <li><a href="#">C# (C-Sharp)</a></li>
+                                <li><a href="#">ASP.NET</a></li>
+                                <li><a href="#">PHP</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#hosting">Hosting</a>
+                            <ul>
+                                <li><a href="#">Colocation</a></li>
+                                <li><a href="#">VDI</a></li>
+                                <li><a href="#">Virtual Machines(VM)</a></li>
+                                <li><a href="#">Dedicated</a></li>
+                                <li><a href="#">Virtual Hosting</a></li>
+                                <li><a href="#">Transit</a></li>
+                                <li><a href="#">Direct Internet Access (DIA)</a></li>
+                                <li><a href="#">Load Balancing (LB)</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#services">Managed Services</a>
+                            <ul>
+                                <li><a href="#">DC Design</a></li>
+                                <li><a href="#">System & Cloud Architecture</a></li>
+                                <li><a href="#">Network Architecture</a></li>
+                                <li><a href="#">Layered Security</a></li>
+                                <li><a href="#">Migrations</a></li>
+                                <li><a href="#">System Integration</a></li>
+                                <li><a href="#">Systems & Network Support</a></li>
+                                <li><a href="#">VoIP</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#contact">Contact Us</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+    <!-- End Navigation Menu -->
+
+</header>
+<!-- End Header -->
+
+<!-- Image Slider -->
+<div class="flexslider">
+    <ul class="slides">
+        <li><img src="/assets/images/slider/3.jpg" alt=""/></li>
+        <li><img src="/assets/images/slider/2.jpg" alt=""/></li>
+        <li><img src="/assets/images/slider/1.jpg" alt=""/></li>
+    </ul>
+    <div class="container highlights hidden-phone hidden-tablet">
         <div class="row">
-            <div class="span9">
-                <!-- Logo + Slogan -->
-                <div class="logo"><img src="/assets/images/logo.png" width="250" height="125" alt="FiberHop LLC Logo : 197x74"></div>
+            <article class="span6 h-block pull-right">
+                <h2 class="hbg-l">Sample heading goes here</h2>
 
-                <!-- end Logo + Slogan -->
-            </div>
-
-            <!-- Social links -->
-            <div class="span3 hidden-phone">
-                <ul class="social">
-                    <li><a href="@yield('facebook_url')"><img src="/assets/images/social/facebook.png" width="30"
-                                                              height="30" alt=""></a></li>
-                    <li><a href="@yield('googleplus_url')"><img src="/assets/images/social/google-plus.png" width="30"
-                                                                height="30" alt=""></a></li>
-                    <li><a href="@yield('twitter_url')"><img src="/assets/images/social/twitter.png" width="30"
-                                                             height="30" alt=""></a></li>
-                    <li><a href="@yield('youtube_url')"><img src="/assets/images/social/youtube.png" width="30"
-                                                             height="30" alt=""></a></li>
-                </ul>
-            </div>
-            <!-- Social links -->
+                <div class="clearfix"></div>
+                <p>Jvu gravida diam volutpat sit amet. Etiam elit lorem, gravida diam volutpat sit amet mattis in
+                    congue at, lacinia bibendum nisi fermentum in arcu. Donec ullamcorper felis at eros malesuada at
+                    bibendum nisi fermentum.</p>
+            </article>
         </div>
+    </div>
+</div>
+<!-- End Image Slider -->
 
-        <!-- Navigation Menu -->
-        <div class="nav-container">
-            <nav class="navbar">
-                <div class="navbar-inner container">
-                    <div class="collapse-nav"><span class="collapse-nav-title">NAVIGATION</span>
+<div class="container">
+    <h1 class="welcome-text">Welcome to Fiber<span>Hop</span></h1>
+    <hr/>
+    <p>More than 12 million customers count on us to help them find the right name and turn it into a one-of-a-kind
+        digital identity.</p>
 
-                        <div class="btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span
-                                class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
-                        </div>
-                    </div>
-                    <div class="nav-collapse collapse">
-                        <ul class="nav" id="navigation">
-                            <li><a class="active" href="#home">FiberHOP LLC</a></li>
-                            <li><a href="#about-us">Consulting</a>
-                                <ul>
-                                    <li><a href="#">DC Design</a></li>
-                                    <li><a href="#">System & Cloud Architecture</a></li>
-                                    <li><a href="#">Network Architecture</a></li>
-                                    <li><a href="#">Layered Security</a></li>
-                                    <li><a href="#">Migrations</a></li>
-                                    <li><a href="#">System Integration</a></li>
-                                    <li><a href="#">Systems & Network Support</a></li>
-                                    <li><a href="#">VoIP</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="#development">Development</a>
-                                <ul>
-                                    <li><a href="#">HTML</a></li>
-                                    <li><a href="#">HTML5</a></li>
-                                    <li><a href="#">Java</a></li>
-                                    <li><a href="#">C# (C-Sharp)</a></li>
-                                    <li><a href="#">ASP.NET</a></li>
-                                    <li><a href="#">PHP</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="#hosting">Hosting</a>
-                                <ul>
-                                    <li><a href="#">Colocation</a></li>
-                                    <li><a href="#">VDI</a></li>
-                                    <li><a href="#">Virtual Machines(VM)</a></li>
-                                    <li><a href="#">Dedicated</a></li>
-                                    <li><a href="#">Virtual Hosting</a></li>
-                                    <li><a href="#">Transit</a></li>
-                                    <li><a href="#">Direct Internet Access (DIA)</a></li>
-                                    <li><a href="#">Load Balancing (LB)</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="#services">Managed Services</a>
-                                <ul>
-                                    <li><a href="#">DC Design</a></li>
-                                    <li><a href="#">System & Cloud Architecture</a></li>
-                                    <li><a href="#">Network Architecture</a></li>
-                                    <li><a href="#">Layered Security</a></li>
-                                    <li><a href="#">Migrations</a></li>
-                                    <li><a href="#">System Integration</a></li>
-                                    <li><a href="#">Systems & Network Support</a></li>
-                                    <li><a href="#">VoIP</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="#contact">Contact Us</a></li>
-                        </ul>
+    <div class="v-space-15"></div>
+
+    <!-- Latest Projects -->
+    <div class="hidden-tablet hidden-phone">
+        <h2 class="hbg-d">Fast, secure, reliable, trusted by millions.</h2>
+
+        <div class="row t-center">
+
+
+            <article class="span3 t-items"><a href="#" class="fb"><i class="icon-facebook"></i></a> <a href="#"
+                                                                                                       class="twt"><i
+                        class="icon-twitter"></i></a>
+
+                <h2>&nbsp;</h2>
+
+                <div class="t-block">
+                    <div class="t-info dark">
+                        <h4 class="name">John Gilbert</h4>
+                        <h4 class="hbg-l post">CHIEF TECHNICAL OFFICER</h4>
+
+                        <p>Sed lobortis ullamcorper turpis accumsan tincidunt. Aenean tellus mauris, scelerisque nec
+                            condimentum et, scelerisque eu urna. In interdum luctus metus, ac feugiat nulla aliquam
+                            a. Pellentesque vitae mi enims</p>
                     </div>
                 </div>
-            </nav>
-        </div>
-        <!-- End Navigation Menu -->
+                <img src="/assets/images/works/3.jpg" alt=""></article>
 
-    </header>
-    <!-- End Header -->
 
-    <!-- Image Slider -->
-    <div class="flexslider">
-        <ul class="slides">
-            <li><img src="/assets/images/slider/3.jpg" alt=""/></li>
-            <li><img src="/assets/images/slider/2.jpg" alt=""/></li>
-            <li><img src="/assets/images/slider/1.jpg" alt=""/></li>
-        </ul>
-        <div class="container highlights hidden-phone hidden-tablet">
-            <div class="row">
-                <article class="span6 h-block pull-right">
-                    <h2 class="hbg-l">Sample heading goes here</h2>
+            <article class="span3 t-items"><a href="#" class="fb"><i class="icon-facebook"></i></a> <a href="#"
+                                                                                                       class="twt"><i
+                        class="icon-twitter"></i></a>
 
-                    <div class="clearfix"></div>
-                    <p>Jvu gravida diam volutpat sit amet. Etiam elit lorem, gravida diam volutpat sit amet mattis in
-                        congue at, lacinia bibendum nisi fermentum in arcu. Donec ullamcorper felis at eros malesuada at
-                        bibendum nisi fermentum.</p>
-                </article>
-            </div>
+                <h2>&nbsp;</h2>
+
+                <div class="t-block">
+                    <div class="t-info dark">
+                        <h4 class="name">Joshua Abbott</h4>
+                        <h4 class="hbg-l post">CHIEF INFORMATION OFFICER</h4>
+
+                        <p>Sed lobortis ullamcorper turpis accumsan tincidunt. Aenean tellus mauris, scelerisque nec
+                            condimentum et, scelerisque eu urna. In interdum luctus metus, ac feugiat nulla aliquam
+                            a. Pellentesque vitae mi enims</p>
+                    </div>
+                </div>
+                <img src="/assets/images/works/4.jpg" alt=""></article>
+
+
+            <article class="span3 t-items"><a href="#" class="fb"><i class="icon-facebook"></i></a> <a href="#"
+                                                                                                       class="twt"><i
+                        class="icon-twitter"></i></a>
+
+                <h2>&nbsp;</h2>
+
+                <div class="t-block">
+                    <div class="t-info dark">
+                        <h4 class="name">Matthew Nieciunski</h4>
+                        <h4 class="hbg-l post">CHIEF OFFICER</h4>
+
+                        <p>Sed lobortis ullamcorper turpis accumsan tincidunt. Aenean tellus mauris, scelerisque nec
+                            condimentum et, scelerisque eu urna. In interdum luctus metus, ac feugiat nulla aliquam
+                            a. Pellentesque vitae mi enims</p>
+                    </div>
+                </div>
+                <img src="/assets/images/works/2.jpg" alt=""></article>
+
+
+            <article class="span3 t-items"><a href="#" class="fb"><i class="icon-facebook"></i></a> <a href="#"
+                                                                                                       class="twt"><i
+                        class="icon-twitter"></i></a>
+
+                <h2>&nbsp;</h2>
+
+                <div class="t-block">
+                    <div class="t-info dark">
+                        <h4 class="name">Chasen Nesbitt</h4>
+                        <h4 class="hbg-l post">DEVELOPER</h4>
+
+                        <p>Sed lobortis ullamcorper turpis accumsan tincidunt. Aenean tellus mauris, scelerisque nec
+                            condimentum et, scelerisque eu urna. In interdum luctus metus, ac feugiat nulla aliquam
+                            a. Pellentesque vitae mi enims</p>
+                    </div>
+                </div>
+                <img src="/assets/images/works/1.jpg" alt=""></article>
+
+
         </div>
     </div>
-    <!-- End Image Slider -->
-
-    <div class="container">
-        <h1 class="welcome-text">Welcome to Fiber<span>Hop</span></h1>
-        <hr/>
-        <p>More than 12 million customers count on us to help them find the right name and turn it into a one-of-a-kind
-            digital identity.</p>
-
-        <div class="v-space-15"></div>
-
-        <!-- Latest Projects -->
-        <div class="hidden-tablet hidden-phone">
-            <h2 class="hbg-d">Fast, secure, reliable, trusted by millions.</h2>
-
-            <div class="row t-center">
-
-
-                <article class="span3 t-items"><a href="#" class="fb"><i class="icon-facebook"></i></a> <a href="#"
-                                                                                                           class="twt"><i
-                            class="icon-twitter"></i></a>
-
-                    <h2>&nbsp;</h2>
-
-                    <div class="t-block">
-                        <div class="t-info dark">
-                            <h4 class="name">John Gilbert</h4>
-                            <h4 class="hbg-l post">CHIEF TECHNICAL OFFICER</h4>
-
-                            <p>Sed lobortis ullamcorper turpis accumsan tincidunt. Aenean tellus mauris, scelerisque nec
-                                condimentum et, scelerisque eu urna. In interdum luctus metus, ac feugiat nulla aliquam
-                                a. Pellentesque vitae mi enims</p>
-                        </div>
-                    </div>
-                    <img src="/assets/images/works/3.jpg" alt=""></article>
-
-
-                <article class="span3 t-items"><a href="#" class="fb"><i class="icon-facebook"></i></a> <a href="#"
-                                                                                                           class="twt"><i
-                            class="icon-twitter"></i></a>
-
-                    <h2>&nbsp;</h2>
-
-                    <div class="t-block">
-                        <div class="t-info dark">
-                            <h4 class="name">Joshua Abbott</h4>
-                            <h4 class="hbg-l post">CHIEF INFORMATION OFFICER</h4>
-
-                            <p>Sed lobortis ullamcorper turpis accumsan tincidunt. Aenean tellus mauris, scelerisque nec
-                                condimentum et, scelerisque eu urna. In interdum luctus metus, ac feugiat nulla aliquam
-                                a. Pellentesque vitae mi enims</p>
-                        </div>
-                    </div>
-                    <img src="/assets/images/works/4.jpg" alt=""></article>
-
-
-                <article class="span3 t-items"><a href="#" class="fb"><i class="icon-facebook"></i></a> <a href="#"
-                                                                                                           class="twt"><i
-                            class="icon-twitter"></i></a>
-
-                    <h2>&nbsp;</h2>
-
-                    <div class="t-block">
-                        <div class="t-info dark">
-                            <h4 class="name">Matthew Nieciunski</h4>
-                            <h4 class="hbg-l post">CHIEF OFFICER</h4>
-
-                            <p>Sed lobortis ullamcorper turpis accumsan tincidunt. Aenean tellus mauris, scelerisque nec
-                                condimentum et, scelerisque eu urna. In interdum luctus metus, ac feugiat nulla aliquam
-                                a. Pellentesque vitae mi enims</p>
-                        </div>
-                    </div>
-                    <img src="/assets/images/works/2.jpg" alt=""></article>
-
-
-                <article class="span3 t-items"><a href="#" class="fb"><i class="icon-facebook"></i></a> <a href="#"
-                                                                                                           class="twt"><i
-                            class="icon-twitter"></i></a>
-
-                    <h2>&nbsp;</h2>
-
-                    <div class="t-block">
-                        <div class="t-info dark">
-                            <h4 class="name">Chasen Nesbitt</h4>
-                            <h4 class="hbg-l post">DEVELOPER</h4>
-
-                            <p>Sed lobortis ullamcorper turpis accumsan tincidunt. Aenean tellus mauris, scelerisque nec
-                                condimentum et, scelerisque eu urna. In interdum luctus metus, ac feugiat nulla aliquam
-                                a. Pellentesque vitae mi enims</p>
-                        </div>
-                    </div>
-                    <img src="/assets/images/works/1.jpg" alt=""></article>
-
-
-            </div>
-        </div>
-        <!-- End Latest Projects -->
-    </div>
-    <div class="v-space-25"></div>
+    <!-- End Latest Projects -->
+</div>
+<div class="v-space-25"></div>
 </section>
 <!-- End Section Home -->
 <div id="about-us" style="width:100%; height:0px;"></div>

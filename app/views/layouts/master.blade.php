@@ -16,15 +16,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
     <!-- css -->
-    {{ HTML::generateCSS('bootstrap.css') }}
-    {{ HTML::generateCSS('bootstrap-responsive.css') }}
-    {{ HTML::generateCSS('bootstrap-theme.css') }}
-    {{ HTML::generateCSS('flexslider.css') }}
-    {{ HTML::generateCSS('font-awesome.css') }}
-    {{ HTML::generateCSS('socialist.css') }}
-    {{ HTML::generateCSS('piro-box.css') }}
-    {{ HTML::generateCSS('style.css') }}
+    <link href="/assets/stylesheets/bootstrap.css" rel="stylesheet" media="screen">
+    <link href="/assets/stylesheets/bootstrap-responsive.css" rel="stylesheet" media="screen">
+    <link href="/assets/stylesheets/bootstrap-theme.css" rel="stylesheet" media="screen">
+    <link href="/assets/stylesheets/flexslider.css" rel="stylesheet" media="screen">
+    <link href="/assets/stylesheets/font-awesome.css" rel="stylesheet" media="screen">
+    <link href="/assets/stylesheets/socialist.css" rel="stylesheet" media="screen">
+    <link href="/assets/stylesheets/piro-box.css" rel="stylesheet" media="screen">
+    <link href="/assets/stylesheets/style.css" rel="stylesheet" media="screen">
     <!--<link href="/assets/stylesheets/sprite.css" rel="stylesheet" media="screen">-->
+
+    <!-- Javascript -->
+    <script src="/assets/javascripts/min/application.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <!-- jQuery from Google CDN -->
+    <script>window.jQuery || document.write('<script src="/assets/javascripts/min/jquery-1.8.3.min.min.js"><\/script>')</script>
+    <!-- jQuery Local if CDN failed -->
+    <script src="/assets/javascripts/min/bootstrap.min.js"></script>
+    <!-- Bootstrap  -->
+    <script src="/assets/javascripts/min/jquery.flexslider-min.min.js"></script>
+    <!-- Flex Slider -->
+    <script src="/assets/javascripts/min/waypoints.min.min.js" type="text/javascript"></script>
+    <!-- Sticky Menu -->
+    <script src="/assets/javascripts/min/modernizr.custom.min.js"></script>
+    <!--  To detact CSS3 & HTML5-->
+    <script src="/assets/javascripts/min/jquery.stapel.min.js"></script>
+    <!-- Portfolio -->
+    <script src="/assets/javascripts/min/jquery.socialist.min.js"></script>
+    <!-- Social Feeds -->
+    <script src="/assets/javascripts/min/enscroll.min.min.js"></script>
+    <!-- Custom Scrollbar -->
+    <script type="text/javascript" src="/assets/javascripts/min/jquery-ui-1.8.2.custom.min.min.js"></script>
+    <!-- Jquery UI -->
+    <script type="text/javascript" src="/assets/javascripts/min/pirobox_extended_min.min.js"></script>
+    <!-- Lightbox popup -->
+    <script type="text/javascript" src="/assets/javascripts/min/jquery.masonry.min.js"></script>
+    <!-- Masonry(Testimonials) -->
+    <script src="/assets/javascripts/min/functions.min.js"></script>
+    <!-- All jQuery functions and callings -->
+
+    <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
 </head>
 
 <body>
@@ -98,19 +131,6 @@
     </ul>
     <p>Upgrade your browser for a Safer and Faster web experience. <br/>Thank you for your patience...</p>
 </div>
-<![endif]-->
-<!-- Javascript -->
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-<!-- jQuery from Google CDN -->
-<script>window.jQuery || document.write('<script src="/assets/javascripts/min/jquery-1.8.3.min.min.js"><\/script>')</script>
-<!-- jQuery Local if CDN failed -->
-<script src="http://code.angularjs.org/1.2.3/angular.js"></script>
-<script src="http://code.angularjs.org/1.2.3/angular-route.js"></script>
-<script src="/assets/javascripts/min/application.js"></script>
-<!-- All jQuery functions and callings -->
-
-<!--[if lt IE 9]>
-<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 <![endif]-->
 
 <!-- TODO -->
