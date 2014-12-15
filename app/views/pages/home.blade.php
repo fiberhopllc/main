@@ -128,9 +128,12 @@
 <!-- Image Slider -->
 <div class="flexslider">
     <ul class="slides">
-        <li><img src="/assets/images/slider/3.jpg" alt=""/></li>
-        <li><img src="/assets/images/slider/2.jpg" alt=""/></li>
-        <li><img src="/assets/images/slider/1.jpg" alt=""/></li>
+<!--        <li><img src="/assets/images/slider/6.jpg" alt=""/></li>-->
+<!--        <li><img src="/assets/images/slider/4.jpg" alt=""/></li>-->
+<!--        <li><img src="/assets/images/slider/2.jpg" alt=""/></li>-->
+<!--        <li><img src="/assets/images/slider/3.jpg" alt=""/></li>-->
+        <li><img src="/assets/images/slider/7.jpg" alt=""/></li>
+<!--        <li><img src="/assets/images/slider/1.jpg" alt=""/></li>-->
     </ul>
     <div class="container highlights hidden-phone hidden-tablet">
         <div class="row">
@@ -173,7 +176,7 @@
                         <h4 class="name">John Gilbert</h4>
                         <h4 class="hbg-l post">CHIEF TECHNICAL OFFICER</h4>
 
-                        <p>Sed lobortis ullamcorper turpis accumsan tincidunt. 
+                        <p>Sed lobortis ullamcorper turpis accumsan tincidunt.
                             <a class="info-popup-jgilbert">&gt;&gt;</a>
                         </p>
                     </div>
@@ -193,10 +196,8 @@
                         <h4 class="hbg-l post">CHIEF INFORMATION OFFICER</h4>
 
                         <p>Dedicated 14+ year IT professional with strong background in developing and executing mission-critical IT development projects
-                           to successful conclusion. <a class="info-popup-jabbott">&gt;&gt;</a><!--In-depth experience managing and integrating key technology solutions into client business operations.
-                           Demonstrated expertise in overseeing project improvement / quality / testing initiatives, implementing resource planning and quality control
-                           processes throughout the project life cycle. Skilled in collaborating with clients to interpret requirements, translate needs into solutions
-                           and coordinate resources to realize deliverables. Possesses language proficiencies in English, French and Spanish.--></p>
+                           to successful conclusion. <a class="info-popup-jabbott">&gt;&gt;</a>
+                        </p>
                     </div>
                 </div>
                 <img src="/assets/images/Portrait-Outline.jpg" alt=""></article>

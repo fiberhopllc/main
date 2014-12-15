@@ -138,7 +138,7 @@
     });
 
     $(document).on("click", ".info-popup-jabbott", function(e) {
-        bootbox.alert("Hello world 2!", function() {
+        bootbox.alert("In-depth experience managing and integrating key technology solutions into client business operations. Demonstrated expertise in overseeing project improvement / quality / testing initiatives, implementing resource planning and quality control processes throughout the project life cycle. Skilled in collaborating with clients to interpret requirements, translate needs into solutions and coordinate resources to realize deliverables. Possesses language proficiencies in English, French and Spanish.", function() {
             console.log("Alert Callback");
         });
     });
