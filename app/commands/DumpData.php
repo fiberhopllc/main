@@ -59,7 +59,7 @@
 
             $mysql[ 3 ] = trim(fgets($handle));
 // IF NECESSARY, YOU CAN ADD exec("sudo mysqldump..... if some there is a permission issue
-            exec("mysqldump -h " . $mysql[ 0 ] . " -u " . $mysql[ 1 ] . " -p " . $mysql[ 2 ] . " --no-create-info " . $mysql[ 3 ] . " > " . storage_path() . "/dump.sql");
+            exec("mysqldump -h " . $mysql[ 0 ] . " -u " . $mysql[ 1 ] . " -p " . "{$mysql[ 2 ]}" . " --no-create-info " . $mysql[ 3 ] . " > " . storage_path() . "/dump.sql");
 
             echo "Dump file has been created at. " . storage_path() . "/dump.sql";
 
