@@ -2,10 +2,10 @@
 
 @section('title', 'Home')
 
-@section('facebook_url', '')
-@section('googleplus_url', '')
-@section('twitter_url', '')
-@section('youtube_url', '')
+@section('facebook_url',    'https://www.facebook.com/fiberhopllc')
+@section('googleplus_url',  'https://plus.google.com/u/2/b/117124704233597801013/117124704233597801013/about/p/pub')
+@section('twitter_url',     'https://twitter.com/fiberhopllc')
+@section('youtube_url',     'https://www.youtube.com/channel/UCcEYoVuG9J-v48pd6uori6g')
 
 @section('content')
 <!-- Page loading -->
@@ -157,7 +157,7 @@
 
     <!-- Latest Projects -->
     <div class="hidden-tablet hidden-phone">
-        <h2 class="hbg-d">Fast, secure, reliable, trusted by millions.</h2>
+        <h2 class="hbg-d">Fast, secure, reliable, industry trusted.</h2>
 
         <div class="row t-center">
 
@@ -173,9 +173,9 @@
                         <h4 class="name">John Gilbert</h4>
                         <h4 class="hbg-l post">CHIEF TECHNICAL OFFICER</h4>
 
-                        <p>Sed lobortis ullamcorper turpis accumsan tincidunt. Aenean tellus mauris, scelerisque nec
-                            condimentum et, scelerisque eu urna. In interdum luctus metus, ac feugiat nulla aliquam
-                            a. Pellentesque vitae mi enims</p>
+                        <p>Sed lobortis ullamcorper turpis accumsan tincidunt. 
+                            <a class="info-popup-jgilbert">&gt;&gt;</a>
+                        </p>
                     </div>
                 </div>
                 <img src="/assets/images/Portrait-Outline.jpg" alt=""></article>
@@ -192,9 +192,11 @@
                         <h4 class="name">Joshua Abbott</h4>
                         <h4 class="hbg-l post">CHIEF INFORMATION OFFICER</h4>
 
-                        <p>Sed lobortis ullamcorper turpis accumsan tincidunt. Aenean tellus mauris, scelerisque nec
-                            condimentum et, scelerisque eu urna. In interdum luctus metus, ac feugiat nulla aliquam
-                            a. Pellentesque vitae mi enims</p>
+                        <p>Dedicated 14+ year IT professional with strong background in developing and executing mission-critical IT development projects
+                           to successful conclusion. <a class="info-popup-jabbott">&gt;&gt;</a><!--In-depth experience managing and integrating key technology solutions into client business operations.
+                           Demonstrated expertise in overseeing project improvement / quality / testing initiatives, implementing resource planning and quality control
+                           processes throughout the project life cycle. Skilled in collaborating with clients to interpret requirements, translate needs into solutions
+                           and coordinate resources to realize deliverables. Possesses language proficiencies in English, French and Spanish.--></p>
                     </div>
                 </div>
                 <img src="/assets/images/Portrait-Outline.jpg" alt=""></article>
@@ -211,9 +213,10 @@
                         <h4 class="name">Matthew Nieciunski</h4>
                         <h4 class="hbg-l post">CHIEF OFFICER</h4>
 
-                        <p>Sed lobortis ullamcorper turpis accumsan tincidunt. Aenean tellus mauris, scelerisque nec
-                            condimentum et, scelerisque eu urna. In interdum luctus metus, ac feugiat nulla aliquam
-                            a. Pellentesque vitae mi enims</p>
+                        <p>Double-majored in Political Science & I.T. from the Univ. of St. Francis.
+                            Managed and Facilitated one of the fastest growing therapy company's transition into going paperless.
+                            <a class="info-popup-mnieciunski">&gt;&gt;</a>
+                        </p>
                     </div>
                 </div>
                 <img src="/assets/images/Portrait-Outline.jpg" alt=""></article>
@@ -228,11 +231,11 @@
                 <div class="t-block">
                     <div class="t-info dark">
                         <h4 class="name">Chasen Nesbitt</h4>
-                        <h4 class="hbg-l post">DEVELOPER</h4>
+                        <h4 class="hbg-l post">MICROSOFT DEVELOPER</h4>
 
-                        <p>Sed lobortis ullamcorper turpis accumsan tincidunt. Aenean tellus mauris, scelerisque nec
-                            condimentum et, scelerisque eu urna. In interdum luctus metus, ac feugiat nulla aliquam
-                            a. Pellentesque vitae mi enims</p>
+                        <p>Sed lobortis ullamcorper turpis accumsan tincidunt.
+                            <a class="info-popup-cnesbitt">&gt;&gt;</a>
+                        </p>
                     </div>
                 </div>
                 <img src="/assets/images/Portrait-Outline.jpg" alt=""></article>
@@ -448,9 +451,8 @@
     <div class="container">
         <div class="quote">
             <h2>Development</h2>
-            Nam id odio et dui vestibulum gravida. Praesent felis augue,
-            placerat a congue id, auctor at ligula. Quisque ac quam in nisi tincidunt consectetur quis vitae elit.
-            Mauris eget elit
+            Whether its UX Strategy & Design, Web Application Development, Mobile Apps. WordPress.com sites, or Video & Motion Graphics,
+            FiberHop LLC excels in providing the best, highest quality, and most affordable media in the industry.
         </div>
         <div class="v-space-25"></div>
         <div id="masonry">
@@ -671,7 +673,9 @@
 
     <div class="v-space-0"></div>
     <div class="container">
-        <div class="quote"> CONTACT BLOB GOES HERE</div>
+        <div class="quote">
+            We would love to hear from you. Please complete the form below and we will be in touch with you as soon as possible.
+        </div>
         <div class="v-space-25"></div>
         <div class="contact row-fluid">
             <iframe class="my-map" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"
@@ -697,21 +701,21 @@
                 <h4 class="hbg-l">For General Inquiries</h4>
 
                 <div class="clearfix"></div>
-                Phone: (312) 555-1234<br/>
+                Phone: (312) 878-1212<br/>
                 Email: info@fiberhop.com
             </div>
             <div class="span3">
                 <h4 class="hbg-l">For Customer Support</h4>
 
                 <div class="clearfix"></div>
-                Phone: (312) 555-1235<br/>
+                Phone: (312) 878-1212 x2<br/>
                 Email: support@fiberhop.com
             </div>
             <div class="span3">
                 <h4 class="hbg-l">For Sales Inquiries</h4>
 
                 <div class="clearfix"></div>
-                Phone: (312) 555-1236<br/>
+                Phone: (312) 878-1212 x1<br/>
                 Email: sales@fiberhop.com
             </div>
             <div class="span3">
@@ -721,7 +725,7 @@
                 <address>
                     222 Stone Court,<br/>
                     New Lenox, Illinois,<br/>
-                    60451-1598, US, (312) 512-1234
+                    60451-1598, US, (312) 878-1212
                 </address>
             </div>
         </div>

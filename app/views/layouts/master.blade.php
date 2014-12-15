@@ -128,6 +128,33 @@
 <!-- Masonry(Testimonials) -->
 {{ HTML::script("/assets/javascripts/min/functions.min.js") }}
 <!-- All jQuery functions and callings -->
+{{ HTML::script("/assets/javascripts/bootbox.min.js") }}
+
+<script>
+    $(document).on("click", ".info-popup-cnesbitt", function(e) {
+        bootbox.alert("Hello world 1!", function() {
+            console.log("Alert Callback");
+        });
+    });
+
+    $(document).on("click", ".info-popup-jabbott", function(e) {
+        bootbox.alert("Hello world 2!", function() {
+            console.log("Alert Callback");
+        });
+    });
+
+    $(document).on("click", ".info-popup-jgilbert", function(e) {
+        bootbox.alert("Hello world 3!", function() {
+            console.log("Alert Callback");
+        });
+    });
+
+    $(document).on("click", ".info-popup-mnieciunski", function(e) {
+        bootbox.alert("Hello world 4!", function() {
+            console.log("Alert Callback");
+        });
+    });
+</script>
 
 <!--[if lt IE 9]>
 {{ HTML::script("http://html5shim.googlecode.com/svn/trunk/html5.js") }}
