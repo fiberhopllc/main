@@ -231,4 +231,12 @@
     | -------------------------------------------------------------------------
     |
     */
+    Route::filter('editable', function()
+    {
+        $user = Auth::user();
 
+        if (!$user->ability(array('Administrator'), array('can_update')))
+        {
+            return Redirect::home();
+        }
+    });

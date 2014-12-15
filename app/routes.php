@@ -101,4 +101,16 @@
     #        ));
     #    });
 
+    Route::get('/secret', function()
+    {
+        Auth::loginUsingId(2);
+        $user = Auth::user();
 
+        if ($user->hasRole('Administrator'))
+        {
+            return 'Redheads party the hardest!';
+        } else {
+            return "Redheads don't party the hardest!";
+        }
+
+    });
