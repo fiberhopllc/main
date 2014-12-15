@@ -26,7 +26,6 @@ return array(
     'Chrisbjr\\ApiGuard\\ApiKey' => $vendorDir . '/chrisbjr/api-guard/src/models/ApiKey.php',
     'Chrisbjr\\ApiGuard\\ApiKeyController' => $vendorDir . '/chrisbjr/api-guard/src/controllers/ApiKeyController.php',
     'Chrisbjr\\ApiGuard\\ApiLog' => $vendorDir . '/chrisbjr/api-guard/src/models/ApiLog.php',
-    'ConfideSetupUsersTable' => $baseDir . '/app/database/migrations/2014_12_14_222426_confide_setup_users_table.php',
     'ConvertMigrationsCommand' => $baseDir . '/app/commands/ConvertMigrationsCommand.php',
     'CreateApiKeysTable' => $baseDir . '/app/database/migrations/2014_06_12_084423_create_api_keys_table.php',
     'CreateAuthTokenTable' => $baseDir . '/app/database/migrations/2013_05_12_014954_create_auth_token_table.php',
@@ -483,8 +482,4 @@ return array(
     'Whoops\\Module' => $vendorDir . '/filp/whoops/src/deprecated/Zend/Module.php',
     'Whoops\\Provider\\Zend\\ExceptionStrategy' => $vendorDir . '/filp/whoops/src/deprecated/Zend/ExceptionStrategy.php',
     'Whoops\\Provider\\Zend\\RouteNotFoundStrategy' => $vendorDir . '/filp/whoops/src/deprecated/Zend/RouteNotFoundStrategy.php',
-    'Zizaco\\Confide\\ControllerCommand' => $vendorDir . '/zizaco/confide/src/commands/ControllerCommand.php',
-    'Zizaco\\Confide\\MigrationCommand' => $vendorDir . '/zizaco/confide/src/commands/MigrationCommand.php',
-    'Zizaco\\Confide\\RoutesCommand' => $vendorDir . '/zizaco/confide/src/commands/RoutesCommand.php',
-    'Zizaco\\Entrust\\MigrationCommand' => $vendorDir . '/zizaco/entrust/src/commands/MigrationCommand.php',
 );

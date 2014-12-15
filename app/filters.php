@@ -223,3 +223,12 @@
             return Redirect::route('login')->withErrors(array( Lang::get('group.notfound') ));
         }
     });
+
+
+    /*
+    | -------------------------------------------------------------------------
+    | Permissions Specific Route Filters
+    | -------------------------------------------------------------------------
+    |
+    */
+

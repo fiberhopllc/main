@@ -151,8 +151,7 @@
             'Laracasts\Validation\ValidationServiceProvider',
             'basicAuth\Repo\BackendServiceProvider',
             'GrahamCampbell\Throttle\ThrottleServiceProvider',
-            'Zizaco\Confide\ServiceProvider',
-            'Zizaco\Entrust\EntrustServiceProvider',
+            'Toddish\Verify\VerifyServiceProvider',
             // Add:  http://packalyst.com/packages/package/creolab/laravel-modules ?
 
         ),
@@ -195,7 +194,6 @@
             'Carbon'                          => 'Carbon\Carbon',
             'ClassLoader'                     => 'Illuminate\Support\ClassLoader',
             'Coffee'                          => 'VTalbot\Coffee\Facades\Coffee',
-            'Confide'                         => 'Zizaco\Confide\Facade',
             'Config'                          => 'Illuminate\Support\Facades\Config',
             'Controller'                      => 'Illuminate\Routing\Controller',
             'Cookie'                          => 'Illuminate\Support\Facades\Cookie',
@@ -203,7 +201,6 @@
             'DB'                              => 'Illuminate\Support\Facades\DB',
             'Debugbar'                        => 'Barryvdh\Debugbar\Facade',
             'Eloquent'                        => 'Illuminate\Database\Eloquent\Model',
-            'Entrust'                         => 'Zizaco\Entrust\EntrustFacade',
             'Event'                           => 'Illuminate\Support\Facades\Event',
             'File'                            => 'Illuminate\Support\Facades\File',
             'Form'                            => 'Illuminate\Support\Facades\Form',

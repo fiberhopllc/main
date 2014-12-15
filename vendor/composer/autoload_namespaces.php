@@ -7,7 +7,6 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'phpDocumentor' => array($vendorDir . '/phpdocumentor/reflection-docblock/src'),
-    'Zizaco\\Entrust' => array($vendorDir . '/zizaco/entrust/src'),
     'Zend\\' => array($vendorDir . '/zendframework/zendframework/library'),
     'ZendXml\\' => array($vendorDir . '/zendframework/zendxml/library'),
     'Yhbyun\\Snowman\\' => array($vendorDir . '/yhbyun/snowman/src'),
