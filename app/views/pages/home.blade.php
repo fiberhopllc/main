@@ -178,7 +178,7 @@
                             a. Pellentesque vitae mi enims</p>
                     </div>
                 </div>
-                <img src="/assets/images/works/3.jpg" alt=""></article>
+                <img src="/assets/images/Portrait-Outline.jpg" alt=""></article>
 
 
             <article class="span3 t-items"><a href="#" class="fb"><i class="icon-facebook"></i></a> <a href="#"
@@ -197,7 +197,7 @@
                             a. Pellentesque vitae mi enims</p>
                     </div>
                 </div>
-                <img src="/assets/images/works/4.jpg" alt=""></article>
+                <img src="/assets/images/Portrait-Outline.jpg" alt=""></article>
 
 
             <article class="span3 t-items"><a href="#" class="fb"><i class="icon-facebook"></i></a> <a href="#"
@@ -216,7 +216,7 @@
                             a. Pellentesque vitae mi enims</p>
                     </div>
                 </div>
-                <img src="/assets/images/works/2.jpg" alt=""></article>
+                <img src="/assets/images/Portrait-Outline.jpg" alt=""></article>
 
 
             <article class="span3 t-items"><a href="#" class="fb"><i class="icon-facebook"></i></a> <a href="#"
@@ -235,7 +235,7 @@
                             a. Pellentesque vitae mi enims</p>
                     </div>
                 </div>
-                <img src="/assets/images/works/1.jpg" alt=""></article>
+                <img src="/assets/images/Portrait-Outline.jpg" alt=""></article>
 
 
         </div>
