@@ -128,12 +128,15 @@
 <!-- Image Slider -->
 <div class="flexslider">
     <ul class="slides">
-<!--        <li><img src="/assets/images/slider/6.jpg" alt=""/></li>-->
-<!--        <li><img src="/assets/images/slider/4.jpg" alt=""/></li>-->
-<!--        <li><img src="/assets/images/slider/2.jpg" alt=""/></li>-->
-<!--        <li><img src="/assets/images/slider/3.jpg" alt=""/></li>-->
+        <li><img src="/assets/images/slider/8.jpg" alt=""/></li>
+        <li><img src="/assets/images/slider/4.jpg" alt=""/></li>
+        <li><img src="/assets/images/slider/2.jpg" alt=""/></li>
+        <li><img src="/assets/images/slider/6.jpg" alt=""/></li>
+        <li><img src="/assets/images/slider/3.jpg" alt=""/></li>
         <li><img src="/assets/images/slider/7.jpg" alt=""/></li>
-<!--        <li><img src="/assets/images/slider/1.jpg" alt=""/></li>-->
+        <li><img src="/assets/images/slider/9.jpg" alt=""/></li>
+        <li><img src="/assets/images/slider/1.jpg" alt=""/></li>
+        <li><img src="/assets/images/slider/9.png" alt=""/></li>
     </ul>
     <div class="container highlights hidden-phone hidden-tablet">
         <div class="row">
