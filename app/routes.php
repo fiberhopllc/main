@@ -30,7 +30,7 @@
     });
 
 # Static Pages. Redirecting admin so admin cannot access these pages.
-    Route::group([ 'before' => 'redirectAdmin', 'after' => 'stdHeaders' ], function () {
+    Route::group([ 'before' => 'redirectAdmin|cache', 'after' => 'stdHeaders|cache' ], function () {
         Route::get('/', [ 'as' => 'home', 'uses' => 'PagesController@getHome' ]);
     });
 

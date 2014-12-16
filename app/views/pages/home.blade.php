@@ -200,7 +200,7 @@
                         <h4 class="hbg-l post">CHIEF INFORMATION OFFICER</h4>
 
                         <p>Dedicated 14+ year IT professional with strong background in developing and executing mission-critical IT development projects
-                           to successful conclusion. <a class="info-popup-jabbott">&gt;&gt;</a>
+                            to successful conclusion. <a class="info-popup-jabbott">&gt;&gt;</a>
                         </p>
                     </div>
                 </div>
@@ -584,7 +584,7 @@
             <h2 class="welcome-text">WE PROVIDE THE BEST MANAGED SERVICES</h2>
 
             <div class="v-space-25"></div>
-                <div class="row">
+            <div class="row">
                 <article class="s-items span4">
                     <h3>System & Cloud Architecture</h3>
 
@@ -613,8 +613,8 @@
                         This process is performed by our team of specialists who work specifically with the origin and target server architectures and have a combined knowledge-base of
                         35 years in the field. </p>
                 </article>
-                </div>
-                <div class="row">
+            </div>
+            <div class="row">
                 <article class="s-items span4">
                     <h3>Network Architecture</h3>
 
@@ -646,8 +646,8 @@
                         for upgrades to existing ones. Adopting a well-conceived design can have a positive impact on both the project itself,
                         as well as on the operation of the data center over its lifetime.</p>
                 </article>
-                </div>
-                <div class="row">
+            </div>
+            <div class="row">
                 <article class="s-items span4">
                     <h3>Systems & Network Support</h3>
 
@@ -666,7 +666,7 @@
                         caller ID, automated assistant, long and local distance calling, call forwarding, voicemail, and
                         much more.</p>
                 </article>
-                </div>
+            </div>
             <div class="v-space-25"></div>
         </div>
 

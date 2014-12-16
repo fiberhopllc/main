@@ -240,3 +240,22 @@
             return Redirect::home();
         }
     });
+
+    /*
+    | -------------------------------------------------------------------------
+    | Caching Filter
+    | -------------------------------------------------------------------------
+    |
+    */
+    Route::filter('cache', function($route, $request, $response = null)
+    {
+        $key = 'route-'.Str::slug(Request::url());
+        if(is_null($response) && Cache::has($key))
+        {
+            return Cache::get($key);
+        }
+        elseif(!is_null($response) && !Cache::has($key))
+        {
+            Cache::put($key, $response->getContent(), 30);
+        }
+    });
