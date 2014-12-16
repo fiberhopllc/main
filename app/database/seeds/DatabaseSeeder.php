@@ -15,6 +15,7 @@
             $this->call('SentryGroupSeeder');
             $this->call('SentryUserSeeder');
             $this->call('SentryUserGroupSeeder');
+            $this->call('EntrustRolePermissionSeederTableSeeder');
         }
 
     }
