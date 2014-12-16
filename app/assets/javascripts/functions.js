@@ -587,4 +587,3 @@ $(window).load(function () {
     }, 1000);
 })();
 
-

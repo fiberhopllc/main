@@ -25,6 +25,12 @@
     {{ HTML::style("/assets/stylesheets/piro-box.css") }}
     {{ HTML::style("/assets/stylesheets/style.css") }}
     <!--<link href="/assets/stylesheets/sprite.css" rel="stylesheet" media="screen">-->
+
+    <script language="JavaScript">
+        $(function() {
+            $("img.lazy").show().lazyload();
+        });
+    </script>
 </head>
 
 <body>
@@ -106,6 +112,10 @@
 <!-- jQuery from Google CDN -->
 <script>window.jQuery || document.write('<script src="/assets/javascripts/min/jquery-1.8.3.min.min.js"><\/script>')</script>
 <!-- jQuery Local if CDN failed -->
+
+<!-- Lazy Load Images -->
+{{ HTML::script("//cdnjs.cloudflare.com/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js") }}
+
 {{ HTML::script("/assets/javascripts/min/bootstrap.min.js") }}
 <!-- Bootstrap  -->
 {{ HTML::script("/assets/javascripts/min/jquery.flexslider-min.min.js") }}

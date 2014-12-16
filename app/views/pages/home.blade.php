@@ -128,14 +128,15 @@
 <!-- Image Slider -->
 <div class="flexslider">
     <ul class="slides">
-        <li><img src="/assets/images/slider/8.jpg" alt=""/></li>
-        <li><img src="/assets/images/slider/4.jpg" alt=""/></li>
-        <li><img src="/assets/images/slider/2.jpg" alt=""/></li>
-        <li><img src="/assets/images/slider/6.jpg" alt=""/></li>
-        <li><img src="/assets/images/slider/3.jpg" alt=""/></li>
-        <li><img src="/assets/images/slider/7.jpg" alt=""/></li>
-        <li><img src="/assets/images/slider/9.jpg" alt=""/></li>
-        <li><img src="/assets/images/slider/1.jpg" alt=""/></li>
+
+        <li><img src="/assets/images/slider/8.jpg" alt="" class="lazy" data-original="/assets/images/slider/8.jpg"/></li>
+        <li><img src="/assets/images/slider/4.jpg" alt="" class="lazy" data-original="/assets/images/slider/4.jpg"/></li>
+        <li><img src="/assets/images/slider/2.jpg" alt="" class="lazy" data-original="/assets/images/slider/2.jpg"/></li>
+        <li><img src="/assets/images/slider/6.jpg" alt="" class="lazy" data-original="/assets/images/slider/6.jpg"/></li>
+        <li><img src="/assets/images/slider/3.jpg" alt="" class="lazy" data-original="/assets/images/slider/3.jpg"/></li>
+        <li><img src="/assets/images/slider/7.jpg" alt="" class="lazy" data-original="/assets/images/slider/7.jpg"/></li>
+        <li><img src="/assets/images/slider/9.jpg" alt="" class="lazy" data-original="/assets/images/slider/9.jpg"/></li>
+        <li><img src="/assets/images/slider/1.jpg" alt="" class="lazy" data-original="/assets/images/slider/1.jpg"/></li>
         <li><img src="/assets/images/slider/9.png" alt=""/></li>
     </ul>
     <div class="container highlights hidden-phone hidden-tablet">
