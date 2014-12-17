@@ -77,7 +77,8 @@
 		],
         "files": ["app/basicAuth/helpers.php", "app/helpers.php"],
         "psr-4": {
-            "basicAuth\\": "app/basicAuth"
+            "basicAuth\\": "app/basicAuth",
+            "": "src"
         }
 	},
 	"scripts": {

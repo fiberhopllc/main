@@ -26,4 +26,5 @@ return array(
     'Chrisbjr\\ApiGuard\\' => array($vendorDir . '/chrisbjr/api-guard/src/Chrisbjr/ApiGuard'),
     'Barryvdh\\LaravelIdeHelper\\' => array($vendorDir . '/barryvdh/laravel-ide-helper/src'),
     'Barryvdh\\Debugbar\\' => array($vendorDir . '/barryvdh/laravel-debugbar/src'),
+    '' => array($baseDir . '/src'),
 );
