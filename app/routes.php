@@ -103,14 +103,20 @@
 
     Route::get('/secret', function()
     {
-        Auth::loginUsingId(2);
-        $user = Auth::user();
+//        Auth::loginUsingId(2);
+//        $user = Auth::user();
+//
+//        if ($user->hasRole('Administrator'))
+//        {
+//            return 'Redheads party the hardest!';
+//        } else {
+//            return "Redheads don't party the hardest!";
+//        }
+        $hashids = new Hashids\Hashids('ABCDEFGH');
+        $id = $hashids->encode(5,6,8,7,6,0,5,1,8);
+        $numbers = $hashids->decode($id);
 
-        if ($user->hasRole('Administrator'))
-        {
-            return 'Redheads party the hardest!';
-        } else {
-            return "Redheads don't party the hardest!";
-        }
-
+        return $id;
     });
+
+    Route::resource('tickets', 'TicketsController');

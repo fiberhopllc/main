@@ -69,7 +69,7 @@
  		"classmap": [
 			"app/commands",
 			"app/controllers",
-            "app/interfaces",
+            "app/contracts",
 			"app/models",
 			"app/database/migrations",
 			"app/database/seeds",

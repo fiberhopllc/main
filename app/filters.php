@@ -13,6 +13,16 @@
     App::before(function ($request) {
         // Our own method to defend XSS attacks globally.
         Common::globalXssClean();
+
+        // set the current IP (REMOTE_ADDR) as a trusted proxy
+        Request::setTrustedProxies( [ $request->getClientIp() ] );
+
+        // Force all traffic through SSL
+//        if( ! Request::secure() )
+//        {
+//            return Redirect::secure( Request::path() );
+//        }
+
     });
     App::after(function ($request, $response) {
         // Prevent Back-Button Logout
