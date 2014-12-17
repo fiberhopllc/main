@@ -12,7 +12,10 @@ return array(
     $vendorDir . '/symfony/var-dumper/Symfony/Component/VarDumper/Resources/functions/dump.php',
     $vendorDir . '/laravel/framework/src/Illuminate/Support/helpers.php',
     $vendorDir . '/pragmarx/support/src/helpers.php',
+    $vendorDir . '/ezyang/htmlpurifier/library/HTMLPurifier.composer.php',
+    $vendorDir . '/guzzlehttp/streams/src/functions.php',
     $vendorDir . '/barryvdh/laravel-debugbar/src/helpers.php',
+    $vendorDir . '/guzzlehttp/guzzle/src/functions.php',
     $baseDir . '/app/basicAuth/helpers.php',
     $baseDir . '/app/helpers.php',
 );

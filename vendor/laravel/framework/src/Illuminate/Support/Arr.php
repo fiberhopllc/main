@@ -110,9 +110,10 @@ class Arr {
 
 			foreach ($array as $value)
 			{
-				$value = (array) $value;
-
-				$results[] = $value[$segment];
+				if (array_key_exists($segment, $value = (array) $value))
+				{
+					$results[] = $value[$segment];
+				}
 			}
 
 			$array = array_values($results);
@@ -227,6 +228,32 @@ class Arr {
 	}
 
 	/**
+	 * Check if an item exists in an array using "dot" notation.
+	 *
+	 * @param  array   $array
+	 * @param  string  $key
+	 * @return bool
+	 */
+	public static function has($array, $key)
+	{
+		if (empty($array) || is_null($key)) return false;
+
+		if (array_key_exists($key, $array)) return true;
+
+		foreach (explode('.', $key) as $segment)
+		{
+			if ( ! is_array($array) || ! array_key_exists($segment, $array))
+			{
+				return false;
+			}
+
+			$array = $array[$segment];
+		}
+
+		return true;
+	}
+
+	/**
 	 * Get a subset of the items from the given array.
 	 *
 	 * @param  array  $array
@@ -235,7 +262,20 @@ class Arr {
 	 */
 	public static function only($array, $keys)
 	{
-		return array_intersect_key($array, array_flip((array) $keys));
+		$keys = array_filter(is_array($keys) ? $keys : (array) $keys);
+
+		if (empty($array) || empty($keys)) return [];
+
+		$dotted = array_intersect_key(static::dot($array), array_flip($keys));
+
+		$result = [];
+
+		foreach ($dotted as $key => $value)
+		{
+			static::set($result, $key, $value);
+		}
+
+		return $result;
 	}
 
 	/**

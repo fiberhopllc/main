@@ -8,6 +8,7 @@
 
         use HasRole; // https://github.com/Zizaco/entrust
 
+
         /**
          * The database table used by the model.
          *

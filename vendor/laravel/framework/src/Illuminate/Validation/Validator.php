@@ -473,7 +473,7 @@ class Validator implements MessageProviderInterface {
 		{
 			return false;
 		}
-		elseif (is_array($value) && count($value) < 1)
+		elseif ((is_array($value) || $value instanceof \Countable) && count($value) < 1)
 		{
 			return false;
 		}
@@ -799,7 +799,8 @@ class Validator implements MessageProviderInterface {
 
 		$length = strlen((string) $value);
 
-		return $length >= $parameters[0] && $length <= $parameters[1];
+		return $this->validateNumeric($attribute, $value)
+		  && $length >= $parameters[0] && $length <= $parameters[1];
 	}
 
 	/**

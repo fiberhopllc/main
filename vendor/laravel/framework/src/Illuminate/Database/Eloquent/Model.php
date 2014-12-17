@@ -645,6 +645,18 @@ abstract class Model implements ArrayAccess, ArrayableInterface, JsonableInterfa
 	}
 
 	/**
+	 * Begin querying the model on the write connection.
+	 *
+	 * @return \Illuminate\Database\Query\Builder
+	 */
+	public static function onWriteConnection()
+	{
+		$instance = new static;
+
+		return $instance->newQuery()->useWritePdo();
+	}
+
+	/**
 	 * Find a model by its primary key or return new static.
 	 *
 	 * @param  mixed  $id
@@ -1467,9 +1479,10 @@ abstract class Model implements ArrayAccess, ArrayableInterface, JsonableInterfa
 	 * Perform a model update operation.
 	 *
 	 * @param  \Illuminate\Database\Eloquent\Builder  $query
+	 * @param  array  $options
 	 * @return bool|null
 	 */
-	protected function performUpdate(Builder $query, array $options)
+	protected function performUpdate(Builder $query, array $options = [])
 	{
 		$dirty = $this->getDirty();
 
@@ -1511,9 +1524,10 @@ abstract class Model implements ArrayAccess, ArrayableInterface, JsonableInterfa
 	 * Perform a model insert operation.
 	 *
 	 * @param  \Illuminate\Database\Eloquent\Builder  $query
+	 * @param  array  $options
 	 * @return bool
 	 */
-	protected function performInsert(Builder $query, array $options)
+	protected function performInsert(Builder $query, array $options = [])
 	{
 		if ($this->fireModelEvent('creating') === false) return false;
 
