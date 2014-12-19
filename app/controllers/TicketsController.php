@@ -10,7 +10,9 @@ class TicketsController extends \BaseController {
 	 */
 	public function index()
 	{
-		return Ticket::all();
+		$tickets = Ticket::all();
+
+        return Response::json($tickets, $status=200, $headers=[], $options=JSON_PRETTY_PRINT);
 	}
 
 	/**
@@ -44,7 +46,9 @@ class TicketsController extends \BaseController {
 	 */
 	public function show($id)
 	{
-		return Ticket::find($id);
+        $ticket = Ticket::withTrashed()->where('id', $id)->get();
+
+        return Response::json($ticket, $status=200, $headers=[], $options=JSON_PRETTY_PRINT);
 	}
 
 	/**
@@ -80,7 +84,9 @@ class TicketsController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
-		//
+        $ticket = Ticket::find($id);
+
+        $ticket->delete();
 	}
 
 }
