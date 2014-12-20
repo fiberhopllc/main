@@ -112,11 +112,11 @@
 //        } else {
 //            return "Redheads don't party the hardest!";
 //        }
-        $hashids = new Hashids\Hashids('ABCDEFGH');
-        $id = $hashids->encode(5,6,8,7,6,0,5,1,8);
-        $numbers = $hashids->decode($id);
-
-        return $id;
+//        $hashids = new Hashids\Hashids('ABCDEFGH');
+//        $id = $hashids->encode(5,6,8,7,6,0,5,1,8);
+//        $numbers = $hashids->decode($id);
+//
+//        return $id;
     });
 
     Route::resource('tickets', 'TicketsController');

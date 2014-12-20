@@ -12,7 +12,9 @@ class TicketsController extends \BaseController {
 	{
 		$tickets = Ticket::all();
 
-        return Response::json($tickets, $status=200, $headers=[], $options=JSON_PRETTY_PRINT);
+        $view = View::make('testing.index')->withTickets($tickets);
+
+        return $view;
 	}
 
 	/**
@@ -46,7 +48,7 @@ class TicketsController extends \BaseController {
 	 */
 	public function show($id)
 	{
-        $ticket = Ticket::withTrashed()->where('id', $id)->get();
+        $ticket = Ticket::withTrashed()->where('id', $id)->select(array('body'))->get();
 
         return Response::json($ticket, $status=200, $headers=[], $options=JSON_PRETTY_PRINT);
 	}
