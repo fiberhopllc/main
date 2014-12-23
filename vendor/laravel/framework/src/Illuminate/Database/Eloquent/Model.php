@@ -616,6 +616,18 @@ abstract class Model implements ArrayAccess, ArrayableInterface, JsonableInterfa
 	}
 
 	/**
+	 * Begin querying the model on the write connection.
+	 *
+	 * @return \Illuminate\Database\Query\Builder
+	 */
+	public static function onWriteConnection()
+	{
+		$instance = new static;
+
+		return $instance->newQuery()->useWritePdo();
+	}
+
+	/**
 	 * Get all of the models from the database.
 	 *
 	 * @param  array  $columns
@@ -642,18 +654,6 @@ abstract class Model implements ArrayAccess, ArrayableInterface, JsonableInterfa
 		$instance = new static;
 
 		return $instance->newQuery()->find($id, $columns);
-	}
-
-	/**
-	 * Begin querying the model on the write connection.
-	 *
-	 * @return \Illuminate\Database\Query\Builder
-	 */
-	public static function onWriteConnection()
-	{
-		$instance = new static;
-
-		return $instance->newQuery()->useWritePdo();
 	}
 
 	/**
@@ -776,7 +776,7 @@ abstract class Model implements ArrayAccess, ArrayableInterface, JsonableInterfa
 		// of the time this will be what we desire to use for the relationships.
 		if (is_null($relation))
 		{
-			list(, $caller) = debug_backtrace(false);
+			list(, $caller) = debug_backtrace(false, 2);
 
 			$relation = $caller['function'];
 		}
@@ -816,7 +816,7 @@ abstract class Model implements ArrayAccess, ArrayableInterface, JsonableInterfa
 		// use that to get both the class and foreign key that will be utilized.
 		if (is_null($name))
 		{
-			list(, $caller) = debug_backtrace(false);
+			list(, $caller) = debug_backtrace(false, 2);
 
 			$name = snake_case($caller['function']);
 		}
@@ -2072,6 +2072,16 @@ abstract class Model implements ArrayAccess, ArrayableInterface, JsonableInterfa
 		$this->fillable = $fillable;
 
 		return $this;
+	}
+
+	/**
+	 * get the guarded attributes for the model.
+	 *
+	 * @return array
+	 */
+	public function getGuarded()
+	{
+		return $this->guarded;
 	}
 
 	/**

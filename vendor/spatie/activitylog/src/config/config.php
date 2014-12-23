@@ -22,6 +22,5 @@ return [
     | specified here will be deleted
     |
     */
-        // 84 months = 7 years
-        'deleteRecordsOlderThanMonths'        => 84,
+        'deleteRecordsOlderThanMonths'        => 2,
     ];

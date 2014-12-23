@@ -127,6 +127,27 @@ class Builder {
 	public $unions;
 
 	/**
+	 * The maximum number of union records to return.
+	 *
+	 * @var int
+	 */
+	public $unionLimit;
+
+	/**
+	 * The number of union records to skip.
+	 *
+	 * @var int
+	 */
+	public $unionOffset;
+
+	/**
+	 * The orderings for the union query.
+	 *
+	 * @var array
+	 */
+	public $unionOrders;
+
+	/**
 	 * Indicates whether row locking is being used.
 	 *
 	 * @var string|bool
@@ -976,6 +997,7 @@ class Builder {
 	/**
 	 * Add a "group by" clause to the query.
 	 *
+	 * @param  array|string  $column,...
 	 * @return $this
 	 */
 	public function groupBy()
@@ -1061,9 +1083,10 @@ class Builder {
 	 */
 	public function orderBy($column, $direction = 'asc')
 	{
+		$property = $this->unions ? 'unionOrders' : 'orders';
 		$direction = strtolower($direction) == 'asc' ? 'asc' : 'desc';
 
-		$this->orders[] = compact('column', 'direction');
+		$this->{$property}[] = compact('column', 'direction');
 
 		return $this;
 	}
@@ -1116,7 +1139,9 @@ class Builder {
 	 */
 	public function offset($value)
 	{
-		$this->offset = max(0, $value);
+		$property = $this->unions ? 'unionOffset' : 'offset';
+
+		$this->$property = max(0, $value);
 
 		return $this;
 	}
@@ -1140,7 +1165,9 @@ class Builder {
 	 */
 	public function limit($value)
 	{
-		if ($value > 0) $this->limit = $value;
+		$property = $this->unions ? 'unionLimit' : 'limit';
+
+		if ($value > 0) $this->$property = $value;
 
 		return $this;
 	}
@@ -1172,7 +1199,7 @@ class Builder {
 	 * Add a union statement to the query.
 	 *
 	 * @param  \Illuminate\Database\Query\Builder|\Closure  $query
-	 * @param  bool $all
+	 * @param  bool  $all
 	 * @return \Illuminate\Database\Query\Builder|static
 	 */
 	public function union($query, $all = false)

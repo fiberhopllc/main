@@ -154,10 +154,10 @@
             echo( $request->header('version', '1') );
         }
     });
-
-    Route::filter('api.allowOrigin', function ($route, $request, $response) {
-        $response->header('access-control-allow-origin', '*');
-    });
+//
+//    Route::filter('api.allowOrigin', function ($route, $request, $response) {
+//        $response->header('access-control-allow-origin', '*');
+//    });
 
     /*
      | -------------------------------------------------------------------------

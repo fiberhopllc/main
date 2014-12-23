@@ -1,5 +1,6 @@
 /bootstrap/compiled.php
 /node_modules
+/vendor
 composer.phar
 .env.*.php
 .env.php

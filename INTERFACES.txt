@@ -1,0 +1,20 @@
+Array
+(
+    [0] => Traversable
+    [1] => IteratorAggregate
+    [2] => Iterator
+    [3] => ArrayAccess
+    [4] => Serializable
+    [5] => DateTimeInterface
+    [6] => RecursiveIterator
+    [7] => OuterIterator
+    [8] => Countable
+    [9] => SeekableIterator
+    [10] => SplObserver
+    [11] => SplSubject
+    [12] => JsonSerializable
+    [13] => SessionHandlerInterface
+    [14] => SessionIdInterface
+    [15] => Reflector
+)
+

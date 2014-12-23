@@ -470,12 +470,12 @@ class PHPUnit_TextUI_Command
                 break;
 
                 case '--tap': {
-                    $this->arguments['printer'] = new PHPUnit_Util_Log_TAP;
+                    $this->arguments['printer'] = 'PHPUnit_Util_Log_TAP';
                     }
                 break;
 
                 case '--testdox': {
-                    $this->arguments['printer'] = new PHPUnit_Util_TestDox_ResultPrinter_Text;
+                    $this->arguments['printer'] = 'PHPUnit_Util_TestDox_ResultPrinter_Text';
                     }
                 break;
 
@@ -604,11 +604,6 @@ class PHPUnit_TextUI_Command
             );
         }
 
-        if (isset($this->arguments['printer']) &&
-            is_string($this->arguments['printer'])) {
-            $this->arguments['printer'] = $this->handlePrinter($this->arguments['printer']);
-        }
-
         if ($this->arguments['loader'] !== null) {
             $this->arguments['loader'] = $this->handleLoader($this->arguments['loader']);
         }
@@ -664,11 +659,8 @@ class PHPUnit_TextUI_Command
             /**
              * Issue #657
              */
-            if (isset($phpunit['stderr']) && $phpunit['stderr'] == true) {
-                $this->arguments['printer'] = new PHPUnit_TextUI_ResultPrinter(
-                    'php://stderr',
-                    isset($this->arguments['verbose']) ? $this->arguments['verbose'] : false
-                );
+            if (isset($phpunit['stderr']) && ! isset($this->arguments['stderr'])) {
+                $this->arguments['stderr'] = $phpunit['stderr'];
             }
 
             if (isset($phpunit['printerClass'])) {
@@ -711,6 +703,11 @@ class PHPUnit_TextUI_Command
             }
         } elseif (isset($this->arguments['bootstrap'])) {
             $this->handleBootstrap($this->arguments['bootstrap']);
+        }
+
+        if (isset($this->arguments['printer']) &&
+            is_string($this->arguments['printer'])) {
+            $this->arguments['printer'] = $this->handlePrinter($this->arguments['printer']);
         }
 
         if (isset($this->arguments['test']) && is_string($this->arguments['test']) && substr($this->arguments['test'], -5, 5) == '.phpt') {
@@ -804,7 +801,9 @@ class PHPUnit_TextUI_Command
                     return $printerClass;
                 }
 
-                return $class->newInstance();
+                $outputStream = isset($this->arguments['stderr']) ? 'php://stderr' : null;
+
+                return $class->newInstance($outputStream);
             }
         }
 
@@ -949,8 +948,8 @@ Test Execution Options:
   --static-backup           Backup and restore static attributes for each test.
 
   --colors=<flag>           Use colors in output ("never", "auto" or "always").
-  --columns <n>             Number of columns to use for progress outout.
-  --columns max             Use maximum number of columns for progress outout.
+  --columns <n>             Number of columns to use for progress output.
+  --columns max             Use maximum number of columns for progress output.
   --stderr                  Write to STDERR instead of STDOUT.
   --stop-on-error           Stop execution upon first error.
   --stop-on-failure         Stop execution upon first error or failure.

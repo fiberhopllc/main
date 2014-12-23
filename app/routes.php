@@ -86,9 +86,10 @@
     });
 
 # API Versioning Route
-    Route::group([ 'prefix' => 'api/v1', 'before' => 'auth.basic|session.remove|api.version|throttle:1000,60', 'after' => 'api.allowOrigin' ], function () {
+    Route::group([ 'prefix' => 'api/v1', 'before' => 'auth.basic|session.remove|api.version|throttle:1000,60' ], function () {
         Event::forget('router.filter: csrf');
         Route::resource('url', 'UrlController');
+        Route::resource('tickets', 'TicketsController');
     });
 
     # Sample Sentry Routes
@@ -119,4 +120,3 @@
 //        return $id;
     });
 
-    Route::resource('tickets', 'TicketsController');

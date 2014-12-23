@@ -269,7 +269,7 @@ class BladeCompiler extends Compiler implements CompilerInterface {
 	 */
 	public function compileEchoDefaults($value)
 	{
-		return preg_replace('/^.*?([\'"])(?:(?!\1).)*or(?:(?!\1).)*\1.*?$(*SKIP)(*F)|^(\S+) or (.*)$/', 'isset($2) ? $2 : $3', $value);
+		return preg_replace('/^(?=\$)(.+?)(?:\s+or\s+)(.+?)$/s', 'isset($1) ? $1 : $2', $value);
 	}
 
 	/**
@@ -698,7 +698,7 @@ class BladeCompiler extends Compiler implements CompilerInterface {
 	*/
 	public function getContentTags()
 	{
-		return $this->contentTags;
+		return $this->getTags();
 	}
 
 	/**
@@ -708,7 +708,20 @@ class BladeCompiler extends Compiler implements CompilerInterface {
 	*/
 	public function getEscapedContentTags()
 	{
-		return $this->escapedTags;
+		return $this->getTags(true);
+	}
+
+	/**
+	 * Gets the tags used for the compiler.
+	 *
+	 * @param  bool  $escaped
+	 * @return array
+	 */
+	protected function getTags($escaped = false)
+	{
+		$tags = $escaped ? $this->escapedTags : $this->contentTags;
+
+		return array_map('stripcslashes', $tags);
 	}
 
 }
