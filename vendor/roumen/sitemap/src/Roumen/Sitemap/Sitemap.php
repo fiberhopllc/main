@@ -6,7 +6,7 @@ namespace Roumen\Sitemap;
  * Sitemap class for laravel-sitemap package.
  *
  * @author Roumen Damianoff <roumen@dawebs.com>
- * @version 2.4.14
+ * @version 2.4.15
  * @link http://roumen.it/projects/laravel-sitemap
  * @license http://opensource.org/licenses/mit-license.php MIT License
  */
@@ -47,10 +47,14 @@ class Sitemap
     public function setCache($key = null, $duration = null, $useCache = true)
     {
         $this->model->setUseCache($useCache);
-        if ($key !== null) {
+
+        if ($key !== null)
+        {
             $this->model->setCacheKey($key);
         }
-        if ($duration !== null) {
+
+        if ($duration !== null)
+        {
             $this->model->setCacheDuration($duration);
         }
     }
@@ -63,25 +67,29 @@ class Sitemap
      * @param string $lastmod
      * @param string $priority
      * @param string $freq
-     * @param array  $image
+     * @param array  $images
      * @param string $title
      * @param string $translation
      *
      * @return void
      */
-    public function add($loc, $lastmod = null, $priority = null, $freq = null, $image = array(), $title = null, $translation = array())
+    public function add($loc, $lastmod = null, $priority = null, $freq = null, $images = array(), $title = null, $translation = array())
     {
 
         if ($this->model->getEscaping())
         {
             $loc = htmlentities($loc, ENT_XML1);
+
             if ($title != null) htmlentities($title, ENT_XML1);
 
-            if ($image)
+            if ($images)
             {
-                foreach ($image as $key => $value)
+                foreach ($images as $k => $image)
                 {
-                    htmlentities($value, ENT_XML1);
+                    foreach ($image as $key => $value)
+                    {
+                        $images[$k][$key] = htmlentities($value, ENT_XML1);
+                    }
                 }
             }
 
@@ -89,7 +97,7 @@ class Sitemap
             {
                 foreach ($translation as $key => $value)
                 {
-                    htmlentities($value, ENT_XML1);
+                    $translation[$key] = htmlentities($value, ENT_XML1);
                 }
             }
         }
@@ -101,7 +109,7 @@ class Sitemap
                     'lastmod' => $lastmod,
                     'priority' => $priority,
                     'freq' => $freq,
-                    'image' => $image,
+                    'images' => $images,
                     'title' => $title,
                     'translation' => $translation
                 )

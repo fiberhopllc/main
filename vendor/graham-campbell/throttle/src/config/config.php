@@ -1,6 +1,6 @@
 <?php
 
-/**
+/*
  * This file is part of Laravel Throttle by Graham Campbell.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-return array(
+return [
 
     /*
     |--------------------------------------------------------------------------
@@ -32,4 +32,4 @@ return array(
 
     'driver' => null,
 
-);
+];

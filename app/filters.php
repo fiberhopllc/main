@@ -1,4 +1,6 @@
 <?php
+    // use \Illuminate\Database\Eloquent\Model\NotFoundException;
+
 
     /*
     |--------------------------------------------------------------------------
@@ -15,7 +17,7 @@
         Common::globalXssClean();
 
         // set the current IP (REMOTE_ADDR) as a trusted proxy
-        Request::setTrustedProxies( [ $request->getClientIp() ] );
+        Request::setTrustedProxies([ $request->getClientIp() ]);
 
         // Force all traffic through SSL
 //        if( ! Request::secure() )
@@ -30,6 +32,16 @@
         $response->headers->set("Pragma", "no-cache"); //HTTP 1.0
         $response->headers->set("Expires", " Sat, 26 Jul 1997 05:00:00 GMT"); // Date in the past
     });
+
+    /*
+     | -----------------------------------------------------------------------
+     | Model Not Found Handler
+     | -----------------------------------------------------------------------
+    */
+//    App::error(function (ModelNotFoundException $e) {
+//        return Response::make('Not Found', 404);
+//    });
+
     /*
     |--------------------------------------------------------------------------
     | Authentication Filters
@@ -241,12 +253,10 @@
     | -------------------------------------------------------------------------
     |
     */
-    Route::filter('editable', function()
-    {
+    Route::filter('editable', function () {
         $user = Auth::user();
 
-        if (!$user->ability(array('Administrator'), array('can_update')))
-        {
+        if (! $user->ability(array( 'Administrator' ), array( 'can_update' ))) {
             return Redirect::home();
         }
     });
@@ -257,15 +267,11 @@
     | -------------------------------------------------------------------------
     |
     */
-    Route::filter('cache', function($route, $request, $response = null)
-    {
-        $key = 'route-'.Str::slug(Request::url());
-        if(is_null($response) && Cache::has($key))
-        {
+    Route::filter('cache', function ($route, $request, $response = null) {
+        $key = 'route-' . Str::slug(Request::url());
+        if (is_null($response) && Cache::has($key)) {
             return Cache::get($key);
-        }
-        elseif(!is_null($response) && !Cache::has($key))
-        {
+        } elseif (! is_null($response) && ! Cache::has($key)) {
             Cache::put($key, $response->getContent(), 30);
         }
     });

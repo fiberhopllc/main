@@ -1,6 +1,6 @@
 <?php
 
-/**
+/*
  * This file is part of Laravel Throttle by Graham Campbell.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -112,10 +112,10 @@ class ThrottleServiceProvider extends ServiceProvider
      */
     public function provides()
     {
-        return array(
+        return [
             'throttle',
             'throttle.factory',
             'throttle.transformer',
-        );
+        ];
     }
 }

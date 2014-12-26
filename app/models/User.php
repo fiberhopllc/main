@@ -1,7 +1,7 @@
 <?php
 
-    use Illuminate\Auth\UserInterface;
     use Illuminate\Auth\Reminders\RemindableInterface;
+    use Illuminate\Auth\UserInterface;
     use Zizaco\Entrust\HasRole;
 
     class User extends Cartalyst\Sentry\Users\Eloquent\User implements UserInterface, RemindableInterface {
@@ -22,6 +22,16 @@
          * @var array
          */
         protected $hidden = array( 'password' );
+
+        public static function boot()
+        {
+            self::$hasher = new Cartalyst\Sentry\Hashing\NativeHasher;
+        }
+
+        public static function createApiKey()
+        {
+            return Str::random(32);
+        }
 
         /**
          * Get the unique identifier for the user.
@@ -84,11 +94,6 @@
             return $this->email;
         }
 
-        public static function boot()
-        {
-            self::$hasher = new Cartalyst\Sentry\Hashing\NativeHasher;
-        }
-
         public function isCurrent()
         {
             if (! Sentry::check()) return false;
@@ -96,5 +101,9 @@
             return Sentry::getUser()->id == $this->id;
         }
 
+        public function setPasswordAttribute($value)
+        {
+            $this->attributes[ 'password' ] = ( Hash::needsRehash($value) ? Hash::make($value) : $value );
+        }
 
     }
