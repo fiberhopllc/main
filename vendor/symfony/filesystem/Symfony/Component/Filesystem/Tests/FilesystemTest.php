@@ -686,11 +686,14 @@ class FilesystemTest extends FilesystemTestCase
         $file = $this->workspace.DIRECTORY_SEPARATOR.'file';
         $link = $this->workspace.DIRECTORY_SEPARATOR.'link';
 
-        touch($file);
-
+        // $file does not exists right now: creating "broken" links is a wanted feature
         $this->filesystem->symlink($file, $link);
 
         $this->assertTrue(is_link($link));
+
+        // Create the linked file AFTER creating the link
+        touch($file);
+
         $this->assertEquals($file, readlink($link));
     }
 
@@ -800,7 +803,7 @@ class FilesystemTest extends FilesystemTestCase
             array('/a/aab/bb/', '/a/aa/', '../aab/bb/'),
         );
 
-        if (defined('PHP_WINDOWS_VERSION_MAJOR')) {
+        if ('\\' === DIRECTORY_SEPARATOR) {
             $paths[] = array('c:\var\lib/symfony/src/Symfony/', 'c:/var/lib/symfony/', 'src/Symfony/');
         }
 
@@ -962,7 +965,7 @@ class FilesystemTest extends FilesystemTestCase
         $this->assertSame('bar', file_get_contents($filename));
 
         // skip mode check on Windows
-        if (!defined('PHP_WINDOWS_VERSION_MAJOR')) {
+        if ('\\' !== DIRECTORY_SEPARATOR) {
             $this->assertFilePermissions(753, $filename);
         }
     }
@@ -977,7 +980,7 @@ class FilesystemTest extends FilesystemTestCase
         $this->assertSame('bar', file_get_contents($filename));
 
         // skip mode check on Windows
-        if (!defined('PHP_WINDOWS_VERSION_MAJOR')) {
+        if ('\\' !== DIRECTORY_SEPARATOR) {
             $this->assertFilePermissions(600, $filename);
         }
     }

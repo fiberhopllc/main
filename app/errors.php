@@ -32,29 +32,29 @@
         ), $code, $headers);
     });
 
-// ErrorMessageException handler
-    App::error(function (ErrorMessageException $e) {
-        $messages = $e->getMessages()->all();
-
-        return Response::json(array(
-            'error' => $messages[ 0 ],
-        ), 400);
-    });
-
-// NotFoundException handler
-    App::error(function (NotFoundException $e) {
-        $default_message = 'The requested resource was not found';
-
-        return Response::json(array(
-            'error' => $e->getMessage() ? : $default_message,
-        ), 404);
-    });
-
-// PermissionException handler
-    App::error(function (PermissionException $e) {
-        $default_message = 'Insufficent privilges to perform this action';
-
-        return Response::json(array(
-            'error' => $e->getMessage() ? : $default_message,
-        ), 403);
-    });
+//// ErrorMessageException handler
+//    App::error(function (ErrorMessageException $e) {
+//        $messages = $e->getMessages()->all();
+//
+//        return Response::json(array(
+//            'error' => $messages[ 0 ],
+//        ), 400);
+//    });
+//
+//// NotFoundException handler
+//    App::error(function (NotFoundException $e) {
+//        $default_message = 'The requested resource was not found';
+//
+//        return Response::json(array(
+//            'error' => $e->getMessage() ? : $default_message,
+//        ), 404);
+//    });
+//
+//// PermissionException handler
+//    App::error(function (PermissionException $e) {
+//        $default_message = 'Insufficent privilges to perform this action';
+//
+//        return Response::json(array(
+//            'error' => $e->getMessage() ? : $default_message,
+//        ), 403);
+//    });

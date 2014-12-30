@@ -119,6 +119,10 @@
         Route::get('/tickets/{id}/trashed', [ 'uses' => 'TicketsController@showWithTrashed' ]);
 
         Route::resource('tickets', 'TicketsController');
+
+        Route::get('/test', function () {
+            return Fractal::collection(Ticket::paginate(100), new \transformers\TicketTransformer());
+        });
     });
 
     # Sample Sentry Routes
