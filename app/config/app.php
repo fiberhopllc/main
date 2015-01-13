@@ -33,7 +33,7 @@
         | Application Timezone
         |--------------------------------------------------------------------------
         |
-        | Here you may specify the default timezone for your iplication, which
+        | Here you may specify the default timezone for your application, which
         | will be used by the PHP date and date-time functions. We have gone
         | ahead and set this to a sensible default for you out of the box.
         |
@@ -138,6 +138,8 @@
             'Xethron\MigrationsGenerator\MigrationsGeneratorServiceProvider',
             'Roumen\Sitemap\SitemapServiceProvider',
             'Pafelin\LaravelNonce\NonceServiceProvider',
+            'EllipseSynergie\ApiResponse\Laravel\ResponseServiceProvider',
+            'Chrisbjr\ApiGuard\ApiGuardServiceProvider',
             'Spatie\Activitylog\ActivitylogServiceProvider',
             'Yhbyun\Snowman\SnowmanServiceProvider',
             'WelderLourenco\LaravelSeeder\Providers\LaravelSeederServiceProvider',
@@ -150,7 +152,8 @@
             'basicAuth\Repo\BackendServiceProvider',
             'GrahamCampbell\Throttle\ThrottleServiceProvider',
             'Zizaco\Confide\ServiceProvider',
-            'Zizaco\Entrust\EntrustServiceProvider'
+            'Zizaco\Entrust\EntrustServiceProvider',
+            'GatherContent\LaravelFractal\LaravelFractalServiceProvider',
             // Add:  http://packalyst.com/packages/package/creolab/laravel-modules ?
 
         ),
@@ -205,6 +208,7 @@
             'Event'                           => 'Illuminate\Support\Facades\Event',
             'File'                            => 'Illuminate\Support\Facades\File',
             'Form'                            => 'Illuminate\Support\Facades\Form',
+            'Fractal'                         => 'GatherContent\LaravelFractal\LaravelFractalFacade',
             'Hash'                            => 'Illuminate\Support\Facades\Hash',
             'HTML'                            => 'Illuminate\Support\Facades\HTML',
             'Input'                           => 'Illuminate\Support\Facades\Input',

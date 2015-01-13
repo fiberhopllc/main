@@ -11,7 +11,7 @@
 
             foreach (range(1, 10) as $index) {
                 Ticket::create([
-                    "id"          => $faker->numberBetween(1, 100),
+                    "id"          => null,
                     "customer_id" => $faker->numberBetween(1, 100),
                     "category_id" => $faker->numberBetween(1, 100),
                     "assigned"    => $faker->numberBetween(0, 1),

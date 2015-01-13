@@ -498,6 +498,11 @@ class Process
         $data = $this->getOutput();
 
         $latest = substr($data, $this->incrementalOutputOffset);
+
+        if (false === $latest) {
+            return '';
+        }
+
         $this->incrementalOutputOffset = strlen($data);
 
         return $latest;
@@ -558,6 +563,11 @@ class Process
         $data = $this->getErrorOutput();
 
         $latest = substr($data, $this->incrementalErrorOutputOffset);
+
+        if (false === $latest) {
+            return '';
+        }
+
         $this->incrementalErrorOutputOffset = strlen($data);
 
         return $latest;
@@ -1229,7 +1239,7 @@ class Process
             return $result;
         }
 
-        if (defined('PHP_WINDOWS_VERSION_BUILD')) {
+        if ('\\' === DIRECTORY_SEPARATOR) {
             return $result = false;
         }
 

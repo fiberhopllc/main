@@ -150,5 +150,9 @@
 //        $numbers = $hashids->decode($id);
 //
 //        return $id;
+
+        $tickets = API::get('tickets');
+
+        return View::make('index')->with('tickets', $tickets);
     });
 

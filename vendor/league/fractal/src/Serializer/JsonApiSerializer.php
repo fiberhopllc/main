@@ -3,7 +3,7 @@
 /*
  * This file is part of the League\Fractal package.
  *
- * (c) Phil Sturgeon <me@philsturgeon.uk>
+ * (c) Phil Sturgeon <email@philsturgeon.co.uk>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -11,15 +11,13 @@
 
 namespace League\Fractal\Serializer;
 
-use League\Fractal\Resource\ResourceInterface;
-
 class JsonApiSerializer extends ArraySerializer
 {
     /**
-     * Serialize a collection.
+     * Serialize an item resource
      *
      * @param string $resourceKey
-     * @param array  $data
+     * @param array $data
      *
      * @return array
      */
@@ -29,10 +27,10 @@ class JsonApiSerializer extends ArraySerializer
     }
 
     /**
-     * Serialize an item.
+     * Serialize an item resource
      *
      * @param string $resourceKey
-     * @param array  $data
+     * @param array $data
      *
      * @return array
      */
@@ -43,32 +41,19 @@ class JsonApiSerializer extends ArraySerializer
 
     /**
      * Serialize the included data.
-     *
-     * @param ResourceInterface $resource
-     * @param array             $data
+     * 
+     * @param  string  $resourceKey
+     * @param  array  $data
      *
      * @return array
      */
-    public function includedData(ResourceInterface $resource, array $data)
+    public function includedData($resourceKey, array $data)
     {
         $serializedData = array();
-        $linkedIds = array();
+
         foreach ($data as $value) {
             foreach ($value as $includeKey => $includeValue) {
-                foreach ($includeValue[$includeKey] as $itemValue) {
-                    if (!array_key_exists('id', $itemValue)) {
-                        $serializedData[$includeKey][] = $itemValue;
-                        continue;
-                    }
-
-                    $itemId = $itemValue['id'];
-                    if (!empty($linkedIds[$includeKey]) && in_array($itemId, $linkedIds[$includeKey], true)) {
-                        continue;
-                    }
-
-                    $serializedData[$includeKey][] = $itemValue;
-                    $linkedIds[$includeKey][] = $itemId;
-                }
+                $serializedData = array_merge_recursive($serializedData, $includeValue);
             }
         }
 

@@ -3,7 +3,7 @@
 /*
  * This file is part of the League\Fractal package.
  *
- * (c) Phil Sturgeon <me@philsturgeon.uk>
+ * (c) Phil Sturgeon <email@philsturgeon.co.uk>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -11,74 +11,68 @@
 
 namespace League\Fractal;
 
-use League\Fractal\Resource\ResourceInterface;
+use League\Fractal\Resource\ResourceAbstract;
 use League\Fractal\Serializer\DataArraySerializer;
 use League\Fractal\Serializer\SerializerAbstract;
 
-/**
- * Manager
- *
- * Not a wildly creative name, but the manager is what a Fractal user will interact
- * with the most. The manager has various configurable options, and allows users
- * to create the "root scope" easily.
- */
 class Manager
 {
     /**
-     * Array of scope identifiers for resources to include.
+     * Array of scope identifiers for resources to include
      *
      * @var array
-     */
+     **/
     protected $requestedIncludes = array();
 
     /**
-     * Array containing modifiers as keys and an array value of params.
+     * Array containing modifiers as keys and an array value of params
      *
      * @var array
-     */
+     **/
     protected $includeParams = array();
 
     /**
-     * The character used to separate modifier parameters.
+     * The character used to separate modifier parameters
      *
      * @var string
-     */
+     **/
     protected $paramDelimiter = '|';
 
     /**
-     * Upper limit to how many levels of included data are allowed.
+     * Upper limit to how many levels of included data are allowed
      *
-     * @var int
-     */
+     * @var integer
+     **/
     protected $recursionLimit = 10;
 
     /**
-     * Serializer.
-     *
-     * @var SerializerAbstract
-     */
+     * Serializer
+     * 
+     * @var \League\Fractal\Serializer\SerializerInterface
+     **/
     protected $serializer;
-
+    
     /**
-     * Create Data.
+     * Create Data
      *
      * Main method to kick this all off. Make a resource then pass it over, and use toArray()
      *
-     * @param ResourceInterface $resource
-     * @param string            $scopeIdentifier
-     * @param Scope             $parentScopeInstance
-     *
-     * @return Scope
-     */
-    public function createData(ResourceInterface $resource, $scopeIdentifier = null, Scope $parentScopeInstance = null)
+     * @api
+     * @param \League\Fractal\Resource\ResourceAbstract $resource
+     * @param string $scopeIdentifier
+     * @param string $parentScopeInstance
+     * @return \League\Fractal\Scope
+     **/
+    public function createData(ResourceAbstract $resource, $scopeIdentifier = null, $parentScopeInstance = null)
     {
         $scopeInstance = new Scope($this, $resource, $scopeIdentifier);
 
         // Update scope history
         if ($parentScopeInstance !== null) {
+
             // This will be the new children list of parents (parents parents, plus the parent)
             $scopeArray = $parentScopeInstance->getParentScopes();
-            $scopeArray[] = $parentScopeInstance->getScopeIdentifier();
+            $scopeArray[] = $parentScopeInstance->getCurrentScope();
 
             $scopeInstance->setParentScopes($scopeArray);
         }
@@ -87,54 +81,50 @@ class Manager
     }
 
     /**
-     * Get Include Params.
+     * Get Include Params
      *
+     * @api
      * @param string $include
-     *
-     * @return \League\Fractal\ParamBag|null
-     */
+     * @return array|null
+     **/
     public function getIncludeParams($include)
     {
-        if (! isset($this->includeParams[$include])) {
-            return;
-        }
-
-        $params = $this->includeParams[$include];
-
-        return new ParamBag($params);
+        return isset($this->includeParams[$include]) ? $this->includeParams[$include] : null;
     }
-
+    
     /**
-     * Get Requested Includes.
+     * Get Requested Includes
      *
+     * @api
      * @return array
-     */
+     **/
     public function getRequestedIncludes()
     {
         return $this->requestedIncludes;
     }
-
+    
     /**
-     * Get Serializer.
+     * Get Serializer
      *
-     * @return SerializerAbstract
-     */
+     * @api
+     * @return $this
+     **/
     public function getSerializer()
     {
         if (! $this->serializer) {
-            $this->setSerializer(new DataArraySerializer());
+            $this->setSerializer(new DataArraySerializer);
         }
 
         return $this->serializer;
     }
 
     /**
-     * Parse Include String.
+     * Parse Include String
      *
+     * @api
      * @param array|string $includes Array or csv string of resources to include
-     *
      * @return $this
-     */
+     **/
     public function parseIncludes($includes)
     {
         // Wipe these before we go again
@@ -151,6 +141,7 @@ class Manager
         }
 
         foreach ($includes as $include) {
+            
             list($includeName, $allModifiersStr) = array_pad(explode(':', $include, 2), 2, null);
 
             // Trim it down to a cool level of recursion
@@ -176,12 +167,13 @@ class Manager
             $modifierArr = array();
 
             for ($modifierIt = 0; $modifierIt < $modifierCount; $modifierIt++) {
+                
                 // [1] is the modifier
                 $modifierName = $allModifiersArr[1][$modifierIt];
 
                 // and [2] is delimited params
                 $modifierParamStr = $allModifiersArr[2][$modifierIt];
-
+                
                 // Make modifier array key with an array of params as the value
                 $modifierArr[$modifierName] = explode($this->paramDelimiter, $modifierParamStr);
             }
@@ -196,30 +188,28 @@ class Manager
     }
 
     /**
-     * Set Recursion Limit.
+     * Set Recursion Limit
      *
-     * @param int $recursionLimit
-     *
+     * @api
+     * @param \League\Fractal\Serializer\SerializerInterface
      * @return $this
-     */
+     **/
     public function setRecursionLimit($recursionLimit)
     {
         $this->recursionLimit = $recursionLimit;
-
         return $this;
     }
 
     /**
      * Set Serializer
      *
-     * @param SerializerAbstract $serializer
-     *
+     * @api
+     * @param \League\Fractal\Serializer\SerializerAbstract $serializer
      * @return $this
-     */
+     **/
     public function setSerializer(SerializerAbstract $serializer)
     {
         $this->serializer = $serializer;
-
         return $this;
     }
 
@@ -230,9 +220,7 @@ class Manager
      * are not explicitly requested. E.g: [foo, bar.baz] becomes [foo, bar, bar.baz]
      *
      * @internal
-     *
-     * @return void
-     */
+     **/
     protected function autoIncludeParents()
     {
         $parsed = array();
@@ -259,11 +247,7 @@ class Manager
      * by trains or whatever the hell that movie was about.
      *
      * @internal
-     *
-     * @param string $includeName
-     *
-     * @return string
-     */
+     **/
     protected function trimToAcceptableRecursionLevel($includeName)
     {
         return implode('.', array_slice(explode('.', $includeName), 0, $this->recursionLimit));

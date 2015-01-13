@@ -13,7 +13,7 @@
         public function up()
         {
             Schema::create('tickets', function (Blueprint $table) {
-                $table->integer('id')->primary();
+                $table->increments('id');
                 $table->integer('customer_id');
                 $table->integer('category_id');
                 $table->binary('assigned');

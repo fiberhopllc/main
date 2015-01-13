@@ -3,7 +3,7 @@
 /*
  * This file is part of the League\Fractal package.
  *
- * (c) Phil Sturgeon <me@philsturgeon.uk>
+ * (c) Phil Sturgeon <email@philsturgeon.co.uk>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -27,7 +27,7 @@ class Cursor implements CursorInterface
     protected $current;
 
     /**
-     * Previous cursor value.
+     * Prev cursor value
      *
      * @var mixed
      */
@@ -43,18 +43,16 @@ class Cursor implements CursorInterface
     /**
      * Items being holded for the current cursor position.
      *
-     * @var int
+     * @var integer
      */
     protected $count;
 
     /**
      * Create a new Cursor instance.
      *
-     * @param int   $current
-     * @param mixed $next
-     * @param int   $count
-     *
-     * @return void
+     * @param mixed   $current
+     * @param mixed   $next
+     * @param integer $count
      */
     public function __construct($current = null, $prev = null, $next = null, $count = null)
     {
@@ -77,14 +75,12 @@ class Cursor implements CursorInterface
     /**
      * Set the current cursor value.
      *
-     * @param int $current
-     *
-     * @return Cursor
+     * @param  mixed $current
+     * @return League\Fractal\Pagination\PaginatorInterface
      */
     public function setCurrent($current)
     {
         $this->current = $current;
-
         return $this;
     }
 
@@ -101,14 +97,12 @@ class Cursor implements CursorInterface
     /**
      * Set the prev cursor value.
      *
-     * @param int $prev
-     *
-     * @return Cursor
+     * @param  mixed $prev
+     * @return League\Fractal\Pagination\PaginatorInterface
      */
     public function setPrev($prev)
     {
         $this->prev = $prev;
-
         return $this;
     }
 
@@ -125,21 +119,19 @@ class Cursor implements CursorInterface
     /**
      * Set the next cursor value.
      *
-     * @param int $next
-     *
-     * @return Cursor
+     * @param  mixed $next
+     * @return League\Fractal\Pagination\PaginatorInterface
      */
     public function setNext($next)
     {
         $this->next = $next;
-
         return $this;
     }
 
     /**
      * Returns the total items in the current cursor.
      *
-     * @return int
+     * @return integer
      */
     public function getCount()
     {
@@ -149,14 +141,12 @@ class Cursor implements CursorInterface
     /**
      * Set the total items in the current cursor.
      *
-     * @param int $count
-     *
-     * @return Cursor
+     * @param integer $count
+     * @return League\Fractal\Pagination\PaginatorInterface
      */
     public function setCount($count)
     {
         $this->count = $count;
-
         return $this;
     }
 }

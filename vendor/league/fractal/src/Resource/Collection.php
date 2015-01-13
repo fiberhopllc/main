@@ -3,7 +3,7 @@
 /*
  * This file is part of the League\Fractal package.
  *
- * (c) Phil Sturgeon <me@philsturgeon.uk>
+ * (c) Phil Sturgeon <email@philsturgeon.co.uk>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -24,118 +24,115 @@ use League\Fractal\Pagination\PaginatorInterface;
 class Collection extends ResourceAbstract
 {
     /**
-     * A collection of data.
+     * A collection of data
      *
      * @var array|ArrayIterator
-     */
+     **/
     protected $data;
 
     /**
-     * A the paginator instance.
+     * A collection of data
      *
-     * @var PaginatorInterface
-     */
+     * @var League\Fractal\Pagination\PaginatorInterface
+     **/
     protected $paginator;
 
     /**
-     * The cursor instance.
+     * Cursor implementation.
      *
-     * @var CursorInterface
-     */
+     * @var League\Fractal\Pagination\CursorInterface
+     **/
     protected $cursor;
 
     /**
-     * A callable to process the data attached to this resource.
+     * A callable to process the data attached to this resource
      *
      * @var callable|string
-     */
+     **/
     protected $transformer;
 
     /**
-     * Get the data.
+     * Getter for data
      *
      * @return array|ArrayIterator
-     */
+     **/
     public function getData()
     {
         return $this->data;
     }
 
     /**
-     * Get the paginator instance.
+     * Getter for paginator
      *
-     * @return PaginatorInterface
-     */
+     * @return \League\Fractal\Pagination\PaginatorInterface
+     **/
     public function getPaginator()
     {
         return $this->paginator;
     }
 
     /**
-     * Determine if the resource has a paginator implementation.
-     *
+     * Determine if the resource has a paginator implementation
+     * 
      * @return bool
-     */
+     **/
     public function hasPaginator()
     {
         return $this->paginator instanceof PaginatorInterface;
     }
 
     /**
-     * Get the cursor instance.
+     * Set the cursor implementation
      *
-     * @return CursorInterface
-     */
+     * @return \League\Fractal\Pagination\CursorInterface
+     **/
     public function getCursor()
     {
         return $this->cursor;
     }
 
     /**
-     * Determine if the resource has a cursor implementation.
-     *
+     * Determine if the resource has a cursor implementation
+     * 
      * @return bool
-     */
+     **/
     public function hasCursor()
     {
         return $this->cursor instanceof CursorInterface;
     }
 
     /**
-     * Get the transformer.
+     * Getter for transformer
      *
      * @return callable|string
-     */
+     **/
     public function getTransformer()
     {
         return $this->transformer;
     }
 
     /**
-     * Set the paginator instance.
+     * Setter for paginator
      *
-     * @param PaginatorInterface $paginator
+     * @param \League\Fractal\Pagination\PaginatorInterface $paginator
      *
      * @return $this
-     */
+     **/
     public function setPaginator(PaginatorInterface $paginator)
     {
         $this->paginator = $paginator;
-
         return $this;
     }
 
     /**
-     * Set the cursor instance.
+     * Set the cursor implementation.
      *
-     * @param CursorInterface $cursor
-     *
+     * @param \League\Fractal\Pagination\CursorInterface $cursor
      * @return $this
-     */
+     **/
     public function setCursor(CursorInterface $cursor)
     {
         $this->cursor = $cursor;
-
         return $this;
     }
 }
